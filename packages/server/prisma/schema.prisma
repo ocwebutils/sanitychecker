@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type ResultsOptions {
+  accessKey String?
+  private   Boolean @default(false)
+}
+
+type ResultsResults {
+  rulesResults  Json?
+  schemaResults Json?
+}
+
+type Metadata {
+  cpuCodename String
+  cpuName     String
+  ocVersion   String
+}
+
+model results {
+  id         String         @id @default(auto()) @map("_id") @db.ObjectId
+  createdBy  String
+  expireDate Int
+  options    ResultsOptions
+  resultId   String @unique
+  results    ResultsResults
+  metadata   Metadata
+}

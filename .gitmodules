@@ -1,0 +1,3 @@
+[submodule "packages/server/src/server/rules"]
+	path = packages/server/src/server/rules
+	url = https://github.com/ocwebutils/rules.git

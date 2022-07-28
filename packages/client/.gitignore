@@ -1,0 +1,20 @@
+# Logs
+*.log*
+
+# Nuxt files
+.nuxt
+.nitro
+.cache
+.output
+
+# Enviroment files
+.env
+
+# Node
+node_modules
+
+# Output folder(s)
+dist
+
+# macOS
+.DS_Store

@@ -1,0 +1,45 @@
+<template>
+	<div class="navbar container mx-auto px-4 pt-5">
+		<div class="navbar-start">
+			<div class="dropdown">
+				<label tabindex="0" class="btn btn-ghost lg:hidden">
+					<font-awesome-icon class="h-5 w-5" size="lg" icon="fa-solid fa-bars" />
+				</label>
+				<ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+					<li>
+						<NuxtLink href="/privacy" class="flex items-center">
+							<span class="self-center text-xl font-medium whitespace-nowrap hover:text-blue-500 transition-colors"
+								><font-awesome-icon icon="fa-solid fa-note-sticky" /> Privacy Policy</span
+							>
+						</NuxtLink>
+					</li>
+					<li>
+						<a href="https://github.com/ocwebutils/sanitychecker" target="_blank" class="flex items-center">
+							<span class="self-center text-xl font-medium whitespace-nowrap hover:text-blue-500 transition-colors"
+								><font-awesome-icon icon="fa-brands fa-github" /> Source Code</span
+							>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<NuxtLink href="/">
+				<span class="self-center text-2xl font-semibold whitespace-nowrap hover:text-blue-500 transition-colors"
+					>Sanity Checker <span class="badge badge-lg">beta</span></span
+				>
+			</NuxtLink>
+		</div>
+		<div class="navbar-end space-x-4">
+			<NuxtLink href="/privacy" class="items-center hidden lg:flex">
+				<span class="self-center text-xl font-medium whitespace-nowrap hover:text-blue-500 transition-colors"
+					><font-awesome-icon icon="fa-solid fa-note-sticky" /> Privacy Policy</span
+				>
+			</NuxtLink>
+			<a href="https://github.com/ocwebutils/sanitychecker" target="_blank" class="items-center hidden lg:flex">
+				<span class="self-center text-xl font-medium whitespace-nowrap hover:text-blue-500 transition-colors"
+					><font-awesome-icon icon="fa-brands fa-github" /> Source Code</span
+				>
+			</a>
+			<NavbarColorSwitcher />
+		</div>
+	</div>
+</template>

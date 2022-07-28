@@ -1,0 +1,16 @@
+# Yarn v2
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Output folder(s)
+dist/
+
+# Node
+node_modules
+
+# macOS
+.DS_Store
