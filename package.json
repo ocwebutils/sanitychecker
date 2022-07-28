@@ -1,0 +1,13 @@
+{
+	"name": "@ocwebutils/sanitychecker",
+	"license": "GPL-3.0",
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"build": "yarn workspaces foreach run build",
+		"start:client": "yarn workspace @ocwebutils/sanitychecker_client start",
+		"start:server": "yarn workspace @ocwebutils/sanitychecker_server start"
+	},
+	"packageManager": "yarn@3.2.2"
+}
