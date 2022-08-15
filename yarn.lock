@@ -959,7 +959,7 @@ __metadata:
     "@types/uuid": 8.3.4
     autoprefixer: 10.4.8
     axios: 0.27.2
-    daisyui: 2.22.0
+    daisyui: 2.24.0
     fast-xml-parser: 4.0.9
     marked: 4.0.18
     nuxt: 3.0.0-rc.8
@@ -2651,9 +2651,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"daisyui@npm:2.22.0":
-  version: 2.22.0
-  resolution: "daisyui@npm:2.22.0"
+"daisyui@npm:2.24.0":
+  version: 2.24.0
+  resolution: "daisyui@npm:2.24.0"
   dependencies:
     color: ^4.2
     css-selector-tokenizer: ^0.8.0
@@ -2662,7 +2662,7 @@ __metadata:
   peerDependencies:
     autoprefixer: ^10.0.2
     postcss: ^8.1.6
-  checksum: b79940ca1c0d4c978a437c24b6add8d157e7996a4e4f9f126e0672307307a6232b9360dc3e9564b5a89a81eefd44932ae324c534280e19dca435e162c212d650
+  checksum: 3fdccfe11b3275849d98f0701872af092aa563c2a2f554e6ecab09f4c7e29ae1df6afd7db4f8e7c6d1e868120be0f90bb92fcc9e63937d55cf8fb4435878e744
   languageName: node
   linkType: hard
 
