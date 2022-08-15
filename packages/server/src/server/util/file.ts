@@ -1,35 +1,37 @@
-import { parse } from "json5";
 import { readFileSync } from "fs";
 
 export const getCPUModels = async () => {
 		try {
-			return JSON.parse(readFileSync(`${__dirname}/../rules/cpu_list.json`, "utf8"));
+			const cpulist = await require("@ocwebutils/sanitychecker_rules/cpu_list.json");
+			return cpulist;
 		} catch (err) {
 			return null;
 		}
 	},
 	getOCVersions = async () => {
 		try {
-			return JSON.parse(readFileSync(`${__dirname}/../rules/oc_versions.json`, "utf8"));
+			const ocVersions = await require("@ocwebutils/sanitychecker_rules/oc_versions.json");
+			return ocVersions;
 		} catch (err) {
 			return null;
 		}
 	},
 	getSchema = async (version: string) => {
-		const versions = JSON.parse(await readFileSync(`${__dirname}/../rules/oc_versions.json`, "utf8")),
-			string = versions.find((element: string) => element === version);
+		const ocVersions = await require("@ocwebutils/sanitychecker_rules/oc_versions.json"),
+			string = ocVersions.find((element: string) => element === version);
 
 		if (!string) return null;
 
 		try {
-			return JSON.parse(await readFileSync(`${__dirname}/../rules/schemas/${string}.schema.json`, "utf8"));
+			const schema = await require(`@ocwebutils/sanitychecker_rules/schemas/${string}.schema.json`);
+			return schema;
 		} catch (err) {
 			return null;
 		}
 	},
 	getRules = async (version: string, codename: string) => {
-		const cpulist = JSON.parse(await readFileSync(`${__dirname}/../rules/cpu_list.json`, "utf8")),
-			versions = JSON.parse(await readFileSync(`${__dirname}/../rules/oc_versions.json`, "utf8")),
+		const cpulist: Record<string, any> = await require("@ocwebutils/sanitychecker_rules/cpu_list.json"),
+			ocVersions: string[] = await require("@ocwebutils/sanitychecker_rules/oc_versions.json"),
 			splitCodename = codename.split("_");
 
 		let forEachList;
@@ -45,17 +47,15 @@ export const getCPUModels = async () => {
 		const cpuModel = forEachList.find((el: any) => {
 			if (el.codename === codename) return el;
 		});
-		const ocVersion = versions.find((element: string) => element === version);
+		const ocVersion = ocVersions.find((element: string) => element === version);
 
 		if (!cpuModel || !ocVersion) return null;
 
 		try {
-			return parse(
-				await readFileSync(
-					`${__dirname}/../rules/rules/${cpuModel.codename.split("_")[0]}/${cpuModel.codename.split("_")[1]}/${ocVersion}/${cpuModel.rules}`,
-					"utf8"
-				)
-			);
+			const cpuRules = await require(`@ocwebutils/sanitychecker_rules/rules/${cpuModel.codename.split("_")[0]}/${
+				cpuModel.codename.split("_")[1]
+			}/${ocVersion}/${cpuModel.rules}`);
+			return cpuRules;
 		} catch (err) {
 			return null;
 		}

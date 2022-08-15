@@ -3,13 +3,13 @@
 		"target": "ESNEXT",
 		"module": "commonjs",
 		"outDir": "dist",
-		"rootDir": "src",
 		"strict": true,
 		"moduleResolution": "node",
 		"baseUrl": "./src",
 		"typeRoots": ["@types"],
 		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true
 	},
-	"include": ["src/*", "@types/*", "src/server/interfaces/*"]
+	"include": ["src/**/*", "@types/*", "src/server/interfaces/*"]
 }

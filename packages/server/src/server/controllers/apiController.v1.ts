@@ -2,6 +2,7 @@ import { FastifyInstance } from "fastify";
 import { cpuList } from "../routes/list/cpuModels.get";
 import { deleteResult } from "../routes/results/result.delete";
 import { getResult } from "../routes/results/result.get";
+import { getVersions } from "../routes/getVersions.get";
 import { ocSchema } from "../routes/schema/[version].get";
 import { ocVersionsList } from "../routes/list/ocVersions.get";
 import { uploadedResults } from "../routes/user/results.get";
@@ -9,6 +10,11 @@ import { validateConfig } from "../routes/results/validate.post";
 
 export async function APIv1Controller(fastify: FastifyInstance) {
 	fastify
+		.route({
+			method: "GET",
+			url: "/versions",
+			handler: getVersions
+		})
 		.route({
 			method: "GET",
 			url: "/list/cpumodels",

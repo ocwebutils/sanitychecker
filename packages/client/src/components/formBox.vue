@@ -23,7 +23,6 @@
 										</p>
 										<p class="text-xs text-gray-500 dark:text-gray-400">.PLIST (MAX. 2MB)</p>
 									</div>
-
 									<input id="dropzone-file" type="file" @change="dropFileHandler" class="hidden" accept="application/x-plist" />
 								</label>
 							</div>
