@@ -47,7 +47,7 @@ export const validateConfig = async (
 					private: false
 				},
 				results: result,
-				expireDate: Date.now() + 1000 * 60 * 360, //* 6 hours
+				expireDate: Date.now() + 1000 * 60 * 720, //* 12 hours
 				metadata: {
 					cpuCodename: metadata.cpuDetails.codename,
 					cpuName: metadata.cpuDetails.name,
