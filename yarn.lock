@@ -872,26 +872,20 @@ __metadata:
     "@fortawesome/vue-fontawesome": 3.0.1
     "@nuxt/postcss8": 1.1.3
     "@nuxtjs/color-mode": 3.1.4
-    "@types/marked": 4.0.5
+    "@types/marked": 4.0.6
     "@types/plist": 3.0.2
     "@types/uuid": 8.3.4
     autoprefixer: 10.4.8
     axios: 0.27.2
     daisyui: 2.24.0
     fast-xml-parser: 4.0.9
-    marked: 4.0.18
+    marked: 4.0.19
     nuxt: 3.0.0-rc.8
     postcss: 8.4.16
     tailwindcss: 3.1.8
     uuid: 8.3.2
     vue-dompurify-html: 3.0.0
     vue-toastification: next
-  languageName: unknown
-  linkType: soft
-
-"@ocwebutils/sanitychecker_rules@workspace:packages/rules":
-  version: 0.0.0-use.local
-  resolution: "@ocwebutils/sanitychecker_rules@workspace:packages/rules"
   languageName: unknown
   linkType: soft
 
@@ -1110,10 +1104,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/marked@npm:4.0.5":
-  version: 4.0.5
-  resolution: "@types/marked@npm:4.0.5"
-  checksum: 19fa294997695b82a5620da305dfab4fcfce996b34884c604198145820c4502efc46bd1d275bd9a7fcf1930ab865e584572746bd957031be1860c9546af40340
+"@types/marked@npm:4.0.6":
+  version: 4.0.6
+  resolution: "@types/marked@npm:4.0.6"
+  checksum: 223f7d8e9481287aa0274df573dd56df6cb11a1090649fabd63fd97f900ed318e730d9dfaff598aa75d8946a212c1d8959a421c5cb46d90c5a6f734a1e4a7d78
   languageName: node
   linkType: hard
 
@@ -4971,12 +4965,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"marked@npm:4.0.18":
-  version: 4.0.18
-  resolution: "marked@npm:4.0.18"
+"marked@npm:4.0.19":
+  version: 4.0.19
+  resolution: "marked@npm:4.0.19"
   bin:
     marked: bin/marked.js
-  checksum: a13e886d5059a8500a6fd552feecc16e18fc3636aa491fce372384b1fdea67e323d67ac49f7618f6977e66ca96e39f27400eb5c1273d5ee9c2301e8c33e90dce
+  checksum: 0521f3c6a06a078b91ec5b6754f939e7be1a621e1a7c1e85d4e6a4eb7848e798275566b38dea05ea8a57e85d557fbc9edad4f3fa3e8b494a371133b9ba2fb720
   languageName: node
   linkType: hard
 
