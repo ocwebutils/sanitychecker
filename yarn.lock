@@ -889,12 +889,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@ocwebutils/sanitychecker_rules@workspace:packages/rules":
-  version: 0.0.0-use.local
-  resolution: "@ocwebutils/sanitychecker_rules@workspace:packages/rules"
-  languageName: unknown
-  linkType: soft
-
 "@ocwebutils/sanitychecker_server@workspace:packages/server":
   version: 0.0.0-use.local
   resolution: "@ocwebutils/sanitychecker_server@workspace:packages/server"
@@ -909,7 +903,7 @@ __metadata:
     fastify: 4.5.2
     json5: 2.2.1
     prisma: 4.2.1
-    tsx: ^3.8.2
+    tsx: 3.8.2
     typescript: 4.7.4
     uuid: 8.3.2
   languageName: unknown
@@ -7510,7 +7504,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tsx@npm:^3.8.2":
+"tsx@npm:3.8.2":
   version: 3.8.2
   resolution: "tsx@npm:3.8.2"
   dependencies:
