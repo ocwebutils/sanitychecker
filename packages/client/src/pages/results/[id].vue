@@ -3,7 +3,10 @@
 		<div class="px-8 py-6 mt-4 text-left dark:bg-gray-800 bg-white shadow-lg rounded-xl w-screen max-w-5xl">
 			<div class="text-center">
 				<h3 class="text-2xl font-bold">Validation results</h3>
-				<span class="text-lg font-medium">CPU: {{ result.metadata.cpuName }} | OpenCore version: {{ result.metadata.ocVersion }}</span>
+				<span class="text-lg font-medium"
+					>CPU: <span class="text-blue-500">{{ result.metadata.cpuName }}</span> | OpenCore:
+					<span class="text-blue-500">v{{ result.metadata.ocVersion }}</span></span
+				>
 			</div>
 			<div class="divider" />
 			<div class="text-lg font-medium space-y-4" v-if="!showRawData">
@@ -11,7 +14,7 @@
 					<h3 class="inline mr-4">{{ property }}</h3>
 					<div class="inline" v-for="res in result.results.schemaResults.missingRoot">
 						<span v-if="res === property">
-							<div class="tooltip" data-tip="This dictionary is missing from your config.">
+							<div class="tooltip" data-tip="This dictionary is missing from your config">
 								<font-awesome-icon
 									class="mr-2"
 									icon="fa-solid fa-circle-xmark"
@@ -62,7 +65,7 @@ useHead({
 		{
 			hid: "description",
 			name: "description",
-			content: `${route.params.id}'s result of config validation by OpenCore Sanity Checker`
+			content: "Result of config validation by OpenCore Sanity Checker"
 		},
 		{
 			property: "og:title",
@@ -70,7 +73,7 @@ useHead({
 		},
 		{
 			property: "og:description",
-			content: `${route.params.id}'s result of config validation by OpenCore Sanity Checker`
+			content: "Result of config validation by OpenCore Sanity Checker"
 		}
 	]
 });
@@ -125,6 +128,7 @@ const getResult = async (id: string) => {
 	rawData = e => {
 		showRawData.value = !showRawData.value;
 		!showRawData.value ? (e.target.innerText = "Show Raw Data") : (e.target.innerText = "Hide Raw Data");
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	},
 	copyURL = e => {
 		const permissionName = "clipboard-write" as PermissionName;

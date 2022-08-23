@@ -101,6 +101,34 @@ function censorValue(entry: string[]): string {
 	return value?.replace(/[\w\d]/g, "*");
 }
 
+function resolveDep(config: any, rule: string): boolean {
+	if (!config || !rule) return false;
+	const path = rule.split(new RegExp(": (.*)", "s")).filter(i => i.length > 0);
+	let result = false;
+
+	path[0].split("/").forEach((key, index) => {
+		if (config[key] && index < path[0].split("/").length - 1) {
+			config = config[key];
+		} else if (index === path[0].split("/").length - 1) {
+			// Assuming array of objects
+			if (Array.isArray(config)) {
+				if (path[1].includes("/")) {
+					const [value, targetRule] = path[1].split("/");
+					const [targetKey, targetValue] = targetRule.split(": ");
+
+					config = config.find(item => item[key]?.toString() === value);
+					result = config[targetKey]?.toString() === targetValue;
+				} else {
+					result = !!config.find(item => item[key]?.toString() === path[1]);
+				}
+			} else if (isObject(config)) {
+				result = config[key]?.toString() === path[1];
+			}
+		}
+	});
+	return result;
+}
+
 /**
  * God knows why and how this works
  */
@@ -132,7 +160,7 @@ export function ruleCheck(config: { [s: string]: unknown } | ArrayLike<unknown>,
 							message: rules[key[0]][rule].message?.replace("{0}", propValue[0])?.replace("{1}", propValue[1])
 						};
 						returnArray.push({
-							path: `${key[0]}.${value[0]}`,
+							path: `${key[0]}/${value[0]}`,
 							actualValue: value[1],
 							expectedValue: propValue[1],
 							ruleSet: returnObject
@@ -148,7 +176,7 @@ export function ruleCheck(config: { [s: string]: unknown } | ArrayLike<unknown>,
 							message: null
 						};
 						returnArray.push({
-							path: `${key[0]}.${value[0]}`,
+							path: `${key[0]}/${value[0]}`,
 							actualValue: value[1],
 							expectedValue: propValue[1],
 							ruleSet: returnObject
@@ -156,7 +184,7 @@ export function ruleCheck(config: { [s: string]: unknown } | ArrayLike<unknown>,
 					});
 				}
 			} else if (Array.isArray(value[1]) && ruleSet) {
-				const unmatchedRule: string[] = [];
+				let unmatchedRule: (string | undefined)[] = [];
 
 				if (value[1].length === 0) {
 					for (const rule in ruleSet) {
@@ -167,7 +195,7 @@ export function ruleCheck(config: { [s: string]: unknown } | ArrayLike<unknown>,
 								message: ruleSet[rule].message?.replace("{0}", propValue[0])?.replace("{1}", propValue[1])
 							};
 							returnArray.push({
-								path: `${key[0]}.${value[0]}.${propValue[0]}`,
+								path: `${key[0]}/${value[0]}/${propValue[0]}`,
 								actualValue: value[1].length.toString(),
 								expectedValue: `${propValue[1]} ${propValue[0].toLowerCase() === "mincount" ? "or more" : "or less"}`,
 								ruleSet: returnObject
@@ -187,7 +215,7 @@ export function ruleCheck(config: { [s: string]: unknown } | ArrayLike<unknown>,
 									message: ruleSet[rule].message?.replace("{0}", propValue[0])?.replace("{1}", propValue[1])
 								};
 								returnArray.push({
-									path: `${key[0]}.${value[0]}.${propValue[0]}`,
+									path: `${key[0]}/${value[0]}/${propValue[0]}`,
 									actualValue: value[1].length.toString(),
 									expectedValue: `${propValue[1]} ${propValue[0].toLowerCase() === "mincount" ? "or more" : "or less"}`,
 									ruleSet: returnObject
@@ -203,8 +231,8 @@ export function ruleCheck(config: { [s: string]: unknown } | ArrayLike<unknown>,
 
 									const propValue = rule.split(": ");
 									const driver = driverName ? driverName : addSuffix(index + 1);
-									const instance = `${key[0]}.${value[0]}.${driver?.replace(/(.kext|.efi|.aml)/g, "")}`;
-									const path = `${instance}.${propValue[0]}`;
+									const instance = `${key[0]}/${value[0]}/${driver}`;
+									const path = `${instance}/${propValue[0]}`;
 
 									if (compareValue(subValue, rule)) {
 										// Throw error if rule has negative lookahead or not a string
@@ -242,10 +270,13 @@ export function ruleCheck(config: { [s: string]: unknown } | ArrayLike<unknown>,
 											message: ruleSet[rule].message?.replace("{0}", propValue[1])
 										};
 										returnArray.push({
-											path: `${key[0]}.${value[0]}`,
+											path: `${key[0]}/${value[0]}`,
 											actualValue: propValue[1],
 											expectedValue: propValue[1],
 											ruleSet: returnObject
+										});
+										unmatchedRule = unmatchedRule.map(rl => {
+											if (rl !== rule) return rl;
 										});
 									}
 								});
@@ -274,7 +305,7 @@ export function ruleCheck(config: { [s: string]: unknown } | ArrayLike<unknown>,
 												message: propSet[prop].message?.replace("{0}", subObj[1])
 											};
 											returnArray.push({
-												path: `${key[0]}.${value[0]}.${obj[0]}.${subObj[0]}`,
+												path: `${key[0]}/${value[0]}/${obj[0]}/${subObj[0]}`,
 												actualValue: `[${subObj[1].toString()}]`,
 												expectedValue: propValue[1],
 												ruleSet: returnObject
@@ -285,7 +316,7 @@ export function ruleCheck(config: { [s: string]: unknown } | ArrayLike<unknown>,
 							} else {
 								Object.keys(subRuleset).forEach(rule => {
 									const propValue = rule.split(": ");
-									const path = `${key[0]}.${value[0]}.${index}.${obj[0]}.${subValue[0]}`;
+									const path = `${key[0]}/${value[0]}/${index}/${obj[0]}/${subValue[0]}`;
 									if (rule.includes("Count:") && !compareLength(obj[1] as object, rule)) {
 										console.error(`${key[0]}.${value[0]}.${rule}`);
 									} else if (compareValue(subValue, rule)) {
@@ -316,7 +347,7 @@ export function ruleCheck(config: { [s: string]: unknown } | ArrayLike<unknown>,
 					} else {
 						for (const rule in ruleSet) {
 							const ruleSplit = rule.split(": ");
-							const path = `${key[0]}.${value[0]}.${obj[0]}`;
+							const path = `${key[0]}/${value[0]}/${obj[0]}`;
 							if (rule.includes("Count:") && !compareLength(obj, rule)) {
 								console.error(ruleSet[rule]);
 							} else if (handleWarningOrInfo(obj, rule, ruleSet[rule].type) || compareValue(obj as string[], rule)) {
@@ -340,6 +371,17 @@ export function ruleCheck(config: { [s: string]: unknown } | ArrayLike<unknown>,
 									actualValue: censorValue(obj as string[]),
 									ruleSet: returnObject
 								});
+								if (ruleSet[rule].requires && !resolveDep(config, ruleSet[rule].requires)) {
+									const returnObject = {
+										type: "error",
+										message: `${rule} is dependent on ${ruleSet[rule].requires}`
+									};
+									returnArray.push({
+										path,
+										actualValue: censorValue(obj as string[]),
+										ruleSet: returnObject
+									});
+								}
 							}
 						}
 					}
@@ -359,7 +401,6 @@ export function schemaCheck(config: { [s: string]: unknown } | ArrayLike<unknown
 
 	if (!isValid && validate.errors) {
 		validate.errors.forEach(error => {
-			console.log(error);
 			if (error.instancePath) {
 				const returnObject = {
 					type: "error",
@@ -367,7 +408,7 @@ export function schemaCheck(config: { [s: string]: unknown } | ArrayLike<unknown
 				};
 
 				errorArray.push({
-					path: error.instancePath.slice(1).replaceAll("/", "."),
+					path: error.instancePath.slice(1),
 					expectedValue:
 						error.params.missingProperty ??
 						error.params.additionalProperty ??

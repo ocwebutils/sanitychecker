@@ -3,9 +3,8 @@
 		<font-awesome-icon icon="fa-solid fa-circle-info" class="inline flex-shrink-0 mr-3 w-5 h-5" />
 		<span class="sr-only">Info</span>
 		<div>
-			<span class="font-bold">Warning!</span> Sanity Checker is in beta. Expect issues with checking your config,
-			<span class="font-bold">rules</span> and <span class="font-bold">schemas</span>.
-			<p>During <span class="font-bold">BETA</span> stage, we'll be improving existing rules and adding support for more OpenCore versions.</p>
+			<span class="font-bold">Warning!</span> Sainty Checker is still in beta stage. Please report errors with validating, submitting and more on our
+			<a href="https://ocutils.me/discord" class="font-bold text-blue-800">discord server</a>.
 		</div>
 	</div>
 </template>

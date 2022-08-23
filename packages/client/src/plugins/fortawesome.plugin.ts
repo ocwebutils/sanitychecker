@@ -16,9 +16,9 @@ import {
 	faQuestion,
 	faSun
 } from "@fortawesome/free-solid-svg-icons";
+import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 config.autoAddCss = false;
 
@@ -39,7 +39,7 @@ library.add(
 	faCube,
 	faCloudArrowUp
 );
-library.add(faGithub);
+library.add(faGithub, faDiscord);
 
 export default defineNuxtPlugin(nuxtApp => {
 	//@ts-expect-error: Types are broken

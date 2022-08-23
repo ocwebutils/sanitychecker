@@ -14,6 +14,13 @@
 						</NuxtLink>
 					</li>
 					<li>
+						<a href="https://ocutils.me/discord" target="_blank" class="flex items-center">
+							<span class="self-center text-xl font-medium whitespace-nowrap hover:text-blue-500 transition-colors"
+								><font-awesome-icon icon="fa-brands fa-discord" /> Discord</span
+							>
+						</a>
+					</li>
+					<li>
 						<a href="https://github.com/ocwebutils/sanitychecker" target="_blank" class="flex items-center">
 							<span class="self-center text-xl font-medium whitespace-nowrap hover:text-blue-500 transition-colors"
 								><font-awesome-icon icon="fa-brands fa-github" /> Source Code</span
@@ -34,6 +41,11 @@
 					><font-awesome-icon icon="fa-solid fa-note-sticky" /> Privacy Policy</span
 				>
 			</NuxtLink>
+			<a href="https://ocutils.me/discord" target="_blank" class="items-center hidden lg:flex">
+				<span class="self-center text-xl font-medium whitespace-nowrap hover:text-blue-500 transition-colors"
+					><font-awesome-icon icon="fa-brands fa-discord" /> Discord</span
+				>
+			</a>
 			<a href="https://github.com/ocwebutils/sanitychecker" target="_blank" class="items-center hidden lg:flex">
 				<span class="self-center text-xl font-medium whitespace-nowrap hover:text-blue-500 transition-colors"
 					><font-awesome-icon icon="fa-brands fa-github" /> Source Code</span

@@ -5,11 +5,11 @@
 			<font-awesome-icon class="mr-2" :icon="getIcon(schemaError.ruleSet.type).icon" :style="getIcon(schemaError.ruleSet.type).style" />
 			<span
 				>{{
-					schemaError.path.split(".").length === 2 && !schemaError.type
-						? `(${schemaError.path.split(".")[1]}) ${schemaError.expectedValue}`
-						: schemaError.path.split(".").length <= 2
+					schemaError.path.split("/").length === 2 && !schemaError.type
+						? `(${schemaError.path.split("/")[1]}) ${schemaError.expectedValue}`
+						: schemaError.path.split("/").length <= 2
 						? schemaError.expectedValue
-						: `(${schemaError.path.split(".")[1]}) ${schemaError.expectedValue}`
+						: `(${schemaError.path.split("/")[1]}) ${schemaError.expectedValue}`
 				}}
 			</span>
 		</div>

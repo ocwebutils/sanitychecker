@@ -4,11 +4,11 @@
 			<font-awesome-icon class="mr-2" :icon="getIcon(ruleOutput.ruleSet.type).icon" :style="getIcon(ruleOutput.ruleSet.type).style" />
 			<span
 				>{{
-					ruleOutput.path.split(".").length >= 5
-						? `(${ruleOutput.path.split(".")[1]}) ${ruleOutput.path.split(".")[3]}.${ruleOutput.path.split(".")[4]}:`
-						: ruleOutput.path.split(".")[2] === undefined
-						? `${ruleOutput.path.split(".")[1]}:`
-						: `(${ruleOutput.path.split(".")[1]}) ${ruleOutput.path.split(".")[2]}:`
+					ruleOutput.path.split("/").length >= 5
+						? `(${ruleOutput.path.split("/")[1]}) ${ruleOutput.path.split("/")[3]}.${ruleOutput.path.split("/")[4]}:`
+						: ruleOutput.path.split("/")[2] === undefined
+						? `${ruleOutput.path.split("/")[1]}:`
+						: `(${ruleOutput.path.split("/")[1]}) ${ruleOutput.path.split("/")[2]}:`
 				}}
 				{{ replaceBoolean(ruleOutput.actualValue) }}</span
 			>
