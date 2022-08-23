@@ -101,6 +101,37 @@ function censorValue(entry: string[]): string {
 	return value?.replace(/[\w\d]/g, "*");
 }
 
+function resolveDep(config: any, rule: string): boolean {
+	if (!config || !rule) return false;
+	const path = rule.split("/").map(item => item.trim());
+	let result = false;
+
+	path.forEach(key => {
+		if (!key.includes(": ") && config[key]) {
+			config = config[key];
+		} else if (key.includes(": ")) {
+			// Assuming array of objects
+			if (Array.isArray(config)) {
+				if (key.includes("+")) {
+					const [peerSet, targetSet] = key.split("+").map(item => item.trim());
+					const [peerKey, peerValue] = peerSet.split(": ").map(item => item.trim());
+					const [targetKey, targetValue] = targetSet.split(": ").map(item => item.trim());
+
+					config = config.find(item => item[peerKey]?.toString() === peerValue);
+					result = config?.[targetKey]?.toString() === targetValue;
+				} else {
+					const [ruleKey, ruleValue] = key.split(": ").map(item => item.trim());
+					result = !!config.find(item => item[ruleKey]?.toString() === ruleValue);
+				}
+			} else if (isObject(config)) {
+				const [ruleKey, ruleValue] = key.split(": ").map(item => item.trim());
+				result = config[ruleKey]?.toString() === ruleValue;
+			}
+		}
+	});
+	return result;
+}
+
 /**
  * God knows why and how this works
  */
@@ -340,6 +371,17 @@ export function ruleCheck(config: { [s: string]: unknown } | ArrayLike<unknown>,
 									actualValue: censorValue(obj as string[]),
 									ruleSet: returnObject
 								});
+								if (ruleSet[rule].requires && !resolveDep(config, ruleSet[rule].requires)) {
+									const returnObject = {
+										type: "error",
+										message: `${rule} is dependent on ${ruleSet[rule].requires}`
+									};
+									returnArray.push({
+										path,
+										actualValue: censorValue(obj as string[]),
+										ruleSet: returnObject
+									});
+								}
 							}
 						}
 					}
