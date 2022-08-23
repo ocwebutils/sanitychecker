@@ -103,29 +103,26 @@ function censorValue(entry: string[]): string {
 
 function resolveDep(config: any, rule: string): boolean {
 	if (!config || !rule) return false;
-	const path = rule.split("/").map(item => item.trim());
+	const path = rule.split(new RegExp(": (.*)", "s")).filter(i => i.length > 0);
 	let result = false;
 
-	path.forEach(key => {
-		if (!key.includes(": ") && config[key]) {
+	path[0].split("/").forEach((key, index) => {
+		if (config[key] && index < path[0].split("/").length - 1) {
 			config = config[key];
-		} else if (key.includes(": ")) {
+		} else if (index === path[0].split("/").length - 1) {
 			// Assuming array of objects
 			if (Array.isArray(config)) {
-				if (key.includes("+")) {
-					const [peerSet, targetSet] = key.split("+").map(item => item.trim());
-					const [peerKey, peerValue] = peerSet.split(": ").map(item => item.trim());
-					const [targetKey, targetValue] = targetSet.split(": ").map(item => item.trim());
+				if (path[1].includes("/")) {
+					const [value, targetRule] = path[1].split("/");
+					const [targetKey, targetValue] = targetRule.split(": ");
 
-					config = config.find(item => item[peerKey]?.toString() === peerValue);
-					result = config?.[targetKey]?.toString() === targetValue;
+					config = config.find(item => item[key]?.toString() === value);
+					result = config[targetKey]?.toString() === targetValue;
 				} else {
-					const [ruleKey, ruleValue] = key.split(": ").map(item => item.trim());
-					result = !!config.find(item => item[ruleKey]?.toString() === ruleValue);
+					result = !!config.find(item => item[key]?.toString() === path[1]);
 				}
 			} else if (isObject(config)) {
-				const [ruleKey, ruleValue] = key.split(": ").map(item => item.trim());
-				result = config[ruleKey]?.toString() === ruleValue;
+				result = config[key]?.toString() === path[1];
 			}
 		}
 	});
