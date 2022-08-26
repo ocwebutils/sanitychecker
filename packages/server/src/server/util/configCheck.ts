@@ -398,7 +398,6 @@ export function schemaCheck(config: { [s: string]: unknown } | ArrayLike<unknown
 
 	if (!isValid && validate.errors) {
 		validate.errors.forEach(error => {
-			console.log(error);
 			if (error.instancePath) {
 				const returnObject = {
 					type: "error",
