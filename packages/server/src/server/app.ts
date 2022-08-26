@@ -12,7 +12,7 @@ export default class App {
 		this.logger = logger.extend("app");
 		this.fastify = Fastify({ logger: false, trustProxy: true });
 
-		debug.enable("ocSanityChecker:*");
+		debug.enable("ocwebutils/sanitychecker:*");
 
 		this.initMiddlewares();
 		this.initControllers();
@@ -36,7 +36,7 @@ export default class App {
 	}
 
 	listen(port: number): void {
-		this.fastify.listen({ port: port, host: "0.0.0.0" }, () => {
+		this.fastify.listen({ port: port }, () => {
 			this.logger(`Server is ready on port ${port}`);
 		});
 	}
