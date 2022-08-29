@@ -11,7 +11,7 @@
 		"database:generate": "prisma generate"
 	},
 	"dependencies": {
-		"@fastify/compress": "6.1.0",
+		"@fastify/compress": "6.1.1",
 		"@fastify/cors": "8.1.0",
 		"@prisma/client": "4.2.1",
 		"ajv": "8.11.0",
