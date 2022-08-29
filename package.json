@@ -9,5 +9,5 @@
 		"start:client": "yarn workspace @ocwebutils/sanitychecker_client start",
 		"start:server": "yarn workspace @ocwebutils/sanitychecker_server start"
 	},
-	"packageManager": "yarn@3.2.2"
+	"packageManager": "yarn@3.2.3"
 }
