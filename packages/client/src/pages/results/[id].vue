@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			<div v-else>
-				<pre class="bg-gray-900 rounded-lg whitespace-pre-wrap">{{ JSON.stringify(result, null, 2) }}</pre>
+				<pre class="bg-gray-100 dark:bg-gray-900 rounded-lg whitespace-pre-wrap">{{ JSON.stringify(result, null, 2) }}</pre>
 			</div>
 			<div class="divider" />
 			<button class="btn" @click.prevent="rawData">Show Raw Data</button>
