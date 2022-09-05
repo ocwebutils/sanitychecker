@@ -996,6 +996,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@ocwebutils/sanitychecker_rules@workspace:packages/rules":
+  version: 0.0.0-use.local
+  resolution: "@ocwebutils/sanitychecker_rules@workspace:packages/rules"
+  languageName: unknown
+  linkType: soft
+
 "@ocwebutils/sanitychecker_server@workspace:packages/server":
   version: 0.0.0-use.local
   resolution: "@ocwebutils/sanitychecker_server@workspace:packages/server"
