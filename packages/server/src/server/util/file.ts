@@ -1,5 +1,3 @@
-import { readFileSync } from "fs";
-
 export const getCPUModels = async () => {
 		try {
 			const cpulist = await require("@ocwebutils/sanitychecker_rules/cpu_list.json");
@@ -17,7 +15,7 @@ export const getCPUModels = async () => {
 		}
 	},
 	getSchema = async (version: string) => {
-		const ocVersions = await require("@ocwebutils/sanitychecker_rules/oc_versions.json"),
+		const ocVersions = await getOCVersions(),
 			string = ocVersions.find((element: string) => element === version);
 
 		if (!string) return null;
@@ -30,8 +28,8 @@ export const getCPUModels = async () => {
 		}
 	},
 	getRules = async (version: string, codename: string) => {
-		const cpulist: Record<string, any> = await require("@ocwebutils/sanitychecker_rules/cpu_list.json"),
-			ocVersions: string[] = await require("@ocwebutils/sanitychecker_rules/oc_versions.json"),
+		const cpulist: Record<string, any> = await getCPUModels(),
+			ocVersions: string[] = await getOCVersions(),
 			splitCodename = codename.split("_");
 
 		let forEachList;

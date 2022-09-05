@@ -41,7 +41,7 @@
 </template>
 <script lang="ts">
 import axios from "axios";
-import { createIdentificator, getIdentificator } from "@/util/uuid";
+import { createIdentificator, getIdentificator } from "@/util/identificator";
 import { Countdown } from "@/class/countdown";
 import { deleteResult } from "@/util/handleForm";
 
@@ -54,18 +54,16 @@ export default {
 	async setup() {
 		const config = useRuntimeConfig();
 		axios.defaults.baseURL = config.BASE_API_URL;
-		const uploads = await getUploadList();
+		const uploads = await getUploadList(),
+			date = Date.now();
 
-		return { uploads };
+		return { uploads, date };
 	},
-	mounted() {
-		this.date = Date.now();
-		setTimeout(() => {
-			document.querySelectorAll(".countdown").forEach(e => {
-				const timer = new Countdown(e);
-				timer.start();
-			});
-		}, 1500);
+	updated() {
+		document.querySelectorAll(".countdown").forEach(e => {
+			const timer = new Countdown(e);
+			timer.start();
+		});
 	},
 	methods: {
 		getDiff: (start: number, end: number) => {
