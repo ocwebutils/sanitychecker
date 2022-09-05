@@ -15,7 +15,7 @@
 		"@types/marked": "4.0.6",
 		"@types/plist": "3.0.2",
 		"@types/uuid": "8.3.4",
-		"nuxt": "3.0.0-rc.8"
+		"nuxt": "3.0.0-rc.9"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "6.2.0",
