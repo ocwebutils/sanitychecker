@@ -984,14 +984,14 @@ __metadata:
     "@types/uuid": 8.3.4
     autoprefixer: 10.4.8
     axios: 0.27.2
-    daisyui: 2.24.2
+    daisyui: 2.25.0
     fast-xml-parser: 4.0.9
     marked: 4.1.0
     nuxt: 3.0.0-rc.9
     postcss: 8.4.16
     tailwindcss: 3.1.8
-    uuid: 8.3.2
-    vue-dompurify-html: 3.1.0
+    uuid: 9.0.0
+    vue-dompurify-html: 3.1.1
     vue-toastification: next
   languageName: unknown
   linkType: soft
@@ -1017,7 +1017,7 @@ __metadata:
     prisma: 4.3.1
     tsx: 3.9.0
     typescript: 4.8.2
-    uuid: 8.3.2
+    uuid: 9.0.0
   languageName: unknown
   linkType: soft
 
@@ -2581,9 +2581,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"daisyui@npm:2.24.2":
-  version: 2.24.2
-  resolution: "daisyui@npm:2.24.2"
+"daisyui@npm:2.25.0":
+  version: 2.25.0
+  resolution: "daisyui@npm:2.25.0"
   dependencies:
     color: ^4.2
     css-selector-tokenizer: ^0.8.0
@@ -2592,7 +2592,7 @@ __metadata:
   peerDependencies:
     autoprefixer: ^10.0.2
     postcss: ^8.1.6
-  checksum: 4856eb637467e8d9456f7d2ead7709057c65deb2c0ad996a167c5eb918d73f3d86450cb7dd31ad85413796735ea0f971bb6444aa562ee55e7645a9516f3f7d4a
+  checksum: 81d142f2484082472e3c4357fea8c930c897df740e046d47259f48affdc22183a45957476f18b92358bc3372b1ad68fc26e0be03be05e1dda7754d8c830547f5
   languageName: node
   linkType: hard
 
@@ -7954,12 +7954,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:8.3.2":
-  version: 8.3.2
-  resolution: "uuid@npm:8.3.2"
+"uuid@npm:9.0.0":
+  version: 9.0.0
+  resolution: "uuid@npm:9.0.0"
   bin:
     uuid: dist/bin/uuid
-  checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
+  checksum: 8dd2c83c43ddc7e1c71e36b60aea40030a6505139af6bee0f382ebcd1a56f6cd3028f7f06ffb07f8cf6ced320b76aea275284b224b002b289f89fe89c389b028
   languageName: node
   linkType: hard
 
@@ -8171,15 +8171,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-dompurify-html@npm:3.1.0":
-  version: 3.1.0
-  resolution: "vue-dompurify-html@npm:3.1.0"
+"vue-dompurify-html@npm:3.1.1":
+  version: 3.1.1
+  resolution: "vue-dompurify-html@npm:3.1.1"
   dependencies:
     dompurify: ^2.3.4
     vue-demi: ^0.13.2
   peerDependencies:
     vue: ^2.7.0 || ^3.0.0
-  checksum: d734d803a5d3ff49c5282ae9051608fd0285099d279888158895decd314d29efa8f38b49512b0609354be063b44063b65b076a65c78c4213122ab70da4fb9c10
+  checksum: 2c9179f42227ff604f0dbcee5b5aae5d2d417ddf6867711c9f30547c7472e2525f84e1adffbe289af204b4647c44526512a0f3e98ef1ad04dba444c24384da5f
   languageName: node
   linkType: hard
 

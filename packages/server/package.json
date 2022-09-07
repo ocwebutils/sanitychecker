@@ -18,7 +18,7 @@
 		"dotenv": "16.0.2",
 		"fastify": "4.5.3",
 		"json5": "2.2.1",
-		"uuid": "8.3.2"
+		"uuid": "9.0.0"
 	},
 	"devDependencies": {
 		"@types/debug": "4.1.7",
