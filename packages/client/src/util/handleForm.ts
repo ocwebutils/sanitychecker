@@ -1,5 +1,6 @@
 import axios from "axios";
-import { getIdentificator } from "./uuid";
+import { getIdentificator } from "./identificator";
+import { setVariable } from "./localstorage";
 
 export const handleForm = async file => {
 		const config = useRuntimeConfig();
@@ -25,6 +26,11 @@ export const handleForm = async file => {
 					}
 				},
 				config: file
+			});
+
+			setVariable("lastOptions", {
+				ocVersion: ocValue,
+				cpuModel: cpuValue
 			});
 
 			return response.data;

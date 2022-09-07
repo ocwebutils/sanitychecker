@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { createIdentificator } from "@/util/uuid";
+import { createIdentificator } from "@/util/identificator";
 
 export default {
 	mounted() {

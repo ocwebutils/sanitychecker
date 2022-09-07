@@ -32,6 +32,7 @@
 
 <script lang="ts">
 import axios from "axios";
+import { getVariable } from "@/util/localstorage";
 
 export default {
 	data() {
@@ -49,6 +50,9 @@ export default {
 			ocversionsres = await getOCVersions();
 		this.cpumodels = cpumodelsres;
 		this.ocversions = ocversionsres;
+	},
+	updated() {
+		restoreOptions();
 	}
 };
 
@@ -80,6 +84,20 @@ const getCPUModels = async () => {
 			if (!response.data.success) return null;
 
 			return response.data.data;
+		} catch (err) {
+			return null;
+		}
+	},
+	restoreOptions = async () => {
+		try {
+			const lastOptions = getVariable("lastOptions");
+
+			if (!lastOptions) return null;
+
+			const { cpuModel, ocVersion } = lastOptions;
+
+			(document.querySelector(`#cpu_model option[value="${cpuModel}"]`) as HTMLOptionElement).selected = true;
+			(document.querySelector(`#oc_version option[value="${ocVersion}"]`) as HTMLOptionElement).selected = true;
 		} catch (err) {
 			return null;
 		}
