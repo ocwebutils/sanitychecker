@@ -35,9 +35,9 @@ export default {
 			const val = string.toString();
 			switch (val) {
 				case "true":
-					return val.replace("true", "Enabled");
+					return val.replace(/true/g, "Enabled");
 				case "false":
-					return val.replace("false", "Disabled");
+					return val.replace(/false/g, "Disabled");
 				default:
 					return val;
 			}

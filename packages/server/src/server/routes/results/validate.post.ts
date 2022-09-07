@@ -42,10 +42,6 @@ export const validateConfig = async (
 			data: {
 				createdBy: metadata.uploadedBy,
 				resultId: id,
-				options: {
-					accessKey: null,
-					private: false
-				},
 				results: result,
 				expireDate: Date.now() + 1000 * 60 * 720, //* 12 hours
 				metadata: {
