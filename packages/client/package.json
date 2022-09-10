@@ -1,5 +1,6 @@
 {
 	"name": "@ocwebutils/sanitychecker_client",
+	"description": "Frontend for Sanity Checker",
 	"version": "1.0.0-beta.4",
 	"license": "GPL-3.0",
 	"private": true,
@@ -11,8 +12,8 @@
 		"start": "node ./.output/server/index.mjs"
 	},
 	"devDependencies": {
-		"@nuxtjs/color-mode": "3.1.4",
-		"@types/marked": "4.0.6",
+		"@nuxtjs/color-mode": "3.1.5",
+		"@types/marked": "4.0.7",
 		"@types/plist": "3.0.2",
 		"@types/uuid": "8.3.4",
 		"nuxt": "3.0.0-rc.9"

@@ -768,7 +768,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:3.0.0-rc.9":
+"@nuxt/kit@npm:3.0.0-rc.9, @nuxt/kit@npm:^3.0.0-rc.9":
   version: 3.0.0-rc.9
   resolution: "@nuxt/kit@npm:3.0.0-rc.9"
   dependencies:
@@ -794,32 +794,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:^3.0.0-rc.3":
-  version: 3.0.0-rc.8
-  resolution: "@nuxt/kit@npm:3.0.0-rc.8"
-  dependencies:
-    "@nuxt/schema": 3.0.0-rc.8
-    c12: ^0.2.9
-    consola: ^2.15.3
-    defu: ^6.0.0
-    globby: ^13.1.2
-    hash-sum: ^2.0.0
-    ignore: ^5.2.0
-    jiti: ^1.14.0
-    knitwork: ^0.1.2
-    lodash.template: ^4.5.0
-    mlly: ^0.5.12
-    pathe: ^0.3.4
-    pkg-types: ^0.3.3
-    scule: ^0.3.2
-    semver: ^7.3.7
-    unctx: ^2.0.1
-    unimport: ^0.6.7
-    untyped: ^0.4.5
-  checksum: dda1c689e65df378058f63bb701bd204bf3dbc8820c4e5c4643539fb47763b107a4f1f546cbfb2a2476ba57543f16567704bf0b8ed09e36ed4ee94f3f26ff4e1
-  languageName: node
-  linkType: hard
-
 "@nuxt/postcss8@npm:1.1.3":
   version: 1.1.3
   resolution: "@nuxt/postcss8@npm:1.1.3"
@@ -833,24 +807,6 @@ __metadata:
     postcss-url: ^10.1.1
     semver: ^7.3.4
   checksum: e2846ad1383200ea3fe4d1146717f1c4ac06afb74997cc2ea0ba91210b6225f201fbd43af5d6bd5a03a86c7a53b95aae555f7d67a63a549d2d1036f0fe4b50fb
-  languageName: node
-  linkType: hard
-
-"@nuxt/schema@npm:3.0.0-rc.8, @nuxt/schema@npm:^3.0.0-rc.6":
-  version: 3.0.0-rc.8
-  resolution: "@nuxt/schema@npm:3.0.0-rc.8"
-  dependencies:
-    c12: ^0.2.9
-    create-require: ^1.1.1
-    defu: ^6.0.0
-    jiti: ^1.14.0
-    pathe: ^0.3.4
-    postcss-import-resolver: ^2.0.0
-    scule: ^0.3.2
-    std-env: ^3.1.1
-    ufo: ^0.8.5
-    unimport: ^0.6.7
-  checksum: 6f8411e358a9e000ee4ed7589aaa8ad1b516fa460e753916850acd3e120acae4d361538d04378f65747eaea94933311e5b33a71f6031c7c26572141d6795c280
   languageName: node
   linkType: hard
 
@@ -869,6 +825,24 @@ __metadata:
     ufo: ^0.8.5
     unimport: ^0.6.7
   checksum: d42c93e73069a6a6e96e7dd97b6060547239ca4ded4205445853c3b9c937ad85c2c5effc1d723ba8dd31ddbb1fcaecee1f7b992c8bf9f4e09057c135e42abc10
+  languageName: node
+  linkType: hard
+
+"@nuxt/schema@npm:^3.0.0-rc.6":
+  version: 3.0.0-rc.8
+  resolution: "@nuxt/schema@npm:3.0.0-rc.8"
+  dependencies:
+    c12: ^0.2.9
+    create-require: ^1.1.1
+    defu: ^6.0.0
+    jiti: ^1.14.0
+    pathe: ^0.3.4
+    postcss-import-resolver: ^2.0.0
+    scule: ^0.3.2
+    std-env: ^3.1.1
+    ufo: ^0.8.5
+    unimport: ^0.6.7
+  checksum: 6f8411e358a9e000ee4ed7589aaa8ad1b516fa460e753916850acd3e120acae4d361538d04378f65747eaea94933311e5b33a71f6031c7c26572141d6795c280
   languageName: node
   linkType: hard
 
@@ -952,14 +926,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxtjs/color-mode@npm:3.1.4":
-  version: 3.1.4
-  resolution: "@nuxtjs/color-mode@npm:3.1.4"
+"@nuxtjs/color-mode@npm:3.1.5":
+  version: 3.1.5
+  resolution: "@nuxtjs/color-mode@npm:3.1.5"
   dependencies:
-    "@nuxt/kit": ^3.0.0-rc.3
+    "@nuxt/kit": ^3.0.0-rc.9
     lodash.template: ^4.5.0
-    pathe: ^0.3.0
-  checksum: dd32dd89ef4dab7bcf1808d0a446a1a2373b4cad78a69d0f2c3ebea28d42e9497072f0b59734e31cc56e7b9fc9f374310be3edd4225a09324188de33181efad2
+    pathe: ^0.3.5
+  checksum: 094fbe13dbaa5df53476caf00f60a033cf77761381b55cd54e0aa57cf0e59d58e0cb41e41d565a604b5c14ec91bc91aa6900e33641082c5a7e6a57031abcea90
   languageName: node
   linkType: hard
 
@@ -978,8 +952,8 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": 6.2.0
     "@fortawesome/vue-fontawesome": 3.0.1
     "@nuxt/postcss8": 1.1.3
-    "@nuxtjs/color-mode": 3.1.4
-    "@types/marked": 4.0.6
+    "@nuxtjs/color-mode": 3.1.5
+    "@types/marked": 4.0.7
     "@types/plist": 3.0.2
     "@types/uuid": 8.3.4
     autoprefixer: 10.4.8
@@ -1007,6 +981,7 @@ __metadata:
   resolution: "@ocwebutils/sanitychecker_server@workspace:packages/server"
   dependencies:
     "@fastify/cors": 8.1.0
+    "@ocwebutils/sanitychecker_verificator": 1.0.0-beta.4
     "@prisma/client": 4.3.1
     "@types/debug": 4.1.7
     ajv: 8.11.0
@@ -1016,8 +991,18 @@ __metadata:
     json5: 2.2.1
     prisma: 4.3.1
     tsx: 3.9.0
-    typescript: 4.8.2
+    typescript: 4.8.3
     uuid: 9.0.0
+  languageName: unknown
+  linkType: soft
+
+"@ocwebutils/sanitychecker_verificator@1.0.0-beta.4, @ocwebutils/sanitychecker_verificator@workspace:packages/verificator":
+  version: 0.0.0-use.local
+  resolution: "@ocwebutils/sanitychecker_verificator@workspace:packages/verificator"
+  dependencies:
+    ajv: 8.11.0
+    json5: 2.2.1
+    typescript: 4.8.3
   languageName: unknown
   linkType: soft
 
@@ -1205,10 +1190,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/marked@npm:4.0.6":
-  version: 4.0.6
-  resolution: "@types/marked@npm:4.0.6"
-  checksum: 223f7d8e9481287aa0274df573dd56df6cb11a1090649fabd63fd97f900ed318e730d9dfaff598aa75d8946a212c1d8959a421c5cb46d90c5a6f734a1e4a7d78
+"@types/marked@npm:4.0.7":
+  version: 4.0.7
+  resolution: "@types/marked@npm:4.0.7"
+  checksum: 4907b6a606578cd864bad429aca3c234591e6ed56bd141c575140487269b825a480ace9a85e4d003d1de1f007004c9d9b2fe600038ded5bba75aef59118e58d5
   languageName: node
   linkType: hard
 
@@ -7610,23 +7595,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.8.2":
-  version: 4.8.2
-  resolution: "typescript@npm:4.8.2"
+"typescript@npm:4.8.3":
+  version: 4.8.3
+  resolution: "typescript@npm:4.8.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 7f5b81d0d558c9067f952c7af52ab7f19c2e70a916817929e4a5b256c93990bf3178eccb1ac8a850bc75df35f6781b6f4cb3370ce20d8b1ded92ed462348f628
+  checksum: 8286a5edcaf3d68e65c451aa1e7150ad1cf53ee0813c07ec35b7abdfdb10f355ecaa13c6a226a694ae7a67785fd7eeebf89f845da0b4f7e4a35561ddc459aba0
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.8.2#~builtin<compat/typescript>":
-  version: 4.8.2
-  resolution: "typescript@patch:typescript@npm%3A4.8.2#~builtin<compat/typescript>::version=4.8.2&hash=a1c5e5"
+"typescript@patch:typescript@4.8.3#~builtin<compat/typescript>":
+  version: 4.8.3
+  resolution: "typescript@patch:typescript@npm%3A4.8.3#~builtin<compat/typescript>::version=4.8.3&hash=a1c5e5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 5cb0f02f414f5405f4b0e7ee1fd7fa9177b6a8783c9017b6cad85f56ce4c4f93e0e6f2ce37e863cb597d44227cd009474c9fbd85bf7a50004e5557426cb58079
+  checksum: 2222d2382fb3146089b1d27ce2b55e9d1f99cc64118f1aba75809b693b856c5d3c324f052f60c75b577947fc538bc1c27bad0eb76cbdba9a63a253489504ba7e
   languageName: node
   linkType: hard
 
@@ -7646,18 +7631,6 @@ __metadata:
     magic-string: ^0.26.1
     unplugin: ^0.6.1
   checksum: b1097e2c2d34ecc9c95ba07df6954b1be7d8ac13e6407e511ca42cf4bc70af9d331793d7368185438c9d578d6abfc41e30907f97638d96c5ab1b070e899fe851
-  languageName: node
-  linkType: hard
-
-"unctx@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "unctx@npm:2.0.1"
-  dependencies:
-    acorn: ^8.8.0
-    estree-walker: ^3.0.1
-    magic-string: ^0.26.2
-    unplugin: ^0.8.0
-  checksum: 59394795be05752066e7e64f582ebcadeb4cfbb38e1a72dde91aa6eca91f45d33237640c4a8a95df1207b6d9434945e69548fafb0cf277d6ac15d2a4c6b18cd7
   languageName: node
   linkType: hard
 
@@ -7804,32 +7777,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unplugin@npm:^0.8.0":
-  version: 0.8.1
-  resolution: "unplugin@npm:0.8.1"
-  dependencies:
-    acorn: ^8.8.0
-    chokidar: ^3.5.3
-    webpack-sources: ^3.2.3
-    webpack-virtual-modules: ^0.4.4
-  peerDependencies:
-    esbuild: ">=0.13"
-    rollup: ^2.50.0
-    vite: ^2.3.0 || ^3.0.0-0
-    webpack: 4 || 5
-  peerDependenciesMeta:
-    esbuild:
-      optional: true
-    rollup:
-      optional: true
-    vite:
-      optional: true
-    webpack:
-      optional: true
-  checksum: 95bbed0425c42add3718f203d2cd2d8e97ae33bc0403b88cd800a12fb3f4cc5f681d108f4e64cd6cdf00b6715e538c913fd408b86c22a226b7e179c8d560e314
-  languageName: node
-  linkType: hard
-
 "unplugin@npm:^0.9.0":
   version: 0.9.2
   resolution: "unplugin@npm:0.9.2"
@@ -7900,7 +7847,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"untyped@npm:^0.4.4, untyped@npm:^0.4.5":
+"untyped@npm:^0.4.4":
   version: 0.4.5
   resolution: "untyped@npm:0.4.5"
   dependencies:

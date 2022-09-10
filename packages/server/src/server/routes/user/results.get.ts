@@ -9,10 +9,6 @@ type result = {
 	createdBy?: string;
 	expireDate?: number;
 	resultId: string;
-	options?: {
-		accessKey: string | null;
-		private: boolean;
-	};
 	results?: Object;
 	metadata: Object;
 };
