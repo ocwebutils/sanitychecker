@@ -958,7 +958,7 @@ __metadata:
     "@types/uuid": 8.3.4
     autoprefixer: 10.4.8
     axios: 0.27.2
-    daisyui: 2.25.0
+    daisyui: 2.27.0
     fast-xml-parser: 4.0.9
     marked: 4.1.0
     nuxt: 3.0.0-rc.9
@@ -967,12 +967,6 @@ __metadata:
     uuid: 9.0.0
     vue-dompurify-html: 3.1.1
     vue-toastification: next
-  languageName: unknown
-  linkType: soft
-
-"@ocwebutils/sanitychecker_rules@workspace:packages/rules":
-  version: 0.0.0-use.local
-  resolution: "@ocwebutils/sanitychecker_rules@workspace:packages/rules"
   languageName: unknown
   linkType: soft
 
@@ -2566,9 +2560,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"daisyui@npm:2.25.0":
-  version: 2.25.0
-  resolution: "daisyui@npm:2.25.0"
+"daisyui@npm:2.27.0":
+  version: 2.27.0
+  resolution: "daisyui@npm:2.27.0"
   dependencies:
     color: ^4.2
     css-selector-tokenizer: ^0.8.0
@@ -2577,7 +2571,7 @@ __metadata:
   peerDependencies:
     autoprefixer: ^10.0.2
     postcss: ^8.1.6
-  checksum: 81d142f2484082472e3c4357fea8c930c897df740e046d47259f48affdc22183a45957476f18b92358bc3372b1ad68fc26e0be03be05e1dda7754d8c830547f5
+  checksum: c20e82090ff1847d219e591d00a4364e541c8c2d80378bf7f0daf05014adad48dd83d934294e48f88421e8f0f30686f561d1a896f3dc555b65628196a9ec0bc7
   languageName: node
   linkType: hard
 
