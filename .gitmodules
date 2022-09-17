@@ -1,3 +1,3 @@
 [submodule "packages/rules"]
 	path = packages/rules
-	url = https://github.com/ocwebutils/rules.git
+	url = https://github.com/ocwebutils/sc_rules.git

@@ -1,4 +1,4 @@
-import { Config, Schema } from "@ocwebutils/sanitychecker_verificator";
+import { ConfigChecker, SchemaChecker } from "@ocwebutils/sc_checker";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { getRules, getSchema } from "../../util/file";
 import { v4 as uuidV4, validate as uuidValidate } from "uuid";
@@ -23,9 +23,9 @@ export const validateConfig = async (
 
 		if (!ocSchema) return res.send({ success: false, error: "This version of OpenCore is not supported by Sanity Checker" });
 
-		const initSchema = new Schema(ocSchema);
-		initSchema.validate(config);
-		const schemaResult = await initSchema.toJSON(),
+		const schemaCheck = new SchemaChecker(ocSchema);
+		schemaCheck.validate(config);
+		const schemaResult = await schemaCheck.toJSON(),
 			rules = await getRules(metadata.ocVersion, metadata.cpuDetails.codename);
 
 		if (!rules)
@@ -33,9 +33,9 @@ export const validateConfig = async (
 				.status(404)
 				.send({ success: false, error: "Rules for specified CPU are not found. This CPU may not be supported by selected OpenCore version" });
 
-		const initConfig = new Config(config);
-		initConfig.validate(rules);
-		const rulesResult = await initConfig.toJSON(),
+		const configCheck = new ConfigChecker(config);
+		configCheck.validate(rules);
+		const rulesResult = await configCheck.toJSON(),
 			result = {
 				rulesResults: rulesResult.length === 0 ? null : rulesResult,
 				schemaResults: schemaResult

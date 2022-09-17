@@ -7,8 +7,7 @@
 	"scripts": {
 		"build": "yarn workspaces foreach run build",
 		"start:client": "yarn workspace @ocwebutils/sanitychecker_client start",
-		"start:server": "yarn workspace @ocwebutils/sanitychecker_server start",
-		"postinstall": "yarn workspace @ocwebutils/sanitychecker_verificator build"
+		"start:server": "yarn workspace @ocwebutils/sanitychecker_server start"
 	},
 	"packageManager": "yarn@3.2.3"
 }
