@@ -1,4 +1,3 @@
-import { defineNuxtConfig } from "nuxt";
 import { version } from "./package.json";
 
 export default defineNuxtConfig({
@@ -84,5 +83,12 @@ export default defineNuxtConfig({
 	},
 	target: "static",
 	srcDir: "src/",
-	ssr: true
+	ssr: true,
+	vite: {
+		server: {
+			watch: {
+				usePolling: true
+			}
+		}
+	}
 });

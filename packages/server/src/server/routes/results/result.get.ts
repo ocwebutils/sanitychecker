@@ -30,6 +30,7 @@ export const getResult = async (req: FastifyRequest<{ Params: { resultId: string
 	if (!query) return res.status(404).send({ success: false, error: "Result doesn't exist in our database" });
 
 	delete query.id;
+
 	//* Delete for old results
 	delete query?.options;
 	delete query.createdBy;

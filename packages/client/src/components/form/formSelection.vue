@@ -19,11 +19,11 @@
 		<div class="relative inline-block dark:text-white text-black w-full">
 			<div class="form-control">
 				<label class="label">
-					<span class="label-text">Version</span>
+					<span class="label-text">OC Version</span>
 				</label>
 				<select id="oc_version" class="select select-bordered" placeholder="OpenCore version" required>
 					<option disabled selected v-if="!ocversions">Loading versions...</option>
-					<option v-for="version in ocversions" :value="version">{{ version }}</option>
+					<option v-for="version in ocversions" :value="version">v{{ version }}</option>
 				</select>
 			</div>
 		</div>
@@ -92,14 +92,16 @@ const getCPUModels = async () => {
 		try {
 			const lastOptions = getVariable("lastOptions");
 
-			if (!lastOptions) return null;
+			if (!lastOptions) return;
 
-			const { cpuModel, ocVersion } = lastOptions;
+			const { cpuModel, ocVersion } = lastOptions,
+				cpuModelSelector = document.querySelector(`#cpu_model option[value="${cpuModel}"]`) as HTMLOptionElement,
+				ocVersionSelector = document.querySelector(`#oc_version option[value="${ocVersion}"]`) as HTMLOptionElement;
 
-			(document.querySelector(`#cpu_model option[value="${cpuModel}"]`) as HTMLOptionElement).selected = true;
-			(document.querySelector(`#oc_version option[value="${ocVersion}"]`) as HTMLOptionElement).selected = true;
+			cpuModelSelector.selected = true;
+			ocVersionSelector.selected = true;
 		} catch (err) {
-			return null;
+			return;
 		}
 	};
 </script>

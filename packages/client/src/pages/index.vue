@@ -1,7 +1,9 @@
 <template>
 	<div>
-		<info />
-		<formBox />
+		<homeInfoBox />
+		<homeHeroContent>
+			<homeFormContent />
+		</homeHeroContent>
 	</div>
 </template>
 

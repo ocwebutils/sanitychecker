@@ -29,7 +29,7 @@ export const deleteResult = async (req: FastifyRequest<{ Params: { resultId: str
 
 	if (!query) return res.status(404).send({ success: false, error: "Result doesn't exist in our database" });
 
-	if (query.createdBy !== user) return res.status(403).send({ success: false, error: "You are not allowed to delete this result" });
+	if (query.createdBy !== user) return res.status(403).send({ success: false, error: "You aren't allowed to delete this result" });
 
 	const deleteQuery = await context.prisma.results.delete({
 		where: {

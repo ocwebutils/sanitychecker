@@ -59,7 +59,7 @@ export default {
 
 		return { uploads, date };
 	},
-	updated() {
+	mounted() {
 		document.querySelectorAll(".countdown").forEach(e => {
 			const timer = new Countdown(e);
 			timer.start();

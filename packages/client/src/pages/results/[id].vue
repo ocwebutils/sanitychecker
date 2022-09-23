@@ -2,17 +2,18 @@
 	<div class="flex flex-col pt-4 items-center place-content-center justify-center">
 		<div class="px-8 py-6 mt-4 text-left dark:bg-gray-800 bg-white shadow-lg rounded-xl w-screen max-w-5xl">
 			<div class="text-center">
-				<h3 class="text-2xl font-bold">Validation results</h3>
-				<span class="text-lg font-medium"
-					>CPU: <span class="text-blue-500">{{ result.metadata.cpuName }}</span> | OpenCore:
-					<span class="text-blue-500">v{{ result.metadata.ocVersion }}</span></span
+				<h3 class="text-2xl font-bold">Validation results for:</h3>
+				<span class="text-lg font-medium">
+					<span class="text-blue-600">{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span> | OpenCore
+					<span class="text-blue-600">v{{ result.metadata.ocVersion }}</span></span
 				>
+				<p class="font-medium">Note: We don't guarrante working config if everything is shown as correct</p>
 			</div>
 			<div class="divider" />
 			<div class="text-lg font-medium space-y-4" v-if="!showRawData">
 				<div v-for="property in properties">
-					<h3 class="inline mr-4">{{ property }}</h3>
-					<div class="inline" v-for="res in result.results.schemaResults.missingRoot">
+					<h3 :id="property" class="mr-4">{{ property }}</h3>
+					<template class="inline" v-for="res in result.results.schemaResults.missingRoot">
 						<span v-if="res === property">
 							<div class="tooltip" data-tip="This dictionary is missing from your config">
 								<font-awesome-icon
@@ -24,18 +25,16 @@
 								/>
 							</div>
 						</span>
-					</div>
-					<div v-for="results in result.results.rulesResults">
-						<div v-if="results.path.includes(property)">
+					</template>
+					<template v-for="results in result.results.rulesResults">
+						<template v-if="results.path.includes(property)">
 							<ResultValueError :ruleOutput="results" v-if="results.ruleSet.type !== 'success'" />
 							<ResultValueSuccess :ruleOutput="results" v-else />
-						</div>
-					</div>
-					<div v-for="schemaError in result.results.schemaResults.errorArray">
-						<div v-if="schemaError.path.includes(property)">
-							<ResultSchemaError :schemaError="schemaError" />
-						</div>
-					</div>
+						</template>
+					</template>
+					<template v-for="schemaError in result.results.schemaResults.errorArray">
+						<ResultSchemaError :schemaError="schemaError" v-if="schemaError.path.includes(property)" />
+					</template>
 				</div>
 			</div>
 			<div v-else>
@@ -127,21 +126,28 @@ const getResult = async (id: string) => {
 	},
 	rawData = e => {
 		showRawData.value = !showRawData.value;
-		!showRawData.value ? (e.target.innerText = "Show Raw Data") : (e.target.innerText = "Hide Raw Data");
+		switch (showRawData.value) {
+			case true:
+				e.target.innerText = "Hide Raw Data";
+				break;
+			case false:
+				e.target.innerText = "Show Raw Data";
+				break;
+		}
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	},
 	copyURL = e => {
 		const permissionName = "clipboard-write" as PermissionName;
 		if (!navigator.permissions || !navigator.permissions.query) {
-			writeToClipboard();
+			copyToClipboard();
 			return;
 		}
 
 		navigator.permissions.query({ name: permissionName }).then(result => {
-			if (result.state == "granted" || result.state == "prompt") writeToClipboard();
+			if (result.state == "granted" || result.state == "prompt") copyToClipboard();
 		});
 	},
-	writeToClipboard = () => {
+	copyToClipboard = () => {
 		navigator.clipboard.writeText(document.URL).then(() => {
 			toast.success("Copied URL to Clipboard!", {
 				timeout: 5000

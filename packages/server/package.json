@@ -1,7 +1,7 @@
 {
 	"name": "@ocwebutils/sanitychecker_server",
 	"description": "Backend API for Sanity Checker",
-	"version": "1.0.0-beta.4",
+	"version": "1.0.0",
 	"license": "GPL-3.0",
 	"private": true,
 	"scripts": {
@@ -14,7 +14,7 @@
 	"dependencies": {
 		"@fastify/cors": "8.1.0",
 		"@ocwebutils/sc_checker": "github:ocwebutils/sc_checker#v1.0.0",
-		"@prisma/client": "4.3.1",
+		"@prisma/client": "4.4.0",
 		"ajv": "8.11.0",
 		"debug": "4.3.4",
 		"dotenv": "16.0.2",
@@ -24,8 +24,8 @@
 	},
 	"devDependencies": {
 		"@types/debug": "4.1.7",
-		"prisma": "4.3.1",
+		"prisma": "4.4.0",
 		"tsx": "3.9.0",
-		"typescript": "4.8.3"
+		"typescript": "4.8.4"
 	}
 }

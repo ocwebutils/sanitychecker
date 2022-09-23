@@ -3,7 +3,7 @@ import { context } from "../database";
 export const deleteOldResults = async () => {
 	const query = await context.prisma.results.findMany();
 
-	if (!query) return null;
+	if (!query) return;
 
 	for (const el of query) {
 		const expireDate = el.expireDate,
