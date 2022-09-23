@@ -47,7 +47,7 @@ export const validateConfig = async (
 				createdBy: metadata.uploadedBy,
 				resultId: id,
 				results: result,
-				expireDate: Date.now() + 1000 * 60 * 720, //* 12 hours
+				expireDate: Date.now() + 1000 * 60 * 1440, //* 24 hours
 				metadata: {
 					cpuCodename: metadata.cpuDetails.codename,
 					cpuName: metadata.cpuDetails.name,

@@ -1,4 +1,3 @@
-import { defineNuxtConfig } from "nuxt";
 import { version } from "./package.json";
 
 export default defineNuxtConfig({

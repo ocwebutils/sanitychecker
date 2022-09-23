@@ -92,14 +92,16 @@ const getCPUModels = async () => {
 		try {
 			const lastOptions = getVariable("lastOptions");
 
-			if (!lastOptions) return null;
+			if (!lastOptions) return;
 
-			const { cpuModel, ocVersion } = lastOptions;
+			const { cpuModel, ocVersion } = lastOptions,
+				cpuModelSelector = document.querySelector(`#cpu_model option[value="${cpuModel}"]`) as HTMLOptionElement,
+				ocVersionSelector = document.querySelector(`#oc_version option[value="${ocVersion}"]`) as HTMLOptionElement;
 
-			(document.querySelector(`#cpu_model option[value="${cpuModel}"]`) as HTMLOptionElement).selected = true;
-			(document.querySelector(`#oc_version option[value="${ocVersion}"]`) as HTMLOptionElement).selected = true;
+			cpuModelSelector.selected = true;
+			ocVersionSelector.selected = true;
 		} catch (err) {
-			return null;
+			return;
 		}
 	};
 </script>

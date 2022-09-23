@@ -30,11 +30,13 @@ export class Countdown {
 				this.values.hours--;
 				this.elements.hours.style.setProperty("--value", this.values.hours.toString());
 				this.values.minutes = 59;
+				this.check();
+				return;
 			}
 			this.values.minutes--;
 			this.elements.minutes.style.setProperty("--value", this.values.minutes.toString());
 			this.check();
-		}, 60000);
+		}, 1000 * 60);
 	}
 	private async check() {
 		if (this.values.hours <= 0 && this.values.minutes <= 0) {

@@ -17,7 +17,7 @@
 					fill="currentFill"
 				/>
 			</svg>
-			<span>Validating your config. Please wait...</span>
+			<span>Validating your config... Please wait</span>
 		</div>
 	</div>
 </template>

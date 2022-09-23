@@ -2,11 +2,12 @@
 	<div class="flex flex-col pt-4 items-center place-content-center justify-center">
 		<div class="px-8 py-6 mt-4 text-left dark:bg-gray-800 bg-white shadow-lg rounded-xl w-screen max-w-5xl">
 			<div class="text-center">
-				<h3 class="text-2xl font-bold">Validation results</h3>
+				<h3 class="text-2xl font-bold">Validation results for:</h3>
 				<span class="text-lg font-medium"
 					>CPU: <span class="text-blue-500">{{ result.metadata.cpuName }}</span> | OpenCore:
 					<span class="text-blue-500">v{{ result.metadata.ocVersion }}</span></span
 				>
+				<p class="font-medium">Note: We don't guarrante working config if everything is shown as correct</p>
 			</div>
 			<div class="divider" />
 			<div class="text-lg font-medium space-y-4" v-if="!showRawData">
