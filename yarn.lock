@@ -1034,14 +1034,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxtjs/color-mode@npm:3.1.5":
-  version: 3.1.5
-  resolution: "@nuxtjs/color-mode@npm:3.1.5"
+"@nuxtjs/color-mode@npm:3.1.6":
+  version: 3.1.6
+  resolution: "@nuxtjs/color-mode@npm:3.1.6"
   dependencies:
     "@nuxt/kit": ^3.0.0-rc.9
     lodash.template: ^4.5.0
     pathe: ^0.3.5
-  checksum: 094fbe13dbaa5df53476caf00f60a033cf77761381b55cd54e0aa57cf0e59d58e0cb41e41d565a604b5c14ec91bc91aa6900e33641082c5a7e6a57031abcea90
+  checksum: c5ebec20667ff5086aa244d49451b40dfbf0fa562883d2b02282a9a4463c0b4271ce3d08c6fd4cc75a376ec5f25683045765774d119bc57b1c84935c2082adc4
   languageName: node
   linkType: hard
 
@@ -1060,7 +1060,7 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": 6.2.0
     "@fortawesome/vue-fontawesome": 3.0.1
     "@nuxt/postcss8": 1.1.3
-    "@nuxtjs/color-mode": 3.1.5
+    "@nuxtjs/color-mode": 3.1.6
     "@types/marked": 4.0.7
     "@types/plist": 3.0.2
     "@types/uuid": 8.3.4
@@ -1075,12 +1075,6 @@ __metadata:
     uuid: 9.0.0
     vue-dompurify-html: 3.1.1
     vue-toastification: next
-  languageName: unknown
-  linkType: soft
-
-"@ocwebutils/sanitychecker_rules@workspace:packages/rules":
-  version: 0.0.0-use.local
-  resolution: "@ocwebutils/sanitychecker_rules@workspace:packages/rules"
   languageName: unknown
   linkType: soft
 
