@@ -1,6 +1,6 @@
 <template>
 	<div class="hero">
-		<div class="hero-content flex-col lg:flex-row-reverse">
+		<div class="hero-content flex-col-reverse lg:flex-row-reverse">
 			<div class="text-center lg:text-left lg:pl-7">
 				<h1 class="text-2xl font-bold text-center">
 					<img alt="OCUtils' logo" src="/assets/favicons/logo.webp" class="h-8 pr-1 mx-auto inline" /> OpenCore Sanity Checker
@@ -30,5 +30,4 @@
 </template>
 <script setup lang="ts">
 import featuresList from "@/features";
-console.log(featuresList);
 </script>
