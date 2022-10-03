@@ -82,7 +82,7 @@ export default {
 
 const getUploadList = async () => {
 	if (!getIdentificator()) createIdentificator();
-	const response = await axios.get("/user/results", {
+	const response = await axios.get("/user/uploadedResults", {
 		headers: {
 			"x-user-id": getIdentificator()
 		}

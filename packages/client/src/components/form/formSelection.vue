@@ -7,9 +7,9 @@
 						<span class="label-text">CPU</span>
 					</label>
 					<select id="cpu_model" class="select select-bordered max-w-xs" placeholder="CPU model" required>
-						<option value="default" selected disabled v-if="cpumodels">Select CPU Model</option>
-						<option disabled selected v-if="!cpumodels">Loading CPU models...</option>
-						<optgroup v-for="(type, key) in cpumodels" :label="(key as unknown as string)">
+						<option value="default" selected disabled v-if="supportedCPUGenerations">Select CPU Model</option>
+						<option disabled selected v-else>Loading CPU models...</option>
+						<optgroup v-for="(type, key) in supportedCPUGenerations" :label="(key as unknown as string)">
 							<option v-for="cpu in type" :value="cpu.codename">{{ cpu.name }}</option>
 						</optgroup>
 					</select>
@@ -22,8 +22,8 @@
 					<span class="label-text">OC Version</span>
 				</label>
 				<select id="oc_version" class="select select-bordered" placeholder="OpenCore version" required>
-					<option disabled selected v-if="!ocversions">Loading versions...</option>
-					<option v-for="version in ocversions" :value="version">v{{ version }}</option>
+					<option disabled selected v-if="!supportedOCVersions">Loading versions...</option>
+					<option v-for="version in supportedOCVersions" :value="version">v{{ version }}</option>
 				</select>
 			</div>
 		</div>
@@ -37,8 +37,8 @@ import { getVariable } from "@/util/localstorage";
 export default {
 	data() {
 		return {
-			cpumodels: null,
-			ocversions: null
+			supportedCPUGenerations: null,
+			supportedOCVersions: null
 		};
 	},
 	setup() {
@@ -46,19 +46,19 @@ export default {
 		axios.defaults.baseURL = config.BASE_API_URL;
 	},
 	async mounted() {
-		const cpumodelsres = await getCPUModels(),
-			ocversionsres = await getOCVersions();
-		this.cpumodels = cpumodelsres;
-		this.ocversions = ocversionsres;
+		const supportedCPUGenerations = await getSupportedCPUGenerations(),
+			supportedOCVersions = await getSupportedOCVersions();
+		this.supportedCPUGenerations = supportedCPUGenerations;
+		this.supportedOCVersions = supportedOCVersions;
 	},
 	updated() {
 		restoreOptions();
 	}
 };
 
-const getCPUModels = async () => {
+const getSupportedCPUGenerations = async () => {
 		try {
-			const response = await axios.get("/list/cpumodels");
+			const response = await axios.get("/supportedCPUGenerations");
 			if (!response.data.success) return null;
 
 			let tempArray = [];
@@ -78,9 +78,9 @@ const getCPUModels = async () => {
 			return null;
 		}
 	},
-	getOCVersions = async () => {
+	getSupportedOCVersions = async () => {
 		try {
-			const response = await axios.get("/list/ocversions");
+			const response = await axios.get("/supportedOCVersions");
 			if (!response.data.success) return null;
 
 			return response.data.data;

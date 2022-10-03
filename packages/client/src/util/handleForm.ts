@@ -16,7 +16,7 @@ export const handleForm = async file => {
 		if (!cpuValue || cpuValue === "default" || !cpuName || !ocValue) return { success: false, error: "Please select CPU model and OpenCore version" };
 
 		try {
-			const response = await axios.post("/result/validate", {
+			const response = await axios.post("/validateConfig", {
 				metadata: {
 					uploadedBy: getIdentificator(),
 					ocVersion: ocValue,

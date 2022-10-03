@@ -1,29 +1,29 @@
 import { FastifyInstance } from "fastify";
-import { cpuList } from "../routes/list/cpuModels.get";
 import { deleteResult } from "../routes/results/result.delete";
+import { getPackageVersions } from "../routes/getPackageVersions.get";
 import { getResult } from "../routes/results/result.get";
-import { getVersions } from "../routes/getVersions.get";
 import { ocSchema } from "../routes/schema/[version].get";
-import { ocVersionsList } from "../routes/list/ocVersions.get";
-import { uploadedResults } from "../routes/user/results.get";
+import { supportedCPUGenerations } from "../routes/list/supportedCPUGenerations.get";
+import { supportedOCVersions } from "../routes/list/supportedOCVersions.get";
+import { uploadedResults } from "../routes/user/uploadedResults.get";
 import { validateConfig } from "../routes/results/validate.post";
 
 export async function APIv1Controller(fastify: FastifyInstance) {
 	fastify
 		.route({
 			method: "GET",
-			url: "/versions",
-			handler: getVersions
+			url: "/packageVersions",
+			handler: getPackageVersions
 		})
 		.route({
 			method: "GET",
-			url: "/list/cpumodels",
-			handler: cpuList
+			url: "/supportedCPUGenerations",
+			handler: supportedCPUGenerations
 		})
 		.route({
 			method: "GET",
-			url: "/list/ocversions",
-			handler: ocVersionsList
+			url: "/supportedOCVersions",
+			handler: supportedOCVersions
 		})
 		.route({
 			method: "GET",
@@ -37,12 +37,12 @@ export async function APIv1Controller(fastify: FastifyInstance) {
 		})
 		.route({
 			method: "GET",
-			url: "/user/results",
+			url: "/user/uploadedResults",
 			handler: uploadedResults
 		})
 		.route({
 			method: "POST",
-			url: "/result/validate",
+			url: "/validateConfig",
 			handler: validateConfig
 		})
 		.route({

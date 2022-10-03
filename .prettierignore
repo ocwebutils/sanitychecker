@@ -1,1 +1,2 @@
 *.js
+!packages/client/tailwind.config.js

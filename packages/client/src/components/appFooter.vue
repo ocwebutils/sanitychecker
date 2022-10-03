@@ -13,10 +13,10 @@
 					}}</a></code
 				>
 			</li>
-			<li v-if="versions">
+			<li v-if="getPackageVersions">
 				<font-awesome-icon icon="fa-solid fa-cube" class="mr-1" />
 				<code
-					><a href="https://github.com/ocwebutils/rules" class="hover:text-blue-500 transition-colors">{{ versions.rulesVersion }}</a></code
+					><a href="https://github.com/ocwebutils/rules" class="hover:text-blue-500 transition-colors">{{ packageVersions.rulesVersion }}</a></code
 				>
 			</li>
 		</ul>
@@ -28,9 +28,9 @@ const config = useRuntimeConfig();
 
 axios.defaults.baseURL = config.BASE_API_URL;
 
-const getVersions = async () => {
+const getPackageVersions = async () => {
 	try {
-		const response = await axios.get("/versions");
+		const response = await axios.get("/packageVersions");
 		if (!response.data.success || !response.data.data) return null;
 
 		return response.data.data;
@@ -41,5 +41,5 @@ const getVersions = async () => {
 
 const commit = config.COMMIT_HASH,
 	version = config.WEBSITE_VERSION,
-	versions = await getVersions();
+	packageVersions = await getPackageVersions();
 </script>
