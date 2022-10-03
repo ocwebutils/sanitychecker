@@ -28,7 +28,7 @@
 		"axios": "0.27.2",
 		"daisyui": "2.31.0",
 		"fast-xml-parser": "4.0.10",
-		"marked": "4.1.0",
+		"marked": "4.1.1",
 		"postcss": "8.4.16",
 		"tailwindcss": "3.1.8",
 		"uuid": "9.0.0",
