@@ -1,6 +1,6 @@
 export const getCPUModels = async () => {
 		try {
-			const cpulist = await require("@ocwebutils/sanitychecker_rules/cpu_list.json");
+			const cpulist = await require("@ocwebutils/sc_rules/cpu_list.json");
 			return cpulist;
 		} catch (err) {
 			return null;
@@ -8,7 +8,7 @@ export const getCPUModels = async () => {
 	},
 	getOCVersions = async () => {
 		try {
-			const ocVersions = await require("@ocwebutils/sanitychecker_rules/oc_versions.json");
+			const ocVersions = await require("@ocwebutils/sc_rules/oc_versions.json");
 			return ocVersions;
 		} catch (err) {
 			return null;
@@ -21,7 +21,7 @@ export const getCPUModels = async () => {
 		if (!string) return null;
 
 		try {
-			const schema = await require(`@ocwebutils/sanitychecker_rules/schemas/${string}.schema.json`);
+			const schema = await require(`@ocwebutils/sc_rules/schemas/${string}.schema.json`);
 			return schema;
 		} catch (err) {
 			return null;
@@ -50,9 +50,9 @@ export const getCPUModels = async () => {
 		if (!cpuModel || !ocVersion) return null;
 
 		try {
-			const cpuRules = await require(`@ocwebutils/sanitychecker_rules/rules/${cpuModel.codename.split("_")[0]}/${
-				cpuModel.codename.split("_")[1]
-			}/${ocVersion}/${cpuModel.rules}`);
+			const cpuRules = await require(`@ocwebutils/sc_rules/rules/${cpuModel.codename.split("_")[0]}/${cpuModel.codename.split("_")[1]}/${ocVersion}/${
+				cpuModel.rules
+			}`);
 			return cpuRules;
 		} catch (err) {
 			return null;
