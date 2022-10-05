@@ -13,7 +13,7 @@
 	},
 	"dependencies": {
 		"@fastify/cors": "8.1.0",
-		"@ocwebutils/sc_checker": "github:ocwebutils/sc_checker#v1.0.0",
+		"@ocwebutils/sc_checker": "github:ocwebutils/sc_checker#v1.0.1",
 		"@prisma/client": "4.4.0",
 		"ajv": "8.11.0",
 		"debug": "4.3.4",
