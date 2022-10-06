@@ -57,15 +57,7 @@ export default defineNuxtConfig({
 			"@fortawesome/free-brands-svg-icons",
 			"@fortawesome/free-solid-svg-icons",
 			"vue-toastification"
-		],
-		postcss: {
-			postcssOptions: {
-				plugins: {
-					tailwindcss: {},
-					autoprefixer: {}
-				}
-			}
-		}
+		]
 	},
 	colorMode: {
 		classSuffix: ""
@@ -75,13 +67,16 @@ export default defineNuxtConfig({
 		dirs: ["components"]
 	},
 	css: ["vue-toastification/dist/index.css", "@fortawesome/fontawesome-svg-core/styles.css", "assets/css/tailwind.css"],
-	modules: ["@nuxtjs/color-mode"],
+	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss"],
 	publicRuntimeConfig: {
 		BASE_API_URL: process.env.NODE_ENV !== "production" ? "http://localhost:3030/api/v1" : "https://api.ocutils.me/api/v1",
 		COMMIT_HASH: process.env.COMMIT_HASH,
 		WEBSITE_VERSION: version
 	},
 	target: "static",
+	tailwindcss: {
+		viewer: false
+	},
 	srcDir: "src/",
 	ssr: true,
 	vite: {
