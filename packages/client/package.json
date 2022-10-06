@@ -12,7 +12,7 @@
 		"start": "node ./.output/server/index.mjs"
 	},
 	"devDependencies": {
-		"@nuxtjs/color-mode": "3.1.6",
+		"@nuxtjs/color-mode": "3.1.7",
 		"@nuxtjs/tailwindcss": "5.3.3",
 		"@types/marked": "4.0.7",
 		"@types/plist": "3.0.2",
@@ -25,9 +25,9 @@
 		"@fortawesome/free-solid-svg-icons": "6.2.0",
 		"@fortawesome/vue-fontawesome": "3.0.1",
 		"autoprefixer": "10.4.12",
-		"axios": "0.27.2",
+		"axios": "1.0.0",
 		"daisyui": "2.31.0",
-		"fast-xml-parser": "4.0.10",
+		"fast-xml-parser": "4.0.11",
 		"marked": "4.1.1",
 		"uuid": "9.0.0",
 		"vue-dompurify-html": "3.1.1",
