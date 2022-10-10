@@ -12,7 +12,7 @@
 		"start": "node ./.output/server/index.mjs"
 	},
 	"devDependencies": {
-		"@nuxtjs/color-mode": "3.1.7",
+		"@nuxtjs/color-mode": "3.1.8",
 		"@nuxtjs/tailwindcss": "5.3.3",
 		"@types/marked": "4.0.7",
 		"@types/plist": "3.0.2",
