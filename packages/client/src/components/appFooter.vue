@@ -23,14 +23,13 @@
 	</div>
 </template>
 <script setup lang="ts">
-import axios from "axios";
-const config = useRuntimeConfig();
+import { axiosInstance } from "@/util/axiosInstance";
 
-axios.defaults.baseURL = config.BASE_API_URL;
+const config = useRuntimeConfig();
 
 const getPackageVersions = async () => {
 	try {
-		const response = await axios.get("/packageVersions");
+		const response = await axiosInstance.get("/packageVersions");
 		if (!response.data.success || !response.data.data) return null;
 
 		return response.data.data;
@@ -39,7 +38,7 @@ const getPackageVersions = async () => {
 	}
 };
 
-const commit = config.COMMIT_HASH,
-	version = config.WEBSITE_VERSION,
+const commit = config.public.COMMIT_HASH,
+	version = config.public.WEBSITE_VERSION,
 	packageVersions = await getPackageVersions();
 </script>

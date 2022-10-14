@@ -49,11 +49,10 @@
 	</div>
 </template>
 <script setup lang="ts">
-import axios from "axios";
 import { useToast } from "vue-toastification";
+import { axiosInstance } from "@/util/axiosInstance";
 
-const config = useRuntimeConfig(),
-	route = useRoute(),
+const route = useRoute(),
 	router = useRouter(),
 	showRawData = ref(false),
 	toast = useToast();
@@ -77,11 +76,9 @@ useHead({
 	]
 });
 
-axios.defaults.baseURL = config.BASE_API_URL;
-
 const getResult = async (id: string) => {
 		try {
-			const response = await axios.get(`/result/${id}`);
+			const response = await axiosInstance.get(`/result/${id}`);
 			if (!response.data.success || !response.data.data) {
 				toast.error(response.data.error, {
 					timeout: 5000
@@ -100,7 +97,7 @@ const getResult = async (id: string) => {
 	},
 	getSchema = async (ocVersion: string) => {
 		try {
-			const response = await axios.get(`/schema/${ocVersion}`);
+			const response = await axiosInstance.get(`/schema/${ocVersion}`);
 			if (!response.data.success || !response.data.data) {
 				toast.error(response.data.error, {
 					timeout: 5000
@@ -136,7 +133,7 @@ const getResult = async (id: string) => {
 		}
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	},
-	copyURL = e => {
+	copyURL = () => {
 		const permissionName = "clipboard-write" as PermissionName;
 		if (!navigator.permissions || !navigator.permissions.query) {
 			copyToClipboard();
@@ -144,7 +141,7 @@ const getResult = async (id: string) => {
 		}
 
 		navigator.permissions.query({ name: permissionName }).then(result => {
-			if (result.state == "granted" || result.state == "prompt") copyToClipboard();
+			if (result.state === ("granted" || "prompt")) copyToClipboard();
 		});
 	},
 	copyToClipboard = () => {

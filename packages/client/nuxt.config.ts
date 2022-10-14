@@ -68,10 +68,11 @@ export default defineNuxtConfig({
 	},
 	css: ["vue-toastification/dist/index.css", "@fortawesome/fontawesome-svg-core/styles.css", "assets/css/tailwind.css"],
 	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss"],
-	publicRuntimeConfig: {
-		BASE_API_URL: process.env.NODE_ENV !== "production" ? "http://localhost:3030/api/v1" : "https://api.ocutils.me/api/v1",
-		COMMIT_HASH: process.env.COMMIT_HASH,
-		WEBSITE_VERSION: version
+	runtimeConfig: {
+		public: {
+			COMMIT_HASH: process.env.COMMIT_HASH,
+			WEBSITE_VERSION: version
+		}
 	},
 	target: "static",
 	tailwindcss: {

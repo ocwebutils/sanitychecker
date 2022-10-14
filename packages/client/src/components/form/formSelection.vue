@@ -31,8 +31,8 @@
 </template>
 
 <script lang="ts">
-import axios from "axios";
 import { getVariable } from "@/util/localstorage";
+import { axiosInstance } from "@/util/axiosInstance";
 
 export default {
 	data() {
@@ -40,10 +40,6 @@ export default {
 			supportedCPUGenerations: null,
 			supportedOCVersions: null
 		};
-	},
-	setup() {
-		const config = useRuntimeConfig();
-		axios.defaults.baseURL = config.BASE_API_URL;
 	},
 	async mounted() {
 		const supportedCPUGenerations = await getSupportedCPUGenerations(),
@@ -58,7 +54,7 @@ export default {
 
 const getSupportedCPUGenerations = async () => {
 		try {
-			const response = await axios.get("/supportedCPUGenerations");
+			const response = await axiosInstance.get("/supportedCPUGenerations");
 			if (!response.data.success) return null;
 
 			let tempArray = [];
@@ -80,7 +76,7 @@ const getSupportedCPUGenerations = async () => {
 	},
 	getSupportedOCVersions = async () => {
 		try {
-			const response = await axios.get("/supportedOCVersions");
+			const response = await axiosInstance.get("/supportedOCVersions");
 			if (!response.data.success) return null;
 
 			return response.data.data;

@@ -40,10 +40,10 @@
 	</label>
 </template>
 <script lang="ts">
-import axios from "axios";
 import { createIdentificator, getIdentificator } from "@/util/identificator";
 import { Countdown } from "@/class/countdown";
 import { deleteResult } from "@/util/handleForm";
+import { axiosInstance } from "@/util/axiosInstance";
 
 export default {
 	data() {
@@ -52,8 +52,6 @@ export default {
 		};
 	},
 	async setup() {
-		const config = useRuntimeConfig();
-		axios.defaults.baseURL = config.BASE_API_URL;
 		const uploads = await getUploadList(),
 			date = Date.now();
 
@@ -82,7 +80,7 @@ export default {
 
 const getUploadList = async () => {
 	if (!getIdentificator()) createIdentificator();
-	const response = await axios.get("/user/uploadedResults", {
+	const response = await axiosInstance.get("/user/uploadedResults", {
 		headers: {
 			"x-user-id": getIdentificator()
 		}

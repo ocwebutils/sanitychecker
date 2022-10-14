@@ -45,12 +45,12 @@ export default {
 		},
 		returnMessage: (msg, path, type?) => {
 			if (msg.includes("must NOT have additional properties"))
-				return "This property shouldn't be in your config. Most likely it has been replaced, removed or never existed in this OpenCore version.";
+				return "This property shouldn't be in your config. Most likely it has been replaced, removed or never existed in this OpenCore version";
 
 			if (msg.includes("missing property") || msg.includes("must have required property"))
-				return `Expected property not found. Make sure it is present in \`${path}\``;
+				return `Expected property not found. Make sure it is present in \`${path}\`<br/>Note: This property may not be required for OpenCore to run properly`;
 
-			if (msg.includes("must be")) return `This property doesn't have the right type. Expected type is \`${type}\`.`;
+			if (msg.includes("must be")) return `This property doesn't have the right type. Expected type is \`${type}\``;
 		},
 		parseMarked: text => {
 			return parseMarked(text);

@@ -1,12 +1,8 @@
-import axios from "axios";
+import { axiosInstance } from "./axiosInstance";
 import { getIdentificator } from "./identificator";
 import { setVariable } from "./localstorage";
 
 export const handleForm = async file => {
-		const config = useRuntimeConfig();
-		axios.defaults.baseURL = config.BASE_API_URL;
-		axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
-
 		const cpuModel = document.querySelector("#cpu_model") as HTMLSelectElement,
 			ocVersion = document.querySelector("#oc_version") as HTMLSelectElement,
 			cpuValue = cpuModel.options[cpuModel.selectedIndex].value,
@@ -16,7 +12,7 @@ export const handleForm = async file => {
 		if (!cpuValue || cpuValue === "default" || !cpuName || !ocValue) return { success: false, error: "Please select CPU model and OpenCore version" };
 
 		try {
-			const response = await axios.post("/validateConfig", {
+			const response = await axiosInstance.post("/validateConfig", {
 				metadata: {
 					uploadedBy: getIdentificator(),
 					ocVersion: ocValue,
@@ -43,7 +39,7 @@ export const handleForm = async file => {
 			uploadID = (document.querySelector(`#id-result-${id}`) as HTMLLinkElement).innerText,
 			parentElement = e.target.closest("tr");
 
-		const response = await axios.delete("/result/" + uploadID, {
+		const response = await axiosInstance.delete("/result/" + uploadID, {
 			headers: {
 				"x-user-id": getIdentificator()
 			}
