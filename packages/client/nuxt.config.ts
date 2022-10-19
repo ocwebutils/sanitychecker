@@ -67,6 +67,9 @@ export default defineNuxtConfig({
 		dirs: ["components"]
 	},
 	css: ["vue-toastification/dist/index.css", "@fortawesome/fontawesome-svg-core/styles.css", "assets/css/tailwind.css"],
+	experimental: {
+		writeEarlyHints: false
+	},
 	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss"],
 	runtimeConfig: {
 		public: {
