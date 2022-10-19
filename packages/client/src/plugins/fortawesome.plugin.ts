@@ -42,6 +42,6 @@ library.add(
 library.add(faGithub, faDiscord);
 
 export default defineNuxtPlugin(nuxtApp => {
-	//@ts-expect-error: Types are broken
+	// @ts-expect-error: Types are broken
 	nuxtApp.vueApp.component("font-awesome-icon", FontAwesomeIcon);
 });

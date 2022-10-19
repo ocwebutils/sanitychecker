@@ -5,7 +5,7 @@
 				<label tabindex="0" class="btn btn-ghost lg:hidden">
 					<font-awesome-icon class="h-5 w-5" size="lg" icon="fa-solid fa-bars" />
 				</label>
-				<ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+				<ul class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
 					<li>
 						<NuxtLink href="/privacy" class="flex items-center">
 							<span class="self-center text-xl font-medium whitespace-nowrap hover:text-blue-500 transition-colors"
@@ -51,7 +51,7 @@
 					><font-awesome-icon icon="fa-brands fa-github" /> Source Code</span
 				>
 			</a>
-			<NavbarColorSwitcher />
+			<NavbarThemeChanger />
 		</div>
 	</div>
 </template>

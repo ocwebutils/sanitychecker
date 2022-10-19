@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<ClientOnly>
-			<div class="flex flex-col h-screen">
+			<div class="flex flex-col h-screen" tabindex="0">
 				<NavbarAppHeader />
 				<div class="flex-grow m-auto">
 					<slot />
@@ -22,19 +22,6 @@ onMounted(() => {
 		? document.querySelector("html").setAttribute("data-theme", "light")
 		: document.querySelector("html").setAttribute("data-theme", "dark");
 });
-
-if (process.client) {
-	const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-	if (isSafari) {
-		useHead({
-			script: [
-				{
-					src: "/assets/js/safari_polyfill.min.js?v=1.0.0"
-				}
-			]
-		});
-	}
-}
 </script>
 
 <style>

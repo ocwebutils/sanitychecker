@@ -22,7 +22,7 @@ export function parseplist(file): Promise<object | boolean> {
 	return new Promise<object | boolean>((resolve, reject) => {
 		const reader = new FileReader();
 		reader.onload = () => {
-			//@ts-expect-error: We import browser build of plist.js
+			// @ts-expect-error: We import browser build of plist.js
 			const result = plist.parse(reader.result as string);
 			if (typeof result === "object") resolve(result);
 			else reject(false);
