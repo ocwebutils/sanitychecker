@@ -1,5 +1,5 @@
 <template>
-	<div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mb-4">
+	<div class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box mb-4 ml-3 mr-3">
 		<input type="checkbox" />
 		<div class="collapse-title text-base font-medium">
 			<font-awesome-icon class="mr-2" :icon="getIcon(ruleOutput.ruleSet.type).icon" :style="getIcon(ruleOutput.ruleSet.type).style" />

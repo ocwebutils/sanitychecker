@@ -4,15 +4,18 @@
 			<div class="text-center">
 				<h3 class="text-2xl font-bold">Validation results for:</h3>
 				<span class="text-lg font-medium">
-					<span class="text-blue-600">{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span> | OpenCore
-					<span class="text-blue-600">v{{ result.metadata.ocVersion }}</span></span
+					<span class="text-blue-600"
+						>({{ result.metadata.cpuCodename.split("_")[0].charAt(0).toUpperCase() + result.metadata.cpuCodename.split("_")[0].slice(1) }})
+						{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span
+					>
+					| OpenCore <span class="text-blue-600">v{{ result.metadata.ocVersion }}</span></span
 				>
 				<p class="font-medium">Note: We don't guarrante working config if everything is shown as correct</p>
 			</div>
 			<div class="divider" />
-			<div class="text-lg font-medium space-y-4" v-if="!showRawData">
+			<div class="font-medium space-y-4" v-if="!showRawData">
 				<div v-for="property in properties">
-					<h3 :id="property" class="mr-4">{{ property }}</h3>
+					<p :id="property" class="mr-4 mb-2 text-lg">{{ property }}</p>
 					<template class="inline" v-for="res in result.results.schemaResults.missingRoot">
 						<span v-if="res === property">
 							<div class="tooltip" data-tip="This dictionary is missing from your config">
@@ -133,7 +136,7 @@ const getResult = async (id: string) => {
 		}
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	},
-	copyURL = () => {
+	copyURL = _ => {
 		const permissionName = "clipboard-write" as PermissionName;
 		if (!navigator.permissions || !navigator.permissions.query) {
 			copyToClipboard();
