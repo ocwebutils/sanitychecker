@@ -27,7 +27,7 @@ export const getResult = async (req: FastifyRequest<{ Params: { resultId: string
 		}
 	})) as result | null;
 
-	if (!query) return res.status(404).send({ success: false, error: "Result doesn't exist in our database" });
+	if (!query) return res.status(404).send({ success: false, error: "Result doesn't exist in the database" });
 
 	delete query.id;
 

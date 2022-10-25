@@ -16,7 +16,7 @@ type result = {
 export const uploadedResults = async (req: FastifyRequest, res: FastifyReply) => {
 	const user = req.headers["x-user-id"] as string;
 
-	if (!user || !uuidValidate(user)) return res.status(403).send({ success: false, error: "No user-id header is provided" });
+	if (!user || !uuidValidate(user)) return res.status(403).send({ success: false, error: "No 'user-id' header is provided" });
 
 	await deleteOldResults();
 
@@ -26,7 +26,7 @@ export const uploadedResults = async (req: FastifyRequest, res: FastifyReply) =>
 		}
 	});
 
-	if (!query) return res.status(404).send({ success: false, error: "Couldn't get results" });
+	if (!query) return res.status(404).send({ success: false, error: "Error occurred. Server couldn't return a result" });
 
 	const newQuery = query.map(({ results, ...item }: result) => item);
 

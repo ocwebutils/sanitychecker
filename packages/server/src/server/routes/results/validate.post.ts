@@ -31,7 +31,7 @@ export const validateConfig = async (
 		if (!rules)
 			return res
 				.status(404)
-				.send({ success: false, error: "Rules for specified CPU are not found. This CPU may not be supported by selected OpenCore version" });
+				.send({ success: false, error: "Server couldn't find rules for specified CPU. This CPU may not be supported by selected OpenCore version" });
 
 		const configCheck = new ConfigChecker(config);
 		configCheck.validate(rules);
