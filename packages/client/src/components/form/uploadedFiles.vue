@@ -23,8 +23,9 @@
 								</th>
 								<th>
 									<span class="countdown font-mono space-x-2">
-										<span class="hours" :style="'--value:' + getDiff(date, result.expireDate)[0]"></span>h
-										<span class="minutes" :style="'--value:' + getDiff(date, result.expireDate)[1]"></span>m
+										<span class="days" :style="'--value:' + getDiff(date, result.expireDate)[0]"></span>d
+										<span class="hours" :style="'--value:' + getDiff(date, result.expireDate)[1]"></span>h
+										<span class="minutes" :style="'--value:' + getDiff(date, result.expireDate)[2]"></span>m
 									</span>
 								</th>
 								<th><button class="btn btn-error btn-sm" :id="'delete-result-' + index" @click.prevent="deleteResult">Delete</button></th>
@@ -66,11 +67,13 @@ export default {
 	methods: {
 		getDiff: (start: number, end: number) => {
 			let diffms = Math.abs(end - start) / 1000;
+			const days = Math.floor(diffms / 86400);
+			diffms -= days * 86400;
 			const hours = Math.floor(diffms / 3600) % 24;
 			diffms -= hours * 3600;
 			const minutes = Math.floor(diffms / 60) % 60;
 			diffms -= minutes * 60;
-			return [hours, minutes];
+			return [days, hours, minutes];
 		},
 		deleteResult: async e => {
 			await deleteResult(e);
