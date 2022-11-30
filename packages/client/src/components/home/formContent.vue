@@ -59,34 +59,25 @@ export default {
 	methods: {
 		dropFileHandler: async function (msg) {
 			const file = msg[0] ?? msg.target?.files[0];
-			if (!file?.name.endsWith(".plist")) return this.errorHandler("This isn't valid plist file!");
-			if (file.size > 2 * 1024 * 1024) return this.errorHandler("File size is too big!");
+			if (!file?.name.endsWith(".plist")) return this.showErrorNotif("This isn't valid plist file!");
+			if (file.size > 2 * 1024 * 1024) return this.showErrorNotif("File size is too big!");
 			const xmlval = await validateplist(file),
 				parsedplist = await parseplist(file);
-			if (!xmlval || !parsedplist) return this.errorHandler("This isn't valid plist file!");
+			if (!xmlval || !parsedplist) return this.showErrorNotif("This isn't valid plist file!");
 			this.processing = true;
 			const result = await handleForm(parsedplist);
 			if (!result.success) {
-				this.toast.error(result.error, {
-					timeout: 5000
-				});
+				this.showErrorNotif(result.error);
 				this.processing = false;
 				return;
 			}
 			this.router.push(`/results/${result.data.resultId}`);
 		},
-		errorHandler: async function (message) {
+		showErrorNotif: async function (message) {
 			this.toast.error(message, {
 				timeout: 3000
 			});
 		}
-	},
-	head: {
-		script: [
-			{
-				src: "/assets/js/plist.min.js?v=3.0.7"
-			}
-		]
 	}
 };
 </script>

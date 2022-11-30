@@ -3,16 +3,7 @@
 		<input type="checkbox" />
 		<div class="collapse-title text-base font-medium">
 			<font-awesome-icon class="mr-2" :icon="getIcon(ruleOutput.ruleSet.type).icon" :style="getIcon(ruleOutput.ruleSet.type).style" />
-			<span
-				>{{
-					ruleOutput.path.split("/").length >= 5
-						? `${ruleOutput.path.split("/")[1]} &rarr; ${ruleOutput.path.split("/")[3]}.${ruleOutput.path.split("/")[4]}:`
-						: ruleOutput.path.split("/")[2] === undefined
-						? `${ruleOutput.path.split("/")[1]}:`
-						: `${ruleOutput.path.split("/")[1]} &rarr; ${ruleOutput.path.split("/")[2]}:`
-				}}
-				{{ replaceBoolean(ruleOutput.actualValue) }}</span
-			>
+			<span>{{ displayNormalizedName(ruleOutput, "rule") }} {{ replaceBoolean(ruleOutput.actualValue) }}</span>
 		</div>
 		<div class="collapse-content text-sm font-base">
 			<p v-dompurify-html="parseMarked(ruleOutput.ruleSet.message)" />
@@ -31,48 +22,18 @@
 	</div>
 </template>
 <script lang="ts">
-import { parseMarked } from "@/util/marked";
+import { getIcon, replaceBoolean, displayNormalizedName, parseMarked } from "@/util/utils";
 export default {
 	props: {
 		ruleOutput: Object
 	},
-	methods: {
-		getIcon: type => {
-			switch (type) {
-				case "error": {
-					return {
-						icon: "fa-solid fa-circle-xmark",
-						style: { color: "red" }
-					};
-				}
-				case "warning": {
-					return {
-						icon: "fa-solid fa-circle-exclamation",
-						style: { color: "orange" }
-					};
-				}
-				case "info": {
-					return {
-						icon: "fa-solid fa-circle-info",
-						style: { color: "rgb(59,130,246)" }
-					};
-				}
-			}
-		},
-		parseMarked: text => {
-			return parseMarked(text);
-		},
-		replaceBoolean: string => {
-			const val = string.toString();
-			switch (val) {
-				case "true":
-					return val.replace("true", "Enabled");
-				case "false":
-					return val.replace("false", "Disabled");
-				default:
-					return val;
-			}
-		}
+	setup() {
+		return {
+			replaceBoolean,
+			getIcon,
+			displayNormalizedName,
+			parseMarked
+		};
 	}
 };
 </script>

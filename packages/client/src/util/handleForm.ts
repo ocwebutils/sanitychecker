@@ -1,6 +1,6 @@
 import { axiosInstance } from "./axiosInstance";
 import { getIdentificator } from "./identificator";
-import { setVariable } from "./localstorage";
+import { setVariable } from "./utils";
 
 export const handleForm = async file => {
 		const cpuModel = document.querySelector("#cpu_model") as HTMLSelectElement,

@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { getVariable } from "@/util/localstorage";
+import { getVariable } from "@/util/utils";
 import { axiosInstance } from "@/util/axiosInstance";
 
 export default {

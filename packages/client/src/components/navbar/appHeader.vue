@@ -30,9 +30,7 @@
 				</ul>
 			</div>
 			<NuxtLink href="/">
-				<span class="self-center text-2xl font-semibold whitespace-nowrap hover:text-blue-500 transition-colors"
-					>Sanity Checker <span class="badge badge-lg">beta</span></span
-				>
+				<span class="self-center text-2xl font-semibold whitespace-nowrap hover:text-blue-500 transition-colors">Sanity Checker</span>
 			</NuxtLink>
 		</div>
 		<div class="navbar-end space-x-4">

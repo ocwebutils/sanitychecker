@@ -15,7 +15,12 @@ export default defineNuxtConfig({
 				{
 					hid: "description",
 					name: "description",
-					content: "OpenCore Sanity Checker allows you to check your OpenCore config for potential issues"
+					content: "OCUtils' Sanity Checker checks your OpenCore config for potential issues"
+				},
+				{
+					hid: "keywords",
+					name: "keywords",
+					content: "opencore, opencore sanity checker, sanity checker, plist checker, sanity checker plist, opencore plist"
 				},
 				{
 					hid: "og:title",
@@ -25,12 +30,17 @@ export default defineNuxtConfig({
 				{
 					hid: "og:description",
 					property: "og:description",
-					content: "OpenCore Sanity Checker allows you to check your OpenCore config for potential issues"
+					content: "OCUtils' OpenCore Sanity Checker checks your OpenCore config for potential issues"
 				},
 				{
 					hid: "og:type",
 					property: "og:type",
 					content: "website"
+				},
+				{
+					hid: "robots",
+					property: "robots",
+					content: "index, archive"
 				}
 			],
 			link: [
@@ -46,6 +56,9 @@ export default defineNuxtConfig({
 					"data-api": "https://analytics.ocutils.me/api/sendData",
 					"data-domain": "ocutils.me",
 					src: "https://analytics.ocutils.me/js/script.js"
+				},
+				{
+					src: "/assets/js/plist.min.js?v=3.0.7"
 				}
 			]
 		}
@@ -70,14 +83,13 @@ export default defineNuxtConfig({
 	experimental: {
 		writeEarlyHints: false
 	},
-	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss"],
+	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@nuxt/image-edge"],
 	runtimeConfig: {
 		public: {
 			COMMIT_HASH: process.env.COMMIT_HASH,
 			WEBSITE_VERSION: version
 		}
 	},
-	target: "static",
 	tailwindcss: {
 		viewer: false
 	},

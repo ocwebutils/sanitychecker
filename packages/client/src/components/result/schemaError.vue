@@ -3,15 +3,7 @@
 		<input type="checkbox" />
 		<div class="collapse-title text-base font-medium">
 			<font-awesome-icon class="mr-2" :icon="getIcon(schemaError.ruleSet.type).icon" :style="getIcon(schemaError.ruleSet.type).style" />
-			<span
-				>{{
-					schemaError.path.split("/").length === 2 && !schemaError.type
-						? `(${schemaError.path.split("/")[1]}) ${schemaError.expectedValue}`
-						: schemaError.path.split("/").length <= 2
-						? schemaError.expectedValue
-						: `(${schemaError.path.split("/")[1]}) ${schemaError.expectedValue}`
-				}}
-			</span>
+			<span>{{ displayNormalizedName(schemaError, "schema") }} </span>
 		</div>
 		<div class="collapse-content text-sm font-base">
 			<p v-dompurify-html="parseMarked(returnMessage(schemaError.ruleSet.message, schemaError.path, schemaError.type))"></p>
@@ -27,33 +19,27 @@
 	</div>
 </template>
 <script lang="ts">
-import { parseMarked } from "@/util/marked";
+import { getIcon, displayNormalizedName, parseMarked } from "@/util/utils";
 export default {
 	props: {
 		schemaError: Object
 	},
+	setup() {
+		return {
+			getIcon,
+			displayNormalizedName,
+			parseMarked
+		};
+	},
 	methods: {
-		getIcon: type => {
-			switch (type) {
-				case "error": {
-					return {
-						icon: "fa-solid fa-circle-xmark",
-						style: { color: "red" }
-					};
-				}
-			}
-		},
-		returnMessage: (msg, path, type?) => {
+		returnMessage: (msg: string, path: string, type?: string) => {
 			if (msg.includes("must NOT have additional properties"))
 				return "This property shouldn't be in your config. Most likely it has been replaced, removed or never existed in this OpenCore version";
 
 			if (msg.includes("missing property") || msg.includes("must have required property"))
-				return `Expected property not found. Make sure it is present in \`${path}\`<br/>Note: This property may not be required for OpenCore to run properly`;
+				return `Sanity Checker didn't detect this property in your config. Make sure it is present in \`${path}\`<br/>Note: Sanity Checker doesn't know if this property is required for OpenCore to launch properly`;
 
 			if (msg.includes("must be")) return `This property doesn't have the right type. Expected type is \`${type}\``;
-		},
-		parseMarked: text => {
-			return parseMarked(text);
 		}
 	}
 };

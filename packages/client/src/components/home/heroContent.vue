@@ -3,7 +3,8 @@
 		<div class="hero-content flex-col-reverse lg:flex-row-reverse">
 			<div class="text-center lg:text-left lg:pl-7">
 				<h1 class="text-2xl font-bold text-center">
-					<img alt="OCUtils' logo" src="/assets/favicons/logo.webp" class="h-8 pr-1 mx-auto inline" /> OpenCore Sanity Checker
+					<nuxt-img alt="OCUtils' logo" src="/assets/favicons/logo.webp" height="36" width="36" class="h-8 pr-1 mx-auto inline" /> OpenCore Sanity
+					Checker
 				</h1>
 				<p class="text-gray-900 dark:text-gray-300 text-lg text-center mb-4">Advanced Sanity Checker for latest OpenCore versions</p>
 				<ul class="mb-8 space-y-4 text-left text-gray-700 dark:text-gray-400">

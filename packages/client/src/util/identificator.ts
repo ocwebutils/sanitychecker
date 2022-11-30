@@ -1,4 +1,4 @@
-import { getVariable, setVariable } from "./localstorage";
+import { getVariable, setVariable } from "./utils";
 
 import { v4 as uuidv4 } from "uuid";
 
