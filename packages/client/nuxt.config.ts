@@ -83,7 +83,13 @@ export default defineNuxtConfig({
 	experimental: {
 		writeEarlyHints: false
 	},
-	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@nuxt/image-edge"],
+	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@nuxt/image-edge", "@kevinmarrec/nuxt-pwa"],
+	pwa: {
+		workbox: {
+			enabled: true,
+			templatePath: "@/serviceworker.js"
+		}
+	},
 	runtimeConfig: {
 		public: {
 			COMMIT_HASH: process.env.COMMIT_HASH,
