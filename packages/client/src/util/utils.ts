@@ -57,7 +57,7 @@ export const displayNormalizedName = (out: Record<string, any>, type: "schema" |
 			return out.path.split("/").length >= 5
 				? `${out.path.split("/")[1]} → ${out.path.split("/")[3]}.${out.path.split("/")[4]}:`
 				: out.path.split("/")[2] === undefined
-				? `${out.path.split("/")[1]}:`
+				? `${out.path.split("/")[1]} →`
 				: `${out.path.split("/")[1]} → ${out.path.split("/")[2]}:`;
 		}
 	}

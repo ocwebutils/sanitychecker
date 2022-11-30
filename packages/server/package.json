@@ -25,6 +25,7 @@
 	},
 	"devDependencies": {
 		"@types/debug": "4.1.7",
+		"@types/node": "18.11.10",
 		"@types/uuid": "9.0.0",
 		"prisma": "4.7.0",
 		"tsx": "3.12.1",

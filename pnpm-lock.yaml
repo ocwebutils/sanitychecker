@@ -55,6 +55,7 @@ importers:
       '@ocwebutils/sc_rules': github:ocwebutils/sc_rules
       '@prisma/client': 4.7.0
       '@types/debug': 4.1.7
+      '@types/node': 18.11.10
       '@types/uuid': 9.0.0
       ajv: 8.11.2
       debug: 4.3.4
@@ -68,7 +69,7 @@ importers:
     dependencies:
       '@fastify/cors': 8.2.0
       '@ocwebutils/sc_checker': github.com/ocwebutils/sc_checker/5c224297f9fade41a7e110800278e6ba766a225e
-      '@ocwebutils/sc_rules': github.com/ocwebutils/sc_rules/756e9d21645e7fef49ead58a388b09321fe7998e
+      '@ocwebutils/sc_rules': github.com/ocwebutils/sc_rules/f6b12b3744dd04d336e57ec17582a7cae707b169
       '@prisma/client': 4.7.0_prisma@4.7.0
       ajv: 8.11.2
       debug: 4.3.4
@@ -78,6 +79,7 @@ importers:
       uuid: 9.0.0
     devDependencies:
       '@types/debug': 4.1.7
+      '@types/node': 18.11.10
       '@types/uuid': 9.0.0
       prisma: 4.7.0
       tsx: 3.12.1
@@ -1019,12 +1021,8 @@ packages:
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: true
 
-  /@types/node/18.11.9:
-    resolution: {integrity: sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==}
-    dev: true
-
-  /@types/node/18.8.5:
-    resolution: {integrity: sha512-Bq7G3AErwe5A/Zki5fdD3O6+0zDChhg671NfPjtIcbtzDNZTv4NPKMRFr7gtYPG7y+B8uTiNK4Ngd9T0FTar6Q==}
+  /@types/node/18.11.10:
+    resolution: {integrity: sha512-juG3RWMBOqcOuXC643OAdSA525V44cVgGV6dUDuiFtss+8Fk5x1hI93Rsld43VeJVIeqlP9I7Fn9/qaVqoEAuQ==}
     dev: true
 
   /@types/parse-json/4.0.0:
@@ -1034,7 +1032,7 @@ packages:
   /@types/plist/3.0.2:
     resolution: {integrity: sha512-ULqvZNGMv0zRFvqn8/4LSPtnmN4MfhlPNtJCTpKuIIxGVGZ2rYWzFXrvEBoh9CVyqSE7D6YFRJ1hydLHI6kbWw==}
     dependencies:
-      '@types/node': 18.8.5
+      '@types/node': 18.11.10
       xmlbuilder: 15.1.1
     dev: true
 
@@ -3545,7 +3543,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.11.9
+      '@types/node': 18.11.10
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
@@ -3554,7 +3552,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.11.9
+      '@types/node': 18.11.10
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
@@ -6502,8 +6500,8 @@ packages:
       json5: 2.2.1
     dev: false
 
-  github.com/ocwebutils/sc_rules/756e9d21645e7fef49ead58a388b09321fe7998e:
-    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/756e9d21645e7fef49ead58a388b09321fe7998e}
+  github.com/ocwebutils/sc_rules/f6b12b3744dd04d336e57ec17582a7cae707b169:
+    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/f6b12b3744dd04d336e57ec17582a7cae707b169}
     name: '@ocwebutils/sc_rules'
-    version: 1.0.0-beta.4
+    version: 1.0.0-beta.5
     dev: false
