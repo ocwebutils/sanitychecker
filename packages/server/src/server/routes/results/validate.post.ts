@@ -24,8 +24,7 @@ export const validateConfig = async (
 		if (!ocSchema) return res.send({ success: false, error: "This version of OpenCore is not supported by Sanity Checker" });
 
 		const schemaCheck = new SchemaChecker(ocSchema);
-		schemaCheck.validate(config);
-		const schemaResult = await schemaCheck.toJSON(),
+		const schemaResult = await schemaCheck.validate(config),
 			rules = await getRules(metadata.ocVersion, metadata.cpuDetails.codename);
 
 		if (!rules)
@@ -34,8 +33,7 @@ export const validateConfig = async (
 				.send({ success: false, error: "Server couldn't find rules for specified CPU. This CPU may not be supported by selected OpenCore version" });
 
 		const configCheck = new ConfigChecker(config);
-		configCheck.validate(rules);
-		const rulesResult = await configCheck.toJSON(),
+		const rulesResult = await configCheck.validate(rules),
 			result = {
 				rulesResults: rulesResult.length === 0 ? null : rulesResult,
 				schemaResults: schemaResult

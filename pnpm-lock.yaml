@@ -12,17 +12,17 @@ importers:
       '@fortawesome/free-solid-svg-icons': 6.2.1
       '@fortawesome/vue-fontawesome': 3.0.1
       '@kevinmarrec/nuxt-pwa': 0.13.0
-      '@nuxt/image-edge': 1.0.0-27827328.bc9ddc0
+      '@nuxt/image-edge': 1.0.0-27840416.dc1ed65
       '@nuxtjs/color-mode': 3.2.0
       '@nuxtjs/tailwindcss': 6.1.3
       '@types/marked': 4.0.7
       '@types/plist': 3.0.2
       '@types/uuid': 9.0.0
       autoprefixer: 10.4.13
-      axios: 1.2.0
+      axios: 1.2.1
       daisyui: 2.42.1
       fast-xml-parser: 4.0.12
-      marked: 4.2.3
+      marked: 4.2.4
       nuxt: 3.0.0
       uuid: 9.0.0
       vue-dompurify-html: 3.1.1
@@ -33,16 +33,16 @@ importers:
       '@fortawesome/free-solid-svg-icons': 6.2.1
       '@fortawesome/vue-fontawesome': 3.0.1_bd5ipvhrqmkjz6wvo6sgrei224
       autoprefixer: 10.4.13_postcss@8.4.19
-      axios: 1.2.0
+      axios: 1.2.1
       daisyui: 2.42.1_2lwn2upnx27dqeg6hqdu7sq75m
       fast-xml-parser: 4.0.12
-      marked: 4.2.3
+      marked: 4.2.4
       uuid: 9.0.0
       vue-dompurify-html: 3.1.1_vue@3.2.45
       vue-toastification: 2.0.0-rc.5_vue@3.2.45
     devDependencies:
       '@kevinmarrec/nuxt-pwa': 0.13.0
-      '@nuxt/image-edge': 1.0.0-27827328.bc9ddc0_rollup@2.79.1
+      '@nuxt/image-edge': 1.0.0-27840416.dc1ed65_rollup@2.79.1
       '@nuxtjs/color-mode': 3.2.0_rollup@2.79.1
       '@nuxtjs/tailwindcss': 6.1.3_xnvm3nz4mmjaxdtzfd6rahyqou
       '@types/marked': 4.0.7
@@ -53,26 +53,26 @@ importers:
   packages/server:
     specifiers:
       '@fastify/cors': 8.2.0
-      '@ocwebutils/sc_checker': github:ocwebutils/sc_checker#v1.0.1
+      '@ocwebutils/sc_checker': github:ocwebutils/sc_checker#v1.1.0
       '@ocwebutils/sc_rules': github:ocwebutils/sc_rules
-      '@prisma/client': 4.7.0
+      '@prisma/client': 4.7.1
       '@types/debug': 4.1.7
-      '@types/node': 18.11.10
+      '@types/node': 18.11.11
       '@types/uuid': 9.0.0
       ajv: 8.11.2
       debug: 4.3.4
       dotenv: 16.0.3
       fastify: 4.10.2
       json5: 2.2.1
-      prisma: 4.7.0
+      prisma: 4.7.1
       tsx: 3.12.1
       typescript: 4.9.3
       uuid: 9.0.0
     dependencies:
       '@fastify/cors': 8.2.0
-      '@ocwebutils/sc_checker': github.com/ocwebutils/sc_checker/5c224297f9fade41a7e110800278e6ba766a225e
-      '@ocwebutils/sc_rules': github.com/ocwebutils/sc_rules/f6b12b3744dd04d336e57ec17582a7cae707b169
-      '@prisma/client': 4.7.0_prisma@4.7.0
+      '@ocwebutils/sc_checker': github.com/ocwebutils/sc_checker/d210a035ec1e4557239957f6f6bce992e678c2a3
+      '@ocwebutils/sc_rules': github.com/ocwebutils/sc_rules/e7c775c7708c205d5b93780de7259c624c4961c2
+      '@prisma/client': 4.7.1_prisma@4.7.1
       ajv: 8.11.2
       debug: 4.3.4
       dotenv: 16.0.3
@@ -81,9 +81,9 @@ importers:
       uuid: 9.0.0
     devDependencies:
       '@types/debug': 4.1.7
-      '@types/node': 18.11.10
+      '@types/node': 18.11.11
       '@types/uuid': 9.0.0
-      prisma: 4.7.0
+      prisma: 4.7.1
       tsx: 3.12.1
       typescript: 4.9.3
 
@@ -641,8 +641,8 @@ packages:
     resolution: {integrity: sha512-YBI/6o2EBz02tdEJRBK8xkt3zvOFOWlLBf7WKYGBsSYSRtjjgrqPe2skp6VLLmKx5WbHHDNcW+6oACaurxGzeA==}
     dev: true
 
-  /@nuxt/image-edge/1.0.0-27827328.bc9ddc0_rollup@2.79.1:
-    resolution: {integrity: sha512-8fy6dSJaH9I5FKPK4EA6ddgUWNkxz2Y1AGIKVbAaRKftyK4y66gHmA+pbPPjb1cgYw6pWoWrnA4JxsHKelD8+A==}
+  /@nuxt/image-edge/1.0.0-27840416.dc1ed65_rollup@2.79.1:
+    resolution: {integrity: sha512-r+lRkdAeB49wCpYmZAHWrhXNtjTSt3kz8MuPoVPpZB40FOVEpPCIQF8dBI5tXM19YOg76yFCdvpt1TFq3irA7g==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0}
     dependencies:
       '@nuxt/kit': 3.0.0_rollup@2.79.1
@@ -653,7 +653,7 @@ packages:
       node-fetch-native: 1.0.1
       ohash: 1.0.0
       pathe: 1.0.0
-      ufo: 1.0.0
+      ufo: 1.0.1
     optionalDependencies:
       ipx: 1.0.0-2
     transitivePeerDependencies:
@@ -846,8 +846,8 @@ packages:
       - webpack
     dev: true
 
-  /@prisma/client/4.7.0_prisma@4.7.0:
-    resolution: {integrity: sha512-keXMa0oJWJGOzMEFKp+CEgzJPwnOtGSrnTWw6qMYxnypYrRFdNxqyA06EzELZexBhgM4oLooZ1jDJ3iy46wExA==}
+  /@prisma/client/4.7.1_prisma@4.7.1:
+    resolution: {integrity: sha512-/GbnOwIPtjiveZNUzGXOdp7RxTEkHL4DZP3vBaFNadfr6Sf0RshU5EULFzVaSi9i9PIK9PYd+1Rn7z2B2npb9w==}
     engines: {node: '>=14.17'}
     requiresBuild: true
     peerDependencies:
@@ -856,16 +856,16 @@ packages:
       prisma:
         optional: true
     dependencies:
-      '@prisma/engines-version': 4.7.0-74.39190b250ebc338586e25e6da45e5e783bc8a635
-      prisma: 4.7.0
+      '@prisma/engines-version': 4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c
+      prisma: 4.7.1
     dev: false
 
-  /@prisma/engines-version/4.7.0-74.39190b250ebc338586e25e6da45e5e783bc8a635:
-    resolution: {integrity: sha512-ImczGEQ8NS1OUApEeyAGxC4uLTtQp0wI1+2wM4MeQLVwIQbyMHk1vOhWWE8Pwbi3rnzLcPvsIrd9sm6oNXhERw==}
+  /@prisma/engines-version/4.7.1-1.272861e07ab64f234d3ffc4094e32bd61775599c:
+    resolution: {integrity: sha512-Bd4LZ+WAnUHOq31e9X/ihi5zPlr4SzTRwUZZYxvWOxlerIZ7HJlVa9zXpuKTKLpI9O1l8Ec4OYCKsivWCs5a3Q==}
     dev: false
 
-  /@prisma/engines/4.7.0:
-    resolution: {integrity: sha512-afKrVFktaZ1pOK12/uFl2hRsBWIJZuC5FdDtacuKk5x/mR+rC5AbA+PlN3ZCZbmYTaeiBMHjcU5wbT5z2N3nSQ==}
+  /@prisma/engines/4.7.1:
+    resolution: {integrity: sha512-zWabHosTdLpXXlMefHmnouhXMoTB1+SCbUU3t4FCmdrtIOZcarPKU3Alto7gm/pZ9vHlGOXHCfVZ1G7OIrSbog==}
     requiresBuild: true
 
   /@rollup/plugin-alias/4.0.2_rollup@2.79.1:
@@ -1001,13 +1001,13 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.10
-      '@types/estree': 1.0.0
+      '@types/estree': 0.0.51
     dev: true
 
   /@types/eslint/8.4.10:
     resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
     dependencies:
-      '@types/estree': 1.0.0
+      '@types/estree': 0.0.51
       '@types/json-schema': 7.0.11
     dev: true
 
@@ -1033,6 +1033,10 @@ packages:
 
   /@types/node/18.11.10:
     resolution: {integrity: sha512-juG3RWMBOqcOuXC643OAdSA525V44cVgGV6dUDuiFtss+8Fk5x1hI93Rsld43VeJVIeqlP9I7Fn9/qaVqoEAuQ==}
+    dev: true
+
+  /@types/node/18.11.11:
+    resolution: {integrity: sha512-KJ021B1nlQUBLopzZmPBVuGU9un7WJd/W4ya7Ih02B4Uwky5Nja0yGYav2EfYIk0RR2Q9oVhf60S2XR1BCWJ2g==}
     dev: true
 
   /@types/parse-json/4.0.0:
@@ -1448,15 +1452,6 @@ packages:
       uri-js: 4.4.1
     dev: true
 
-  /ajv/8.11.0:
-    resolution: {integrity: sha512-wGgprdCvMalC0BztXvitD2hC04YffAvtsUn93JbGXYLAtCUO4xd17mCCZQxUOItiBwZvJScWo8NIvQMQ71rdpg==}
-    dependencies:
-      fast-deep-equal: 3.1.3
-      json-schema-traverse: 1.0.0
-      require-from-string: 2.0.2
-      uri-js: 4.4.1
-    dev: false
-
   /ajv/8.11.2:
     resolution: {integrity: sha512-E4bfmKAhGiSTvMfL1Myyycaub+cUEU2/IvpylXkUu7CHBkBj1f/ikdzbD7YQ6FKUbixDxeYvB/xY4fvyroDlQg==}
     dependencies:
@@ -1621,8 +1616,8 @@ packages:
       - supports-color
     dev: false
 
-  /axios/1.2.0:
-    resolution: {integrity: sha512-zT7wZyNYu3N5Bu0wuZ6QccIf93Qk1eV8LOewxgjOZFd2DenOs98cJ7+Y6703d0wkaXGY6/nZd4EweJaHz9uzQw==}
+  /axios/1.2.1:
+    resolution: {integrity: sha512-I88cFiGu9ryt/tfVEi4kX2SITsvDddTajXTOFmt2uK1ZVA8LytjtdeyefdQWEf5PU8w+4SSJDoYnggflB5tW4A==}
     dependencies:
       follow-redirects: 1.15.2
       form-data: 4.0.0
@@ -2334,6 +2329,11 @@ packages:
   /destr/1.2.1:
     resolution: {integrity: sha512-ud8w0qMLlci6iFG7CNgeRr8OcbUWMsbfjtWft1eJ5Luqrz/M8Ebqk/KCzne8rKUlIQWWfLv0wD6QHrqOf4GshA==}
     dev: true
+
+  /destr/1.2.2:
+    resolution: {integrity: sha512-lrbCJwD9saUQrqUfXvl6qoM+QN3W7tLV5pAOs+OqOmopCCz/JkE05MHedJR1xfk4IAnZuJXPVuN5+7jNA2ZCiA==}
+    dev: true
+    optional: true
 
   /destroy/1.2.0:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
@@ -3423,14 +3423,14 @@ packages:
     dependencies:
       consola: 2.15.3
       defu: 6.1.1
-      destr: 1.2.1
+      destr: 1.2.2
       etag: 1.8.1
       image-meta: 0.1.1
-      listhen: 1.0.0
+      listhen: 1.0.1
       node-fetch-native: 1.0.1
       pathe: 1.0.0
       sharp: 0.31.2
-      ufo: 1.0.0
+      ufo: 1.0.1
       xss: 1.0.14
     dev: true
     optional: true
@@ -3566,7 +3566,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.11.10
+      '@types/node': 18.11.11
       merge-stream: 2.0.0
       supports-color: 8.1.1
     dev: true
@@ -3731,6 +3731,20 @@ packages:
       ufo: 1.0.0
     dev: true
 
+  /listhen/1.0.1:
+    resolution: {integrity: sha512-RBzBGHMCc5wP8J5Vf8WgF4CAJH8dWHi9LaKB7vfzZt54CiH/0dp01rudy2hFD9wCrTM+UfxFVnn5wTIiY+Qhiw==}
+    dependencies:
+      clipboardy: 3.0.0
+      colorette: 2.0.19
+      defu: 6.1.1
+      get-port-please: 2.6.1
+      http-shutdown: 1.2.2
+      ip-regex: 5.0.0
+      node-forge: 1.3.1
+      ufo: 1.0.1
+    dev: true
+    optional: true
+
   /loader-runner/4.3.0:
     resolution: {integrity: sha512-3R/1M+yS3j5ou80Me59j7F9IMs4PXs3VqRrm0TU3AbKPxlmpoY1TNscJV/oGJXo8qCatFGTfDbY6W6ipGOYXfg==}
     engines: {node: '>=6.11.5'}
@@ -3844,8 +3858,8 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /marked/4.2.3:
-    resolution: {integrity: sha512-slWRdJkbTZ+PjkyJnE30Uid64eHwbwa1Q25INCAYfZlK4o6ylagBy/Le9eWntqJFoFT93ikUKMv47GZ4gTwHkw==}
+  /marked/4.2.4:
+    resolution: {integrity: sha512-Wcc9ikX7Q5E4BYDPvh1C6QNSxrjC9tBgz+A/vAhp59KXUgachw++uMvMKiSW8oA85nopmPZcEvBoex/YLMsiyA==}
     engines: {node: '>= 12'}
     hasBin: true
     dev: false
@@ -5051,13 +5065,13 @@ packages:
     engines: {node: ^14.13.1 || >=16.0.0}
     dev: true
 
-  /prisma/4.7.0:
-    resolution: {integrity: sha512-VsecNo0Ca3+bDTzSpJqIpdupKVhhQ8aOYeWc09JlUM89knqvhSrlMrg0U8BiOD4tFrY1OPaCcraK8leDBxKMBg==}
+  /prisma/4.7.1:
+    resolution: {integrity: sha512-CCQP+m+1qZOGIZlvnL6T3ZwaU0LAleIHYFPN9tFSzjs/KL6vH9rlYbGOkTuG9Q1s6Ki5D0LJlYlW18Z9EBUpGg==}
     engines: {node: '>=14.17'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@prisma/engines': 4.7.0
+      '@prisma/engines': 4.7.1
 
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
@@ -5832,7 +5846,7 @@ packages:
       jest-worker: 27.5.1
       schema-utils: 3.1.1
       serialize-javascript: 6.0.0
-      terser: 5.16.0
+      terser: 5.16.1
       webpack: 5.75.0
     dev: true
 
@@ -5847,8 +5861,8 @@ packages:
       source-map-support: 0.5.21
     dev: true
 
-  /terser/5.16.0:
-    resolution: {integrity: sha512-KjTV81QKStSfwbNiwlBXfcgMcOloyuRdb62/iLFPGBcVNF4EXjhdYBhYHmbJpiBrVxZhDvltE11j+LBQUxEEJg==}
+  /terser/5.16.1:
+    resolution: {integrity: sha512-xvQfyfA1ayT0qdK47zskQgRZeWLoOQ8JQ6mIgRGVNwZKdQMU+5FkCBjmv4QjcrTzyZquRw2FVtlJSRUmMKQslw==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -5969,6 +5983,10 @@ packages:
 
   /ufo/1.0.0:
     resolution: {integrity: sha512-DRty0ZBNlJ2R59y4mEupJRKLbkLQsc4qtxjpQv78AwEDuBkaUogMc2LkeqW3HddFlw6NwnXYfdThEZOiNgkmmQ==}
+    dev: true
+
+  /ufo/1.0.1:
+    resolution: {integrity: sha512-boAm74ubXHY7KJQZLlXrtMz52qFvpsbOxDcZOnw/Wf+LS4Mmyu7JxmzD4tDLtUQtmZECypJ0FrCz4QIe6dvKRA==}
     dev: true
 
   /ultrahtml/1.0.0:
@@ -6494,19 +6512,18 @@ packages:
       readable-stream: 3.6.0
     dev: true
 
-  github.com/ocwebutils/sc_checker/5c224297f9fade41a7e110800278e6ba766a225e:
-    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_checker/tar.gz/5c224297f9fade41a7e110800278e6ba766a225e}
+  github.com/ocwebutils/sc_checker/d210a035ec1e4557239957f6f6bce992e678c2a3:
+    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_checker/tar.gz/d210a035ec1e4557239957f6f6bce992e678c2a3}
     name: '@ocwebutils/sc_checker'
-    version: 1.0.1
+    version: 1.1.0
     prepare: true
     requiresBuild: true
     dependencies:
-      ajv: 8.11.0
-      json5: 2.2.1
+      ajv: 8.11.2
     dev: false
 
-  github.com/ocwebutils/sc_rules/f6b12b3744dd04d336e57ec17582a7cae707b169:
-    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/f6b12b3744dd04d336e57ec17582a7cae707b169}
+  github.com/ocwebutils/sc_rules/e7c775c7708c205d5b93780de7259c624c4961c2:
+    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/e7c775c7708c205d5b93780de7259c624c4961c2}
     name: '@ocwebutils/sc_rules'
-    version: 1.0.0-beta.5
+    version: 1.0.0-beta.6
     dev: false
