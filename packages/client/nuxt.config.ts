@@ -11,31 +11,11 @@ export default defineNuxtConfig({
 				{ charset: "utf-8" },
 				{ name: "viewport", content: "width=device-width, initial-scale=1" },
 				{ name: "msapplication-TileColor", content: "#111827" },
-				{ name: "theme-color", content: "#111827" },
-				{
-					hid: "description",
-					name: "description",
-					content: "OCUtils' Sanity Checker checks your OpenCore config for potential issues"
-				},
 				{
 					hid: "keywords",
 					name: "keywords",
-					content: "opencore, opencore sanity checker, sanity checker, plist checker, sanity checker plist, opencore plist"
-				},
-				{
-					hid: "og:title",
-					property: "og:title",
-					content: "OpenCore Sanity Checker | OCUtils"
-				},
-				{
-					hid: "og:description",
-					property: "og:description",
-					content: "OCUtils' OpenCore Sanity Checker checks your OpenCore config for potential issues"
-				},
-				{
-					hid: "og:type",
-					property: "og:type",
-					content: "website"
+					content:
+						"opencore, opencore sanity checker, sanity checker, plist checker, sanity checker plist, opencore plist, opencore config, opencore config sanity checker"
 				},
 				{
 					hid: "robots",
@@ -44,10 +24,8 @@ export default defineNuxtConfig({
 				}
 			],
 			link: [
-				{ rel: "apple-touch-icon", sizes: "180x180", href: "/assets/favicons/apple-touch-icon.png" },
 				{ rel: "icon", type: "image/png", sizes: "16x16", href: "/assets/favicons/favicon-16x16.png" },
 				{ rel: "icon", type: "image/png", sizes: "32x32", href: "/assets/favicons/favicon-32x32.png" },
-				{ rel: "manifest", href: "/site.webmanifest" },
 				{ rel: "mask-icon", color: "#111827", href: "/assets/favicons/safari-pinned-tab.svg" }
 			],
 			script: [
@@ -85,6 +63,30 @@ export default defineNuxtConfig({
 	},
 	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@nuxt/image-edge", "@kevinmarrec/nuxt-pwa"],
 	pwa: {
+		manifest: {
+			name: "OpenCore Sanity Checker | OCUtils",
+			short_name: "ocutils.me",
+			description: "OCUtils' OpenCore Sanity Checker allows to check your OpenCore config for potential issues",
+			icons: [
+				{
+					src: "/assets/favicons/android-chrome-192x192.png",
+					sizes: "192x192",
+					type: "image/png",
+					purpose: "any"
+				},
+				{
+					src: "/assets/favicons/android-chrome-512x512.png",
+					sizes: "512x512",
+					type: "image/png",
+					purpose: "maskable"
+				}
+			],
+			display: "standalone"
+		},
+		meta: {
+			name: "OpenCore Sanity Checker | OCUtils",
+			description: "OCUtils' OpenCore Sanity Checker allows to check your OpenCore config for potential issues"
+		},
 		workbox: {
 			enabled: true,
 			templatePath: "@/serviceworker.js"
