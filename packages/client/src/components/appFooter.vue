@@ -1,7 +1,7 @@
 <template>
 	<div class="p-4 md:flex md:items-center md:justify-between md:p-6">
 		<span class="text-sm text-gray-500 dark:text-gray-400"
-			>© {{ new Date().getFullYear() }} <a href="https://ocutils.me/" class="hover:underline">OpenCore Web Utilities</a>. All Rights Reserved.
+			>© 2022-{{ new Date().getFullYear() }} <a href="https://ocutils.me/" class="hover:underline">OpenCore Web Utilities</a>. All Rights Reserved.
 		</span>
 
 		<ul class="md:flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0 hidden space-x-4">
