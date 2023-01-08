@@ -1,5 +1,4 @@
 export default [
-	"Supports latest OpenCore versions",
 	"Private by default",
 	"Rules inspired by Dortania Installation Guide",
 	"Checks your config against schema for missing and additional properties",

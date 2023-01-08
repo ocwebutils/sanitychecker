@@ -16,13 +16,13 @@ export const validateConfig = async (
 
 		const { metadata, config } = req.body;
 
-		if (!config || !validateMetadata(metadata)) return res.status(500).send({ success: false, error: "Required data is not specified" });
+		if (!config || !validateMetadata(metadata)) return res.status(400).send({ success: false, error: "Required data isn't specified" });
 
-		if (!checkCodename) return res.status(403).send({ sucess: false, error: "Please select a valid CPU" });
+		if (!checkCodename) return res.status(403).send({ sucess: false, error: "Please select a valid CPU model" });
 
 		const ocSchema = await getSchema(metadata.ocVersion);
 
-		if (!ocSchema) return res.send({ success: false, error: "This version of OpenCore is not supported by Sanity Checker" });
+		if (!ocSchema) return res.send({ success: false, error: "This version of OpenCore isn't supported by Sanity Checker" });
 
 		const schemaCheck = new SchemaChecker(ocSchema);
 		const schemaResult = await schemaCheck.validate(config),

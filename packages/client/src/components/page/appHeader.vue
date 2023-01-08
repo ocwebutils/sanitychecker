@@ -37,7 +37,7 @@
 					><font-awesome-icon icon="fa-brands fa-discord" /> Discord</span
 				>
 			</a>
-			<NavbarThemeChanger />
+			<ThemeChanger />
 		</div>
 	</div>
 </template>

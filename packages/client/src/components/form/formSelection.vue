@@ -45,7 +45,7 @@ export default {
 	async mounted() {
 		const supportedCPUGenerations = await getSupportedCPUGenerations();
 		this.supportedCPUGenerations = supportedCPUGenerations;
-		this.restoreOptions();
+		this.restoreSelections();
 	},
 	methods: {
 		getSupportedOCVersions: async function (cpumodel) {
@@ -58,13 +58,13 @@ export default {
 				return null;
 			}
 		},
-		restoreOptions: async function () {
+		restoreSelections: async function () {
 			try {
-				const lastOptions = getVariable("lastOptions");
+				const lastSelections = getVariable("lastOptions");
 
-				if (!lastOptions) return;
+				if (!lastSelections) return;
 
-				const { cpuModel, ocVersion } = lastOptions;
+				const { cpuModel, ocVersion } = lastSelections;
 				this.selectedCPUModel = cpuModel;
 				this.selectedOCVersion = ocVersion;
 			} catch (err) {
@@ -73,8 +73,8 @@ export default {
 		}
 	},
 	watch: {
-		selectedCPUModel: function (newVal) {
-			this.getSupportedOCVersions(newVal);
+		selectedCPUModel: function (newval) {
+			this.getSupportedOCVersions(newval);
 		}
 	}
 };

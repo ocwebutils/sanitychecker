@@ -4,7 +4,7 @@ import { getOCVersions } from "../../util/file";
 
 export const supportedOCVersions = async (req: FastifyRequest<{ Params: { codename: string } }>, res: FastifyReply) => {
 	const { codename } = req.params;
-	if (!codename) return res.status(500).send({ success: false, error: "Required data is not specified" });
+	if (!codename) return res.status(500).send({ success: false, error: "Required data isn't specified" });
 
 	const returnObj = await getOCVersions(codename);
 

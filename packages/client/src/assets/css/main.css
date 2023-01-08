@@ -34,3 +34,11 @@
 .light ::-webkit-scrollbar-thumb:hover {
 	background: #27272a;
 }
+
+/* Color Switcher */
+.dark {
+	@apply text-white bg-gray-900;
+}
+.light {
+	@apply text-black bg-white;
+}

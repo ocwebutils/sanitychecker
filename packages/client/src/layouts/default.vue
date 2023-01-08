@@ -2,11 +2,11 @@
 	<div>
 		<ClientOnly>
 			<div class="flex flex-col h-screen" tabindex="0">
-				<NavbarAppHeader />
+				<PageAppHeader />
 				<div class="flex-grow m-auto">
 					<slot />
 				</div>
-				<appFooter />
+				<PageAppFooter />
 			</div>
 		</ClientOnly>
 	</div>
@@ -23,12 +23,3 @@ onMounted(() => {
 		: document.querySelector("html").setAttribute("data-theme", "dark");
 });
 </script>
-
-<style>
-.dark {
-	@apply text-white bg-gray-900;
-}
-.light {
-	@apply text-black bg-white;
-}
-</style>

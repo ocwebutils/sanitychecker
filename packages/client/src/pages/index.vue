@@ -1,9 +1,9 @@
 <template>
 	<div>
-		<homeInfoBox />
-		<homeHeroContent>
-			<homeFormContent />
-		</homeHeroContent>
+		<InfoBox />
+		<HeroContent>
+			<HeroFormContent />
+		</HeroContent>
 	</div>
 </template>
 
