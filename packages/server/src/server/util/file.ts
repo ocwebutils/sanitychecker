@@ -6,22 +6,18 @@ export const getCPUModels = async () => {
 			return null;
 		}
 	},
-	getOCVersions = async () => {
+	getOCVersions = async (codename: string) => {
 		try {
 			const ocVersions = await require("@ocwebutils/sc_rules/oc_versions.json");
-			return ocVersions;
+
+			return ocVersions.find((item: { codename: string }) => item.codename === codename);
 		} catch (err) {
 			return null;
 		}
 	},
 	getSchema = async (version: string) => {
-		const ocVersions = await getOCVersions(),
-			string = ocVersions.find((element: string) => element === version);
-
-		if (!string) return null;
-
 		try {
-			const schema = await require(`@ocwebutils/sc_rules/schemas/${string}.schema.json`);
+			const schema = await require(`@ocwebutils/sc_rules/schemas/${version}.schema.json`);
 			return schema;
 		} catch (err) {
 			return null;
@@ -29,7 +25,6 @@ export const getCPUModels = async () => {
 	},
 	getRules = async (version: string, codename: string) => {
 		const cpulist: Record<string, any> = await getCPUModels(),
-			ocVersions: string[] = await getOCVersions(),
 			splitCodename = codename.split("_");
 
 		let forEachList;
@@ -45,12 +40,11 @@ export const getCPUModels = async () => {
 		const cpuModel = forEachList.find((el: any) => {
 			if (el.codename === codename) return el;
 		});
-		const ocVersion = ocVersions.find((element: string) => element === version);
 
-		if (!cpuModel || !ocVersion) return null;
+		if (!cpuModel) return null;
 
 		try {
-			const cpuRules = await require(`@ocwebutils/sc_rules/rules/${cpuModel.codename.split("_")[0]}/${cpuModel.codename.split("_")[1]}/${ocVersion}/${
+			const cpuRules = await require(`@ocwebutils/sc_rules/rules/${cpuModel.codename.split("_")[0]}/${cpuModel.codename.split("_")[1]}/${version}/${
 				cpuModel.rules
 			}`);
 			return cpuRules;

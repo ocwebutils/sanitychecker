@@ -11,5 +11,5 @@
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true
 	},
-	"include": ["src/**/*", "@types/*", "src/server/interfaces/*"]
+	"include": ["src/**/*", "src/server/interfaces/*"]
 }

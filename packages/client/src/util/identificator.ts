@@ -1,10 +1,8 @@
 import { getVariable, setVariable } from "./utils";
 
-import { v4 as uuidv4 } from "uuid";
-
 export const createIdentificator = () => {
 		if (!process.client) return;
-		const uuid = uuidv4();
+		const uuid = crypto.randomUUID();
 		if (getIdentificator()) return;
 		setVariable("identificator", uuid);
 	},

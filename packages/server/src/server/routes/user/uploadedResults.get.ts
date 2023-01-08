@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 
 import { context } from "../../database";
 import { deleteOldResults } from "../../util/deleteOldResults";
-import { validate as uuidValidate } from "uuid";
+import { uuidValidate } from "../../util/uuidValidate";
 
 type result = {
 	id?: string;

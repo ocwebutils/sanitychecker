@@ -1,11 +1,12 @@
 import { ConfigChecker, SchemaChecker } from "@ocwebutils/sc_checker";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { getRules, getSchema } from "../../util/file";
-import { v4 as uuidV4, validate as uuidValidate } from "uuid";
 
 import UploadMetadata from "../../interfaces/metadata";
 import { context } from "../../database";
 import { deleteOldResults } from "../../util/deleteOldResults";
+import { randomUUID } from "node:crypto";
+import { uuidValidate } from "../../util/uuidValidate";
 
 export const validateConfig = async (
 		req: FastifyRequest<{ Body: { metadata: UploadMetadata; config: { [s: string]: unknown } } }>,
@@ -38,7 +39,7 @@ export const validateConfig = async (
 				rulesResults: rulesResult.length === 0 ? null : rulesResult,
 				schemaResults: schemaResult
 			},
-			id = uuidV4();
+			id = randomUUID();
 
 		await context.prisma.results.create({
 			data: {

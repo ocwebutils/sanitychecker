@@ -24,7 +24,6 @@ importers:
       fast-xml-parser: 4.0.12
       marked: 4.2.5
       nuxt: 3.0.0
-      uuid: 9.0.0
       vue-dompurify-html: 3.1.2
       vue-toastification: next
     dependencies:
@@ -37,7 +36,6 @@ importers:
       daisyui: 2.46.1_r4gnkvssmvyxmi2wmat5xbx36a
       fast-xml-parser: 4.0.12
       marked: 4.2.5
-      uuid: 9.0.0
       vue-dompurify-html: 3.1.2_vue@3.2.45
       vue-toastification: 2.0.0-rc.5_vue@3.2.45
     devDependencies:
@@ -58,7 +56,6 @@ importers:
       '@prisma/client': 4.8.0
       '@types/debug': 4.1.7
       '@types/node': 18.11.18
-      '@types/uuid': 9.0.0
       ajv: 8.12.0
       debug: 4.3.4
       dotenv: 16.0.3
@@ -66,21 +63,18 @@ importers:
       prisma: 4.8.0
       tsx: 3.12.1
       typescript: 4.9.4
-      uuid: 9.0.0
     dependencies:
       '@fastify/cors': 8.2.0
       '@ocwebutils/sc_checker': github.com/ocwebutils/sc_checker/d210a035ec1e4557239957f6f6bce992e678c2a3
-      '@ocwebutils/sc_rules': github.com/ocwebutils/sc_rules/4f394a82fa6b081bc7e7b155a004820f60705d04
+      '@ocwebutils/sc_rules': github.com/ocwebutils/sc_rules/e4c780296bea629358f4bbc24e0f457050207e37
       '@prisma/client': 4.8.0_prisma@4.8.0
       ajv: 8.12.0
       debug: 4.3.4
       dotenv: 16.0.3
       fastify: 4.11.0
-      uuid: 9.0.0
     devDependencies:
       '@types/debug': 4.1.7
       '@types/node': 18.11.18
-      '@types/uuid': 9.0.0
       prisma: 4.8.0
       tsx: 3.12.1
       typescript: 4.9.4
@@ -998,13 +992,13 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.10
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
     dev: true
 
   /@types/eslint/8.4.10:
     resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: true
 
@@ -6155,11 +6149,6 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  /uuid/9.0.0:
-    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
-    hasBin: true
-    dev: false
-
   /vary/1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
@@ -6570,8 +6559,10 @@ packages:
       ajv: 8.11.2
     dev: false
 
-  github.com/ocwebutils/sc_rules/4f394a82fa6b081bc7e7b155a004820f60705d04:
-    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/4f394a82fa6b081bc7e7b155a004820f60705d04}
+  github.com/ocwebutils/sc_rules/e4c780296bea629358f4bbc24e0f457050207e37:
+    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/e4c780296bea629358f4bbc24e0f457050207e37}
     name: '@ocwebutils/sc_rules'
     version: 1.0.0-beta.6
+    prepare: true
+    requiresBuild: true
     dev: false

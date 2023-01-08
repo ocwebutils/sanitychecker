@@ -33,9 +33,9 @@ export const replaceBoolean = (str: string) => {
 	const val = str.toString();
 	switch (val) {
 		case "true":
-			return val.replace("true", "Enabled");
+			return val.replace(/true/g, "Enabled");
 		case "false":
-			return val.replace("false", "Disabled");
+			return val.replace(/false/g, "Disabled");
 		default:
 			return val;
 	}
@@ -51,9 +51,8 @@ export const displayNormalizedName = (out: Record<string, any>, type: "schema" |
 				: `${out.path.split("/")[1]} → ${out.expectedValue}`;
 		}
 		case "rule": {
-			if (out.path.includes("Contents")) {
-				return `${out.path.split("/")[1]} → ${out.path.split("/")[out.path.split("/").length - 2]}`;
-			}
+			if (out.path.includes("Contents")) return `${out.path.split("/")[1]} → ${out.path.split("/")[out.path.split("/").length - 2]}`;
+
 			return out.path.split("/").length >= 5
 				? `${out.path.split("/")[1]} → ${out.path.split("/")[3]}.${out.path.split("/")[4]}:`
 				: out.path.split("/")[2] === undefined

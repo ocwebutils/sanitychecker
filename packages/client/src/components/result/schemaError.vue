@@ -34,10 +34,10 @@ export default {
 	methods: {
 		returnMessage: (msg: string, path: string, type?: string) => {
 			if (msg.includes("must NOT have additional properties"))
-				return "This property shouldn't be in your config. Most likely it has been replaced, removed or never existed in this OpenCore version";
+				return "This property shouldn't be in your config. Most likely it has been replaced, removed or never existed in this OpenCore version. Please check documentation for more information";
 
 			if (msg.includes("missing property") || msg.includes("must have required property"))
-				return `Sanity Checker didn't detect this property in your config. Make sure it is present in \`${path}\`<br/>Note: Sanity Checker doesn't know if this property is required for OpenCore to launch properly`;
+				return `Sanity Checker didn't detect this property in your config. Make sure it is present in \`${path}\`<br/>Note: This property may or may not be required for OpenCore to boot. Please check documentation for more information`;
 
 			if (msg.includes("must be")) return `This property doesn't have the right type. Expected type is \`${type}\``;
 		}

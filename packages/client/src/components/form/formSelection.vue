@@ -6,9 +6,9 @@
 					<label class="label">
 						<span class="label-text">CPU</span>
 					</label>
-					<select id="cpu_model" class="select select-bordered max-w-xs" placeholder="CPU model" required>
-						<option value="default" selected disabled v-if="supportedCPUGenerations">Select CPU Model</option>
-						<option disabled selected v-else>Loading CPU models...</option>
+					<select id="cpu_model" class="select select-bordered max-w-xs" v-model="selectedCPUModel">
+						<option value="default" disabled v-if="supportedCPUGenerations">Select CPU Model</option>
+						<option value="default" disabled v-else>Loading CPU models...</option>
 						<optgroup v-for="(type, key) in supportedCPUGenerations" :label="(key as unknown as string)">
 							<option v-for="cpu in type" :value="cpu.codename">{{ cpu.name }}</option>
 						</optgroup>
@@ -21,8 +21,7 @@
 				<label class="label">
 					<span class="label-text">OC Version</span>
 				</label>
-				<select id="oc_version" class="select select-bordered" placeholder="OpenCore version" required>
-					<option disabled selected v-if="!supportedOCVersions">Loading versions...</option>
+				<select id="oc_version" class="select select-bordered" v-model="selectedOCVersion">
 					<option v-for="version in supportedOCVersions" :value="version">v{{ version }}</option>
 				</select>
 			</div>
@@ -38,66 +37,68 @@ export default {
 	data() {
 		return {
 			supportedCPUGenerations: null,
-			supportedOCVersions: null
+			supportedOCVersions: null,
+			selectedCPUModel: "default",
+			selectedOCVersion: null
 		};
 	},
 	async mounted() {
-		const supportedCPUGenerations = await getSupportedCPUGenerations(),
-			supportedOCVersions = await getSupportedOCVersions();
+		const supportedCPUGenerations = await getSupportedCPUGenerations();
 		this.supportedCPUGenerations = supportedCPUGenerations;
-		this.supportedOCVersions = supportedOCVersions;
+		this.restoreOptions();
 	},
-	updated() {
-		restoreOptions();
+	methods: {
+		getSupportedOCVersions: async function (cpumodel) {
+			try {
+				const response = await axiosInstance.get(`/supportedOCVersions/${cpumodel}`);
+				if (!response.data.success) return null;
+
+				this.supportedOCVersions = response.data.data.supportedVersions.sort((a, b) => b.localeCompare(a));
+			} catch (err) {
+				return null;
+			}
+		},
+		restoreOptions: async function () {
+			try {
+				const lastOptions = getVariable("lastOptions");
+
+				if (!lastOptions) return;
+
+				const { cpuModel, ocVersion } = lastOptions;
+				this.selectedCPUModel = cpuModel;
+				this.selectedOCVersion = ocVersion;
+			} catch (err) {
+				return;
+			}
+		}
+	},
+	watch: {
+		selectedCPUModel: function (newVal) {
+			this.getSupportedOCVersions(newVal);
+		}
 	}
 };
 
 const getSupportedCPUGenerations = async () => {
-		try {
-			const response = await axiosInstance.get("/supportedCPUGenerations");
-			if (!response.data.success) return null;
+	try {
+		const response = await axiosInstance.get("/supportedCPUGenerations");
+		if (!response.data.success) return null;
 
-			let tempArray = [];
-			Object.keys(response.data.data).map(key => {
-				Object.keys(response.data.data[key]).map(brand => {
-					const cpuModel = response.data.data[key][brand];
-					cpuModel.map(cpu => {
-						tempArray.push({ codename: cpu.codename, name: `[${brand}] ${cpu.name}` });
-					});
+		let tempArray = [];
+		Object.keys(response.data.data).map(key => {
+			Object.keys(response.data.data[key]).map(brand => {
+				const cpuModel = response.data.data[key][brand];
+				cpuModel.map(cpu => {
+					tempArray.push({ codename: cpu.codename, name: `[${brand}] ${cpu.name}` });
 				});
-				response.data.data[key] = tempArray;
-				tempArray = [];
 			});
+			response.data.data[key] = tempArray;
+			tempArray = [];
+		});
 
-			return response.data.data;
-		} catch (err) {
-			return null;
-		}
-	},
-	getSupportedOCVersions = async () => {
-		try {
-			const response = await axiosInstance.get("/supportedOCVersions");
-			if (!response.data.success) return null;
-
-			return response.data.data;
-		} catch (err) {
-			return null;
-		}
-	},
-	restoreOptions = async () => {
-		try {
-			const lastOptions = getVariable("lastOptions");
-
-			if (!lastOptions) return;
-
-			const { cpuModel, ocVersion } = lastOptions,
-				cpuModelSelector = document.querySelector(`#cpu_model option[value="${cpuModel}"]`) as HTMLOptionElement,
-				ocVersionSelector = document.querySelector(`#oc_version option[value="${ocVersion}"]`) as HTMLOptionElement;
-
-			cpuModelSelector.selected = true;
-			ocVersionSelector.selected = true;
-		} catch (err) {
-			return;
-		}
-	};
+		return response.data.data;
+	} catch (err) {
+		return null;
+	}
+};
 </script>

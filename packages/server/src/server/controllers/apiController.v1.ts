@@ -22,7 +22,7 @@ export async function APIv1Controller(fastify: FastifyInstance) {
 		})
 		.route({
 			method: "GET",
-			url: "/supportedOCVersions",
+			url: "/supportedOCVersions/:codename",
 			handler: supportedOCVersions
 		})
 		.route({
