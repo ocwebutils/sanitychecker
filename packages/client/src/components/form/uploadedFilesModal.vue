@@ -1,7 +1,7 @@
 <template>
 	<input type="checkbox" id="uploadedFilesModal" class="modal-toggle" />
 	<label for="uploadedFilesModal" class="modal cursor-pointer">
-		<label for="" class="modal-box relative max-w-3xl">
+		<label for="" class="modal-box relative max-w-3xl dark:bg-darkgray-700">
 			<h3 class="font-bold text-lg">Your uploaded results</h3>
 			<p>Uploaded results are expired after countdown ends or you can manually remove them from the database.</p>
 			<div class="mt-3">
@@ -28,7 +28,9 @@
 										<span class="minutes" :style="'--value:' + getDiff(date, result.expireDate)[2]"></span>m
 									</span>
 								</th>
-								<th><button class="btn btn-error btn-sm" :id="'delete-result-' + index" @click.prevent="deleteResult">Delete</button></th>
+								<th>
+									<button class="btn btn-error btn-sm" :id="'delete-result-' + index" @click.prevent="deleteResult">Delete</button>
+								</th>
 							</tr>
 						</tbody>
 					</table>
@@ -93,3 +95,11 @@ const getUploadList = async () => {
 	return response.data.data;
 };
 </script>
+<style>
+.dark table,
+.dark th,
+.dark td,
+.dark tr {
+	@apply bg-darkgray-800 rounded-lg;
+}
+</style>

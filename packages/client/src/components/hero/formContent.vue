@@ -1,6 +1,6 @@
 <template>
 	<div class="flex flex-col pt-4 items-center place-content-center justify-center min-w-fit">
-		<div class="px-8 py-6 mt-4 text-left dark:bg-gray-800 bg-white shadow-lg rounded-xl">
+		<div class="px-8 py-6 mt-4 text-left dark:bg-darkgray-700 bg-white shadow-lg rounded-xl">
 			<h1 class="text-2xl font-bold text-center">Config Validator</h1>
 			<p class="text-center">Please select your CPU and OpenCore version to begin</p>
 			<form>

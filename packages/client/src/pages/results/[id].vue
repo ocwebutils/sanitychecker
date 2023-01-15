@@ -1,16 +1,14 @@
 <template>
 	<div class="flex flex-col pt-4 items-center place-content-center justify-center">
-		<div class="px-8 py-6 mt-4 text-left dark:bg-gray-800 bg-white shadow-lg rounded-xl w-screen max-w-5xl">
+		<div class="px-8 py-6 mt-4 text-left dark:bg-darkgray-700 bg-white shadow-lg rounded-xl w-screen max-w-5xl">
 			<div class="text-center">
-				<h3 class="text-2xl font-bold">Validation results for:</h3>
+				<h3 class="text-2xl font-bold">Validation results</h3>
 				<span class="text-lg font-medium">
-					<span class="text-blue-600"
-						>({{ result.metadata.cpuCodename.split("_")[0].charAt(0).toUpperCase() + result.metadata.cpuCodename.split("_")[0].slice(1) }})
-						{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span
-					>
-					| OpenCore <span class="text-blue-600">v{{ result.metadata.ocVersion }}</span></span
+					<span>{{ result.metadata.cpuCodename.split("_")[0].charAt(0).toUpperCase() + result.metadata.cpuCodename.split("_")[0].slice(1) }} - </span>
+					<span class="text-gray-300">{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span>
+					• OpenCore <span class="text-gray-300">v{{ result.metadata.ocVersion }}</span></span
 				>
-				<p class="font-medium">Note: We don't guarrante working config if everything is shown as correct</p>
+				<p class="font-medium text-sm">Note: We don't guarrante working config if everything is shown as correct</p>
 			</div>
 			<div class="divider" />
 			<div class="font-medium space-y-4" v-if="!showRawData">

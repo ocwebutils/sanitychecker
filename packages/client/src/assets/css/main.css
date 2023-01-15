@@ -36,9 +36,11 @@
 }
 
 /* Color Switcher */
+
 .dark {
-	@apply text-white bg-gray-900;
+	@apply text-white bg-darkgray-900;
 }
+
 .light {
 	@apply text-black bg-white;
 }

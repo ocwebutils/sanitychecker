@@ -6,7 +6,7 @@
 					<label class="label">
 						<span class="label-text">CPU</span>
 					</label>
-					<select id="cpu_model" class="select select-bordered max-w-xs" v-model="selectedCPUModel">
+					<select id="cpu_model" class="select select-bordered max-w-xs dark:bg-darkgray-800" v-model="selectedCPUModel">
 						<option value="default" disabled v-if="supportedCPUGenerations">Select CPU Model</option>
 						<option value="default" disabled v-else>Loading CPU models...</option>
 						<optgroup v-for="(type, key) in supportedCPUGenerations" :label="(key as unknown as string)">
@@ -21,7 +21,7 @@
 				<label class="label">
 					<span class="label-text">OC Version</span>
 				</label>
-				<select id="oc_version" class="select select-bordered" v-model="selectedOCVersion">
+				<select id="oc_version" class="select select-bordered dark:bg-darkgray-800" v-model="selectedOCVersion">
 					<option v-for="version in supportedOCVersions" :value="version">v{{ version }}</option>
 				</select>
 			</div>
@@ -53,7 +53,10 @@ export default {
 				const response = await axiosInstance.get(`/supportedOCVersions/${cpumodel}`);
 				if (!response.data.success) return null;
 
-				this.supportedOCVersions = response.data.data.supportedVersions.sort((a, b) => b.localeCompare(a));
+				const supportedVersions = response.data.data.supportedVersions;
+
+				this.supportedOCVersions = supportedVersions.sort((a, b) => b.localeCompare(a));
+				this.selectedOCVersion = supportedVersions[0];
 			} catch (err) {
 				return null;
 			}
