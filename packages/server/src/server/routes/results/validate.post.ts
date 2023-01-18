@@ -2,7 +2,7 @@ import { ConfigChecker, SchemaChecker } from "@ocwebutils/sc_checker";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { getRules, getSchema } from "../../util/file";
 
-import UploadMetadata from "../../interfaces/metadata";
+import { UploadMetadata } from "../../interfaces/metadata";
 import { context } from "../../database";
 import { deleteOldResults } from "../../util/deleteOldResults";
 import { randomUUID } from "node:crypto";

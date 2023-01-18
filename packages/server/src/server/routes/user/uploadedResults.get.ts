@@ -1,17 +1,9 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 
+import { Result } from "server/interfaces/metadata";
 import { context } from "../../database";
 import { deleteOldResults } from "../../util/deleteOldResults";
 import { uuidValidate } from "../../util/uuidValidate";
-
-type result = {
-	id?: string;
-	createdBy?: string;
-	expireDate?: number;
-	resultId: string;
-	results?: Object;
-	metadata: Object;
-};
 
 export const uploadedResults = async (req: FastifyRequest, res: FastifyReply) => {
 	const user = req.headers["x-user-id"] as string;
@@ -22,13 +14,13 @@ export const uploadedResults = async (req: FastifyRequest, res: FastifyReply) =>
 
 	const query = await context.prisma.results.findMany({
 		where: {
-			createdBy: user as string
+			createdBy: user
 		}
 	});
 
 	if (!query) return res.status(404).send({ success: false, error: "Error occurred. Server couldn't return a result" });
 
-	const newQuery = query.map(({ results, ...item }: result) => item);
+	const newQuery = query.map(({ results, ...item }) => item);
 
 	return res.send({ success: true, data: newQuery });
 };

@@ -52,6 +52,8 @@
 <script setup lang="ts">
 import { useToast } from "vue-toastification";
 import { axiosInstance } from "@/util/axiosInstance";
+import { JSONSchema7 } from "json-schema";
+import { isAxiosError } from "axios";
 
 const route = useRoute(),
 	router = useRouter(),
@@ -79,50 +81,51 @@ useHead({
 
 const getResult = async (id: string) => {
 		try {
-			const response = await axiosInstance.get(`/result/${id}`);
-			if (!response.data.success || !response.data.data) {
-				toast.error(response.data.error, {
+			const { data } = await axiosInstance.get(`/result/${id}`);
+			if (!data.success || !data.data) {
+				toast.error(data.error, {
 					timeout: 5000
 				});
 				router.push("/");
 				return;
 			}
 
-			return response.data.data;
+			return data.data;
 		} catch (error) {
-			toast.error(error.response.data.error, {
-				timeout: 5000
-			});
-			router.push("/");
+			if (isAxiosError(error)) {
+				toast.error(error.response?.data.error, {
+					timeout: 5000
+				});
+				router.push("/");
+			}
 		}
 	},
 	getSchema = async (ocVersion: string) => {
 		try {
-			const response = await axiosInstance.get(`/schema/${ocVersion}`);
-			if (!response.data.success || !response.data.data) {
-				toast.error(response.data.error, {
+			const { data } = await axiosInstance.get(`/schema/${ocVersion}`);
+			if (!data.success || !data.data) {
+				toast.error(data.error, {
 					timeout: 5000
 				});
 				router.push("/");
 				return;
 			}
 
-			return response.data.data;
+			return data.data;
 		} catch (error) {
-			toast.error(error.response.data.error, {
-				timeout: 5000
-			});
-			router.push("/");
+			if (isAxiosError(error)) {
+				toast.error(error.response?.data.error, {
+					timeout: 5000
+				});
+				router.push("/");
+			}
 		}
 	},
-	returnProperties = async schema => {
-		const properties = [];
-		Object.keys(schema.properties).forEach(e => {
-			properties.push(e);
-		});
+	returnProperties = (schema: JSONSchema7) => {
+		const properties: string[] = Object.keys(schema.properties as JSONSchema7);
 		return properties;
 	},
-	rawData = e => {
+	rawData = (e: { target: HTMLButtonElement }) => {
 		showRawData.value = !showRawData.value;
 		switch (showRawData.value) {
 			case true:
@@ -134,7 +137,7 @@ const getResult = async (id: string) => {
 		}
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	},
-	copyURL = _ => {
+	copyURL = (_: unknown) => {
 		const permissionName = "clipboard-write" as PermissionName;
 		if (!navigator.permissions || !navigator.permissions.query) {
 			copyToClipboard();

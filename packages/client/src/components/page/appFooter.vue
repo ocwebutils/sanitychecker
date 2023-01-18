@@ -13,7 +13,7 @@
 					}}</a></code
 				>
 			</li>
-			<li v-if="getPackageVersions">
+			<li v-if="packageVersions">
 				<font-awesome-icon icon="fa-solid fa-cube" class="mr-1" />
 				<code
 					><a href="https://github.com/ocwebutils/rules" class="hover:text-blue-500 transition-colors">{{ packageVersions.rulesVersion }}</a></code
@@ -29,10 +29,10 @@ const config = useRuntimeConfig();
 
 const getPackageVersions = async () => {
 	try {
-		const response = await axiosInstance.get("/packageVersions");
-		if (!response.data.success || !response.data.data) return null;
+		const { data } = await axiosInstance.get("/packageVersions");
+		if (!data.success || !data.data) return null;
 
-		return response.data.data;
+		return data.data;
 	} catch (error) {
 		return null;
 	}

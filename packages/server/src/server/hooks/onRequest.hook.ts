@@ -1,13 +1,7 @@
-import { FastifyRequest } from "fastify";
+import { FastifyReply, FastifyRequest } from "fastify";
 
-declare module "fastify" {
-	interface FastifyRequest {
-		requestStartTime: bigint;
-	}
-}
-
-export function OnRequestHook(res: FastifyRequest, _: any, done: () => void) {
-	res.requestStartTime = process.hrtime.bigint();
+export function OnRequestHook(req: FastifyRequest, _: FastifyReply, done: () => void) {
+	req.requestStartTime = process.hrtime.bigint();
 
 	done();
 }

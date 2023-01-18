@@ -10,7 +10,7 @@
 						<option value="default" disabled v-if="supportedCPUGenerations">Select CPU Model</option>
 						<option value="default" disabled v-else>Loading CPU models...</option>
 						<optgroup v-for="(type, key) in supportedCPUGenerations" :label="(key as unknown as string)">
-							<option v-for="cpu in type" :value="cpu.codename">{{ cpu.name }}</option>
+							<option v-for="{ codename, name } in type" :value="codename">{{ name }}</option>
 						</optgroup>
 					</select>
 				</div>
@@ -39,7 +39,7 @@ export default {
 			supportedCPUGenerations: null,
 			supportedOCVersions: null,
 			selectedCPUModel: "default",
-			selectedOCVersion: null
+			selectedOCVersion: ref<string | null>(null)
 		};
 	},
 	async mounted() {
@@ -48,14 +48,14 @@ export default {
 		this.restoreSelections();
 	},
 	methods: {
-		getSupportedOCVersions: async function (cpumodel) {
+		getSupportedOCVersions: async function (cpumodel: string) {
 			try {
-				const response = await axiosInstance.get(`/supportedOCVersions/${cpumodel}`);
-				if (!response.data.success) return null;
+				const { data } = await axiosInstance.get(`/supportedOCVersions/${cpumodel}`);
+				if (!data.success) return null;
 
-				const supportedVersions = response.data.data.supportedVersions;
+				const supportedVersions = data.data.supportedVersions;
 
-				this.supportedOCVersions = supportedVersions.sort((a, b) => b.localeCompare(a));
+				this.supportedOCVersions = supportedVersions.sort((a: string, b: string) => b.localeCompare(a));
 				this.selectedOCVersion = supportedVersions[0];
 			} catch (err) {
 				return null;
@@ -63,7 +63,7 @@ export default {
 		},
 		restoreSelections: async function () {
 			try {
-				const lastSelections = getVariable("lastOptions");
+				const lastSelections = getVariable("lastOptions") as { cpuModel: string; ocVersion: string };
 
 				if (!lastSelections) return;
 
@@ -84,22 +84,22 @@ export default {
 
 const getSupportedCPUGenerations = async () => {
 	try {
-		const response = await axiosInstance.get("/supportedCPUGenerations");
-		if (!response.data.success) return null;
+		const { data } = await axiosInstance.get("/supportedCPUGenerations");
+		if (!data.success) return null;
 
-		let tempArray = [];
-		Object.keys(response.data.data).map(key => {
-			Object.keys(response.data.data[key]).map(brand => {
-				const cpuModel = response.data.data[key][brand];
-				cpuModel.map(cpu => {
+		let tempArray: { codename: string; name: string }[] = [];
+		Object.keys(data.data).map(key => {
+			Object.keys(data.data[key]).map(brand => {
+				const cpuModel = data.data[key][brand];
+				cpuModel.map((cpu: { codename: string; name: string }) => {
 					tempArray.push({ codename: cpu.codename, name: `[${brand}] ${cpu.name}` });
 				});
 			});
-			response.data.data[key] = tempArray;
+			data.data[key] = tempArray;
 			tempArray = [];
 		});
 
-		return response.data.data;
+		return data.data;
 	} catch (err) {
 		return null;
 	}

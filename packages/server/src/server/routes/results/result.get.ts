@@ -1,20 +1,8 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 
+import { Result } from "server/interfaces/metadata";
 import { context } from "../../database";
 import { deleteOldResults } from "../../util/deleteOldResults";
-
-type result = {
-	id?: string;
-	createdBy?: string;
-	expireDate?: number;
-	resultId: string;
-	options?: {
-		accessKey: string | null;
-		private: boolean;
-	};
-	results: Object;
-	metadata: Object;
-};
 
 export const getResult = async (req: FastifyRequest<{ Params: { resultId: string } }>, res: FastifyReply) => {
 	const { resultId } = req.params;
@@ -25,15 +13,14 @@ export const getResult = async (req: FastifyRequest<{ Params: { resultId: string
 		where: {
 			resultId: resultId
 		}
-	})) as result | null;
+	})) as Partial<Pick<Result, "id" | "createdBy" | "expireDate">> | null;
 
 	if (!query) return res.status(404).send({ success: false, error: "Result doesn't exist in the database" });
 
 	delete query.id;
 
-	//* Delete for old results
-	delete query?.options;
 	delete query.createdBy;
 	delete query.expireDate;
+
 	return res.send({ success: true, data: query });
 };

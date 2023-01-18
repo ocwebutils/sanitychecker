@@ -7,10 +7,12 @@
 	</div>
 </template>
 <script lang="ts">
+import { PropType } from "vue";
 import { replaceBoolean, getIcon, displayNormalizedName } from "@/util/utils";
+import { ValueType } from "@/interfaces/metadata";
 export default {
 	props: {
-		ruleOutput: Object
+		ruleOutput: { type: Object as PropType<ValueType>, required: true }
 	},
 	setup() {
 		return {

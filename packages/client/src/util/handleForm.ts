@@ -1,8 +1,9 @@
 import { axiosInstance } from "./axiosInstance";
 import { getIdentificator } from "./identificator";
+import { isAxiosError } from "axios";
 import { setVariable } from "./utils";
 
-export const handleForm = async file => {
+export const handleForm = async (file: Record<string, unknown>) => {
 		const cpuModel = document.querySelector("#cpu_model") as HTMLSelectElement,
 			ocVersion = document.querySelector("#oc_version") as HTMLSelectElement,
 			cpuValue = cpuModel.options[cpuModel.selectedIndex].value,
@@ -12,7 +13,7 @@ export const handleForm = async file => {
 		if (!cpuValue || cpuValue === "default" || !cpuName || !ocValue) return { success: false, error: "Please select CPU model and OpenCore version" };
 
 		try {
-			const response = await axiosInstance.post("/validateConfig", {
+			const { data } = await axiosInstance.post("/validateConfig", {
 				metadata: {
 					uploadedBy: getIdentificator(),
 					ocVersion: ocValue,
@@ -29,22 +30,22 @@ export const handleForm = async file => {
 				cpuModel: cpuValue
 			});
 
-			return response.data;
+			return data;
 		} catch (error) {
-			return { success: false, error: error.response?.data?.error ?? "Unknown error" };
+			if (isAxiosError(error)) return { success: false, error: error.response?.data.error ?? "Unknown error" };
 		}
 	},
-	deleteResult = async e => {
+	deleteResult = async (e: { target: HTMLButtonElement }) => {
 		const id = e.target.id.split("-")[2],
 			uploadID = (document.querySelector(`#id-result-${id}`) as HTMLLinkElement).innerText,
-			parentElement = e.target.closest("tr");
+			parentElement = e.target.closest("tr") as HTMLTableRowElement;
 
-		const response = await axiosInstance.delete("/result/" + uploadID, {
+		const { data } = await axiosInstance.delete("/result/" + uploadID, {
 			headers: {
 				"x-user-id": getIdentificator()
 			}
 		});
-		if (!response.data.success) return null;
+		if (!data.success) return null;
 
 		parentElement.remove();
 	};

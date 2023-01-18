@@ -47,13 +47,10 @@ import { createIdentificator, getIdentificator } from "@/util/identificator";
 import { Countdown } from "@/class/countdown";
 import { deleteResult } from "@/util/handleForm";
 import { axiosInstance } from "@/util/axiosInstance";
+import { useToast } from "vue-toastification";
+import { isAxiosError } from "axios";
 
 export default {
-	data() {
-		return {
-			date: null
-		};
-	},
 	async setup() {
 		const uploads = await getUploadList(),
 			date = Date.now();
@@ -74,25 +71,44 @@ export default {
 			const hours = Math.floor(diffms / 3600) % 24;
 			diffms -= hours * 3600;
 			const minutes = Math.floor(diffms / 60) % 60;
-			diffms -= minutes * 60;
 			return [days, hours, minutes];
 		},
-		deleteResult: async e => {
+		deleteResult: async (e: { target: HTMLButtonElement }) => {
 			await deleteResult(e);
 		}
 	}
 };
 
+const toast = useToast();
+
 const getUploadList = async () => {
 	if (!getIdentificator()) createIdentificator();
-	const response = await axiosInstance.get("/user/uploadedResults", {
-		headers: {
-			"x-user-id": getIdentificator()
-		}
-	});
-	if (!response.data.success) return null;
+	try {
+		const { data } = await axiosInstance.get("/user/uploadedResults", {
+			headers: {
+				//@ts-expect-error: Types in v1.2.3 are broken
+				"x-user-id": getIdentificator()
+			}
+		});
+		if (!data.success) {
+			toast.error("Error occured", {
+				timeout: 5000
+			});
 
-	return response.data.data;
+			return;
+		}
+
+		return data.data;
+	} catch (err) {
+		if (isAxiosError(err)) {
+			console.error(err);
+			toast.error(err.code === "ERR_NETWORK" ? "Backend is offline. Try again later" : "Error occured", {
+				timeout: 5000
+			});
+
+			return;
+		}
+	}
 };
 </script>
 <style>

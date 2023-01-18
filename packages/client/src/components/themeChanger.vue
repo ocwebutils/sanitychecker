@@ -19,9 +19,13 @@ export default {
 	},
 	methods: {
 		changeThemeColor() {
-			document.querySelector("html").getAttribute("data-theme") === "light"
-				? document.querySelector("html").setAttribute("data-theme", "dark")
-				: document.querySelector("html").setAttribute("data-theme", "light");
+			const htmlSelector = document.querySelector("html");
+
+			if (!htmlSelector) return;
+
+			htmlSelector.getAttribute("data-theme") === "light"
+				? htmlSelector.setAttribute("data-theme", "dark")
+				: htmlSelector.setAttribute("data-theme", "light");
 			this.$colorMode.preference = this.$colorMode.value === "light" ? "dark" : "light";
 		}
 	}

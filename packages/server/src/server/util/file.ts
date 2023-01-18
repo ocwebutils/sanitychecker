@@ -1,3 +1,5 @@
+import { CPUList } from "../interfaces/list";
+
 export const getCPUModels = async () => {
 		try {
 			const cpulist = await require("@ocwebutils/sc_rules/cpu_list.json");
@@ -24,22 +26,16 @@ export const getCPUModels = async () => {
 		}
 	},
 	getRules = async (version: string, codename: string) => {
-		const cpulist: Record<string, any> = await getCPUModels(),
+		const cpulist: Record<string, Record<string, CPUList[]>> = await getCPUModels(),
 			splitCodename = codename.split("_");
 
-		let forEachList;
+		const forEachList = findArray(cpulist, { platform: splitCodename[0], brand: splitCodename[1] });
 
-		for (const key of Object.keys(cpulist)) {
-			if (key.toLocaleLowerCase() !== splitCodename[0]) continue;
-			for (const brand of Object.keys(cpulist[key])) {
-				if (brand.toLocaleLowerCase() !== splitCodename[1]) continue;
-				forEachList = cpulist[key][brand];
-			}
-		}
+		if (!forEachList) return null;
 
-		const cpuModel = forEachList.find((el: any) => {
-			if (el.codename === codename) return el;
-		});
+		const cpuModel = forEachList.find((item: { codename: string }) => item.codename === codename);
+
+		console.log(cpuModel);
 
 		if (!cpuModel) return null;
 
@@ -50,5 +46,13 @@ export const getCPUModels = async () => {
 			return cpuRules;
 		} catch (err) {
 			return null;
+		}
+	},
+	findArray = (obj: Record<string, Record<string, CPUList[]>>, options: { platform: string; brand: string }) => {
+		for (const [platform, value] of Object.entries(obj)) {
+			if (platform.toLowerCase() !== options.platform) return;
+			for (const [brand, subValue] of Object.entries(value)) {
+				if (brand.toLowerCase() === options.brand) return subValue;
+			}
 		}
 	};

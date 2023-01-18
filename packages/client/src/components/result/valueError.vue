@@ -6,10 +6,10 @@
 			<span>{{ displayNormalizedName(ruleOutput, "rule") }} {{ replaceBoolean(ruleOutput.actualValue) }}</span>
 		</div>
 		<div class="collapse-content text-sm font-base">
-			<p v-dompurify-html="parseMarked(ruleOutput.ruleSet.message)" />
+			<p v-dompurify-html="parseMarked(ruleOutput.ruleSet.message as string)" />
 			<div class="divider" />
 			<span
-				>Expected value: <code>{{ replaceBoolean(ruleOutput.expectedValue) }}</code></span
+				>Expected value: <code>{{ replaceBoolean(ruleOutput.expectedValue as string) }}</code></span
 			>
 			<p>
 				Type: <code>{{ ruleOutput.ruleSet.type.charAt(0).toUpperCase() + ruleOutput.ruleSet.type.slice(1) }}</code>
@@ -22,10 +22,12 @@
 	</div>
 </template>
 <script lang="ts">
+import { PropType } from "vue";
 import { getIcon, replaceBoolean, displayNormalizedName, parseMarked } from "@/util/utils";
+import { ValueType } from "@/interfaces/metadata";
 export default {
 	props: {
-		ruleOutput: Object
+		ruleOutput: { type: Object as PropType<ValueType>, required: true }
 	},
 	setup() {
 		return {

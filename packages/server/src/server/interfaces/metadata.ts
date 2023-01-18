@@ -1,8 +1,47 @@
-export default interface UploadMetadata {
+export type UploadMetadata = {
 	uploadedBy: string;
 	ocVersion: string;
 	cpuDetails: {
 		codename: string;
 		name: string;
 	};
-}
+};
+
+export type ResultMetadata = {
+	cpuCodename: string;
+	cpuName: string;
+	ocVersion: string;
+};
+
+export type Result = {
+	id: string;
+	createdBy: string;
+	expireDate: number;
+	resultId: string;
+	results?: Results;
+	metadata: ResultMetadata;
+};
+
+export type Results = {
+	rulesResults: RulesResult[];
+	schemaResults: SchemaResults;
+};
+
+export type RulesResult = {
+	path: string;
+	actualValue: string | boolean | number | null;
+	expectedValue: string;
+	ruleSet: RuleSet;
+};
+
+export type SchemaResult = Omit<RulesResult, "actualValue">;
+
+export type RuleSet = {
+	type: "info" | "warning" | "error" | "success";
+	message: string | null;
+};
+
+export type SchemaResults = {
+	errorArray: SchemaResult[];
+	missingRoot: string[] | null;
+};

@@ -6,7 +6,7 @@
 			<span>{{ displayNormalizedName(schemaError, "schema") }} </span>
 		</div>
 		<div class="collapse-content text-sm font-base">
-			<p v-dompurify-html="parseMarked(returnMessage(schemaError.ruleSet.message, schemaError.path, schemaError.type))"></p>
+			<p v-dompurify-html="parseMarked(returnMessage(schemaError.ruleSet.message as string, schemaError.path, schemaError.type) as string)"></p>
 			<div class="divider" />
 			<p>
 				Type: <code>{{ schemaError.ruleSet.type.charAt(0).toUpperCase() + schemaError.ruleSet.type.slice(1) }}</code>
@@ -19,10 +19,12 @@
 	</div>
 </template>
 <script lang="ts">
+import { PropType } from "vue";
 import { getIcon, displayNormalizedName, parseMarked } from "@/util/utils";
+import { SchemaType } from "@/interfaces/metadata";
 export default {
 	props: {
-		schemaError: Object
+		schemaError: { type: Object as PropType<SchemaType>, required: true }
 	},
 	setup() {
 		return {

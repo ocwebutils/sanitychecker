@@ -8,7 +8,8 @@
 				<span class="font-bold text-blue-800 dark:text-blue-900">OC Snapshot</span>.
 				<p>
 					Make sure to join us on our
-					<a href="https://ocutils.me/discord" class="font-bold text-blue-800 dark:text-blue-900 underline">discord server</a> for updates :)
+					<a href="https://ocutils.me/discord" class="font-bold text-blue-800 dark:text-blue-900 underline">discord server</a>
+					for updates :)
 				</p>
 			</div>
 		</div>

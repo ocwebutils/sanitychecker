@@ -6,7 +6,7 @@
 		"strict": true,
 		"moduleResolution": "node",
 		"baseUrl": "./src",
-		"typeRoots": ["@types"],
+		"typeRoots": ["@types", "src/server/interfaces"],
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true
