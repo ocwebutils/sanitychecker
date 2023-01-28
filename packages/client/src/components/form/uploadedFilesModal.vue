@@ -86,7 +86,7 @@ const getUploadList = async () => {
 	try {
 		const { data } = await axiosInstance.get("/user/uploadedResults", {
 			headers: {
-				//@ts-expect-error: Types in v1.2.3 are broken
+				//@ts-expect-error: Types in v1.2.6 are wrong
 				"x-user-id": getIdentificator()
 			}
 		});
