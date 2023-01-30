@@ -35,8 +35,6 @@ export const getCPUModels = async () => {
 
 		const cpuModel = forEachList.find((item: { codename: string }) => item.codename === codename);
 
-		console.log(cpuModel);
-
 		if (!cpuModel) return null;
 
 		try {
@@ -50,7 +48,7 @@ export const getCPUModels = async () => {
 	},
 	findArray = (obj: Record<string, Record<string, CPUList[]>>, options: { platform: string; brand: string }) => {
 		for (const [platform, value] of Object.entries(obj)) {
-			if (platform.toLowerCase() !== options.platform) return;
+			if (platform.toLowerCase() !== options.platform) continue;
 			for (const [brand, subValue] of Object.entries(value)) {
 				if (brand.toLowerCase() === options.brand) return subValue;
 			}
