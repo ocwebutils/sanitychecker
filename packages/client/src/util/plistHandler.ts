@@ -1,6 +1,6 @@
 import { XMLValidator } from "fast-xml-parser";
 
-export function validateplist(file): Promise<boolean> {
+export function validateplist(file: Blob): Promise<boolean> {
 	return new Promise<boolean>((resolve, reject) => {
 		const reader = new FileReader();
 		reader.onload = () => {
@@ -18,7 +18,7 @@ export function validateplist(file): Promise<boolean> {
 	});
 }
 
-export function parseplist(file): Promise<object | boolean> {
+export function parseplist(file: Blob): Promise<object | boolean> {
 	return new Promise<object | boolean>((resolve, reject) => {
 		const reader = new FileReader();
 		reader.onload = () => {

@@ -42,8 +42,7 @@ export const handleForm = async (file: Record<string, unknown>) => {
 
 		const { data } = await axiosInstance.delete("/result/" + uploadID, {
 			headers: {
-				// @ts-expect-error: Types in v1.2.6 are wrong
-				"x-user-id": getIdentificator()
+				"x-user-id": getIdentificator() as string
 			}
 		});
 		if (!data.success) return null;
