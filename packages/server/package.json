@@ -15,17 +15,17 @@
 		"@fastify/cors": "8.2.0",
 		"@ocwebutils/sc_checker": "github:ocwebutils/sc_checker#v1.1.1",
 		"@ocwebutils/sc_rules": "github:ocwebutils/sc_rules",
-		"@prisma/client": "4.9.0",
+		"@prisma/client": "4.10.1",
 		"ajv": "8.12.0",
 		"debug": "4.3.4",
 		"dotenv": "16.0.3",
-		"fastify": "4.12.0"
+		"fastify": "4.13.0"
 	},
 	"devDependencies": {
 		"@types/debug": "4.1.7",
-		"@types/node": "18.11.18",
-		"prisma": "4.9.0",
-		"tsx": "3.12.2",
-		"typescript": "4.9.4"
+		"@types/node": "18.14.2",
+		"prisma": "4.10.1",
+		"tsx": "3.12.3",
+		"typescript": "4.9.5"
 	}
 }
