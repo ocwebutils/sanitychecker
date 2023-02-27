@@ -6,7 +6,12 @@
 					<label class="label">
 						<span class="label-text">CPU</span>
 					</label>
-					<select id="cpu_model" class="select select-bordered max-w-xs dark:bg-darkgray-800" v-model="selectedCPUModel">
+					<select
+						id="cpu_model"
+						class="select select-bordered dark:bg-darkgray-800"
+						:class="!supportedOCVersions ? 'max-w-full' : 'max-w-xs'"
+						v-model="selectedCPUModel"
+					>
 						<option value="default" disabled v-if="supportedCPUGenerations">Select CPU Model</option>
 						<option value="default" disabled v-else>Loading CPU models...</option>
 						<optgroup v-for="(type, key) in supportedCPUGenerations" :label="(key as unknown as string)">
@@ -16,7 +21,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="relative inline-block dark:text-white text-black w-full">
+		<div class="relative inline-block dark:text-white text-black w-full" v-if="supportedOCVersions">
 			<div class="form-control">
 				<label class="label">
 					<span class="label-text">OC Version</span>

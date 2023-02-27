@@ -20,7 +20,7 @@ export const uploadedResults = async (req: FastifyRequest, res: FastifyReply) =>
 
 	if (!query) return res.status(404).send({ success: false, error: "Error occurred. Server couldn't return a result" });
 
-	const newQuery = query.map(({ results, ...item }) => item);
+	const newQuery = query.map(({ results, ...item }: Result) => item);
 
 	return res.send({ success: true, data: newQuery });
 };
