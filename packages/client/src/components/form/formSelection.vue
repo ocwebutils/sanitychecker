@@ -1,6 +1,6 @@
 <template>
 	<div class="flex flex-col sm:flex-row mb-5 sm:space-y-0 space-y-2 w-full">
-		<div class="w-full relative inline-block dark:text-white text-black sm:mr-3 md:mr-3">
+		<div class="w-full relative inline-block dark:text-white text-black" :class="!supportedOCVersions ? '' : 'sm:mr-3 md:mr-3'">
 			<div class="flex flex-row">
 				<div class="form-control w-full">
 					<label class="label">
