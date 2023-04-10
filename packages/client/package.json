@@ -13,7 +13,7 @@
 	},
 	"devDependencies": {
 		"@kevinmarrec/nuxt-pwa": "0.17.0",
-		"@nuxt/image-edge": "1.0.0-27991759.1a5eea1",
+		"@nuxt/image-edge": "1.0.0-28008586.381b906",
 		"@nuxtjs/color-mode": "3.2.0",
 		"@nuxtjs/tailwindcss": "6.6.4",
 		"@types/json-schema": "^7.0.11",
