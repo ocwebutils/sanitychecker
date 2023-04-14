@@ -10,12 +10,14 @@ export const handleForm = async (file: Record<string, unknown>) => {
 			cpuName = cpuModel.options[cpuModel.selectedIndex].text,
 			ocValue = ocVersion.options[ocVersion.selectedIndex].value;
 
+		const uuid = await getIdentificator();
+
 		if (!cpuValue || cpuValue === "default" || !cpuName || !ocValue) return { success: false, error: "Please select CPU model and OpenCore version" };
 
 		try {
 			const { data } = await axiosInstance.post("/validateConfig", {
 				metadata: {
-					uploadedBy: getIdentificator(),
+					uploadedBy: uuid as string,
 					ocVersion: ocValue,
 					cpuDetails: {
 						codename: cpuValue,
@@ -40,9 +42,11 @@ export const handleForm = async (file: Record<string, unknown>) => {
 			uploadID = (document.querySelector(`#id-result-${id}`) as HTMLLinkElement).innerText,
 			parentElement = e.target.closest("tr") as HTMLTableRowElement;
 
+		const uuid = await getIdentificator();
+
 		const { data } = await axiosInstance.delete("/result/" + uploadID, {
 			headers: {
-				"x-user-id": getIdentificator() as string
+				"x-user-id": uuid as string
 			}
 		});
 		if (!data.success) return null;

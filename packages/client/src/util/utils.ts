@@ -92,6 +92,32 @@ export const getVariable = (variable: string): unknown => {
 
 		localStorage.setItem(variable, JSON.stringify(value));
 	},
+	getCookie = (name: string) => {
+		if (!process.client) return;
+
+		const cookie = useCookie(name, {
+			expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 365),
+			domain: "ocutils.me"
+		});
+
+		return cookie;
+	},
+	setCookie = (name: string, value: string): boolean | void => {
+		if (!process.client) return;
+
+		const cookie = useCookie(name, {
+			expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 365),
+			domain: "ocutils.me"
+		});
+
+		try {
+			cookie.value = value;
+		} catch {
+			return false;
+		}
+
+		return true;
+	},
 	isJson = (str: string) => {
 		try {
 			JSON.parse(str);

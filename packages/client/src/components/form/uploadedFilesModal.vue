@@ -82,12 +82,11 @@ export default {
 const toast = useToast();
 
 const getUploadList = async () => {
-	if (!getIdentificator()) createIdentificator();
+	const uuid = await getIdentificator();
 	try {
 		const { data } = await axiosInstance.get("/user/uploadedResults", {
 			headers: {
-				//@ts-expect-error: Types in v1.2.6 are wrong
-				"x-user-id": getIdentificator()
+				"x-user-id": uuid as string
 			}
 		});
 		if (!data.success) {
