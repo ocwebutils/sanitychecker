@@ -12,11 +12,11 @@ export const createIdentificator = async () => {
 		setCookie("identificator", uuid);
 		if (getVariable("identifier")) localStorage.removeItem("identificator");
 	},
-	getIdentificator = async (): Promise<unknown | string | null> => {
+	getIdentificator = async (): string | null => {
 		if (!process.client) return;
 
 		await migrateId();
-		const cookie = useCookie("identificator", { watch: "shallow" });
+		const cookie = useCookie("identificator");
 		if (cookie.value) return cookie.value;
 
 		await createIdentificator();
@@ -26,8 +26,10 @@ export const createIdentificator = async () => {
 		if (!process.client) return;
 
 		const uuid = await getVariable("identificator");
+		const cookie = getCookie("identificator");
 
 		if (!uuid) return;
+		if (cookie?.value) return localStorage.removeItem("identificator");
 
 		setCookie("identificator", uuid as string);
 		localStorage.removeItem("identificator");
