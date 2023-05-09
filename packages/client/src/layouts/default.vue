@@ -18,8 +18,8 @@ import { onMounted } from "vue";
 const colorMode = useColorMode();
 
 onMounted(() => {
-	colorMode.value === "light"
-		? document.querySelector("html").setAttribute("data-theme", "light")
-		: document.querySelector("html").setAttribute("data-theme", "dark");
+	const htmlSelector = document.querySelector("html");
+	if (!htmlSelector) return;
+	colorMode.value === "light" ? htmlSelector.setAttribute("data-theme", "light") : htmlSelector.setAttribute("data-theme", "dark");
 });
 </script>

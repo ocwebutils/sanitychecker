@@ -7,17 +7,10 @@
 	</div>
 </template>
 
-<script>
+<script setup>
 import { createIdentificator } from "@/util/identificator";
 
-export default {
-	mounted() {
-		this.storage();
-	},
-	methods: {
-		async storage() {
-			await createIdentificator();
-		}
-	}
-};
+onMounted(async () => {
+	await createIdentificator();
+});
 </script>

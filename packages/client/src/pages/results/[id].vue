@@ -125,14 +125,16 @@ const getResult = async (id: string) => {
 		const properties: string[] = Object.keys(schema.properties as JSONSchema7);
 		return properties;
 	},
-	rawData = (e: { target: HTMLButtonElement }) => {
+	rawData = (e: MouseEvent) => {
+		if (!e?.target) return;
+		const target = e.target as HTMLButtonElement;
 		showRawData.value = !showRawData.value;
 		switch (showRawData.value) {
 			case true:
-				e.target.innerText = "Hide Raw Data";
+				target.innerText = "Hide Raw Data";
 				break;
 			case false:
-				e.target.innerText = "Show Raw Data";
+				target.innerText = "Show Raw Data";
 				break;
 		}
 		window.scrollTo({ top: 0, behavior: "smooth" });

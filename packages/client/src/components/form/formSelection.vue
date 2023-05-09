@@ -34,56 +34,52 @@
 	</div>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import { getVariable } from "@/util/utils";
 import { axiosInstance } from "@/util/axiosInstance";
 
-export default {
-	data() {
-		return {
-			supportedCPUGenerations: null,
-			supportedOCVersions: null,
-			selectedCPUModel: "default",
-			selectedOCVersion: ref<string | null>(null)
-		};
-	},
-	async mounted() {
-		const supportedCPUGenerations = await getSupportedCPUGenerations();
-		this.supportedCPUGenerations = supportedCPUGenerations;
-		this.restoreSelections();
-	},
-	methods: {
-		getSupportedOCVersions: async function (cpumodel: string) {
-			try {
-				const { data } = await axiosInstance.get(`/supportedOCVersions/${cpumodel}`);
-				if (!data.success) return null;
+const supportedCPUGenerations = ref(null),
+	supportedOCVersions = ref(null),
+	selectedCPUModel = ref("default"),
+	selectedOCVersion = ref<string | null>(null);
 
-				const supportedVersions = data.data.supportedVersions;
+onMounted(async () => {
+	const supportedCPUGenerationsObj = await getSupportedCPUGenerations();
+	console.log(supportedCPUGenerationsObj);
+	supportedCPUGenerations.value = supportedCPUGenerationsObj;
+	console.log(supportedCPUGenerations);
+	restoreSelections();
+});
 
-				this.supportedOCVersions = supportedVersions.sort((a: string, b: string) => b.localeCompare(a));
-				this.selectedOCVersion = supportedVersions[0];
-			} catch (err) {
-				return null;
-			}
-		},
-		restoreSelections: async function () {
-			try {
-				const lastSelections = getVariable("lastOptions") as { cpuModel: string; ocVersion: string };
+watch(selectedCPUModel, function (newval) {
+	getSupportedOCVersions(newval);
+});
 
-				if (!lastSelections) return;
+const restoreSelections = () => {
+	try {
+		const lastSelections = getVariable("lastOptions") as { cpuModel: string; ocVersion: string };
 
-				const { cpuModel, ocVersion } = lastSelections;
-				this.selectedCPUModel = cpuModel;
-				this.selectedOCVersion = ocVersion;
-			} catch (err) {
-				return;
-			}
-		}
-	},
-	watch: {
-		selectedCPUModel: function (newval) {
-			this.getSupportedOCVersions(newval);
-		}
+		if (!lastSelections) return;
+
+		const { cpuModel, ocVersion } = lastSelections;
+		selectedCPUModel.value = cpuModel;
+		selectedOCVersion.value = ocVersion;
+	} catch (err) {
+		return;
+	}
+};
+
+const getSupportedOCVersions = async (cpumodel: string) => {
+	try {
+		const { data } = await axiosInstance.get(`/supportedOCVersions/${cpumodel}`);
+		if (!data.success) return null;
+
+		const supportedVersions = data.data.supportedVersions;
+
+		supportedOCVersions.value = supportedVersions.sort((a: string, b: string) => b.localeCompare(a));
+		selectedOCVersion.value = supportedVersions[0];
+	} catch (err) {
+		return null;
 	}
 };
 

@@ -101,6 +101,9 @@ export default defineNuxtConfig({
 	tailwindcss: {
 		viewer: false
 	},
+	typescript: {
+		strict: true
+	},
 	srcDir: "src/",
 	ssr: true,
 	vite: {
