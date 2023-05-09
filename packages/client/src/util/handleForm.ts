@@ -37,10 +37,11 @@ export const handleForm = async (file: Record<string, unknown>) => {
 			if (isAxiosError(error)) return { success: false, error: error.response?.data.error ?? "Unknown error" };
 		}
 	},
-	deleteResult = async (e: { target: HTMLButtonElement }) => {
-		const id = e.target.id.split("-")[2],
+	deleteResult = async (e: MouseEvent | HTMLElement) => {
+		const target = e instanceof HTMLElement ? e : (e.target as HTMLElement);
+		const id = target.id.split("-")[2],
 			uploadID = (document.querySelector(`#id-result-${id}`) as HTMLLinkElement).innerText,
-			parentElement = e.target.closest("tr") as HTMLTableRowElement;
+			parentElement = target.closest("tr") as HTMLTableRowElement;
 
 		const uuid = await getIdentificator();
 

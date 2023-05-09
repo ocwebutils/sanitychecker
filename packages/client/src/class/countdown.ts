@@ -1,8 +1,7 @@
 import { deleteResult } from "@/util/handleForm";
 
 export class Countdown {
-	elements: {
-		countdown: HTMLSpanElement;
+	countdown: {
 		days: HTMLSpanElement;
 		hours: HTMLSpanElement;
 		minutes: HTMLSpanElement;
@@ -12,28 +11,28 @@ export class Countdown {
 		hours: number;
 		minutes: number;
 	};
-	interval: NodeJS.Timer;
-	constructor(element) {
-		this.elements = {
-			countdown: element,
-			days: element.querySelector(".days"),
-			hours: element.querySelector(".hours"),
-			minutes: element.querySelector(".minutes")
+	interval: NodeJS.Timer | undefined = undefined;
+	constructor(element: HTMLSpanElement) {
+		this.countdown = {
+			days: element.querySelector(".days") as HTMLSpanElement,
+			hours: element.querySelector(".hours") as HTMLSpanElement,
+			minutes: element.querySelector(".minutes") as HTMLSpanElement
 		};
+
 		this.values = {
-			days: Number(this.elements.days.style.getPropertyValue("--value")),
-			hours: Number(this.elements.hours.style.getPropertyValue("--value")),
-			minutes: Number(this.elements.minutes.style.getPropertyValue("--value"))
+			days: Number(this.countdown.days.style.getPropertyValue("--value")),
+			hours: Number(this.countdown.hours.style.getPropertyValue("--value")),
+			minutes: Number(this.countdown.minutes.style.getPropertyValue("--value"))
 		};
-		this.interval = null;
 	}
 	start() {
+		if (!this.countdown.days || !this.countdown.hours || !this.countdown.minutes) return;
 		setTimeout(async () => await this.check(), 1000);
 		this.interval = setInterval(() => {
 			if (this.values.hours === 0 && this.values.minutes === 0) {
 				this.check();
 				this.values.days--;
-				this.elements.days.style.setProperty("--value", this.values.days.toString());
+				this.countdown.days.style.setProperty("--value", this.values.days.toString());
 				this.values.hours = 23;
 				this.values.minutes = 59;
 				return;
@@ -41,19 +40,20 @@ export class Countdown {
 			if (this.values.minutes === 0) {
 				this.check();
 				this.values.hours--;
-				this.elements.hours.style.setProperty("--value", this.values.hours.toString());
+				this.countdown.hours.style.setProperty("--value", this.values.hours.toString());
 				this.values.minutes = 59;
 				return;
 			}
 			this.values.minutes--;
-			this.elements.minutes.style.setProperty("--value", this.values.minutes.toString());
+			this.countdown.minutes.style.setProperty("--value", this.values.minutes.toString());
 			this.check();
 		}, 1000 * 60);
 	}
 	private async check() {
 		if (this.values.days <= 0 && this.values.hours <= 0 && this.values.minutes <= 0) {
 			this.stop();
-			await deleteResult(this.elements.countdown);
+			const getParentElement = this.countdown.days.parentElement as HTMLElement;
+			await deleteResult(getParentElement);
 		}
 	}
 	private stop() {

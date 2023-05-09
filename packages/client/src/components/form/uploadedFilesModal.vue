@@ -29,7 +29,7 @@
 									</span>
 								</th>
 								<th>
-									<button class="btn btn-error btn-sm" :id="'delete-result-' + index" @click.prevent="deleteResult">Delete</button>
+									<button class="btn btn-error btn-sm" :id="'delete-result-' + index" @click.prevent="executeResultDeletion">Delete</button>
 								</th>
 							</tr>
 						</tbody>
@@ -42,46 +42,41 @@
 		</label>
 	</label>
 </template>
-<script lang="ts">
-import { createIdentificator, getIdentificator } from "@/util/identificator";
+<script setup lang="ts">
+import { getIdentificator } from "@/util/identificator";
 import { Countdown } from "@/class/countdown";
 import { deleteResult } from "@/util/handleForm";
 import { axiosInstance } from "@/util/axiosInstance";
 import { useToast } from "vue-toastification";
 import { isAxiosError } from "axios";
 
-export default {
-	async setup() {
-		const uploads = await getUploadList(),
-			date = Date.now();
+const uploads = await getUploadList(),
+	date = Date.now();
 
-		return { uploads, date };
-	},
-	mounted() {
-		document.querySelectorAll(".countdown").forEach(e => {
-			const timer = new Countdown(e);
-			timer.start();
-		});
-	},
-	methods: {
-		getDiff: (start: number, end: number) => {
-			let diffms = Math.abs(end - start) / 1000;
-			const days = Math.floor(diffms / 86400);
-			diffms -= days * 86400;
-			const hours = Math.floor(diffms / 3600) % 24;
-			diffms -= hours * 3600;
-			const minutes = Math.floor(diffms / 60) % 60;
-			return [days, hours, minutes];
-		},
-		deleteResult: async (e: { target: HTMLButtonElement }) => {
-			await deleteResult(e);
-		}
-	}
-};
+onMounted(() => {
+	document.querySelectorAll(".countdown").forEach(e => {
+		const timer = new Countdown(e as HTMLSpanElement);
+		timer.start();
+	});
+});
 
 const toast = useToast();
 
-const getUploadList = async () => {
+const getDiff = (start: number, end: number) => {
+	let diffms = Math.abs(end - start) / 1000;
+	const days = Math.floor(diffms / 86400);
+	diffms -= days * 86400;
+	const hours = Math.floor(diffms / 3600) % 24;
+	diffms -= hours * 3600;
+	const minutes = Math.floor(diffms / 60) % 60;
+	return [days, hours, minutes];
+};
+
+const executeResultDeletion = async (e: MouseEvent) => {
+	await deleteResult(e);
+};
+
+async function getUploadList() {
 	const uuid = await getIdentificator();
 	try {
 		const { data } = await axiosInstance.get("/user/uploadedResults", {
@@ -108,7 +103,7 @@ const getUploadList = async () => {
 			return;
 		}
 	}
-};
+}
 </script>
 <style>
 .dark table,
