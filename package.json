@@ -10,9 +10,9 @@
 		"start:server": "pnpm --filter @ocwebutils/sanitychecker_server run start"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^17.6.3",
-		"@commitlint/config-conventional": "^17.6.3",
-		"husky": "^8.0.3"
+		"@commitlint/cli": "17.6.3",
+		"@commitlint/config-conventional": "17.6.3",
+		"husky": "8.0.3"
 	},
 	"engines": {
 		"node": ">=16",

@@ -20,6 +20,7 @@
 		"@types/marked": "4.3.0",
 		"@types/node": "18.16.7",
 		"@types/plist": "3.0.2",
+		"@types/uuid": "9.0.1",
 		"nuxt": "3.5.0"
 	},
 	"dependencies": {
@@ -32,6 +33,7 @@
 		"daisyui": "2.51.6",
 		"fast-xml-parser": "4.2.2",
 		"marked": "5.0.2",
+		"uuid": "9.0.0",
 		"vue-dompurify-html": "4.0.0",
 		"vue-toastification": "next"
 	},

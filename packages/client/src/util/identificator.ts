@@ -1,4 +1,5 @@
 import { getCookie, getVariable, setCookie } from "./utils";
+import { v4 as randomUUID } from "uuid";
 
 export const createIdentificator = async () => {
 		if (!process.client) return;
@@ -7,7 +8,7 @@ export const createIdentificator = async () => {
 
 		const cookie = getCookie("identificator");
 		if (cookie?.value) return;
-		const uuid = crypto.randomUUID();
+		const uuid = randomUUID();
 
 		setCookie("identificator", uuid);
 		if (getVariable("identifier")) localStorage.removeItem("identificator");
