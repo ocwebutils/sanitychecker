@@ -21,7 +21,7 @@
 		"@types/node": "18.16.13",
 		"@types/plist": "3.0.2",
 		"@types/uuid": "9.0.1",
-		"nuxt": "3.5.0"
+		"nuxt": "3.5.1"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "6.4.0",
