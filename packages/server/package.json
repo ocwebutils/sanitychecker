@@ -12,7 +12,7 @@
 		"database:generate": "prisma generate"
 	},
 	"dependencies": {
-		"@fastify/cors": "8.2.1",
+		"@fastify/cors": "8.3.0",
 		"@ocwebutils/sc_checker": "github:ocwebutils/sc_checker",
 		"@ocwebutils/sc_rules": "github:ocwebutils/sc_rules",
 		"@prisma/client": "4.14.1",
