@@ -18,7 +18,7 @@
 		"@nuxtjs/tailwindcss": "6.7.0",
 		"@types/json-schema": "7.0.12",
 		"@types/marked": "5.0.0",
-		"@types/node": "18.16.13",
+		"@types/node": "18.16.15",
 		"@types/plist": "3.0.2",
 		"@types/uuid": "9.0.1",
 		"nuxt": "3.5.1"
@@ -32,7 +32,7 @@
 		"axios": "1.4.0",
 		"daisyui": "2.51.6",
 		"fast-xml-parser": "4.2.2",
-		"marked": "5.0.2",
+		"marked": "5.0.3",
 		"uuid": "9.0.0",
 		"vue-dompurify-html": "4.1.4",
 		"vue-toastification": "next"
