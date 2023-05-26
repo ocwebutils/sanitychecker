@@ -34,7 +34,7 @@
 		"fast-xml-parser": "4.2.2",
 		"marked": "5.0.2",
 		"uuid": "9.0.0",
-		"vue-dompurify-html": "4.0.0",
+		"vue-dompurify-html": "4.1.4",
 		"vue-toastification": "next"
 	},
 	"engines": {
