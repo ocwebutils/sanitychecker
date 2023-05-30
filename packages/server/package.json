@@ -15,7 +15,7 @@
 		"@fastify/cors": "8.3.0",
 		"@ocwebutils/sc_checker": "github:ocwebutils/sc_checker",
 		"@ocwebutils/sc_rules": "github:ocwebutils/sc_rules",
-		"@prisma/client": "4.14.1",
+		"@prisma/client": "4.15.0",
 		"ajv": "8.12.0",
 		"debug": "4.3.4",
 		"dotenv": "16.0.3",
@@ -23,8 +23,8 @@
 	},
 	"devDependencies": {
 		"@types/debug": "4.1.8",
-		"@types/node": "18.16.15",
-		"prisma": "4.14.1",
+		"@types/node": "18.16.16",
+		"prisma": "4.15.0",
 		"tsx": "3.12.7",
 		"typescript": "5.0.4"
 	},
