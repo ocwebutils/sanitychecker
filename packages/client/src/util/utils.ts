@@ -2,8 +2,6 @@ import { SchemaType, ValueType } from "@/interfaces/metadata";
 
 import { marked } from "marked";
 
-const domain = process.dev ? "localhost" : window.location.hostname.replace(/^(?:[^.]+\.)?(\w+\.\w+)$/, "$1");
-
 export const getIcon = (type: "success" | "info" | "warning" | "error") => {
 	switch (type) {
 		case "error": {
@@ -97,6 +95,8 @@ export const getVariable = (variable: string): unknown => {
 	getCookie = (name: string) => {
 		if (!process.client) return;
 
+		const domain = process.dev ? "localhost" : window.location.hostname.replace(/^(?:[^.]+\.)?(\w+\.\w+)$/, "$1");
+
 		const cookie = useCookie(name, {
 			expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 365),
 			domain
@@ -106,6 +106,8 @@ export const getVariable = (variable: string): unknown => {
 	},
 	setCookie = (name: string, value: string): boolean | void => {
 		if (!process.client) return;
+
+		const domain = process.dev ? "localhost" : window.location.hostname.replace(/^(?:[^.]+\.)?(\w+\.\w+)$/, "$1");
 
 		const cookie = useCookie(name, {
 			expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 365),
