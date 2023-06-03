@@ -57,10 +57,7 @@ export default defineNuxtConfig({
 		global: true,
 		dirs: ["components"]
 	},
-	css: ["vue-toastification/dist/index.css", "@fortawesome/fontawesome-svg-core/styles.css", "assets/css/tailwind.css"],
-	experimental: {
-		writeEarlyHints: false
-	},
+	css: ["vue-toastification/dist/index.css", "@fortawesome/fontawesome-svg-core/styles.css"],
 	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@nuxt/image-edge", "@kevinmarrec/nuxt-pwa"],
 	pwa: {
 		manifest: {

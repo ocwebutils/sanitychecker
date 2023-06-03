@@ -3,9 +3,9 @@
 		<ClientOnly>
 			<div class="flex flex-col h-screen" tabindex="0">
 				<PageAppHeader />
-				<div class="flex-grow m-auto">
+				<main class="flex-grow m-auto">
 					<slot />
-				</div>
+				</main>
 				<PageAppFooter />
 			</div>
 		</ClientOnly>

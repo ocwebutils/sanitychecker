@@ -1,5 +1,5 @@
 <template>
-	<div class="hero">
+	<section class="hero">
 		<div class="hero-content flex-col-reverse lg:flex-row-reverse">
 			<div class="text-center lg:text-left lg:pl-7">
 				<h1 class="text-2xl font-bold text-center">
@@ -27,7 +27,7 @@
 			</div>
 			<slot />
 		</div>
-	</div>
+	</section>
 </template>
 <script setup lang="ts">
 import featuresList from "@/features";
