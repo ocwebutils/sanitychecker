@@ -13,14 +13,14 @@
 	},
 	"devDependencies": {
 		"@kevinmarrec/nuxt-pwa": "0.17.0",
-		"@nuxt/image-edge": "1.0.0-rc.1-28103886.fcc9b7a",
+		"@nuxt/image-edge": "1.0.0-rc.1-28110023.6b8ab9c",
 		"@nuxtjs/color-mode": "3.2.0",
 		"@nuxtjs/tailwindcss": "6.7.0",
 		"@types/json-schema": "7.0.12",
 		"@types/marked": "5.0.0",
-		"@types/node": "18.16.16",
+		"@types/node": "18.16.18",
 		"@types/plist": "3.0.2",
-		"@types/uuid": "9.0.1",
+		"@types/uuid": "9.0.2",
 		"nuxt": "3.5.3"
 	},
 	"dependencies": {
@@ -30,9 +30,9 @@
 		"@fortawesome/vue-fontawesome": "3.0.3",
 		"autoprefixer": "10.4.14",
 		"axios": "1.4.0",
-		"daisyui": "3.0.20",
+		"daisyui": "3.1.0",
 		"fast-xml-parser": "4.2.4",
-		"marked": "5.0.5",
+		"marked": "5.1.0",
 		"uuid": "9.0.0",
 		"vue-dompurify-html": "4.1.4",
 		"vue-toastification": "next"
