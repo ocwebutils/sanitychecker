@@ -1,8 +1,9 @@
-import { CPUList } from "../interfaces/list";
-
+import { CPUGenerations } from "server/interfaces/routes.interface";
+import { CPUList } from "../interfaces/metadata.interface";
+import { JSONSchema7 } from "json-schema";
 export const getCPUModels = async () => {
 		try {
-			const cpulist = await require("@ocwebutils/sc_rules/cpu_list.json");
+			const cpulist: CPUGenerations = await require("@ocwebutils/sc_rules/cpu_list.json");
 			return cpulist;
 		} catch (err) {
 			return null;
@@ -10,24 +11,25 @@ export const getCPUModels = async () => {
 	},
 	getOCVersions = async (codename: string) => {
 		try {
-			const ocVersions = await require("@ocwebutils/sc_rules/oc_versions.json");
-
-			return ocVersions.find((item: { codename: string }) => item.codename === codename);
+			const ocVersions: { codename: string; supportedVersions: string[] }[] = await require("@ocwebutils/sc_rules/oc_versions.json");
+			return ocVersions.find(item => item.codename === codename);
 		} catch (err) {
 			return null;
 		}
 	},
 	getSchema = async (version: string) => {
 		try {
-			const schema = await require(`@ocwebutils/sc_rules/schemas/${version}.schema.json`);
+			const schema: JSONSchema7 = await require(`@ocwebutils/sc_rules/schemas/${version}.schema.json`);
 			return schema;
 		} catch (err) {
 			return null;
 		}
 	},
 	getRules = async (version: string, codename: string) => {
-		const cpulist: Record<string, Record<string, CPUList[]>> = await getCPUModels(),
+		const cpulist: CPUGenerations | null = await getCPUModels(),
 			splitCodename = codename.split("_");
+
+		if (!cpulist) return null;
 
 		const forEachList = findArray(cpulist, { platform: splitCodename[0], brand: splitCodename[1] });
 
@@ -46,7 +48,7 @@ export const getCPUModels = async () => {
 			return null;
 		}
 	},
-	findArray = (obj: Record<string, Record<string, CPUList[]>>, options: { platform: string; brand: string }) => {
+	findArray = (obj: CPUGenerations, options: { platform: string; brand: string }) => {
 		for (const [platform, value] of Object.entries(obj)) {
 			if (platform.toLowerCase() !== options.platform) continue;
 			for (const [brand, subValue] of Object.entries(value)) {

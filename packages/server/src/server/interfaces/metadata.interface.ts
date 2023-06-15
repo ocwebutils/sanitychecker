@@ -23,14 +23,14 @@ export type Result = {
 };
 
 export type Results = {
-	rulesResults: RulesResult[];
+	rulesResults: RulesResult[] | null;
 	schemaResults: SchemaResults;
 };
 
 export type RulesResult = {
 	path: string;
 	actualValue: string | boolean | number | null;
-	expectedValue: string;
+	expectedValue?: string | undefined;
 	ruleSet: RuleSet;
 };
 
@@ -44,4 +44,10 @@ export type RuleSet = {
 export type SchemaResults = {
 	errorArray: SchemaResult[];
 	missingRoot: string[] | null;
+};
+
+export type CPUList = {
+	codename: string;
+	name: string;
+	rules: string;
 };

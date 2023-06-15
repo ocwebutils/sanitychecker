@@ -1,7 +1,7 @@
 {
 	"name": "@ocwebutils/sanitychecker_server",
 	"description": "Backend API for Sanity Checker",
-	"version": "1.1.2",
+	"version": "1.2.0",
 	"license": "GPL-3.0",
 	"private": true,
 	"scripts": {
@@ -23,6 +23,7 @@
 	},
 	"devDependencies": {
 		"@types/debug": "4.1.8",
+		"@types/json-schema": "7.0.12",
 		"@types/node": "18.16.18",
 		"prisma": "4.15.0",
 		"tsx": "3.12.7",
