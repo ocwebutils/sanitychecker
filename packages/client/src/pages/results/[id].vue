@@ -102,7 +102,7 @@ const getResult = async (id: string) => {
 	},
 	getSchema = async (ocVersion: string) => {
 		try {
-			const { data } = await axiosInstance.get(`/schema/${ocVersion}`);
+			const { data } = await axiosInstance.get(`/schema?v=${ocVersion}`);
 			if (!data.success || !data.data) {
 				toast.error(data.error, {
 					timeout: 5000
