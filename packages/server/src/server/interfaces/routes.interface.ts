@@ -4,6 +4,8 @@ import { CPUList, Results } from "./metadata.interface";
 export type Route = {
 	url: string;
 	method: string;
+	schema?: Record<string, unknown>;
+	attachValidation?: boolean;
 	handler: Function;
 };
 

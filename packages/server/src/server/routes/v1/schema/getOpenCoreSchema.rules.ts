@@ -5,14 +5,57 @@ import { BasicResponse, Route } from "server/interfaces/routes.interface";
 import { ReplyPayload } from "server/interfaces/fastify.interface";
 import { JSONSchema7 } from "json-schema";
 
+const routeSchema = {
+	querystring: {
+		type: "object",
+		required: ["v"],
+		properties: {
+			v: {
+				type: "string"
+			}
+		}
+	},
+	response: {
+		200: {
+			type: "object",
+			properties: {
+				success: {
+					type: "boolean"
+				},
+				data: {
+					type: "object",
+					additionalProperties: true
+				}
+			}
+		},
+		500: {
+			type: "object",
+			properties: {
+				success: {
+					type: "boolean"
+				},
+				error: {
+					type: "string"
+				}
+			}
+		}
+	}
+};
+
 const getOpenCoreSchema: Route = {
 	url: "/schema",
 	method: "GET",
+	schema: routeSchema,
+	attachValidation: true,
 	handler: async (req: FastifyRequest<{ Querystring: { v: string } }>, res: ReplyPayload<BasicResponse<JSONSchema7>>): Promise<typeof res> => {
+		if (req.validationError)
+			return res.status(400).send({ success: false, error: `${req.validationError.validationContext} ${req.validationError.validation[0].message}` });
+
 		const { v: version } = req.query;
-		if (!version) return res.status(400).send({ success: false, error: "Invalid request. Query `v` is missing" });
+
 		const file = await getSchema(version);
-		if (!file) return res.status(500).send({ success: false, error: "Error occurred. Server couldn't return a result" });
+		if (!file)
+			return res.status(500).send({ success: false, error: "Sorry, we couldn't retrieve the requested data at this time. Please try again later." });
 
 		return res.send({ success: true, data: file });
 	}

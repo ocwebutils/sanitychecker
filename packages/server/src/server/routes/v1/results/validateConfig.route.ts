@@ -10,18 +10,124 @@ import { uuidValidate } from "../../../util/uuidValidate";
 import { ReplyPayload } from "server/interfaces/fastify.interface";
 import { BasicResponse, Route, validateResult } from "server/interfaces/routes.interface";
 
+const routeSchema = {
+	body: {
+		type: "object",
+		required: ["metadata", "config"],
+		properties: {
+			metadata: {
+				type: "object",
+				required: ["uploadedBy", "ocVersion", "cpuDetails"],
+				properties: {
+					uploadedBy: {
+						type: "string"
+					},
+					ocVersion: {
+						type: "string"
+					},
+					cpuDetails: {
+						type: "object",
+						required: ["codename", "name"],
+						properties: {
+							codename: {
+								type: "string"
+							},
+							name: {
+								type: "string"
+							}
+						}
+					}
+				}
+			},
+			config: {
+				type: "object",
+				additionalProperties: true
+			}
+		}
+	},
+	response: {
+		200: {
+			type: "object",
+			properties: {
+				success: {
+					type: "boolean"
+				},
+				data: {
+					type: "object",
+					properties: {
+						resultId: {
+							type: "string"
+						},
+						results: {
+							type: "object",
+							properties: {
+								rulesResults: {
+									type: "array",
+									additionalItems: true
+								},
+								schemaResults: {
+									type: "object",
+									properties: {
+										errorArray: {
+											type: "array",
+											additionalItems: true
+										},
+										missingRoot: {
+											type: ["array", "null"],
+											items: {
+												type: "string"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"4xx": {
+			type: "object",
+			properties: {
+				success: {
+					type: "boolean"
+				},
+				error: {
+					type: "string"
+				}
+			}
+		},
+		500: {
+			type: "object",
+			properties: {
+				success: {
+					type: "boolean"
+				},
+				error: {
+					type: "string"
+				}
+			}
+		}
+	}
+};
+
 const validateConfig: Route = {
 	url: "/validateConfig",
 	method: "POST",
+	schema: routeSchema,
+	attachValidation: true,
 	handler: async (
 		req: FastifyRequest<{ Body: { metadata: UploadMetadata; config: { [s: string]: unknown } } }>,
 		res: ReplyPayload<BasicResponse<validateResult>>
 	): Promise<typeof res> => {
-		await deleteOldResults();
+		if (req.validationError)
+			return res.status(400).send({ success: false, error: `${req.validationError.validationContext} ${req.validationError.validation[0].message}` });
+
+		deleteOldResults();
 
 		const { metadata, config } = req.body;
 
-		if (!config || !validateMetadata(metadata)) return res.status(400).send({ success: false, error: "Required data isn't specified" });
+		if (!validateMetadata(metadata)) return res.status(400).send({ success: false, error: "Required data isn't specified" });
 		if (!checkCodename) return res.status(403).send({ success: false, error: "Please select a valid CPU model" });
 
 		const ocSchema = await getSchema(metadata.ocVersion);
@@ -33,7 +139,7 @@ const validateConfig: Route = {
 
 		if (!rules) {
 			return res
-				.status(404)
+				.status(500)
 				.send({ success: false, error: "Server couldn't find rules for specified CPU. This CPU may not be supported by selected OpenCore version" });
 		}
 
@@ -61,7 +167,7 @@ const validateConfig: Route = {
 
 		return res.send({
 			success: true,
-			data: { results: result, resultId: id }
+			data: { resultId: id, results: result }
 		});
 	}
 };

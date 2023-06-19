@@ -12,7 +12,12 @@ export async function APIv1Controller(fastify: FastifyInstance) {
 
 	for (const file of routeFiles) {
 		const { default: route } = await import(file);
-		logger.extend("APIv1Controller")("Registering route: %o %s", route.method, route.url);
-		fastify.route(route);
+		try {
+			logger.extend("APIv1Controller")("Registering route: %o %s", route.method, route.url);
+			fastify.route(route);
+		} catch (error) {
+			logger.extend("APIv1Controller")("Error registering route: %o %s", route.method, route.url);
+			logger.extend("APIv1Controller")("Error: %o", error);
+		}
 	}
 }

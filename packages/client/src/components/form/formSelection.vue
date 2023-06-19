@@ -45,9 +45,7 @@ const supportedCPUGenerations = ref(null),
 
 onMounted(async () => {
 	const supportedCPUGenerationsObj = await getSupportedCPUGenerations();
-	console.log(supportedCPUGenerationsObj);
 	supportedCPUGenerations.value = supportedCPUGenerationsObj;
-	console.log(supportedCPUGenerations);
 	restoreSelections();
 });
 
@@ -71,7 +69,7 @@ const restoreSelections = () => {
 
 const getSupportedOCVersions = async (cpumodel: string) => {
 	try {
-		const { data } = await axiosInstance.get(`/supportedOCVersions/${cpumodel}`);
+		const { data } = await axiosInstance.get(`/supportedOCVersions?codename=${cpumodel}`);
 		if (!data.success) return null;
 
 		const supportedVersions = data.data.supportedVersions;

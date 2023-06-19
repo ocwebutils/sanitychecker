@@ -1,5 +1,5 @@
 <template>
-	<navbar class="navbar container mx-auto px-4 pt-5">
+	<nav class="navbar container mx-auto px-4 pt-5">
 		<div class="navbar-start">
 			<div class="dropdown">
 				<label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -39,5 +39,5 @@
 			</a>
 			<ThemeChanger />
 		</div>
-	</navbar>
+	</nav>
 </template>
