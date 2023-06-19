@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -39,8 +39,8 @@ importers:
         specifier: 1.4.0
         version: 1.4.0
       daisyui:
-        specifier: 3.1.0
-        version: 3.1.0(postcss@8.4.24)(ts-node@10.9.1)
+        specifier: 3.1.1
+        version: 3.1.1(postcss@8.4.24)(ts-node@10.9.1)
       fast-xml-parser:
         specifier: 4.2.4
         version: 4.2.4
@@ -61,14 +61,14 @@ importers:
         specifier: 0.17.0
         version: 0.17.0
       '@nuxt/image-edge':
-        specifier: 1.0.0-rc.1-28110023.6b8ab9c
-        version: 1.0.0-rc.1-28110023.6b8ab9c
+        specifier: 1.0.0-rc.1-28119537.bfe30ab
+        version: 1.0.0-rc.1-28119537.bfe30ab
       '@nuxtjs/color-mode':
         specifier: 3.2.0
         version: 3.2.0
       '@nuxtjs/tailwindcss':
-        specifier: 6.7.0
-        version: 6.7.0(ts-node@10.9.1)(webpack@5.87.0)
+        specifier: 6.7.2
+        version: 6.7.2(ts-node@10.9.1)(webpack@5.87.0)
       '@types/json-schema':
         specifier: 7.0.12
         version: 7.0.12
@@ -98,7 +98,7 @@ importers:
         version: github.com/ocwebutils/sc_checker/2620ba32220a3db097dad92323b6821134901ee5
       '@ocwebutils/sc_rules':
         specifier: github:ocwebutils/sc_rules
-        version: github.com/ocwebutils/sc_rules/584ac1639030e011770dc5738391152f46136afd
+        version: github.com/ocwebutils/sc_rules/af1b064d2db6054e357b82fe1e96f2821a66fce2
       '@prisma/client':
         specifier: 4.15.0
         version: 4.15.0(prisma@4.15.0)
@@ -109,8 +109,8 @@ importers:
         specifier: 4.3.4
         version: 4.3.4
       dotenv:
-        specifier: 16.1.4
-        version: 16.1.4
+        specifier: 16.3.1
+        version: 16.3.1
       fastify:
         specifier: 4.18.0
         version: 4.18.0
@@ -1067,8 +1067,8 @@ packages:
     resolution: {integrity: sha512-GBzP8zOc7CGWyFQS6dv1lQz8VVpz5C2yRszbXufwG/9zhStTIH50EtD87NmWbTMwXDvZLNg8GIpb1UFdH93JCA==}
     dev: true
 
-  /@nuxt/image-edge@1.0.0-rc.1-28110023.6b8ab9c:
-    resolution: {integrity: sha512-12a5x9pUGzmLx1vvuEXHgBjz2tMDiRd5yjRYlj/RgT4AuYo1/GB/wdFSaTcjDIgaiLW8F1VbXXQUHBg/exYbNw==}
+  /@nuxt/image-edge@1.0.0-rc.1-28119537.bfe30ab:
+    resolution: {integrity: sha512-SB1peG5tIcpDX5ZDobGRxQbMLMMnGE6d/6H9CBNI1VKj6AlfV0DWHXc/n0T2wGVn8Ov93ohYZNhnJQgKfn9RdQ==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@nuxt/kit': 3.5.3
@@ -1110,33 +1110,6 @@ packages:
       unctx: 2.1.0
       unimport: 1.0.1
       untyped: 1.0.0
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-    dev: true
-
-  /@nuxt/kit@3.5.0:
-    resolution: {integrity: sha512-QqhOPTan5cpaYCksSWdmtpldCGfnsqTd55blztMSF+OPxfGav4GE4BrBD3ZSMn2/5MxieF3GU/w5/tgcDXE3bA==}
-    engines: {node: ^14.18.0 || >=16.10.0}
-    dependencies:
-      '@nuxt/schema': 3.5.0
-      c12: 1.4.1
-      consola: 3.1.0
-      defu: 6.1.2
-      globby: 13.1.4
-      hash-sum: 2.0.0
-      ignore: 5.2.4
-      jiti: 1.18.2
-      knitwork: 1.0.0
-      lodash.template: 4.5.0
-      mlly: 1.3.0
-      pathe: 1.1.1
-      pkg-types: 1.0.3
-      scule: 1.0.0
-      semver: 7.5.1
-      unctx: 2.3.1
-      unimport: 3.0.7(rollup@3.22.0)
-      untyped: 1.3.2
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -1204,24 +1177,6 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxt/schema@3.5.0:
-    resolution: {integrity: sha512-zz7S5RTCTGSCAyfNxO0R+TYvgk7WQdHUWJiAiTFQ+iFtqQkb/re1I86Ba9VKTJjZmm3fUI5kT5Y62emJcOLlXw==}
-    engines: {node: ^14.18.0 || >=16.10.0}
-    dependencies:
-      defu: 6.1.2
-      hookable: 5.5.3
-      pathe: 1.1.1
-      pkg-types: 1.0.3
-      postcss-import-resolver: 2.0.0
-      std-env: 3.3.3
-      ufo: 1.1.2
-      unimport: 3.0.7(rollup@3.22.0)
-      untyped: 1.3.2
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-    dev: true
-
   /@nuxt/schema@3.5.3:
     resolution: {integrity: sha512-Tnon4mYfJZmsCtx4NZ9A+qjwo4DcZ6tERpEhYBY81PX7AiJ+hFPBFR1qR32Tff66/qJjZg5UXj6H9AdzwEYr2w==}
     engines: {node: ^14.18.0 || >=16.10.0}
@@ -1251,7 +1206,7 @@ packages:
       create-require: 1.1.1
       defu: 6.1.2
       destr: 1.2.2
-      dotenv: 16.1.4
+      dotenv: 16.3.1
       fs-extra: 10.1.0
       git-url-parse: 13.1.0
       inquirer: 9.2.2
@@ -1345,30 +1300,30 @@ packages:
       - supports-color
     dev: true
 
-  /@nuxtjs/tailwindcss@6.7.0(ts-node@10.9.1)(webpack@5.87.0):
-    resolution: {integrity: sha512-Ixm4hWFKoM2bbtixJZ6/+bm1y/aZPefOkfED5zV4P3X/18HVJQfGD3icTHxDEc9hqRxMV0DVPwpBM13eo1yTlg==}
+  /@nuxtjs/tailwindcss@6.7.2(ts-node@10.9.1)(webpack@5.87.0):
+    resolution: {integrity: sha512-Zd4fm+o8bXcu+kc4JtegWAHXVms8pud8fhkJDZjKUa9CpawaWdnIf0fSzYyXdm2dWpDlH4YUdjN0HDaFRFQMDw==}
     dependencies:
-      '@nuxt/kit': 3.5.0
+      '@nuxt/kit': 3.5.3
       '@nuxt/postcss8': 1.1.3(webpack@5.87.0)
-      autoprefixer: 10.4.14(postcss@8.4.23)
+      autoprefixer: 10.4.14(postcss@8.4.24)
       chokidar: 3.5.3
       clear-module: 4.1.2
       colorette: 2.0.20
       cookie-es: 1.0.0
       defu: 6.1.2
-      destr: 1.2.2
+      destr: 2.0.0
       h3: 1.6.6
       iron-webcrypto: 0.7.0
       micromatch: 4.0.5
-      pathe: 1.1.0
-      postcss: 8.4.23
-      postcss-custom-properties: 13.1.5(postcss@8.4.23)
-      postcss-nesting: 11.2.2(postcss@8.4.23)
+      pathe: 1.1.1
+      postcss: 8.4.24
+      postcss-custom-properties: 13.2.0(postcss@8.4.24)
+      postcss-nesting: 11.2.2(postcss@8.4.24)
       radix3: 1.0.1
       tailwind-config-viewer: 1.7.2(tailwindcss@3.3.2)
       tailwindcss: 3.3.2(ts-node@10.9.1)
       ufo: 1.1.2
-      uncrypto: 0.1.2
+      uncrypto: 0.1.3
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -2193,22 +2148,6 @@ packages:
     engines: {node: '>=8.0.0'}
     dev: false
 
-  /autoprefixer@10.4.14(postcss@8.4.23):
-    resolution: {integrity: sha512-FQzyfOsTlwVzjHxKEqRIAdJx9niO6VCBCoEwax/VLSoQF29ggECcPuBqUMZ+u8jCZOPSy8b8/8KnuFbp0SaFZQ==}
-    engines: {node: ^10 || ^12 || >=14}
-    hasBin: true
-    peerDependencies:
-      postcss: ^8.1.0
-    dependencies:
-      browserslist: 4.21.5
-      caniuse-lite: 1.0.30001469
-      fraction.js: 4.2.0
-      normalize-range: 0.1.2
-      picocolors: 1.0.0
-      postcss: 8.4.23
-      postcss-value-parser: 4.2.0
-    dev: true
-
   /autoprefixer@10.4.14(postcss@8.4.24):
     resolution: {integrity: sha512-FQzyfOsTlwVzjHxKEqRIAdJx9niO6VCBCoEwax/VLSoQF29ggECcPuBqUMZ+u8jCZOPSy8b8/8KnuFbp0SaFZQ==}
     engines: {node: ^10 || ^12 || >=14}
@@ -2364,7 +2303,7 @@ packages:
     resolution: {integrity: sha512-EN9Rqix2q9X3PseFkUvRFZ/0fvncF35ZR5nykLDwv4Ml/Q1WYPLkcdqlrczFll2G9t4qmxgM4my3EF3IrRGl5Q==}
     dependencies:
       defu: 6.1.2
-      dotenv: 16.1.4
+      dotenv: 16.3.1
       gittar: 0.1.1
       jiti: 1.18.2
       mlly: 1.3.0
@@ -2378,7 +2317,7 @@ packages:
     dependencies:
       chokidar: 3.5.3
       defu: 6.1.2
-      dotenv: 16.1.4
+      dotenv: 16.3.1
       giget: 1.1.2
       jiti: 1.18.2
       mlly: 1.3.0
@@ -2842,7 +2781,7 @@ packages:
       postcss-modules-scope: 3.0.0(postcss@8.4.24)
       postcss-modules-values: 4.0.0(postcss@8.4.24)
       postcss-value-parser: 4.2.0
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       semver: 7.5.1
       webpack: 5.87.0
     dev: true
@@ -2967,8 +2906,8 @@ packages:
     resolution: {integrity: sha512-d4ZVpCW31eWwCMe1YT3ur7mUDnTXbgwyzaL320DrcRT45rfjYxkt5QWLrmOJ+/UEAI2+fQgKe/fCjR8l4TpRgw==}
     dev: true
 
-  /daisyui@3.1.0(postcss@8.4.24)(ts-node@10.9.1):
-    resolution: {integrity: sha512-G4dz/bRZVvlhQ/FtezXSg0rXOXzDJ0PcnMqeLSwCYNWXxf46fNJ8LWeV5qwsYOdJbXiXoZLnwyy+BsNoWZ+Bjg==}
+  /daisyui@3.1.1(postcss@8.4.24)(ts-node@10.9.1):
+    resolution: {integrity: sha512-+SPwlCvbk/dQd40Op3jv+C8s5pL/Ix4z/U+Q8KDKnF7oXNmvDYZlZ9e2RkouoevaW/Jta4e/iLTj5ve2WBoSkw==}
     engines: {node: '>=16.9.0'}
     peerDependencies:
       postcss: ^8
@@ -3106,6 +3045,10 @@ packages:
     resolution: {integrity: sha512-lrbCJwD9saUQrqUfXvl6qoM+QN3W7tLV5pAOs+OqOmopCCz/JkE05MHedJR1xfk4IAnZuJXPVuN5+7jNA2ZCiA==}
     dev: true
 
+  /destr@2.0.0:
+    resolution: {integrity: sha512-FJ9RDpf3GicEBvzI3jxc2XhHzbqD8p4ANw/1kPsFBfTvP1b7Gn/Lg1vO7R9J4IVgoMbyUmFrFGZafJ1hPZpvlg==}
+    dev: true
+
   /destroy@1.2.0:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
@@ -3182,8 +3125,8 @@ packages:
       type-fest: 2.19.0
     dev: true
 
-  /dotenv@16.1.4:
-    resolution: {integrity: sha512-m55RtE8AsPeJBpOIFKihEmqUcoVncQIwo7x9U8ZwLEZw9ZpXboz2c+rvog+jUaJvVrZ5kBOeYQBX5+8Aa/OZQw==}
+  /dotenv@16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
     engines: {node: '>=12'}
 
   /duplexer@0.1.2:
@@ -3864,7 +3807,7 @@ packages:
       iron-webcrypto: 0.7.0
       radix3: 1.0.1
       ufo: 1.1.2
-      uncrypto: 0.1.2
+      uncrypto: 0.1.3
     dev: true
 
   /hard-rejection@2.1.0:
@@ -5495,10 +5438,6 @@ packages:
     resolution: {integrity: sha512-nPdMG0Pd09HuSsr7QOKUXO2Jr9eqaDiZvDwdyIhNG5SHYujkQHYKDfGQkulBxvbDHz8oHLsTgKN86LSwYzSHAg==}
     dev: true
 
-  /pathe@1.1.0:
-    resolution: {integrity: sha512-ODbEPR0KKHqECXW1GoxdDb+AZvULmXjVPy4rt+pGo2+TnjJTIPJQSVS6N63n8T2Ip+syHhbn52OewKicV0373w==}
-    dev: true
-
   /pathe@1.1.1:
     resolution: {integrity: sha512-d+RQGp0MAYTIaDBIMmOfMwz3E+LOZnxx1HZd5R18mmCZY0QBlK0LDZfPc8FW8Ed2DlvsuE6PRjroDY+wg4+j/Q==}
     dev: true
@@ -5616,8 +5555,8 @@ packages:
       postcss-value-parser: 4.2.0
     dev: true
 
-  /postcss-custom-properties@13.1.5(postcss@8.4.23):
-    resolution: {integrity: sha512-98DXk81zTGqMVkGANysMHbGIg3voH383DYo3/+c+Abzay3nao+vM/f4Jgzsakk9S7BDsEw5DiW7sFy5G4W2wLA==}
+  /postcss-custom-properties@13.2.0(postcss@8.4.24):
+    resolution: {integrity: sha512-UYiPqbqmVayyv56y0mtGhvUKZClflwE9cTTmPaqEX8fOVjVwsotqKGYtJXSLxrJLwf9tt7ka+Luyh1ZAOhGHWA==}
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
       postcss: ^8.4
@@ -5625,7 +5564,7 @@ packages:
       '@csstools/cascade-layer-name-parser': 1.0.2(@csstools/css-parser-algorithms@2.1.1)(@csstools/css-tokenizer@2.1.1)
       '@csstools/css-parser-algorithms': 2.1.1(@csstools/css-tokenizer@2.1.1)
       '@csstools/css-tokenizer': 2.1.1
-      postcss: 8.4.23
+      postcss: 8.4.24
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -5731,7 +5670,7 @@ packages:
       klona: 2.0.6
       loader-utils: 2.0.4
       postcss: 8.4.24
-      schema-utils: 3.1.2
+      schema-utils: 3.3.0
       semver: 7.5.1
       webpack: 5.87.0
     dev: true
@@ -5854,14 +5793,14 @@ packages:
       postcss: 8.4.24
       postcss-selector-parser: 6.0.12
 
-  /postcss-nesting@11.2.2(postcss@8.4.23):
+  /postcss-nesting@11.2.2(postcss@8.4.24):
     resolution: {integrity: sha512-aOTiUniAB1bcPE6GGiynWRa6PZFPhOTAm5q3q5cem6QeSijIHHkWr6gs65ukCZMXeak8yXeZVbBJET3VM+HlhA==}
     engines: {node: ^14 || ^16 || >=18}
     peerDependencies:
       postcss: ^8.4
     dependencies:
       '@csstools/selector-specificity': 2.2.0(postcss-selector-parser@6.0.12)
-      postcss: 8.4.23
+      postcss: 8.4.24
       postcss-selector-parser: 6.0.12
     dev: true
 
@@ -6030,15 +5969,6 @@ packages:
 
   /postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
-
-  /postcss@8.4.23:
-    resolution: {integrity: sha512-bQ3qMcpF6A/YjR55xtoTr0jGOlnPOKAIMdOWiv0EIT6HVPEaJiJB4NLljSbiHoC2RX7DN5Uvjtpbg1NPdwv1oA==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.6
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
-    dev: true
 
   /postcss@8.4.24:
     resolution: {integrity: sha512-M0RzbcI0sO/XJNucsGjvWU9ERWxb/ytp1w6dKtxTKgixdtQDq4rmx/g8W1hnaheq9jgwL/oyEdH5Bc4WwJKMqg==}
@@ -6420,15 +6350,6 @@ packages:
 
   /safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
-    dev: true
-
-  /schema-utils@3.1.2:
-    resolution: {integrity: sha512-pvjEHOgWc9OWA/f/DE3ohBWTD6EleVLf7iFUkoSwAxttdBhB9QUebQgxER2kWueOvRJXPHNnyrvvh9eZINB8Eg==}
-    engines: {node: '>= 10.13.0'}
-    dependencies:
-      '@types/json-schema': 7.0.12
-      ajv: 6.12.6
-      ajv-keywords: 3.5.2(ajv@6.12.6)
     dev: true
 
   /schema-utils@3.3.0:
@@ -7182,6 +7103,10 @@ packages:
     resolution: {integrity: sha512-kuZwRKV615lEw/Xx3Iz56FKk3nOeOVGaVmw0eg+x4Mne28lCotNFbBhDW7dEBCBKyKbRQiCadEZeNAFPVC5cgw==}
     dev: true
 
+  /uncrypto@0.1.3:
+    resolution: {integrity: sha512-Ql87qFHB3s/De2ClA9e0gsnS6zXG27SkTiSJwjCc9MebbfapQfuPzumMIUMi38ezPZVNFcHI9sUIepeQfw8J8Q==}
+    dev: true
+
   /unctx@2.1.0:
     resolution: {integrity: sha512-Q3UdS5IAlVRIWsWDd8Rr9g2zqBAZaecBgQ+XXFiKbZzovDMMTEU+Ki0SAVf/ZgWsoeG0/c1kzO2/k6BVhbkUHw==}
     dependencies:
@@ -7862,8 +7787,8 @@ packages:
       ajv: 8.12.0
     dev: false
 
-  github.com/ocwebutils/sc_rules/584ac1639030e011770dc5738391152f46136afd:
-    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/584ac1639030e011770dc5738391152f46136afd}
+  github.com/ocwebutils/sc_rules/af1b064d2db6054e357b82fe1e96f2821a66fce2:
+    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/af1b064d2db6054e357b82fe1e96f2821a66fce2}
     name: '@ocwebutils/sc_rules'
     version: 1.0.0-beta.6
     prepare: true
