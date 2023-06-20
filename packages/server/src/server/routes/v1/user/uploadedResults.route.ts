@@ -38,11 +38,12 @@ const routeSchema = {
 							expireDate: {
 								type: "string"
 							},
-							results: {
-								type: "array"
+							resultId: {
+								type: "string"
 							},
 							metadata: {
-								type: "object"
+								type: "object",
+								additionalProperties: true
 							}
 						}
 					}
