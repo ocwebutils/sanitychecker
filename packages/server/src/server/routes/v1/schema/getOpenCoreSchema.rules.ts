@@ -48,9 +48,6 @@ const getOpenCoreSchema: Route = {
 	schema: routeSchema,
 	attachValidation: true,
 	handler: async (req: FastifyRequest<{ Querystring: { v: string } }>, res: ReplyPayload<BasicResponse<JSONSchema7>>): Promise<typeof res> => {
-		if (req.validationError)
-			return res.status(400).send({ success: false, error: `${req.validationError.validationContext} ${req.validationError.validation[0].message}` });
-
 		const { v: version } = req.query;
 
 		const file = await getSchema(version);

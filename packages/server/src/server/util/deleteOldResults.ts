@@ -1,7 +1,7 @@
-import { context } from "../database";
+import ResultModel from "../database/models/Result";
 
 export const deleteOldResults = async () => {
-	const query = await context.prisma.results.findMany();
+	const query = await ResultModel.find({}).select(["expireDate", "resultId"]).lean();
 
 	if (!query) return;
 
@@ -9,13 +9,7 @@ export const deleteOldResults = async () => {
 		const expireDate = el.expireDate,
 			diff = getDiffInMinutes(Date.now(), expireDate) <= 0;
 
-		if (diff) {
-			await context.prisma.results.delete({
-				where: {
-					resultId: el.resultId
-				}
-			});
-		}
+		if (diff) await ResultModel.deleteOne({ resultId: el.resultId });
 	}
 };
 

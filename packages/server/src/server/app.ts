@@ -5,6 +5,7 @@ import { OnRequestHook } from "./hooks/onRequest.hook";
 import { OnSendHook } from "./hooks/onSend.hook";
 import debug from "debug";
 import { logger } from "./config";
+import connectDatabase from "./database";
 
 export default class App {
 	fastify: FastifyInstance;
@@ -16,6 +17,7 @@ export default class App {
 
 		debug.enable("ocwebutils/sanitychecker:*");
 
+		connectDatabase();
 		this.initHooks();
 		this.initMiddlewares();
 		this.initControllers();

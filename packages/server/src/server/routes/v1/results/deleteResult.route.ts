@@ -1,7 +1,7 @@
 import { FastifyRequest } from "fastify";
 
 import { Result } from "server/interfaces/metadata.interface";
-import { context } from "../../../database";
+import ResultModel from "../../../database/models/Result";
 import { BasicResponse, Route } from "server/interfaces/routes.interface";
 import { ReplyPayload } from "server/interfaces/fastify.interface";
 
@@ -67,27 +67,16 @@ const deleteResult: Route = {
 		req: FastifyRequest<{ Headers: { "x-user-id": string }; Params: { resultId: string } }>,
 		res: ReplyPayload<BasicResponse>
 	): Promise<typeof res> => {
-		if (req.validationError)
-			return res.status(400).send({ success: false, error: `${req.validationError.validationContext} ${req.validationError.validation[0].message}` });
-
 		const { resultId } = req.params,
 			{ "x-user-id": user } = req.headers;
 
-		const query = (await context.prisma.results.findFirst({
-			where: {
-				resultId: resultId
-			}
-		})) as Result | null;
+		const query = (await ResultModel.findOne({ resultId: resultId }).lean()) as Result | null;
 
-		if (!query) return res.status(404).send({ success: false, error: "Result doesn't exist in our database" });
-		if (query.createdBy !== user) return res.status(403).send({ success: false, error: "You aren't allowed to delete this result" });
+		if (!query) return res.status(404).send({ success: false, error: "Result doesn't exist in the database" });
+		if (query.createdBy !== user) return res.status(403).send({ success: false, error: "You are unauthorized to delete this result" });
 
-		const deleteQuery = await context.prisma.results.delete({
-			where: {
-				resultId: resultId
-			}
-		});
-		if (!deleteQuery) return res.status(500).send({ success: false, error: "Couldn't delete result" });
+		const deleteQuery = await ResultModel.deleteOne({ resultId: resultId });
+		if (!deleteQuery) return res.status(500).send({ success: false, error: "We couldn't delete the result. Try again later" });
 
 		return res.send({ success: true });
 	}

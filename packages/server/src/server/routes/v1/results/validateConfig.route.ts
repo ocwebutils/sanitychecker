@@ -3,7 +3,7 @@ import { FastifyRequest } from "fastify";
 import { getRules, getSchema } from "../../../util/file";
 
 import { RulesResult, SchemaResults, UploadMetadata } from "../../../interfaces/metadata.interface";
-import { context } from "../../../database";
+import ResultModel from "../../../database/models/Result";
 import { deleteOldResults } from "../../../util/deleteOldResults";
 import { randomUUID } from "node:crypto";
 import { uuidValidate } from "../../../util/uuidValidate";
@@ -120,9 +120,6 @@ const validateConfig: Route = {
 		req: FastifyRequest<{ Body: { metadata: UploadMetadata; config: { [s: string]: unknown } } }>,
 		res: ReplyPayload<BasicResponse<validateResult>>
 	): Promise<typeof res> => {
-		if (req.validationError)
-			return res.status(400).send({ success: false, error: `${req.validationError.validationContext} ${req.validationError.validation[0].message}` });
-
 		deleteOldResults();
 
 		const { metadata, config } = req.body;
@@ -140,7 +137,7 @@ const validateConfig: Route = {
 		if (!rules) {
 			return res
 				.status(500)
-				.send({ success: false, error: "Server couldn't find rules for specified CPU. This CPU may not be supported by selected OpenCore version" });
+				.send({ success: false, error: "We couldn't find rules for this specified CPU. It may not be supported by selected OpenCore version" });
 		}
 
 		const configCheck = new ConfigChecker(config);
@@ -151,18 +148,20 @@ const validateConfig: Route = {
 			},
 			id = randomUUID();
 
-		await context.prisma.results.create({
-			data: {
-				createdBy: metadata.uploadedBy,
-				resultId: id,
-				results: result,
-				expireDate: Date.now() + 1000 * 60 * 60 * 72, //* 3 days (72 hours)
-				metadata: {
-					cpuCodename: metadata.cpuDetails.codename,
-					cpuName: metadata.cpuDetails.name,
-					ocVersion: metadata.ocVersion
-				}
+		const query = new ResultModel({
+			createdBy: metadata.uploadedBy,
+			resultId: id,
+			results: result,
+			expireDate: Date.now() + 1000 * 60 * 60 * 72, //* 3 days (72 hours)
+			metadata: {
+				cpuCodename: metadata.cpuDetails.codename,
+				cpuName: metadata.cpuDetails.name,
+				ocVersion: metadata.ocVersion
 			}
+		});
+
+		await query.save().catch(() => {
+			return res.status(500).send({ success: false, error: "We couldn't save your result. Try again later" });
 		});
 
 		return res.send({

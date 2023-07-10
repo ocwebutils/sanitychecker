@@ -57,9 +57,6 @@ const getSupportedOpenCoreVersions: Route = {
 		req: FastifyRequest<{ Querystring: { codename: string } }>,
 		res: ReplyPayload<BasicResponse<OpenCoreVersions>>
 	): Promise<typeof res> => {
-		if (req.validationError)
-			return res.status(400).send({ success: false, error: `${req.validationError.validationContext} ${req.validationError.validation[0].message}` });
-
 		const { codename } = req.query;
 
 		const returnObj = await getOCVersions(codename);

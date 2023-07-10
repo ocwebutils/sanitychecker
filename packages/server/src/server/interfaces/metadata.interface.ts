@@ -14,7 +14,6 @@ export type ResultMetadata = {
 };
 
 export type Result = {
-	id: string;
 	createdBy: string;
 	expireDate: number;
 	resultId: string;

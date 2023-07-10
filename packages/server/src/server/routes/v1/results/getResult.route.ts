@@ -1,12 +1,12 @@
 import { FastifyRequest } from "fastify";
 
 import { Result } from "server/interfaces/metadata.interface";
-import { context } from "../../../database";
+import ResultModel from "../../../database/models/Result";
 import { deleteOldResults } from "../../../util/deleteOldResults";
 import { BasicResponse, Route } from "server/interfaces/routes.interface";
 import { ReplyPayload } from "server/interfaces/fastify.interface";
 
-type queryResult = Partial<Pick<Result, "id" | "createdBy" | "expireDate">> | null;
+type queryResult = Partial<Pick<Result, "createdBy" | "expireDate">> | null;
 
 const routeSchema = {
 	params: {
@@ -51,22 +51,14 @@ const getResult: Route = {
 	schema: routeSchema,
 	attachValidation: true,
 	handler: async (req: FastifyRequest<{ Params: { resultId: string } }>, res: ReplyPayload<BasicResponse<queryResult>>): Promise<typeof res> => {
-		if (req.validationError)
-			return res.status(400).send({ success: false, error: `${req.validationError.validationContext} ${req.validationError.validation[0].message}` });
-
 		const { resultId } = req.params;
 
 		await deleteOldResults();
 
-		const query = (await context.prisma.results.findFirst({
-			where: {
-				resultId: resultId
-			}
-		})) as queryResult;
+		const query = (await ResultModel.findOne({ resultId: resultId }, { _id: 0, __v: 0 }).lean()) as queryResult;
 
 		if (!query) return res.status(404).send({ success: false, error: "Result doesn't exist in the database" });
 
-		delete query.id;
 		delete query.createdBy;
 		delete query.expireDate;
 
