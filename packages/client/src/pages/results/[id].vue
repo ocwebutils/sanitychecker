@@ -5,8 +5,8 @@
 				<h3 class="text-2xl font-bold">Validation results</h3>
 				<span class="text-lg font-medium">
 					<span>{{ result.metadata.cpuCodename.split("_")[0].charAt(0).toUpperCase() + result.metadata.cpuCodename.split("_")[0].slice(1) }} - </span>
-					<span class="text-gray-300">{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span>
-					• OpenCore <span class="text-gray-300">v{{ result.metadata.ocVersion }}</span></span
+					<span class="text-gray-500 dark:text-gray-200">{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span>
+					• OpenCore <span class="text-gray-500 dark:text-gray-200">v{{ result.metadata.ocVersion }}</span></span
 				>
 				<p class="font-medium text-sm">Note: We don't guarrante working config if everything is shown as correct</p>
 			</div>
