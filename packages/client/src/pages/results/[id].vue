@@ -1,6 +1,6 @@
 <template>
-	<div class="flex flex-col pt-4 items-center place-content-center justify-center">
-		<div class="px-8 py-6 mt-4 text-left dark:bg-darkgray-700 bg-white shadow-lg rounded-xl w-screen max-w-5xl">
+	<div class="flex flex-col pt-4 items-center place-content-center justify-center px-16">
+		<div class="px-8 py-6 mt-4 text-left dark:bg-darkgray-700 bg-white shadow-lg rounded-xl w-full">
 			<div class="text-center">
 				<div class="float-right space-x-1">
 					<button class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors">

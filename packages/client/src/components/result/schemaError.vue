@@ -30,11 +30,17 @@ const props = defineProps({
 
 const returnMessage = (msg: string, path: string, type?: string) => {
 	if (msg.includes("must NOT have additional properties"))
-		return `This property shouldn't exist in the provided config. There is two common reasons why this error appears: \n- Most likely it has been replaced, removed or never existed in this OpenCore version. \n- You accidentally moved this property to the wrong place. \nNote: Please check the [OpenCore's Documentation](https://github.com/acidanthera/OpenCorePkg/blob/${props.ocVersion}/Docs/Configuration.pdf) for **v${props.ocVersion}** to know more about this property`;
+		return `This property shouldn't exist in the provided config. There is two common reasons why this error appears: \n- Most likely it has been replaced, removed or never existed in this OpenCore version. \n- You accidentally moved this property to the wrong place. \n\nNote: Please check the [OpenCore's Documentation](https://github.com/acidanthera/OpenCorePkg/blob/${props.ocVersion}/Docs/Configuration.pdf) for **v${props.ocVersion}** to know more about this property`;
 
 	if (msg.includes("missing property") || msg.includes("must have required property"))
-		return `This property hasn't been detected in the provided config. There is two common reasons why this error appears: \n- Most likely it's new in **${props.ocVersion}** so you might need to add it manually. \n- You accidentally moved the property to the wrong place and now it's missing in its required place. \nMake sure it is present in \`${path}\` \nNote: Please check the [OpenCore's Documentation](https://github.com/acidanthera/OpenCorePkg/blob/${props.ocVersion}/Docs/Configuration.pdf) for **v${props.ocVersion}** to know more about this property`;
+		return `This property hasn't been detected in the provided config. There is two common reasons why this error appears: \n- Most likely it's new in **v${props.ocVersion}** so you might need to add it manually. \n- You accidentally moved the property to the wrong place and now it's missing in its required place. \n\nMake sure it is present in \`${path}\` \nNote: Please check the [OpenCore's Documentation](https://github.com/acidanthera/OpenCorePkg/blob/${props.ocVersion}/Docs/Configuration.pdf) for **v${props.ocVersion}** to know more about this property`;
 
 	if (msg.includes("must be")) return `This property doesn't have the right type. Expected type is \`${type}\``;
 };
 </script>
+<style>
+.collapse-content li {
+	list-style-type: disc;
+	margin-left: 2rem;
+}
+</style>
