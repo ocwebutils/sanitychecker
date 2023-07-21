@@ -14,7 +14,9 @@ import {
 	faMoon,
 	faNoteSticky,
 	faQuestion,
-	faSun
+	faSun,
+	faDownload,
+	faArrowUpRightFromSquare
 } from "@fortawesome/free-solid-svg-icons";
 import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
 
@@ -37,7 +39,9 @@ library.add(
 	faCopy,
 	faCircleInfo,
 	faCube,
-	faCloudArrowUp
+	faCloudArrowUp,
+	faDownload,
+	faArrowUpRightFromSquare
 );
 library.add(faGithub, faDiscord);
 

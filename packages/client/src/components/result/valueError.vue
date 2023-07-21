@@ -21,21 +21,12 @@
 		</div>
 	</div>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import { PropType } from "vue";
 import { getIcon, replaceBoolean, displayNormalizedName, parseMarked } from "@/util/utils";
 import { ValueType } from "@/interfaces/metadata";
-export default {
-	props: {
-		ruleOutput: { type: Object as PropType<ValueType>, required: true }
-	},
-	setup() {
-		return {
-			replaceBoolean,
-			getIcon,
-			displayNormalizedName,
-			parseMarked
-		};
-	}
-};
+
+defineProps({
+	ruleOutput: { type: Object as PropType<ValueType>, required: true }
+});
 </script>

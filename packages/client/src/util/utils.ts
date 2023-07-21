@@ -132,7 +132,42 @@ export const getVariable = (variable: string): unknown => {
 	};
 
 export const parseMarked = (string: string): string => {
-	const stringToHtml = marked.parse(string, { mangle: false, headerIds: false });
+	const stringToHtml = marked.parse(string, { mangle: false, headerIds: false, breaks: true });
 
 	return stringToHtml;
+};
+
+export const json2csv = (results: { rulesResults: ValueType[]; schemaResults: { errorArray: SchemaType[]; missingRoot: string[] } }): string => {
+	const headers = ["path", "actualValue", "expectedValue", "ruleSetType", "ruleSetMessage"];
+	const rows: string[][] = [];
+
+	for (const ruleResult of results.rulesResults) {
+		const row = [
+			ruleResult.path,
+			ruleResult.actualValue?.toString() ?? "",
+			ruleResult.expectedValue ?? "",
+			ruleResult.ruleSet.type,
+			ruleResult.ruleSet.message ? `"${ruleResult.ruleSet.message}"` : ""
+		];
+		rows.push(row);
+	}
+
+	for (const schemaResult of results.schemaResults.errorArray) {
+		const row = [
+			schemaResult.path,
+			"",
+			schemaResult.expectedValue ?? "",
+			schemaResult.ruleSet.type,
+			schemaResult.ruleSet.message ? `"${schemaResult.ruleSet.message}"` : ""
+		];
+		rows.push(row);
+	}
+
+	for (const missingProperty of results.schemaResults.missingRoot) {
+		const row = [missingProperty, "", "", "missing root property", "missing root property"];
+		rows.push(row);
+	}
+
+	const result = [headers, ...rows].map(row => row.join(",")).join("\n");
+	return result;
 };

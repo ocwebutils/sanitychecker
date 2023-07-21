@@ -2,7 +2,7 @@
 	<dialog id="uploadedFilesModal" class="modal">
 		<form method="dialog" class="modal-box max-w-3xl">
 			<button for="uploadedFilesModal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-			<h3 class="font-bold text-lg">Your uploaded results</h3>
+			<p class="font-bold text-lg">Your uploaded results</p>
 			<p>Uploaded results are expired after countdown ends or you can manually remove them from the database.</p>
 			<div class="mt-3">
 				<div class="overflow-x-auto">

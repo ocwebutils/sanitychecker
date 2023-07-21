@@ -18,31 +18,23 @@
 		</div>
 	</div>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import { PropType } from "vue";
 import { getIcon, displayNormalizedName, parseMarked } from "@/util/utils";
 import { SchemaType } from "@/interfaces/metadata";
-export default {
-	props: {
-		schemaError: { type: Object as PropType<SchemaType>, required: true }
-	},
-	setup() {
-		return {
-			getIcon,
-			displayNormalizedName,
-			parseMarked
-		};
-	},
-	methods: {
-		returnMessage: (msg: string, path: string, type?: string) => {
-			if (msg.includes("must NOT have additional properties"))
-				return "This property shouldn't be in your config. Most likely it has been replaced, removed or never existed in this OpenCore version. Please check documentation for more information";
 
-			if (msg.includes("missing property") || msg.includes("must have required property"))
-				return `Sanity Checker didn't detect this property in your config. Make sure it is present in \`${path}\`<br/>Note: This property may or may not be required for OpenCore to boot. Please check documentation for more information`;
+const props = defineProps({
+	schemaError: { type: Object as PropType<SchemaType>, required: true },
+	ocVersion: { type: String, required: true }
+});
 
-			if (msg.includes("must be")) return `This property doesn't have the right type. Expected type is \`${type}\``;
-		}
-	}
+const returnMessage = (msg: string, path: string, type?: string) => {
+	if (msg.includes("must NOT have additional properties"))
+		return `This property shouldn't exist in the provided config. There is two common reasons why this error appears: \n- Most likely it has been replaced, removed or never existed in this OpenCore version. \n- You accidentally moved this property to the wrong place. \nNote: Please check the [OpenCore's Documentation](https://github.com/acidanthera/OpenCorePkg/blob/${props.ocVersion}/Docs/Configuration.pdf) for **v${props.ocVersion}** to know more about this property`;
+
+	if (msg.includes("missing property") || msg.includes("must have required property"))
+		return `This property hasn't been detected in the provided config. There is two common reasons why this error appears: \n- Most likely it's new in **${props.ocVersion}** so you might need to add it manually. \n- You accidentally moved the property to the wrong place and now it's missing in its required place. \nMake sure it is present in \`${path}\` \nNote: Please check the [OpenCore's Documentation](https://github.com/acidanthera/OpenCorePkg/blob/${props.ocVersion}/Docs/Configuration.pdf) for **v${props.ocVersion}** to know more about this property`;
+
+	if (msg.includes("must be")) return `This property doesn't have the right type. Expected type is \`${type}\``;
 };
 </script>

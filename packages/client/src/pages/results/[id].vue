@@ -2,13 +2,31 @@
 	<div class="flex flex-col pt-4 items-center place-content-center justify-center">
 		<div class="px-8 py-6 mt-4 text-left dark:bg-darkgray-700 bg-white shadow-lg rounded-xl w-screen max-w-5xl">
 			<div class="text-center">
-				<h3 class="text-2xl font-bold">Validation results</h3>
-				<span class="text-lg font-medium">
-					<span>{{ result.metadata.cpuCodename.split("_")[0].charAt(0).toUpperCase() + result.metadata.cpuCodename.split("_")[0].slice(1) }} - </span>
-					<span class="text-gray-500 dark:text-gray-200">{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span>
-					• OpenCore <span class="text-gray-500 dark:text-gray-200">v{{ result.metadata.ocVersion }}</span></span
-				>
-				<p class="font-medium text-sm">Note: We don't guarrante working config if everything is shown as correct</p>
+				<div class="float-right space-x-1">
+					<button class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors">
+						<a href="#" @click.prevent="copyURL"><font-awesome-icon icon="fa-solid fa-copy" /></a>
+					</button>
+					<button class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors">
+						<a href="#" @click.prevent="downloadCsv"><font-awesome-icon icon="fa-solid fa-download" /></a>
+					</button>
+				</div>
+				<div class="flex flex-col text-left">
+					<p class="text-2xl font-bold clear-right">
+						Validation results <span class="text-xs text-gray-500 dark:text-gray-200">for {{ route.params.id }}</span>
+					</p>
+					<span class="text-lg font-medium">
+						<span
+							>{{ result.metadata.cpuCodename.split("_")[0].charAt(0).toUpperCase() + result.metadata.cpuCodename.split("_")[0].slice(1) }} -
+						</span>
+						<span class="text-blue-500">{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span>
+						• OpenCore
+						<a
+							:href="`https://github.com/acidanthera/OpenCorePkg/releases/tag/${result.metadata.ocVersion}`"
+							class="text-blue-500 hover:text-blue-600 transition-colors link-underline hover:link-underline"
+							>v{{ result.metadata.ocVersion }} <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" size="xs" /> </a
+					></span>
+					<p class="font-medium text-sm">Note: This validation doesn't guarrante working config if everything is shown as correct</p>
+				</div>
 			</div>
 			<div class="divider" />
 			<div class="font-medium space-y-4" v-if="!showRawData">
@@ -16,7 +34,7 @@
 					<p :id="property" class="mr-4 mb-2 text-lg">{{ property }}</p>
 					<template class="inline" v-for="res in result.results.schemaResults.missingRoot">
 						<span v-if="res === property">
-							<div class="tooltip" data-tip="This dictionary is missing from your config">
+							<div class="tooltip" data-tip="This root dictionary is missing from your config">
 								<font-awesome-icon
 									class="mr-2"
 									icon="fa-solid fa-circle-xmark"
@@ -29,12 +47,12 @@
 					</template>
 					<template v-for="results in result.results.rulesResults">
 						<template v-if="results.path.includes(property)">
-							<ResultValueError :ruleOutput="results" v-if="results.ruleSet.type !== 'success'" />
-							<ResultValueSuccess :ruleOutput="results" v-else />
+							<ResultValueError :ruleOutput="results" :ocVersion="result.metadata.ocVersion" v-if="results.ruleSet.type !== 'success'" />
+							<ResultValueSuccess :ruleOutput="results" :ocVersion="result.metadata.ocVersion" v-else />
 						</template>
 					</template>
 					<template v-for="schemaError in result.results.schemaResults.errorArray">
-						<ResultSchemaError :schemaError="schemaError" v-if="schemaError.path.includes(property)" />
+						<ResultSchemaError :schemaError="schemaError" :ocVersion="result.metadata.ocVersion" v-if="schemaError.path.includes(property)" />
 					</template>
 				</div>
 			</div>
@@ -43,15 +61,13 @@
 			</div>
 			<div class="divider" />
 			<button class="btn" @click.prevent="rawData">Show Raw Data</button>
-			<a href="#" class="float-right font-medium text-lg hover:text-blue-500 transition-colors" @click.prevent="copyURL"
-				><font-awesome-icon icon="fa-solid fa-copy" /> Copy Link</a
-			>
 		</div>
 	</div>
 </template>
 <script setup lang="ts">
 import { useToast } from "vue-toastification";
 import { axiosInstance } from "@/util/axiosInstance";
+import { json2csv } from "@/util/utils";
 import { JSONSchema7 } from "json-schema";
 import { isAxiosError } from "axios";
 
@@ -139,6 +155,28 @@ const getResult = async (id: string) => {
 		}
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	},
+	downloadCsv = () => {
+		const csv = json2csv(result.results);
+		const aElement = document.createElement("a");
+
+		document.body.appendChild(aElement);
+		aElement.style.display = "none";
+
+		const blob = new Blob([csv], {
+			type: "application/octet-stream"
+		});
+		const url = window.URL.createObjectURL(blob);
+
+		aElement.href = url;
+		aElement.download = "result.csv";
+		aElement.click();
+
+		window.URL.revokeObjectURL(url);
+		aElement.remove();
+		toast.success("Result has been downloaded in CSV format", {
+			timeout: 5000
+		});
+	},
 	copyURL = (_: unknown) => {
 		const permissionName = "clipboard-write" as PermissionName;
 		if (!navigator.permissions || !navigator.permissions.query) {
@@ -161,3 +199,8 @@ const getResult = async (id: string) => {
 	schema = await getSchema(result.metadata.ocVersion),
 	properties = await returnProperties(schema);
 </script>
+<style>
+.collapse-content a {
+	@apply text-blue-500 hover:text-blue-600 transition-colors link-underline hover:link-underline;
+}
+</style>

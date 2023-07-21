@@ -3,6 +3,7 @@
 		<button
 			class="flex space-x-2 transition-colors btn btn-circle items-center justify-center bg-gray-200"
 			aria-label="Switch Colors button"
+			type="button"
 			@click="changeThemeColor"
 		>
 			<font-awesome-icon class="h-5 w-5" size="lg" :icon="icon" :style="{ color: 'black' }" />
