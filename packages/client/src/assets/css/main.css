@@ -1,38 +1,37 @@
 /* Custom Scrollbar */
+/* https://github.com/luandersonn/Modern-scrollbar */
 
 ::-webkit-scrollbar {
-	width: 20px;
-	height: 20px;
+	width: 10px;
+	height: 10px;
+	transition: 1s;
 }
 
-.dark ::-webkit-scrollbar-track {
-	border-radius: 100vh;
-	background: #111827;
+::-webkit-scrollbar-thumb {
+	background-color: rgba(127, 127, 127, 0.6);
+	background-clip: padding-box;
+	border: 2px solid transparent;
+	border-radius: 5px;
+	transition: 1s;
 }
 
-.dark ::-webkit-scrollbar-thumb {
-	background: #27272a;
-	border-radius: 100vh;
-	border: 3px solid #111827;
+::-webkit-scrollbar-thumb:vertical:hover,
+::-webkit-scrollbar-thumb:horizontal:hover {
+	background-color: rgb(110, 110, 110);
+	transition: 0.3s;
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-	background: #27272a;
+::-webkit-scrollbar-track {
+	background-color: transparent;
 }
 
-.light ::-webkit-scrollbar-track {
-	border-radius: 100vh;
-	background: #ffffff;
+::-webkit-scrollbar-thumb:vertical:active,
+::-webkit-scrollbar-thumb:horizontal:active {
+	background: rgba(95, 91, 91, 1);
 }
 
-.light ::-webkit-scrollbar-thumb {
-	background: #27272a;
-	border-radius: 100vh;
-	border: 3px solid #ffffff;
-}
-
-.light ::-webkit-scrollbar-thumb:hover {
-	background: #27272a;
+::-webkit-scrollbar-corner {
+	background: none;
 }
 
 /* Color Switcher */
