@@ -152,7 +152,7 @@ const validateConfig: Route = {
 			createdBy: metadata.uploadedBy,
 			resultId: id,
 			results: result,
-			expireDate: Date.now() + 1000 * 60 * 60 * 72, //* 3 days (72 hours)
+			expireDate: Date.now() + 14 * 24 * 60 * 60 * 1000, //* 14 days
 			metadata: {
 				cpuCodename: metadata.cpuDetails.codename,
 				cpuName: metadata.cpuDetails.name,
