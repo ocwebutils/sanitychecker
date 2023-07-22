@@ -25,7 +25,7 @@
 							class="text-blue-500 hover:text-blue-600 transition-colors link-underline hover:link-underline"
 							>v{{ result.metadata.ocVersion }} <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" size="xs" /> </a
 					></span>
-					<p class="font-medium text-sm">Note: This validation doesn't guarrante working config if everything is shown as correct</p>
+					<p class="font-medium text-sm">Note: This validation doesn't guarantee working config if everything is shown as correct</p>
 				</div>
 			</div>
 			<div class="divider" />
