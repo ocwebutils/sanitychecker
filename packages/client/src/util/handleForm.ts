@@ -6,10 +6,9 @@ import { setVariable } from "./utils";
 export const handleForm = async (file: Record<string, unknown>) => {
 		const cpuModel = document.querySelector("#cpu_model") as HTMLSelectElement,
 			ocVersion = document.querySelector("#oc_version") as HTMLSelectElement,
-			cpuValue = cpuModel.options[cpuModel.selectedIndex].value,
-			cpuName = cpuModel.options[cpuModel.selectedIndex].text,
-			ocValue = ocVersion.options[ocVersion.selectedIndex].value;
-
+			cpuValue = cpuModel.options[cpuModel.selectedIndex]?.value,
+			cpuName = cpuModel.options[cpuModel.selectedIndex]?.text,
+			ocValue = ocVersion?.options[ocVersion.selectedIndex]?.value;
 		const uuid = await getIdentificator();
 
 		if (!cpuValue || cpuValue === "default" || !cpuName || !ocValue) return { success: false, error: "Please select CPU model and OpenCore version" };
