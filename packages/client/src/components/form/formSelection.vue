@@ -3,7 +3,7 @@
 		<div class="w-full relative inline-block dark:text-white text-black" :class="!supportedOCVersions ? '' : 'sm:mr-3 md:mr-3'">
 			<div class="flex flex-row">
 				<div class="form-control w-full">
-					<label class="label">
+					<label for="cpu_model" class="label">
 						<span class="label-text">CPU</span>
 					</label>
 					<select
@@ -23,7 +23,7 @@
 		</div>
 		<div class="relative inline-block dark:text-white text-black w-full" v-if="supportedOCVersions">
 			<div class="form-control">
-				<label class="label">
+				<label for="oc_version" class="label">
 					<span class="label-text">OC Version</span>
 				</label>
 				<select id="oc_version" class="select select-bordered dark:bg-darkgray-800" v-model="selectedOCVersion">

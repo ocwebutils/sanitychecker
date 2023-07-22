@@ -3,11 +3,11 @@
 		<div class="px-8 py-6 mt-4 text-left dark:bg-darkgray-700 bg-white shadow-lg rounded-xl w-full">
 			<div class="text-center">
 				<div class="float-right space-x-1">
-					<button class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors">
-						<a href="#" @click.prevent="copyURL"><font-awesome-icon icon="fa-solid fa-copy" /></a>
+					<button class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors" aria-label="Copy URL to Clipboard">
+						<a href="#" @click.prevent="copyURL" aria-label="Copy URL to Clipboard"><font-awesome-icon icon="fa-solid fa-copy" /></a>
 					</button>
-					<button class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors">
-						<a href="#" @click.prevent="downloadCsv"><font-awesome-icon icon="fa-solid fa-download" /></a>
+					<button class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors" aria-label="Download result as CSV">
+						<a href="#" @click.prevent="downloadCsv" aria-label="Download result as CSV"><font-awesome-icon icon="fa-solid fa-download" /></a>
 					</button>
 				</div>
 				<div class="flex flex-col text-left">
@@ -18,11 +18,11 @@
 						<span
 							>{{ result.metadata.cpuCodename.split("_")[0].charAt(0).toUpperCase() + result.metadata.cpuCodename.split("_")[0].slice(1) }} -
 						</span>
-						<span class="text-blue-500">{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span>
+						<span class="text-blue-600">{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span>
 						• OpenCore
 						<a
 							:href="`https://github.com/acidanthera/OpenCorePkg/releases/tag/${result.metadata.ocVersion}`"
-							class="text-blue-500 hover:text-blue-600 transition-colors link-underline hover:link-underline"
+							class="text-blue-600 hover:text-blue-700 transition-colors link-underline hover:link-underline"
 							>v{{ result.metadata.ocVersion }} <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" size="xs" /> </a
 					></span>
 					<p class="font-medium text-sm">Note: This validation doesn't guarantee working config if everything is shown as correct</p>
