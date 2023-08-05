@@ -1,5 +1,4 @@
 import { CPUGenerations } from "server/interfaces/routes.interface";
-import { CPUList } from "../interfaces/metadata.interface";
 import { JSONSchema7 } from "json-schema";
 export const getCPUModels = async () => {
 		try {
@@ -24,35 +23,28 @@ export const getCPUModels = async () => {
 		} catch (err) {
 			return null;
 		}
-	},
-	getRules = async (version: string, codename: string) => {
-		const cpulist: CPUGenerations | null = await getCPUModels(),
-			splitCodename = codename.split("_");
-
-		if (!cpulist) return null;
-
-		const forEachList = findArray(cpulist, { platform: splitCodename[0], brand: splitCodename[1] });
-
-		if (!forEachList) return null;
-
-		const cpuModel = forEachList.find((item: { codename: string }) => item.codename === codename);
-
-		if (!cpuModel) return null;
-
-		try {
-			const cpuRules = await require(`@ocwebutils/sc_rules/rules/${cpuModel.codename.split("_")[0]}/${cpuModel.codename.split("_")[1]}/${version}/${
-				cpuModel.rules
-			}`);
-			return cpuRules;
-		} catch (err) {
-			return null;
-		}
-	},
-	findArray = (obj: CPUGenerations, options: { platform: string; brand: string }) => {
-		for (const [platform, value] of Object.entries(obj)) {
-			if (platform.toLowerCase() !== options.platform) continue;
-			for (const [brand, subValue] of Object.entries(value)) {
-				if (brand.toLowerCase() === options.brand) return subValue;
-			}
-		}
 	};
+
+export const getRules = async (version: string, codename: string) => {
+	const cpuList: CPUGenerations | null = await getCPUModels();
+	if (!cpuList) return null;
+
+	const { codename: cpuCodename } = Object.values(cpuList)
+		.flatMap(Object.values)
+		.flatMap(arr => arr)
+		.find((item: { codename: string }) => item.codename === codename);
+
+	const [platform, brand] =
+		Object.entries(cpuList)
+			.flatMap(([platform, brands]) => Object.entries(brands).map(([brand, models]) => [platform, brand, models]))
+			.find(([_, __, models]) => Array.isArray(models) && models.some((model: { codename: string }) => model.codename === codename))
+			?.map(m => (typeof m === "string" ? m.toLowerCase() : m)) || [];
+	if (!platform || !brand) return null;
+
+	try {
+		const cpuRules = await require(`@ocwebutils/sc_rules/rules/${platform}/${brand}/${version}/${cpuCodename?.replace(/^[^_]*_/, "")}.rules.json`);
+		return cpuRules;
+	} catch (err) {
+		return null;
+	}
+};

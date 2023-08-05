@@ -4,7 +4,7 @@
 			<div class="flex flex-row">
 				<div class="form-control w-full">
 					<label for="cpu_model" class="label">
-						<span class="label-text">CPU</span>
+						<span class="label-text">CPU model</span>
 					</label>
 					<select
 						id="cpu_model"
@@ -15,7 +15,7 @@
 						<option value="default" disabled v-if="supportedCPUGenerations">Select CPU Model</option>
 						<option value="default" disabled v-else>Loading CPU models...</option>
 						<optgroup v-for="(type, key) in supportedCPUGenerations" :label="(key as unknown as string)">
-							<option v-for="{ codename, name } in type" :value="codename">{{ name }}</option>
+							<option v-for="{ codename, displayName } in type" :value="codename">{{ displayName }}</option>
 						</optgroup>
 					</select>
 				</div>
@@ -49,8 +49,8 @@ onMounted(async () => {
 	restoreSelections();
 });
 
-watch(selectedCPUModel, function (newval) {
-	getSupportedOCVersions(newval);
+watch(selectedCPUModel, function (newValue: string) {
+	getSupportedOCVersions(newValue);
 });
 
 const restoreSelections = () => {
@@ -74,7 +74,7 @@ const getSupportedOCVersions = async (cpumodel: string) => {
 
 		const supportedVersions = data.data.supportedVersions;
 
-		supportedOCVersions.value = supportedVersions.sort((a: string, b: string) => b.localeCompare(a));
+		supportedOCVersions.value = supportedVersions;
 		selectedOCVersion.value = supportedVersions[0];
 	} catch (err) {
 		return null;
@@ -86,12 +86,12 @@ const getSupportedCPUGenerations = async () => {
 		const { data } = await axiosInstance.get("/supportedCPUGenerations");
 		if (!data.success) return null;
 
-		let tempArray: { codename: string; name: string }[] = [];
-		Object.keys(data.data).map(key => {
-			Object.keys(data.data[key]).map(brand => {
+		let tempArray: { codename: string; displayName: string }[] = [];
+		Object.keys(data.data).forEach(key => {
+			Object.keys(data.data[key]).forEach(brand => {
 				const cpuModel = data.data[key][brand];
-				cpuModel.map((cpu: { codename: string; name: string }) => {
-					tempArray.push({ codename: cpu.codename, name: `[${brand}] ${cpu.name}` });
+				cpuModel.forEach((cpu: { codename: string; displayName: string }) => {
+					tempArray.push({ displayName: `[${brand}] ${cpu.displayName}`, codename: cpu.codename });
 				});
 			});
 			data.data[key] = tempArray;

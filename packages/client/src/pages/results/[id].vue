@@ -3,10 +3,16 @@
 		<div class="px-8 py-6 mt-4 text-left dark:bg-darkgray-700 bg-white shadow-lg rounded-xl w-full">
 			<div class="text-center">
 				<div class="float-right space-x-1">
-					<button class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors" aria-label="Copy URL to Clipboard">
+					<button
+						class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors"
+						aria-label="Copy URL to Clipboard"
+					>
 						<a href="#" @click.prevent="copyURL" aria-label="Copy URL to Clipboard"><font-awesome-icon icon="fa-solid fa-copy" /></a>
 					</button>
-					<button class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors" aria-label="Download result as CSV">
+					<button
+						class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors"
+						aria-label="Download result as CSV"
+					>
 						<a href="#" @click.prevent="downloadCsv" aria-label="Download result as CSV"><font-awesome-icon icon="fa-solid fa-download" /></a>
 					</button>
 				</div>
@@ -15,9 +21,6 @@
 						Validation results <span class="text-xs text-gray-500 dark:text-gray-200">for {{ route.params.id }}</span>
 					</p>
 					<span class="text-lg font-medium">
-						<span
-							>{{ result.metadata.cpuCodename.split("_")[0].charAt(0).toUpperCase() + result.metadata.cpuCodename.split("_")[0].slice(1) }} -
-						</span>
 						<span class="text-blue-600">{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span>
 						• OpenCore
 						<a

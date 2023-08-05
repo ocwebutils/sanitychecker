@@ -95,10 +95,10 @@ importers:
         version: 8.3.0
       '@ocwebutils/sc_checker':
         specifier: github:ocwebutils/sc_checker
-        version: github.com/ocwebutils/sc_checker/2620ba32220a3db097dad92323b6821134901ee5
+        version: github.com/ocwebutils/sc_checker/20fe58e93b1b545f3e3005fa46f0bd962a7cc6d6
       '@ocwebutils/sc_rules':
         specifier: github:ocwebutils/sc_rules
-        version: github.com/ocwebutils/sc_rules/389de93f4a88a9b4ce784f321e6702ee1bae89cd
+        version: github.com/ocwebutils/sc_rules/6c69f0374d93d41be958c2f9703900daaa4b5fb2
       ajv:
         specifier: 8.12.0
         version: 8.12.0
@@ -7847,8 +7847,8 @@ packages:
       readable-stream: 3.6.2
     dev: true
 
-  github.com/ocwebutils/sc_checker/2620ba32220a3db097dad92323b6821134901ee5:
-    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_checker/tar.gz/2620ba32220a3db097dad92323b6821134901ee5}
+  github.com/ocwebutils/sc_checker/20fe58e93b1b545f3e3005fa46f0bd962a7cc6d6:
+    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_checker/tar.gz/20fe58e93b1b545f3e3005fa46f0bd962a7cc6d6}
     name: '@ocwebutils/sc_checker'
     version: 1.1.1
     engines: {node: '>=16', pnpm: '>=8'}
@@ -7858,10 +7858,10 @@ packages:
       ajv: 8.12.0
     dev: false
 
-  github.com/ocwebutils/sc_rules/389de93f4a88a9b4ce784f321e6702ee1bae89cd:
-    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/389de93f4a88a9b4ce784f321e6702ee1bae89cd}
+  github.com/ocwebutils/sc_rules/6c69f0374d93d41be958c2f9703900daaa4b5fb2:
+    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/6c69f0374d93d41be958c2f9703900daaa4b5fb2}
     name: '@ocwebutils/sc_rules'
-    version: 1.0.0-beta.7
+    version: 1.0.0-rc.1
     prepare: true
     requiresBuild: true
     dev: false
