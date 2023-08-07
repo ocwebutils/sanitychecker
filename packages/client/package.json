@@ -32,7 +32,7 @@
 		"axios": "1.4.0",
 		"daisyui": "3.5.0",
 		"fast-xml-parser": "4.2.7",
-		"marked": "5.1.2",
+		"marked": "7.0.0",
 		"uuid": "9.0.0",
 		"vue-dompurify-html": "4.1.4",
 		"vue-toastification": "next"
