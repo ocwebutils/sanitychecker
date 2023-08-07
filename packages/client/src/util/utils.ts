@@ -132,7 +132,7 @@ export const getVariable = (variable: string): unknown => {
 	};
 
 export const parseMarked = (string: string): string => {
-	const stringToHtml = marked.parse(string, { mangle: false, headerIds: false, breaks: true });
+	const stringToHtml = marked.parse(string, { breaks: true });
 
 	return stringToHtml;
 };

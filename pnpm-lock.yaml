@@ -45,8 +45,8 @@ importers:
         specifier: 4.2.7
         version: 4.2.7
       marked:
-        specifier: 5.1.2
-        version: 5.1.2
+        specifier: 7.0.0
+        version: 7.0.0
       uuid:
         specifier: 9.0.0
         version: 9.0.0
@@ -98,7 +98,7 @@ importers:
         version: github.com/ocwebutils/sc_checker/20fe58e93b1b545f3e3005fa46f0bd962a7cc6d6
       '@ocwebutils/sc_rules':
         specifier: github:ocwebutils/sc_rules
-        version: github.com/ocwebutils/sc_rules/6c69f0374d93d41be958c2f9703900daaa4b5fb2
+        version: github.com/ocwebutils/sc_rules/5198a0278c19ed918c75f6020feb0c2ea26b14f1
       ajv:
         specifier: 8.12.0
         version: 8.12.0
@@ -4746,8 +4746,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /marked@5.1.2:
-    resolution: {integrity: sha512-ahRPGXJpjMjwSOlBoTMZAK7ATXkli5qCPxZ21TG44rx1KEo44bii4ekgTDQPNRQ4Kh7JMb9Ub1PVk1NxRSsorg==}
+  /marked@7.0.0:
+    resolution: {integrity: sha512-7Gv1Ry8tqR352ElQOQfxdGpIh8kNZh/yYjNCxAQCN1DDbY4bCTG3qDCSkZWlRElSseeEILDxkY/G9w7cgziBNw==}
     engines: {node: '>= 16'}
     hasBin: true
     dev: false
@@ -7858,8 +7858,8 @@ packages:
       ajv: 8.12.0
     dev: false
 
-  github.com/ocwebutils/sc_rules/6c69f0374d93d41be958c2f9703900daaa4b5fb2:
-    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/6c69f0374d93d41be958c2f9703900daaa4b5fb2}
+  github.com/ocwebutils/sc_rules/5198a0278c19ed918c75f6020feb0c2ea26b14f1:
+    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/5198a0278c19ed918c75f6020feb0c2ea26b14f1}
     name: '@ocwebutils/sc_rules'
     version: 1.0.0-rc.1
     prepare: true
