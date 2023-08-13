@@ -7,7 +7,7 @@
 				:class="dropZoneActive ? 'border-solid dark:bg-bray-800 dark:border-gray-500 dark:bg-darkgray-700' : 'hover:border-solid border-dashed'"
 			>
 				<div class="flex flex-col justify-center items-center pt-5 pb-6">
-					<font-awesome-icon icon="fa-solid fa-cloud-arrow-up" class="mb-3 w-10 h-10 text-gray-400 dark:text-gray-300" />
+					<fa-icon icon="fa-solid fa-cloud-arrow-up" class="mb-3 w-10 h-10 text-gray-400 dark:text-gray-300" />
 					<p class="mb-2 text-sm text-gray-500 dark:text-gray-300" v-if="dropZoneActive">
 						<span class="font-semibold">Drop your config here</span>
 					</p>

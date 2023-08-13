@@ -19,7 +19,11 @@
 							<tr v-for="(result, index) in uploads">
 								<th>{{ index + 1 }}</th>
 								<th>
-									<NuxtLink class="hover:underline" :href="'/results/' + result.resultId" :id="'id-result-' + index">{{ result.resultId }}</NuxtLink>
+									<div class="tooltip" :data-tip="`${result.metadata.cpuName} - v${result.metadata.ocVersion}`">
+										<NuxtLink class="hover:underline" :href="'/results/' + result.resultId" :id="'id-result-' + index">{{
+											result.resultId
+										}}</NuxtLink>
+									</div>
 								</th>
 								<th>
 									<span class="countdown font-mono space-x-2">
@@ -77,15 +81,16 @@ const executeResultDeletion = async (e: MouseEvent) => {
 };
 
 async function getUploadList() {
-	const uuid = await getIdentificator();
+	const uuid = (await getIdentificator()) as string;
 	try {
 		const { data } = await axiosInstance.get("/user/uploadedResults", {
 			headers: {
-				"x-user-id": uuid as string
+				"x-user-id": uuid
 			}
 		});
 		if (!data.success) {
-			toast.error("Error occured", {
+			console.error(data);
+			toast.error("Error occured. Check console for errors", {
 				timeout: 5000
 			});
 

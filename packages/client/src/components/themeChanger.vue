@@ -1,12 +1,12 @@
 <template>
 	<div>
 		<button
-			class="flex space-x-2 transition-colors btn btn-circle items-center justify-center bg-gray-200"
-			aria-label="Switch Colors button"
+			class="flex h-9 w-9 items-center justify-center rounded-xl bg-neutral-500"
+			aria-label="Toggle between dark and light mode"
 			type="button"
 			@click="changeThemeColor"
 		>
-			<font-awesome-icon class="h-5 w-5" size="lg" :icon="icon" :style="{ color: 'black' }" />
+			<fa-icon class="h-5 w-5" size="lg" :icon="icon" :style="{ color: 'black' }" />
 		</button>
 	</div>
 </template>
@@ -24,9 +24,7 @@ export default {
 
 			if (!htmlSelector) return;
 
-			htmlSelector.getAttribute("data-theme") === "light"
-				? htmlSelector.setAttribute("data-theme", "dark")
-				: htmlSelector.setAttribute("data-theme", "light");
+			htmlSelector.setAttribute("data-theme", this.$colorMode.value === "light" ? "dark" : "light");
 			this.$colorMode.preference = this.$colorMode.value === "light" ? "dark" : "light";
 		}
 	}

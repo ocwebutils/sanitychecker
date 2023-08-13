@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-col pt-4 items-center place-content-center justify-center px-16">
+	<div class="flex flex-col pt-2 items-center place-content-center justify-center px-16">
 		<div class="px-8 py-6 mt-4 text-left dark:bg-darkgray-700 bg-white shadow-lg rounded-xl w-full">
 			<div class="text-center">
 				<div class="float-right space-x-1">
@@ -7,13 +7,13 @@
 						class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors"
 						aria-label="Copy URL to Clipboard"
 					>
-						<a href="#" @click.prevent="copyURL" aria-label="Copy URL to Clipboard"><font-awesome-icon icon="fa-solid fa-copy" /></a>
+						<a href="#" @click.prevent="copyURL" aria-label="Copy URL to Clipboard"><fa-icon icon="fa-solid fa-copy" /></a>
 					</button>
 					<button
 						class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors"
 						aria-label="Download result as CSV"
 					>
-						<a href="#" @click.prevent="downloadCsv" aria-label="Download result as CSV"><font-awesome-icon icon="fa-solid fa-download" /></a>
+						<a href="#" @click.prevent="downloadCsv" aria-label="Download result as CSV"><fa-icon icon="fa-solid fa-download" /></a>
 					</button>
 				</div>
 				<div class="flex flex-col text-left">
@@ -26,7 +26,7 @@
 						<a
 							:href="`https://github.com/acidanthera/OpenCorePkg/releases/tag/${result.metadata.ocVersion}`"
 							class="text-blue-600 hover:text-blue-700 transition-colors link-underline hover:link-underline"
-							>v{{ result.metadata.ocVersion }} <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" size="xs" /> </a
+							>v{{ result.metadata.ocVersion }} <fa-icon icon="fa-solid fa-arrow-up-right-from-square" size="xs" /> </a
 					></span>
 					<p class="font-medium text-sm">Note: This validation doesn't guarantee working config if everything is shown as correct</p>
 				</div>
@@ -38,7 +38,7 @@
 					<template class="inline" v-for="res in result.results.schemaResults.missingRoot">
 						<span v-if="res === property">
 							<div class="tooltip" data-tip="This root dictionary is missing from your config">
-								<font-awesome-icon
+								<fa-icon
 									class="mr-2"
 									icon="fa-solid fa-circle-xmark"
 									:style="{
@@ -102,6 +102,7 @@ const getResult = async (id: string) => {
 		try {
 			const { data } = await axiosInstance.get(`/result/${id}`);
 			if (!data.success || !data.data) {
+				console.error(data);
 				toast.error(data.error, {
 					timeout: 5000
 				});
@@ -112,6 +113,7 @@ const getResult = async (id: string) => {
 			return data.data;
 		} catch (error) {
 			if (isAxiosError(error)) {
+				console.error(error.response?.data);
 				toast.error(error.response?.data.error, {
 					timeout: 5000
 				});
@@ -123,6 +125,7 @@ const getResult = async (id: string) => {
 		try {
 			const { data } = await axiosInstance.get(`/schema?v=${ocVersion}`);
 			if (!data.success || !data.data) {
+				console.error(data);
 				toast.error(data.error, {
 					timeout: 5000
 				});
@@ -133,6 +136,7 @@ const getResult = async (id: string) => {
 			return data.data;
 		} catch (error) {
 			if (isAxiosError(error)) {
+				console.error(error.response?.data);
 				toast.error(error.response?.data.error, {
 					timeout: 5000
 				});

@@ -16,7 +16,9 @@ import {
 	faQuestion,
 	faSun,
 	faDownload,
-	faArrowUpRightFromSquare
+	faArrowUpRightFromSquare,
+	faHome,
+	faGavel
 } from "@fortawesome/free-solid-svg-icons";
 import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
 
@@ -41,10 +43,12 @@ library.add(
 	faCube,
 	faCloudArrowUp,
 	faDownload,
-	faArrowUpRightFromSquare
+	faArrowUpRightFromSquare,
+	faHome,
+	faGavel
 );
 library.add(faGithub, faDiscord);
 
 export default defineNuxtPlugin(nuxtApp => {
-	nuxtApp.vueApp.component("font-awesome-icon", FontAwesomeIcon);
+	nuxtApp.vueApp.component("fa-icon", FontAwesomeIcon);
 });

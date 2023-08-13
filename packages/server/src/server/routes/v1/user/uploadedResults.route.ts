@@ -75,6 +75,7 @@ const uploadedResults: Route = {
 
 		const query = (await ResultModel.find({ createdBy: user }, { _id: 0, __v: 0 })
 			.lean()
+			.sort({ expireDate: 1 })
 			.select(["createdBy", "expireDate", "resultId", "metadata"])) as Result[];
 		if (!query)
 			return res.status(404).send({ success: false, error: "Sorry, we couldn't retrieve the requested data at this time. Please try again later." });
