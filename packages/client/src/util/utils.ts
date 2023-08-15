@@ -32,9 +32,8 @@ export const getIcon = (type: "success" | "info" | "warning" | "error") => {
 			};
 		}
 
-		default: {
+		default:
 			return { icon: null, style: null };
-		}
 	}
 };
 
@@ -72,9 +71,8 @@ export const displayNormalizedName = (out: ValueType | SchemaType, type: "schema
 				: `${ruleOut.path.split("/")[1]} → ${ruleOut.path.split("/")[2]}:`;
 		}
 
-		default: {
+		default:
 			return `${out.path.split("/")[1]} → ${out.path.split("/")[2]}:`;
-		}
 	}
 };
 
@@ -96,7 +94,6 @@ export const getVariable = (variable: string): unknown => {
 		if (!process.client) return;
 
 		const domain = process.dev ? "localhost" : window.location.hostname.replace(/^(?:[^.]+\.)?(\w+\.\w+)$/, "$1");
-
 		const cookie = useCookie(name, {
 			expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 365),
 			domain
@@ -108,7 +105,6 @@ export const getVariable = (variable: string): unknown => {
 		if (!process.client) return;
 
 		const domain = process.dev ? "localhost" : window.location.hostname.replace(/^(?:[^.]+\.)?(\w+\.\w+)$/, "$1");
-
 		const cookie = useCookie(name, {
 			expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 365),
 			domain
@@ -125,15 +121,15 @@ export const getVariable = (variable: string): unknown => {
 	isJson = (str: string) => {
 		try {
 			JSON.parse(str);
-		} catch (e) {
+		} catch {
 			return false;
 		}
+
 		return true;
 	};
 
 export const parseMarked = (string: string): string => {
 	const stringToHtml = marked.parse(string, { breaks: true });
-
 	return stringToHtml;
 };
 

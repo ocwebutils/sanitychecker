@@ -18,7 +18,9 @@ import {
 	faDownload,
 	faArrowUpRightFromSquare,
 	faHome,
-	faGavel
+	faGavel,
+	faXmark,
+	faCheck
 } from "@fortawesome/free-solid-svg-icons";
 import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
 
@@ -45,7 +47,9 @@ library.add(
 	faDownload,
 	faArrowUpRightFromSquare,
 	faHome,
-	faGavel
+	faGavel,
+	faCheck,
+	faXmark
 );
 library.add(faGithub, faDiscord);
 

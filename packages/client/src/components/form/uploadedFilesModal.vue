@@ -9,10 +9,10 @@
 					<table class="table w-full max-h-20">
 						<thead>
 							<tr>
-								<th></th>
-								<th>ID</th>
-								<th>Remaining time</th>
-								<th>Action</th>
+								<th scope="col">#</th>
+								<th scope="col">ID</th>
+								<th scope="col">Remaining time</th>
+								<th scope="col">Action</th>
 							</tr>
 						</thead>
 						<tbody v-if="uploads">
@@ -54,8 +54,9 @@ import { axiosInstance } from "@/util/axiosInstance";
 import { useToast } from "vue-toastification";
 import { isAxiosError } from "axios";
 
-const uploads = await getUploadList(),
-	date = Date.now();
+const uploads = await getUploadList();
+const date = Date.now();
+const toast = useToast();
 
 onMounted(() => {
 	document.querySelectorAll(".countdown").forEach(e => {
@@ -64,15 +65,11 @@ onMounted(() => {
 	});
 });
 
-const toast = useToast();
-
 const getDiff = (start: number, end: number) => {
-	let diffms = Math.abs(end - start) / 1000;
+	const diffms = Math.abs(end - start) / 1000;
 	const days = Math.floor(diffms / 86400);
-	diffms -= days * 86400;
-	const hours = Math.floor(diffms / 3600) % 24;
-	diffms -= hours * 3600;
-	const minutes = Math.floor(diffms / 60) % 60;
+	const hours = Math.floor((diffms % 86400) / 3600);
+	const minutes = Math.floor((diffms % 3600) / 60);
 	return [days, hours, minutes];
 };
 
@@ -98,10 +95,10 @@ async function getUploadList() {
 		}
 
 		return data.data;
-	} catch (err) {
-		if (isAxiosError(err)) {
-			console.error(err);
-			toast.error(err.code === "ERR_NETWORK" ? "Backend is offline. Try again later" : "Error occured", {
+	} catch (error) {
+		if (isAxiosError(error)) {
+			console.error(error);
+			toast.error(error.code === "ERR_NETWORK" ? "Backend is offline. Try again later" : "Error occured", {
 				timeout: 5000
 			});
 

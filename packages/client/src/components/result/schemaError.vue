@@ -30,12 +30,21 @@ const props = defineProps({
 
 const returnMessage = (msg: string, path: string, type?: string) => {
 	if (msg.includes("must NOT have additional properties"))
-		return `This property shouldn't exist in the provided config. There is two common reasons why this error appears: \n- Most likely it has been replaced, removed or never existed in this OpenCore version. \n- You accidentally moved this property to the wrong place. \n\nNote: Please check the [OpenCore's Documentation](https://github.com/acidanthera/OpenCorePkg/blob/${props.ocVersion}/Docs/Configuration.pdf) for **v${props.ocVersion}** to know more about this property`;
+		return `This property isn't expected in the provided configuration. There are two common reasons why this error occurs:
+- It's possible that the property has been replaced, removed, or was never present in this version of OpenCore,
+- You might have accidentally relocated this property to an incorrect location within the configuration
+\nNote: For further information about this property, please refer to the **[OpenCore's Documentation](https://github.com/acidanthera/OpenCorePkg/blob/${props.ocVersion}/Docs/Configuration.pdf)** for version **v${props.ocVersion}**`;
 
 	if (msg.includes("missing property") || msg.includes("must have required property"))
-		return `This property hasn't been detected in the provided config. There is two common reasons why this error appears: \n- Most likely it's new in **v${props.ocVersion}** so you might need to add it manually. \n- You accidentally moved the property to the wrong place and now it's missing in its required place. \n\nMake sure it is present in \`${path}\` \nNote: Please check the [OpenCore's Documentation](https://github.com/acidanthera/OpenCorePkg/blob/${props.ocVersion}/Docs/Configuration.pdf) for **v${props.ocVersion}** to know more about this property`;
+		return `The specified property was not detected in the provided configuration. There are two common reasons behind this error:
+- It is possible that this property is new in **v${props.ocVersion}**, requiring manual addition to the configuration,
+- You might have accidentally relocated this property to an incorrect location within the configuration
+\nMake sure this property is included correctly in \`${path}\`
+Note: For further information about this property, please refer to the **[OpenCore's Documentation](https://github.com/acidanthera/OpenCorePkg/blob/${props.ocVersion}/Docs/Configuration.pdf)** for version **v${props.ocVersion}**`;
 
-	if (msg.includes("must be")) return `This property doesn't have the right type. Expected type is \`${type}\``;
+	if (msg.includes("must be"))
+		return `This property doesn't have the correct type. It should have a type of \`${type}\`
+Note: For further information about this property, please refer to the **[OpenCore's Documentation](https://github.com/acidanthera/OpenCorePkg/blob/${props.ocVersion}/Docs/Configuration.pdf)** for version **v${props.ocVersion}**`;
 };
 </script>
 <style>

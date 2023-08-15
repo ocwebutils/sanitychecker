@@ -33,7 +33,7 @@ const getPackageVersions = async () => {
 		if (!data.success || !data.data) return null;
 
 		return data.data;
-	} catch (error) {
+	} catch {
 		return null;
 	}
 };

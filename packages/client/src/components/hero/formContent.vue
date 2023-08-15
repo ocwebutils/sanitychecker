@@ -17,50 +17,43 @@
 		</div>
 	</section>
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import { validateplist, parseplist } from "@/util/plistHandler";
 import { handleForm } from "@/util/handleForm";
 import { useToast } from "vue-toastification";
 
-export default {
-	data() {
-		return {
-			processing: false
-		};
-	},
-	setup() {
-		const router = useRouter();
-		const toast = useToast();
+const processing = ref<boolean>(false);
 
-		return { router, toast };
-	},
-	methods: {
-		dropFileHandler: async function (msg: File[] | Event) {
-			const message = msg instanceof Event ? (msg?.target as HTMLInputElement).files : msg;
-			if (!message || !message.length) return;
-			const file = message[0];
+const toast = useToast();
 
-			if (!file?.name.endsWith(".plist")) return this.showErrorNotif("This isn't valid plist file!");
-			if (file.size > 2 * 1024 * 1024) return this.showErrorNotif("File size is too big!");
-			const xmlval = await validateplist(file),
-				parsedplist = await parseplist(file);
+const dropFileHandler = async (msg: File[] | Event) => {
+	const message = msg instanceof Event ? (msg?.target as HTMLInputElement).files : msg;
+	if (!message || !message.length) return;
+	const file = message[0];
 
-			if (!xmlval || !parsedplist) return this.showErrorNotif("This isn't valid plist file!");
-			this.processing = true;
+	if (!file?.name.endsWith(".plist")) return showErrorNotif("This isn't valid plist file!");
+	if (file.size > 2 * 1024 * 1024) return showErrorNotif("File size is too big!");
+	const xmlval = await validateplist(file),
+		parsedplist = await parseplist(file);
 
-			const result = await handleForm(parsedplist as Record<string, unknown>);
-			if (!result.success) {
-				this.showErrorNotif(result.error);
-				this.processing = false;
-				return;
-			}
-			this.router.push(`/results/${result.data.resultId}`);
-		},
-		showErrorNotif: async function (msg: string) {
-			this.toast.error(msg, {
-				timeout: 3000
-			});
-		}
+	if (!xmlval || !parsedplist) return showErrorNotif("This isn't valid plist file!");
+	processing.value = true;
+
+	const result = await handleForm(parsedplist as Record<string, unknown>);
+	if (!result.success) {
+		showErrorNotif(result.error);
+		processing.value = false;
+		return;
 	}
+
+	await navigateTo(`/results/${result.data.resultId}`);
+};
+
+const showErrorNotif = (msg: string) => {
+	toast.error(msg, {
+		timeout: 3000
+	});
+
+	return;
 };
 </script>

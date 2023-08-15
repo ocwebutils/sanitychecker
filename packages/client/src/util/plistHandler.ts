@@ -10,10 +10,11 @@ export function validateplist(file: Blob): Promise<boolean> {
 				});
 
 				resolve(true);
-			} catch (e) {
+			} catch {
 				reject(false);
 			}
 		};
+
 		reader.readAsText(file);
 	});
 }
@@ -27,6 +28,7 @@ export function parseplist(file: Blob): Promise<object | boolean> {
 			if (typeof result === "object") resolve(result);
 			else reject(false);
 		};
+
 		reader.readAsText(file);
 	});
 }

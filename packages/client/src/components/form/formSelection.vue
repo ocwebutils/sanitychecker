@@ -14,8 +14,8 @@
 					>
 						<option value="default" disabled v-if="supportedCPUGenerations">Select CPU Model</option>
 						<option value="default" disabled v-else>Loading CPU models...</option>
-						<optgroup v-for="(type, key) in supportedCPUGenerations" :label="(key as unknown as string)">
-							<option v-for="{ codename, displayName } in type" :value="codename">{{ displayName }}</option>
+						<optgroup v-for="(cpuModel, platform) in supportedCPUGenerations" :label="platform">
+							<option v-for="{ codename, displayName } in cpuModel" :value="codename">{{ displayName }}</option>
 						</optgroup>
 					</select>
 				</div>
@@ -24,7 +24,7 @@
 		<div class="relative inline-block dark:text-white text-black w-full" v-if="supportedOCVersions">
 			<div class="form-control">
 				<label for="oc_version" class="label">
-					<span class="label-text">OC Version</span>
+					<span class="label-text">OC version</span>
 				</label>
 				<select id="oc_version" class="select select-bordered dark:bg-darkgray-800" v-model="selectedOCVersion">
 					<option v-for="version in supportedOCVersions" :value="version">v{{ version }}</option>
@@ -38,7 +38,7 @@
 import { getVariable } from "@/util/utils";
 import { axiosInstance } from "@/util/axiosInstance";
 
-const supportedCPUGenerations = ref(null),
+const supportedCPUGenerations = ref<Record<string, { codename: string; displayName: string }[]> | null>(null),
 	supportedOCVersions = ref(null),
 	selectedCPUModel = ref("default"),
 	selectedOCVersion = ref<string | null>(null);
@@ -89,7 +89,7 @@ const getSupportedCPUGenerations = async () => {
 		let tempArray: { codename: string; displayName: string }[] = [];
 		Object.keys(data.data).forEach(key => {
 			Object.keys(data.data[key]).forEach(brand => {
-				const cpuModel = data.data[key][brand];
+				const cpuModel: { codename: string; displayName: string }[] = data.data[key][brand];
 				cpuModel.forEach((cpu: { codename: string; displayName: string }) => {
 					tempArray.push({ displayName: `[${brand}] ${cpu.displayName}`, codename: cpu.codename });
 				});
