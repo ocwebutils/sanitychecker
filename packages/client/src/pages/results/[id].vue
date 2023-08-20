@@ -50,8 +50,8 @@
 					</template>
 					<template v-for="results in result.results.rulesResults">
 						<template v-if="results.path.includes(property)">
-							<ResultValueError :ruleOutput="results" :ocVersion="result.metadata.ocVersion" v-if="results.ruleSet.type !== 'success'" />
-							<ResultValueSuccess :ruleOutput="results" :ocVersion="result.metadata.ocVersion" v-else />
+							<ResultValueError :ruleOutput="results" v-if="results.ruleSet.type !== 'success'" />
+							<ResultValueSuccess :ruleOutput="results" v-else />
 						</template>
 					</template>
 					<template v-for="schemaError in result.results.schemaResults.errorArray">
