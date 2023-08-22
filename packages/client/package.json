@@ -13,12 +13,12 @@
 	},
 	"devDependencies": {
 		"@kevinmarrec/nuxt-pwa": "0.17.0",
-		"@nuxt/image-edge": "1.0.0-rc.1-28180077.d51e794",
+		"@nuxt/image-edge": "1.0.0-rc.1-28205905.cb96767",
 		"@nuxtjs/color-mode": "3.3.0",
 		"@nuxtjs/tailwindcss": "6.8.0",
 		"@types/json-schema": "7.0.12",
 		"@types/marked": "5.0.1",
-		"@types/node": "18.17.5",
+		"@types/node": "18.17.7",
 		"@types/plist": "3.0.2",
 		"@types/uuid": "9.0.2",
 		"nuxt": "3.6.5"
@@ -32,7 +32,7 @@
 		"axios": "1.4.0",
 		"daisyui": "3.5.1",
 		"fast-xml-parser": "4.2.7",
-		"marked": "7.0.2",
+		"marked": "7.0.4",
 		"uuid": "9.0.0",
 		"vue-dompurify-html": "4.1.4",
 		"vue-toastification": "next"
