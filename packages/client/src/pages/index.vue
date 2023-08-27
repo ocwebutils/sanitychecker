@@ -7,7 +7,7 @@
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { createIdentificator } from "@/util/identificator";
 
 onMounted(async () => {

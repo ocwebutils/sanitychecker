@@ -1,6 +1,6 @@
 import { XMLValidator } from "fast-xml-parser";
 
-export function validateplist(file: Blob): Promise<boolean> {
+export function validatePlist(file: Blob): Promise<boolean> {
 	return new Promise<boolean>((resolve, reject) => {
 		const reader = new FileReader();
 		reader.onload = () => {
@@ -19,14 +19,18 @@ export function validateplist(file: Blob): Promise<boolean> {
 	});
 }
 
-export function parseplist(file: Blob): Promise<object | boolean> {
+export function parsePlist(file: Blob): Promise<object | boolean> {
 	return new Promise<object | boolean>((resolve, reject) => {
 		const reader = new FileReader();
 		reader.onload = () => {
-			// @ts-expect-error: We import browser build of plist.js
-			const result = plist.parse(reader.result as string);
-			if (typeof result === "object") resolve(result);
-			else reject(false);
+			try {
+				// @ts-expect-error: plist.js is imported with script tag
+				const result = plist.parse(reader.result as string);
+				if (typeof result === "object") resolve(result);
+				else reject(false);
+			} catch {
+				reject(false);
+			}
 		};
 
 		reader.readAsText(file);

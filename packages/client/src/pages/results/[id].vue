@@ -28,7 +28,9 @@
 							class="text-blue-600 hover:text-blue-700 transition-colors link-underline hover:link-underline"
 							>v{{ result.metadata.ocVersion }} <fa-icon icon="fa-solid fa-arrow-up-right-from-square" size="xs" /> </a
 					></span>
-					<p class="font-medium text-sm">Note: This validation doesn't guarantee working config if everything is shown as correct</p>
+					<p class="font-medium text-sm">
+						Note: Even if everything appears to be correct, this validation doesn't guarantee that the configuration will work
+					</p>
 				</div>
 			</div>
 			<div class="divider" />
@@ -184,7 +186,7 @@ const getResult = async (id: string) => {
 			timeout: 5000
 		});
 	},
-	copyURL = (_: unknown) => {
+	copyURL = (_: Event) => {
 		const permissionName = "clipboard-write" as PermissionName;
 		if (!navigator.permissions || !navigator.permissions.query) {
 			copyToClipboard();

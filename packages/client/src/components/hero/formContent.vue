@@ -18,7 +18,7 @@
 	</section>
 </template>
 <script setup lang="ts">
-import { validateplist, parseplist } from "@/util/plistHandler";
+import { validatePlist, parsePlist } from "@/util/plistHandler";
 import { handleForm } from "@/util/handleForm";
 import { useToast } from "vue-toastification";
 
@@ -26,20 +26,19 @@ const processing = ref<boolean>(false);
 
 const toast = useToast();
 
-const dropFileHandler = async (msg: File[] | Event) => {
-	const message = msg instanceof Event ? (msg?.target as HTMLInputElement).files : msg;
-	if (!message || !message.length) return;
-	const file = message[0];
+const dropFileHandler = async (event: File[] | Event) => {
+	const eventFile = event instanceof Event ? (event?.target as HTMLInputElement).files : event;
+	if (!eventFile || !eventFile.length) return;
+	const file = eventFile[0];
 
-	if (!file?.name.endsWith(".plist")) return showErrorNotif("This isn't valid plist file!");
-	if (file.size > 2 * 1024 * 1024) return showErrorNotif("File size is too big!");
-	const xmlval = await validateplist(file),
-		parsedplist = await parseplist(file);
+	if (!file?.name.endsWith(".plist")) return showErrorNotif("The file uploaded may not be plist file");
+	const validationRes = await validatePlist(file),
+		parsedRes = await parsePlist(file);
 
-	if (!xmlval || !parsedplist) return showErrorNotif("This isn't valid plist file!");
+	if (!validationRes || !parsedRes) return showErrorNotif("Error trying to parse this file. Are you sure it's a valid plist file?");
 	processing.value = true;
 
-	const result = await handleForm(parsedplist as Record<string, unknown>);
+	const result = await handleForm(parsedRes as Record<string, unknown>);
 	if (!result.success) {
 		showErrorNotif(result.error);
 		processing.value = false;

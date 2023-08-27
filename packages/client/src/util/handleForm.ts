@@ -36,8 +36,8 @@ export const handleForm = async (file: Record<string, unknown>) => {
 			if (isAxiosError(error)) return { success: false, error: error.response?.data.error ?? "Unknown error" };
 		}
 	},
-	deleteResult = async (e: MouseEvent | HTMLElement) => {
-		const target = e instanceof HTMLElement ? e : (e.target as HTMLElement);
+	deleteResult = async (event: MouseEvent | HTMLElement) => {
+		const target = event instanceof HTMLElement ? event : (event.target as HTMLElement);
 		const id = target.id.split("-")[2],
 			uploadID = (document.querySelector(`#id-result-${id}`) as HTMLLinkElement).innerText,
 			parentElement = target.closest("tr") as HTMLTableRowElement;
@@ -49,7 +49,7 @@ export const handleForm = async (file: Record<string, unknown>) => {
 				"x-user-id": uuid as string
 			}
 		});
-		if (!data.success) return null;
+		if (!data.success) return;
 
 		parentElement.remove();
 	};
