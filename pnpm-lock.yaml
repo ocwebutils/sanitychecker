@@ -34,7 +34,7 @@ importers:
         version: 3.0.3(@fortawesome/fontawesome-svg-core@6.4.2)(vue@3.3.4)
       autoprefixer:
         specifier: 10.4.15
-        version: 10.4.15(postcss@8.4.28)
+        version: 10.4.15(postcss@8.4.29)
       axios:
         specifier: 1.5.0
         version: 1.5.0
@@ -45,8 +45,8 @@ importers:
         specifier: 4.2.7
         version: 4.2.7
       marked:
-        specifier: 8.0.1
-        version: 8.0.1
+        specifier: 9.0.0
+        version: 9.0.0
       uuid:
         specifier: 9.0.0
         version: 9.0.0
@@ -2683,6 +2683,7 @@ packages:
       picocolors: 1.0.0
       postcss: 8.4.28
       postcss-value-parser: 4.2.0
+    dev: true
 
   /autoprefixer@10.4.15(postcss@8.4.29):
     resolution: {integrity: sha512-KCuPB8ZCIqFdA4HwKXsvz7j6gvSDNhDP7WnUjBleRkKjPdvCmHFuQ77ocavI8FT6NdvlBnE2UFr2H4Mycn8Vew==}
@@ -2698,7 +2699,6 @@ packages:
       picocolors: 1.0.0
       postcss: 8.4.29
       postcss-value-parser: 4.2.0
-    dev: true
 
   /avvio@8.2.1:
     resolution: {integrity: sha512-TAlMYvOuwGyLK3PfBb5WKBXZmXz2fVCgv23d6zZFdle/q3gPjmxBaeuC0pY0Dzs5PWMSgfqqEZkrye19GlDTgw==}
@@ -5139,8 +5139,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /marked@8.0.1:
-    resolution: {integrity: sha512-eEbeEb/mJwh+sNLEhHOWtxMgjN/NEwZUBs1nkiIH2sTQTq07KmPMQ48ihyvo5+Ya56spVOPhunfGr6406crCVA==}
+  /marked@9.0.0:
+    resolution: {integrity: sha512-37yoTpjU+TSXb9OBYY5n78z/CqXh76KiQj9xsKxEdztzU9fRLmbWO5YqKxgCVGKlNdexppnbKTkwB3RipVri8w==}
     engines: {node: '>= 16'}
     hasBin: true
     dev: false
@@ -5469,6 +5469,7 @@ packages:
 
   /napi-wasm@1.1.0:
     resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
+    requiresBuild: true
     dev: true
 
   /negotiator@0.6.3:
@@ -6579,7 +6580,6 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: true
 
   /prebuild-install@7.1.1:
     resolution: {integrity: sha512-jAXscXWMcCK8GgCoHOfIr0ODh5ai8mj63L2nWrjuAgXE6tDyYGnx4/8o/rCgU+B4JSyZBKbeZqzhtwtC3ovxjw==}
