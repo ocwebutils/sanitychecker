@@ -1,5 +1,5 @@
-import { connect, set } from "mongoose";
-import { logger } from "../config";
+import { connect } from "mongoose";
+import { logger } from "../config.js";
 
 export default async function connectDatabase(): Promise<void> {
 	try {

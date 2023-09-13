@@ -1,14 +1,14 @@
+import type { BasicResponse, Route, validateResult } from "server/interfaces/routes.interface.js";
 import { ConfigChecker, SchemaChecker } from "@ocwebutils/sc_checker";
-import { FastifyRequest } from "fastify";
-import { getRules, getSchema } from "../../../util/file";
+import type { RulesResult, SchemaResults, UploadMetadata } from "server/interfaces/metadata.interface.js";
+import { getRules, getSchema } from "server/util/file.js";
 
-import { RulesResult, SchemaResults, UploadMetadata } from "../../../interfaces/metadata.interface";
-import ResultModel from "../../../database/models/Result";
-import { deleteOldResults } from "../../../util/deleteOldResults";
+import type { FastifyRequest } from "fastify";
+import type { ReplyPayload } from "server/interfaces/fastify.interface.js";
+import ResultModel from "server/database/models/Result.js";
+import { deleteOldResults } from "server/util/deleteOldResults.js";
 import { randomUUID } from "node:crypto";
-import { uuidValidate } from "../../../util/uuidValidate";
-import { ReplyPayload } from "server/interfaces/fastify.interface";
-import { BasicResponse, Route, validateResult } from "server/interfaces/routes.interface";
+import { uuidValidate } from "server/util/uuidValidate.js";
 
 const routeSchema = {
 	body: {

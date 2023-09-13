@@ -1,9 +1,9 @@
-import { FastifyRequest } from "fastify";
+import type { BasicResponse, Route } from "server/interfaces/routes.interface.js";
 
-import { getSchema } from "../../../util/file";
-import { BasicResponse, Route } from "server/interfaces/routes.interface";
-import { ReplyPayload } from "server/interfaces/fastify.interface";
-import { JSONSchema7 } from "json-schema";
+import type { FastifyRequest } from "fastify";
+import type { ReplyPayload } from "server/interfaces/fastify.interface.js";
+import type { SchemaType } from "server/util/file.js";
+import { getSchema } from "server/util/file.js";
 
 const routeSchema = {
 	querystring: {
@@ -47,7 +47,7 @@ const getOpenCoreSchema: Route = {
 	method: "GET",
 	schema: routeSchema,
 	attachValidation: true,
-	handler: async (req: FastifyRequest<{ Querystring: { v: string } }>, res: ReplyPayload<BasicResponse<JSONSchema7>>): Promise<typeof res> => {
+	handler: async (req: FastifyRequest<{ Querystring: { v: string } }>, res: ReplyPayload<BasicResponse<SchemaType>>): Promise<typeof res> => {
 		const { v: version } = req.query;
 
 		const file = await getSchema(version);

@@ -5,17 +5,13 @@
 		"packages/*"
 	],
 	"scripts": {
-		"build": "pnpm --stream -r build",
-		"start:client": "pnpm --filter @ocwebutils/sanitychecker_client run start",
-		"start:server": "pnpm --filter @ocwebutils/sanitychecker_server run start"
+		"build": "bun run --cwd 'packages/client' build && bun run --cwd 'packages/server' build",
+		"start:client": "bun run --cwd 'packages/client' start",
+		"start:server": "bun run --cwd 'packages/client' server"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "17.7.1",
 		"@commitlint/config-conventional": "17.7.0",
 		"husky": "8.0.3"
-	},
-	"engines": {
-		"node": ">=16",
-		"pnpm": ">=8"
 	}
 }

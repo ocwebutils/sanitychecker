@@ -1,4 +1,4 @@
-import ResultModel from "../database/models/Result";
+import ResultModel from "server/database/models/Result.js";
 
 export const deleteOldResults = async () => {
 	const query = await ResultModel.find({}).select(["expireDate", "resultId"]).lean();

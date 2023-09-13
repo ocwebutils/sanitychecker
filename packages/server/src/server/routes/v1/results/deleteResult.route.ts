@@ -1,9 +1,9 @@
-import { FastifyRequest } from "fastify";
+import type { BasicResponse, Route } from "server/interfaces/routes.interface.js";
 
-import { Result } from "server/interfaces/metadata.interface";
-import ResultModel from "../../../database/models/Result";
-import { BasicResponse, Route } from "server/interfaces/routes.interface";
-import { ReplyPayload } from "server/interfaces/fastify.interface";
+import type { FastifyRequest } from "fastify";
+import type { ReplyPayload } from "server/interfaces/fastify.interface.js";
+import type { Result } from "server/interfaces/metadata.interface.js";
+import ResultModel from "server/database/models/Result.js";
 
 const routeSchema = {
 	headers: {

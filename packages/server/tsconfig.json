@@ -1,14 +1,5 @@
 {
-	"compilerOptions": {
-		"target": "ESNEXT",
-		"module": "commonjs",
-		"outDir": "dist",
-		"strict": true,
-		"moduleResolution": "node",
-		"baseUrl": "./src",
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
-		"resolveJsonModule": true
-	},
+	"extends": ["../../tsconfig.json"],
+	"compilerOptions": { "outDir": "./dist", "baseUrl": "src" },
 	"include": ["src/**/*", "src/server/interfaces/*"]
 }

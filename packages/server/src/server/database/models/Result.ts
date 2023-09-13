@@ -1,5 +1,6 @@
-import { model, Schema } from "mongoose";
-import { Result } from "server/interfaces/metadata.interface";
+import { Schema, model } from "mongoose";
+
+import type { Result } from "server/interfaces/metadata.interface.js";
 
 const ResultSchema: Schema = new Schema<Result>(
 	{

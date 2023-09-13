@@ -38,7 +38,6 @@
 		"vue-toastification": "next"
 	},
 	"engines": {
-		"node": ">=16",
-		"pnpm": ">=8"
+		"node": ">=18"
 	}
 }

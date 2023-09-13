@@ -1,8 +1,13 @@
-import { CPUGenerations } from "server/interfaces/routes.interface";
-import { JSONSchema7 } from "json-schema";
+import type { JSONSchema7 } from "json-schema";
+
+export type CPUModelsList = Awaited<ReturnType<typeof getCPUModels>>;
+export type SchemaType = Awaited<ReturnType<typeof getSchema>>;
+
 export const getCPUModels = async () => {
 		try {
-			const cpulist: CPUGenerations = await require("@ocwebutils/sc_rules/cpu_list.json");
+			const { default: cpulist } = await import("@ocwebutils/sc_rules/cpu_list.json", {
+				assert: { type: "json" }
+			});
 			return cpulist;
 		} catch (err) {
 			return null;
@@ -10,7 +15,9 @@ export const getCPUModels = async () => {
 	},
 	getOCVersions = async (codename: string) => {
 		try {
-			const ocVersions: { codename: string; supportedVersions: string[] }[] = await require("@ocwebutils/sc_rules/oc_versions.json");
+			const { default: ocVersions } = await import("@ocwebutils/sc_rules/oc_versions.json", {
+				assert: { type: "json" }
+			});
 			return ocVersions.find(item => item.codename === codename);
 		} catch (err) {
 			return null;
@@ -18,7 +25,9 @@ export const getCPUModels = async () => {
 	},
 	getSchema = async (version: string) => {
 		try {
-			const schema: JSONSchema7 = await require(`@ocwebutils/sc_rules/schemas/${version}.schema.json`);
+			const { default: schema }: JSONSchema7 = await import(`@ocwebutils/sc_rules/schemas/${version}.schema.json`, {
+				assert: { type: "json" }
+			});
 			return schema;
 		} catch (err) {
 			return null;
@@ -26,7 +35,7 @@ export const getCPUModels = async () => {
 	};
 
 export const getRules = async (version: string, codename: string) => {
-	const cpuList: CPUGenerations | null = await getCPUModels();
+	const cpuList: CPUModelsList = await getCPUModels();
 	if (!cpuList) return null;
 
 	const { codename: cpuCodename } = Object.values(cpuList)
@@ -42,7 +51,12 @@ export const getRules = async (version: string, codename: string) => {
 	if (!platform || !brand) return null;
 
 	try {
-		const cpuRules = await require(`@ocwebutils/sc_rules/rules/${platform}/${brand}/${version}/${cpuCodename?.replace(/^[^_]*_/, "")}.rules.json`);
+		const { default: cpuRules } = await import(
+			`@ocwebutils/sc_rules/rules/${platform}/${brand}/${version}/${cpuCodename?.replace(/^[^_]*_/, "")}.rules.json`,
+			{
+				assert: { type: "json" }
+			}
+		);
 		return cpuRules;
 	} catch (err) {
 		return null;

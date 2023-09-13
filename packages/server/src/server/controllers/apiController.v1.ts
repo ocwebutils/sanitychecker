@@ -1,13 +1,15 @@
-import { FastifyInstance } from "fastify";
-import { readdirSync } from "node:fs";
+import type { FastifyInstance } from "fastify";
+import { fileURLToPath } from "node:url";
 import { join } from "node:path";
-import { logger } from "../config";
+import { logger } from "../config.js";
+import { readdirSync } from "node:fs";
 
 function walk(dir: string): string[] {
 	return readdirSync(dir, { withFileTypes: true }).flatMap(file => (file.isDirectory() ? walk(join(dir, file.name)) : join(dir, file.name)));
 }
 
 export async function APIv1Controller(fastify: FastifyInstance) {
+	const __dirname = fileURLToPath(new URL(".", import.meta.url));
 	const routeFiles = walk(join(__dirname, "..", "routes", "v1"));
 
 	for (const file of routeFiles) {

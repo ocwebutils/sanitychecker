@@ -1,11 +1,11 @@
-import Fastify, { FastifyInstance } from "fastify";
-
-import { APIv1Controller } from "./controllers/apiController.v1";
-import { OnRequestHook } from "./hooks/onRequest.hook";
-import { OnSendHook } from "./hooks/onSend.hook";
+import { APIv1Controller } from "./controllers/apiController.v1.js";
+import Fastify from "fastify";
+import type { FastifyInstance } from "fastify";
+import { OnRequestHook } from "./hooks/onRequest.hook.js";
+import { OnSendHook } from "./hooks/onSend.hook.js";
+import connectDatabase from "./database/index.js";
 import debug from "debug";
-import { logger } from "./config";
-import connectDatabase from "./database";
+import { logger } from "./config.js";
 
 export default class App {
 	fastify: FastifyInstance;
@@ -43,7 +43,7 @@ export default class App {
 	}
 
 	listen(port: number): void {
-		this.fastify.listen({ port: port }, () => {
+		this.fastify.listen({ port, host: "127.0.0.1" }, () => {
 			this.logger(`Server is ready on port ${port}`);
 		});
 	}

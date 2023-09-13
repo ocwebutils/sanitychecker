@@ -1,4 +1,4 @@
-import { FastifyReply, FastifyRequest, RequestPayload } from "fastify";
+import type { FastifyReply, FastifyRequest, RequestPayload } from "fastify";
 
 export function OnSendHook(req: FastifyRequest, res: FastifyReply, _: RequestPayload, done: () => void) {
 	const duration = process.hrtime.bigint() - req?.requestStartTime;

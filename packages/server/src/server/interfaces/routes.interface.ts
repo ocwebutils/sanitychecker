@@ -1,5 +1,6 @@
-import { RouteGenericInterface } from "fastify/types/route";
-import { CPUList, Results } from "./metadata.interface";
+import type { CPUList, Results } from "./metadata.interface.js";
+
+import type { RouteGenericInterface } from "fastify/types/route.js";
 
 export type Route = {
 	url: string;

@@ -1,8 +1,8 @@
-import { FastifyRequest } from "fastify";
+import type { BasicResponse, OpenCoreVersions, Route } from "server/interfaces/routes.interface.js";
 
-import { getOCVersions } from "../../util/file";
-import { BasicResponse, OpenCoreVersions, Route } from "server/interfaces/routes.interface";
-import { ReplyPayload } from "server/interfaces/fastify.interface";
+import type { FastifyRequest } from "fastify";
+import type { ReplyPayload } from "server/interfaces/fastify.interface.js";
+import { getOCVersions } from "server/util/file.js";
 
 const routeSchema = {
 	querystring: {
