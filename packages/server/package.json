@@ -16,18 +16,18 @@
 		"sharp"
 	],
 	"dependencies": {
-		"@fastify/cors": "8.3.0",
+		"@fastify/cors": "8.4.0",
 		"@ocwebutils/sc_checker": "github:ocwebutils/sc_checker",
 		"@ocwebutils/sc_rules": "github:ocwebutils/sc_rules",
 		"ajv": "8.12.0",
 		"debug": "4.3.4",
 		"fastify": "4.23.2",
-		"mongoose": "7.5.2"
+		"mongoose": "7.5.3"
 	},
 	"devDependencies": {
-		"@types/debug": "4.1.8",
+		"@types/debug": "4.1.9",
 		"@types/json-schema": "7.0.13",
-		"@types/node": "18.17.17",
+		"@types/node": "18.18.0",
 		"typescript": "5.2.2"
 	}
 }
