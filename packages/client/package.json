@@ -11,6 +11,9 @@
 		"preview": "COMMIT_HASH=$(git rev-parse HEAD) nuxt preview",
 		"start": "node ./.output/server/index.mjs"
 	},
+	"trustedDependencies": [
+		"sharp"
+	],
 	"devDependencies": {
 		"@kevinmarrec/nuxt-pwa": "0.17.0",
 		"@nuxt/image-edge": "1.0.0-rc.3-28282346.a10323e",

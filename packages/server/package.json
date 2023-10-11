@@ -12,8 +12,7 @@
 	},
 	"trustedDependencies": [
 		"@ocwebutils/sc_checker",
-		"@ocwebutils/sc_rules",
-		"sharp"
+		"@ocwebutils/sc_rules"
 	],
 	"dependencies": {
 		"@fastify/cors": "8.4.0",
