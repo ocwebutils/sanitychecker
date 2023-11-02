@@ -11,7 +11,7 @@ export const deleteOldResults = async () => {
 			diff = getDiffInMinutes(Date.now(), expireDate) <= 0;
 
 		if (diff) {
-			ConfigModel.deleteOne({ configId: el.metadata.configId });
+			if (el.metadata?.configId) ConfigModel.deleteOne({ configId: el.metadata.configId });
 			await ResultModel.deleteOne({ resultId: el.resultId });
 		}
 	}
