@@ -31,14 +31,14 @@ const dropFileHandler = async (event: File[] | Event) => {
 	if (!eventFile || !eventFile.length) return;
 	const file = eventFile[0];
 
-	if (!file?.name.endsWith(".plist")) return showErrorNotif("The file uploaded may not be plist file");
+	if (!file?.name.endsWith(".plist")) return showErrorNotif("The uploaded file may not be plist file");
 	const validationRes = await validatePlist(file),
 		parsedRes = await parsePlist(file);
 
-	if (!validationRes || !parsedRes) return showErrorNotif("Error trying to parse this file. Are you sure it's a valid plist file?");
+	if (!validationRes || !parsedRes) return showErrorNotif("Error occurred while trying to parse this file. Are you sure it's a valid plist file?");
 	processing.value = true;
 
-	const result = await handleForm(parsedRes as Record<string, unknown>);
+	const result = await handleForm(parsedRes as Record<string, unknown>, file);
 	if (!result.success) {
 		showErrorNotif(result.error);
 		processing.value = false;

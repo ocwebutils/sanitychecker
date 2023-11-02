@@ -18,7 +18,7 @@ export const getCPUModels = async () => {
 			const { default: ocVersions } = await import("@ocwebutils/sc_rules/oc_versions.json", {
 				assert: { type: "json" }
 			});
-			return ocVersions.find(item => item.codename === codename);
+			return ocVersions.find((item: { codename: string }) => item.codename === codename);
 		} catch (err) {
 			return null;
 		}

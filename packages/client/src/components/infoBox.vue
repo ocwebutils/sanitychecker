@@ -4,12 +4,10 @@
 			<fa-icon icon="fa-solid fa-circle-info" class="inline flex-shrink-0 mr-3 w-5 h-5" />
 			<span class="sr-only">Info</span>
 			<div>
-				We're working on our own web-based plist editor with your favorite features like
-				<span class="font-bold text-blue-800 dark:text-blue-900">OC Snapshot</span>.
+				Thank you for using our Sanity Checker ❤️ and for 20k+ unique visitors!
 				<p>
-					Make sure to join us on our
+					If you encourted some error or want to submit a feedback, please visit our
 					<a href="https://ocutils.me/discord" class="font-bold text-blue-800 dark:text-blue-900 underline">discord server</a>
-					for updates :)
 				</p>
 			</div>
 		</div>

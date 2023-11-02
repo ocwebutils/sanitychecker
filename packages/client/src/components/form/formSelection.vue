@@ -55,13 +55,15 @@ watch(selectedCPUModel, function (newValue: string) {
 
 const restoreSelections = () => {
 	try {
-		const lastSelections = getVariable("lastOptions") as { cpuModel: string; ocVersion: string };
+		const lastSelections = getVariable("lastOptions") as { cpuModel: string; ocVersion: string; includeConfig: boolean };
 
 		if (!lastSelections) return;
 
-		const { cpuModel, ocVersion } = lastSelections;
+		const { cpuModel, ocVersion, includeConfig } = lastSelections;
+		const includeConfigElement = document.querySelector("#checkboxIncludeConfig") as HTMLInputElement;
 		selectedCPUModel.value = cpuModel;
 		selectedOCVersion.value = ocVersion;
+		includeConfigElement.checked = includeConfig;
 	} catch (err) {
 		return;
 	}

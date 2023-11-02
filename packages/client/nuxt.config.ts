@@ -6,7 +6,7 @@ export default defineNuxtConfig({
 			htmlAttrs: {
 				lang: "en"
 			},
-			title: "OpenCore Sanity Checker | OCUtils",
+			title: "OpenCore Sanity Checker",
 			meta: [
 				{ charset: "utf-8" },
 				{ name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -15,7 +15,7 @@ export default defineNuxtConfig({
 					hid: "keywords",
 					name: "keywords",
 					content:
-						"opencore, opencore sanity checker, sanity checker, plist checker, sanity checker plist, opencore plist, opencore config, opencore config sanity checker"
+						"opencore, opencore sanity checker, sanity checker, plist checker, sanity checker plist, opencore plist, opencore config, opencore config sanity checker, ocutils"
 				},
 				{
 					hid: "robots",
@@ -58,12 +58,12 @@ export default defineNuxtConfig({
 		dirs: ["components"]
 	},
 	css: ["vue-toastification/dist/index.css", "@fortawesome/fontawesome-svg-core/styles.css"],
-	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@nuxt/image-edge", "@kevinmarrec/nuxt-pwa"],
+	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@nuxt/image", "@kevinmarrec/nuxt-pwa"],
 	pwa: {
 		manifest: {
-			name: "OpenCore Sanity Checker | OCUtils",
-			short_name: "ocutils.me",
-			description: "OCUtils' OpenCore Sanity Checker allows to check your OpenCore config for potential issues",
+			name: "OpenCore Sanity Checker",
+			short_name: "ocs | ocutils",
+			description: "OpenCore Sanity Checker made by OpenCore Web Utilities allows to check your OpenCore config for potential issues",
 			icons: [
 				{
 					src: "/assets/favicons/android-chrome-192x192.png",
@@ -81,8 +81,8 @@ export default defineNuxtConfig({
 			display: "standalone"
 		},
 		meta: {
-			name: "OpenCore Sanity Checker | OCUtils",
-			description: "OCUtils' OpenCore Sanity Checker allows to check your OpenCore config for potential issues"
+			name: "OpenCore Sanity Checker",
+			description: "OpenCore Sanity Checker made by OpenCore Web Utilities allows to check your OpenCore config for potential issues"
 		},
 		workbox: {
 			enabled: true,

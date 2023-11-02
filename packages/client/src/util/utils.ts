@@ -1,4 +1,4 @@
-import { SchemaType, ValueType } from "@/interfaces/metadata";
+import type { SchemaType, ValueType } from "@/interfaces/metadata";
 
 import { marked } from "marked";
 
@@ -166,4 +166,20 @@ export const json2csv = (results: { rulesResults: ValueType[]; schemaResults: { 
 
 	const result = [headers, ...rows].map(row => row.join(",")).join("\n");
 	return result;
+};
+
+export const readFileAsBase64 = async (blob: File): Promise<string> => {
+	return new Promise((resolve, reject) => {
+		const reader = new FileReader();
+
+		reader.onload = () => {
+			resolve(reader.result as string);
+		};
+
+		reader.onerror = () => {
+			reject(new Error("Error reading the file."));
+		};
+
+		reader.readAsDataURL(blob);
+	});
 };

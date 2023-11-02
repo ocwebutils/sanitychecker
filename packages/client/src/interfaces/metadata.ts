@@ -16,3 +16,21 @@ export type RuleSet = {
 	type: "info" | "warning" | "error" | "success";
 	message: string | null;
 };
+
+export type requestBody = {
+	metadata: {
+		uploadedBy: string;
+		ocVersion: string;
+		includeConfig: boolean;
+		cpuDetails: {
+			codename: string;
+			name: string;
+		};
+	};
+	configBody: {
+		data: {
+			[s: string]: unknown;
+		};
+		buffer?: string;
+	};
+};

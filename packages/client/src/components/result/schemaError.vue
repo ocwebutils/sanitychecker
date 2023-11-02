@@ -19,9 +19,9 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { PropType } from "vue";
+import type { PropType } from "vue";
 import { getIcon, displayNormalizedName, parseMarked } from "@/util/utils";
-import { SchemaType } from "@/interfaces/metadata";
+import type { SchemaType } from "@/interfaces/metadata";
 
 const props = defineProps({
 	schemaError: { type: Object as PropType<SchemaType>, required: true },

@@ -1,34 +1,48 @@
+import { readFileAsBase64, setVariable } from "./utils";
+
 import { axiosInstance } from "./axiosInstance";
 import { getIdentificator } from "./identificator";
 import { isAxiosError } from "axios";
-import { setVariable } from "./utils";
+import type { requestBody } from "~/interfaces/metadata";
 
-export const handleForm = async (file: Record<string, unknown>) => {
-		const cpuModel = document.querySelector("#cpu_model") as HTMLSelectElement,
-			ocVersion = document.querySelector("#oc_version") as HTMLSelectElement,
-			cpuValue = cpuModel.options[cpuModel.selectedIndex]?.value,
-			cpuName = cpuModel.options[cpuModel.selectedIndex]?.text,
-			ocValue = ocVersion?.options[ocVersion.selectedIndex]?.value;
+export const handleForm = async (file: Record<string, unknown>, plistBlob: File) => {
+		const cpuModelSelect = document.querySelector("#cpu_model") as HTMLSelectElement,
+			ocVersionSelect = document.querySelector("#oc_version") as HTMLSelectElement,
+			includeConfigCheckBox = document.querySelector("#checkboxIncludeConfig") as HTMLInputElement,
+			cpuModel = cpuModelSelect.options[cpuModelSelect.selectedIndex]?.value,
+			cpuName = cpuModelSelect.options[cpuModelSelect.selectedIndex]?.text,
+			ocVersion = ocVersionSelect?.options[ocVersionSelect.selectedIndex]?.value,
+			includeConfig = false;
+
 		const uuid = await getIdentificator();
 
-		if (!cpuValue || cpuValue === "default" || !cpuName || !ocValue) return { success: false, error: "Please select CPU model and OpenCore version" };
+		if (!cpuModel || cpuModel === "default" || !cpuName || !ocVersion)
+			return { success: false, error: "Please select CPU model and OpenCore version" };
+
+		const requestBody: requestBody = {
+			metadata: {
+				uploadedBy: uuid as string,
+				ocVersion,
+				includeConfig,
+				cpuDetails: {
+					codename: cpuModel,
+					name: cpuName
+				}
+			},
+			configBody: {
+				data: file
+			}
+		};
+
+		if (plistBlob) requestBody.configBody.buffer = (await readFileAsBase64(plistBlob)).split(",")[1];
 
 		try {
-			const { data } = await axiosInstance.post("/validateConfig", {
-				metadata: {
-					uploadedBy: uuid as string,
-					ocVersion: ocValue,
-					cpuDetails: {
-						codename: cpuValue,
-						name: cpuName
-					}
-				},
-				config: file
-			});
+			const { data } = await axiosInstance.post("/validateConfig", requestBody);
 
 			setVariable("lastOptions", {
-				ocVersion: ocValue,
-				cpuModel: cpuValue
+				ocVersion,
+				cpuModel,
+				includeConfig
 			});
 
 			return data;

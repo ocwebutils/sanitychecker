@@ -3,6 +3,7 @@ import { ConfigChecker, SchemaChecker } from "@ocwebutils/sc_checker";
 import type { RulesResult, SchemaResults, UploadMetadata } from "server/interfaces/metadata.interface.js";
 import { getRules, getSchema } from "server/util/file.js";
 
+import ConfigModel from "server/database/models/Config.js";
 import type { FastifyRequest } from "fastify";
 import type { ReplyPayload } from "server/interfaces/fastify.interface.js";
 import ResultModel from "server/database/models/Result.js";
@@ -13,14 +14,17 @@ import { uuidValidate } from "server/util/uuidValidate.js";
 const routeSchema = {
 	body: {
 		type: "object",
-		required: ["metadata", "config"],
+		required: ["metadata", "configBody"],
 		properties: {
 			metadata: {
 				type: "object",
-				required: ["uploadedBy", "ocVersion", "cpuDetails"],
+				required: ["uploadedBy", "ocVersion", "cpuDetails", "includeConfig"],
 				properties: {
 					uploadedBy: {
 						type: "string"
+					},
+					includeConfig: {
+						type: "boolean"
 					},
 					ocVersion: {
 						type: "string"
@@ -39,9 +43,18 @@ const routeSchema = {
 					}
 				}
 			},
-			config: {
+			configBody: {
 				type: "object",
-				additionalProperties: true
+				required: ["data"],
+				properties: {
+					data: {
+						type: "object",
+						additionalProperties: true
+					},
+					buffer: {
+						type: "string"
+					}
+				}
 			}
 		}
 	},
@@ -117,12 +130,20 @@ const validateConfig: Route = {
 	schema: routeSchema,
 	attachValidation: true,
 	handler: async (
-		req: FastifyRequest<{ Body: { metadata: UploadMetadata; config: { [s: string]: unknown } } }>,
+		req: FastifyRequest<{
+			Body: {
+				metadata: UploadMetadata;
+				configBody: {
+					data: { [s: string]: unknown };
+					buffer?: string;
+				};
+			};
+		}>,
 		res: ReplyPayload<BasicResponse<validateResult>>
 	): Promise<typeof res> => {
 		deleteOldResults();
 
-		const { metadata, config } = req.body;
+		const { metadata, configBody } = req.body;
 
 		if (!validateMetadata(metadata)) return res.status(400).send({ success: false, error: "Required data isn't specified" });
 		if (!checkCodename) return res.status(403).send({ success: false, error: "Please select a valid CPU model" });
@@ -131,7 +152,7 @@ const validateConfig: Route = {
 		if (!ocSchema) return res.send({ success: false, error: "This version of OpenCore isn't supported by Sanity Checker" });
 
 		const schemaCheck = new SchemaChecker(ocSchema);
-		const schemaResult = schemaCheck.validate(config) as SchemaResults,
+		const schemaResult = schemaCheck.validate(configBody.data) as SchemaResults,
 			rules = await getRules(metadata.ocVersion, metadata.cpuDetails.codename);
 
 		if (!rules) {
@@ -140,39 +161,60 @@ const validateConfig: Route = {
 				.send({ success: false, error: "We couldn't find rules for this specified CPU. It may not be supported by selected OpenCore version" });
 		}
 
-		const configCheck = new ConfigChecker(config);
+		const configCheck = new ConfigChecker(configBody.data);
 		const rulesResult = configCheck.validate(rules) as RulesResult[],
 			result = {
 				rulesResults: rulesResult.length === 0 ? null : rulesResult,
 				schemaResults: schemaResult
 			},
-			id = randomUUID();
+			resultId = randomUUID(),
+			configId = metadata.includeConfig ? randomUUID() : null;
 
-		const query = new ResultModel({
+		const resultQuery = new ResultModel({
 			createdBy: metadata.uploadedBy,
-			resultId: id,
+			resultId,
 			results: result,
 			expireDate: Date.now() + 14 * 24 * 60 * 60 * 1000, //* 14 days
 			metadata: {
 				cpuCodename: metadata.cpuDetails.codename,
 				cpuName: metadata.cpuDetails.name,
-				ocVersion: metadata.ocVersion
+				ocVersion: metadata.ocVersion,
+				configId
 			}
 		});
 
-		await query.save().catch(() => {
-			return res.status(500).send({ success: false, error: "We couldn't save your result. Try again later" });
+		if (configId) {
+			const configQuery = new ConfigModel({
+				configId,
+				createdBy: metadata.uploadedBy,
+				configData: Buffer.from(req.body.configBody.buffer as string, "base64")
+			});
+
+			configQuery.save().catch(() => {
+				return res.status(500).send({ success: false, error: "We couldn't save your config inside our database. Please try again later" });
+			});
+		}
+
+		await resultQuery.save().catch(() => {
+			return res.status(500).send({ success: false, error: "We couldn't save your result inside our database. Try again later" });
 		});
 
 		return res.send({
 			success: true,
-			data: { resultId: id, results: result }
+			data: { resultId, results: result }
 		});
 	}
 };
 
 const validateMetadata = (metadata: UploadMetadata) => {
-		if (!metadata?.uploadedBy || !metadata?.ocVersion || !metadata?.cpuDetails?.codename || !metadata?.cpuDetails?.name) return false;
+		if (
+			!metadata?.uploadedBy ||
+			!metadata?.ocVersion ||
+			!metadata?.cpuDetails?.codename ||
+			!metadata?.cpuDetails?.name ||
+			metadata?.includeConfig === undefined
+		)
+			return false;
 		if (!uuidValidate(metadata.uploadedBy)) return false;
 
 		return true;

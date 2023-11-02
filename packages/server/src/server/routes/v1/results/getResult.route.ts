@@ -55,8 +55,7 @@ const getResult: Route = {
 
 		await deleteOldResults();
 
-		const query = (await ResultModel.findOne({ resultId: resultId }, { _id: 0, __v: 0 }).lean()) as queryResult;
-
+		const query = (await ResultModel.findOne({ resultId }, { _id: 0, __v: 0 }).lean()) as queryResult;
 		if (!query) return res.status(404).send({ success: false, error: "Result doesn't exist in the database" });
 
 		delete query.createdBy;

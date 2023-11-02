@@ -13,7 +13,7 @@
 						class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors"
 						aria-label="Download result as CSV"
 					>
-						<a href="#" @click.prevent="downloadCsv" aria-label="Download result as CSV"><fa-icon icon="fa-solid fa-download" /></a>
+						<a href="#" @click.prevent="downloadFile('csv')" aria-label="Download result as CSV"><fa-icon icon="fa-solid fa-download" /></a>
 					</button>
 				</div>
 				<div class="flex flex-col text-left">
@@ -73,7 +73,7 @@
 import { useToast } from "vue-toastification";
 import { axiosInstance } from "@/util/axiosInstance";
 import { json2csv } from "@/util/utils";
-import { JSONSchema7 } from "json-schema";
+import type { JSONSchema7 } from "json-schema";
 import { isAxiosError } from "axios";
 
 const route = useRoute(),
@@ -164,27 +164,37 @@ const getResult = async (id: string) => {
 		}
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	},
-	downloadCsv = () => {
-		const csv = json2csv(result.results);
-		const aElement = document.createElement("a");
+	downloadFile = (type: "csv" | "config") => {
+		switch (type) {
+			case "csv":
+				{
+					const csv = json2csv(result.results);
+					const aElement = document.createElement("a");
 
-		document.body.appendChild(aElement);
-		aElement.style.display = "none";
+					document.body.appendChild(aElement);
+					aElement.style.display = "none";
 
-		const blob = new Blob([csv], {
-			type: "application/octet-stream"
-		});
-		const url = window.URL.createObjectURL(blob);
+					const blob = new Blob([csv], {
+						type: "application/octet-stream"
+					});
+					const url = window.URL.createObjectURL(blob);
 
-		aElement.href = url;
-		aElement.download = "result.csv";
-		aElement.click();
+					aElement.href = url;
+					aElement.download = "result.csv";
+					aElement.click();
 
-		window.URL.revokeObjectURL(url);
-		aElement.remove();
-		toast.success("Result has been downloaded in CSV format", {
-			timeout: 5000
-		});
+					window.URL.revokeObjectURL(url);
+					aElement.remove();
+					toast.success("Result has been downloaded in CSV format", {
+						timeout: 5000
+					});
+				}
+				break;
+			case "config":
+				{
+				}
+				break;
+		}
 	},
 	copyURL = (_: Event) => {
 		const permissionName = "clipboard-write" as PermissionName;

@@ -22,9 +22,9 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { PropType } from "vue";
+import type { PropType } from "vue";
 import { getIcon, replaceBoolean, displayNormalizedName, parseMarked } from "@/util/utils";
-import { ValueType } from "@/interfaces/metadata";
+import type { ValueType } from "@/interfaces/metadata";
 
 defineProps({
 	ruleOutput: { type: Object as PropType<ValueType>, required: true }

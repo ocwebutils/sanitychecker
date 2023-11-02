@@ -1,5 +1,6 @@
 export type UploadMetadata = {
 	uploadedBy: string;
+	includeConfig: boolean;
 	ocVersion: string;
 	cpuDetails: {
 		codename: string;
@@ -11,6 +12,7 @@ export type ResultMetadata = {
 	cpuCodename: string;
 	cpuName: string;
 	ocVersion: string;
+	configId?: string;
 };
 
 export type Result = {
@@ -19,6 +21,12 @@ export type Result = {
 	resultId: string;
 	results?: Results;
 	metadata: ResultMetadata;
+};
+
+export type ConfigResult = {
+	configId: string;
+	createdBy: string;
+	configData: { [s: string]: unknown };
 };
 
 export type Results = {
