@@ -13,5 +13,11 @@
 		"@commitlint/cli": "18.2.0",
 		"@commitlint/config-conventional": "18.1.0",
 		"husky": "8.0.3"
+	},
+	"engines": {
+		"yarn": "please-use-pnpm",
+		"npm": "please-use-pnpm",
+		"pnpm": ">=8",
+		"node": ">=18"
 	}
 }

@@ -35,8 +35,8 @@
 </template>
 
 <script setup lang="ts">
-import { getVariable } from "@/util/utils";
-import { axiosInstance } from "@/util/axiosInstance";
+import { getVariable } from "@/utils/helpers";
+import { axiosInstance } from "@/utils/axiosInstance";
 
 const supportedCPUGenerations = ref<Record<string, { codename: string; displayName: string }[]> | null>(null),
 	supportedOCVersions = ref(null),

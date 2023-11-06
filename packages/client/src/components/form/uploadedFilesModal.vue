@@ -47,10 +47,10 @@
 	</dialog>
 </template>
 <script setup lang="ts">
-import { getIdentificator } from "@/util/identificator";
+import { getIdentificator } from "@/utils/identificator";
 import { Countdown } from "@/class/countdown";
-import { deleteResult } from "@/util/handleForm";
-import { axiosInstance } from "@/util/axiosInstance";
+import { deleteResult } from "@/utils/handleForm";
+import { axiosInstance } from "@/utils/axiosInstance";
 import { useToast } from "vue-toastification";
 import { isAxiosError } from "axios";
 

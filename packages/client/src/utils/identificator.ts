@@ -1,4 +1,4 @@
-import { getCookie, getVariable, setCookie } from "./utils";
+import { getCookie, getVariable, setCookie } from "./helpers";
 import { v4 as randomUUID } from "uuid";
 
 export const createIdentificator = async () => {

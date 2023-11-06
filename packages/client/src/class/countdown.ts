@@ -1,4 +1,4 @@
-import { deleteResult } from "@/util/handleForm";
+import { deleteResult } from "@/utils/handleForm";
 
 export class Countdown {
 	countdown: {

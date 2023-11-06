@@ -1,14 +1,8 @@
 <template>
-	<div class="flex flex-col pt-2 items-center place-content-center justify-center px-16">
-		<div class="px-8 py-6 mt-4 text-left dark:bg-darkgray-700 bg-white shadow-lg rounded-xl w-full">
+	<div class="flex flex-col items-center place-content-center justify-center lg:px-16">
+		<div class="px-4 lg:px-8 py-6 mt-2 text-left dark:bg-darkgray-700 bg-white shadow-lg rounded-xl w-full">
 			<div class="text-center">
 				<div class="float-right space-x-1">
-					<button
-						class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors"
-						aria-label="Copy URL to Clipboard"
-					>
-						<a href="#" @click.prevent="copyURL" aria-label="Copy URL to Clipboard"><fa-icon icon="fa-solid fa-copy" /></a>
-					</button>
 					<button
 						class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors"
 						aria-label="Download result as CSV"
@@ -17,8 +11,9 @@
 					</button>
 				</div>
 				<div class="flex flex-col text-left">
-					<p class="text-2xl font-bold clear-right">
-						Validation results <span class="text-xs text-gray-500 dark:text-gray-200">for {{ route.params.id }}</span>
+					<p class="text-2xl font-bold clear-right mb-1">
+						Validation results <span class="text-xs">for </span>
+						<a href="#" class="text-xs text-blue-600" @click.prevent="copyURL">{{ route.params.id }} <fa-icon icon="fa-solid fa-copy" /></a>
 					</p>
 					<span class="text-lg font-medium">
 						<span class="text-blue-600">{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span>
@@ -71,8 +66,8 @@
 </template>
 <script setup lang="ts">
 import { useToast } from "vue-toastification";
-import { axiosInstance } from "@/util/axiosInstance";
-import { json2csv } from "@/util/utils";
+import { axiosInstance } from "@/utils/axiosInstance";
+import { json2csv } from "@/utils/helpers";
 import type { JSONSchema7 } from "json-schema";
 import { isAxiosError } from "axios";
 
@@ -185,7 +180,7 @@ const getResult = async (id: string) => {
 
 					window.URL.revokeObjectURL(url);
 					aElement.remove();
-					toast.success("Result has been downloaded in CSV format", {
+					toast.success("Result has been converted to csv format", {
 						timeout: 5000
 					});
 				}
@@ -209,7 +204,7 @@ const getResult = async (id: string) => {
 	},
 	copyToClipboard = () => {
 		navigator.clipboard.writeText(document.URL).then(() => {
-			toast.success("Copied URL to Clipboard!", {
+			toast.success("Link has been copied to the clipboard", {
 				timeout: 5000
 			});
 		});

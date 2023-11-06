@@ -7,8 +7,8 @@
 	"private": true,
 	"scripts": {
 		"build": "tsc",
-		"start": "bun --bun dist/src/index.js",
-		"dev": "bun --bun --watch src/index.ts"
+		"start": "node dist/src/index.js",
+		"dev": "tsx src/index.ts"
 	},
 	"dependencies": {
 		"@fastify/cors": "8.4.1",
@@ -23,6 +23,13 @@
 		"@types/debug": "4.1.10",
 		"@types/json-schema": "7.0.14",
 		"@types/node": "20.8.10",
+		"tsx": "3.14.0",
 		"typescript": "5.2.2"
+	},
+	"engines": {
+		"yarn": "please-use-pnpm",
+		"npm": "please-use-pnpm",
+		"pnpm": ">=8",
+		"node": ">=18"
 	}
 }

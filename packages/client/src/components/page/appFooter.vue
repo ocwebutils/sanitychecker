@@ -23,7 +23,7 @@
 	</footer>
 </template>
 <script setup lang="ts">
-import { axiosInstance } from "@/util/axiosInstance";
+import { axiosInstance } from "@/utils/axiosInstance";
 
 const config = useRuntimeConfig();
 

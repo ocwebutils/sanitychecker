@@ -18,8 +18,8 @@
 	</section>
 </template>
 <script setup lang="ts">
-import { validatePlist, parsePlist } from "@/util/plistHandler";
-import { handleForm } from "@/util/handleForm";
+import { validatePlist, parsePlist } from "@/utils/plistHandler";
+import { handleForm } from "@/utils/handleForm";
 import { useToast } from "vue-toastification";
 
 const processing = ref<boolean>(false);

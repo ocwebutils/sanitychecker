@@ -1,4 +1,4 @@
-import { readFileAsBase64, setVariable } from "./utils";
+import { readFileAsBase64, setVariable } from "./helpers";
 
 import { axiosInstance } from "./axiosInstance";
 import { getIdentificator } from "./identificator";

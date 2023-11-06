@@ -1,5 +1,5 @@
 <template>
-	<div class="collapse collapse-arrow border border-base-300 bg-base-100 dark:bg-darkgray-800 rounded-box mb-4 ml-2 mr-3">
+	<div class="collapse collapse-arrow border border-base-300 bg-base-100 dark:bg-darkgray-800 rounded-box mb-4 ml-2">
 		<input type="checkbox" aria-label="Expand the content" />
 		<div class="collapse-title text-base font-medium">
 			<fa-icon class="mr-2" :icon="getIcon(ruleOutput.ruleSet.type).icon" :style="getIcon(ruleOutput.ruleSet.type).style" />
@@ -23,7 +23,7 @@
 </template>
 <script setup lang="ts">
 import type { PropType } from "vue";
-import { getIcon, replaceBoolean, displayNormalizedName, parseMarked } from "@/util/utils";
+import { getIcon, replaceBoolean, displayNormalizedName, parseMarked } from "@/utils/helpers";
 import type { ValueType } from "@/interfaces/metadata";
 
 defineProps({

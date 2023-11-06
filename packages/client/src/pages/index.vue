@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { createIdentificator } from "@/util/identificator";
+import { createIdentificator } from "@/utils/identificator";
 
 onMounted(async () => {
 	await createIdentificator();
