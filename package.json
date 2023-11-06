@@ -14,10 +14,11 @@
 		"@commitlint/config-conventional": "18.1.0",
 		"husky": "8.0.3"
 	},
+	"packageManager": "pnpm@8.10.2",
 	"engines": {
-		"yarn": "please-use-pnpm",
+		"node": ">=18",
 		"npm": "please-use-pnpm",
 		"pnpm": ">=8",
-		"node": ">=18"
+		"yarn": "please-use-pnpm"
 	}
 }

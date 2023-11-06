@@ -1,14 +1,14 @@
 {
 	"name": "@ocwebutils/sanitychecker_server",
-	"description": "Backend API for Sanity Checker",
 	"version": "1.4.0",
+	"private": true,
+	"description": "Backend API for Sanity Checker",
 	"license": "GPL-3.0",
 	"type": "module",
-	"private": true,
 	"scripts": {
 		"build": "tsc",
-		"start": "node dist/src/index.js",
-		"dev": "tsx src/index.ts"
+		"dev": "tsx src/index.ts",
+		"start": "node dist/src/index.js"
 	},
 	"dependencies": {
 		"@fastify/cors": "8.4.1",
@@ -27,9 +27,9 @@
 		"typescript": "5.2.2"
 	},
 	"engines": {
-		"yarn": "please-use-pnpm",
+		"node": ">=18",
 		"npm": "please-use-pnpm",
 		"pnpm": ">=8",
-		"node": ">=18"
+		"yarn": "please-use-pnpm"
 	}
 }
