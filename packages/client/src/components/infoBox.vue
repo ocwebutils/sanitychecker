@@ -6,7 +6,7 @@
 			<div>
 				Thank you for using our Sanity Checker ❤️ and for 20k+ unique visitors!
 				<p>
-					If you encourted some error or want to submit a feedback, please visit our
+					If you encountered some error or want to submit a feedback, please visit our
 					<a href="https://ocutils.me/discord" class="font-bold text-blue-800 dark:text-blue-900 underline">discord server</a>
 				</p>
 			</div>
