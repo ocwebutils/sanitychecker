@@ -23,7 +23,7 @@
 		"@types/debug": "4.1.10",
 		"@types/json-schema": "7.0.14",
 		"@types/node": "20.8.10",
-		"tsx": "3.14.0",
+		"tsx": "4.6.1",
 		"typescript": "5.2.2"
 	},
 	"engines": {
