@@ -10,11 +10,11 @@
 		"start:server": "pnpm --filter @ocwebutils/sanitychecker_server run start"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "18.2.0",
-		"@commitlint/config-conventional": "18.1.0",
+		"@commitlint/cli": "18.4.3",
+		"@commitlint/config-conventional": "18.4.3",
 		"husky": "8.0.3"
 	},
-	"packageManager": "pnpm@8.10.2",
+	"packageManager": "pnpm@8.11.0",
 	"engines": {
 		"node": ">=18",
 		"npm": "please-use-pnpm",
