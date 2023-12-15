@@ -111,6 +111,9 @@ importers:
       debug:
         specifier: 4.3.4
         version: 4.3.4
+      dotenv:
+        specifier: 16.3.1
+        version: 16.3.1
       fastify:
         specifier: 4.24.3
         version: 4.24.3
@@ -10876,6 +10879,5 @@ packages:
     resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/67402928a9c3b242f77d9772821c6829a1248c19}
     name: '@ocwebutils/sc_rules'
     version: 1.0.0
-    prepare: true
     requiresBuild: true
     dev: false
