@@ -58,6 +58,7 @@ const getConfig: Route = {
 		const query = (await ConfigModel.findOne({ configId }, { _id: 0, __v: 0 }).lean()) as queryResult;
 		if (!query) return res.status(404).send({ success: false, error: "Result doesn't exist in the database" });
 
+		// biome-ignore lint/performance/noDelete: <explanation>
 		delete query.createdBy;
 
 		res.header("Content-Disposition", 'attachment; filename="config.plist"');

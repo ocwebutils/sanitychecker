@@ -5,11 +5,11 @@
 			<p class="text-center">Please select your CPU and OpenCore version to begin</p>
 			<form>
 				<div class="mt-4 grid grid-cols-1" id="topForm">
-					<FormSelection />
+					<FormOptionSelection />
 					<div class="relative flex flex-col" v-if="!processing">
 						<HeroDropZoneContent @dropFileHandler="dropFileHandler" />
 					</div>
-					<FormInProgress v-else />
+					<FormInProgressSvg v-else />
 					<div class="divider" />
 					<FormFooter />
 				</div>

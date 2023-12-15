@@ -13,8 +13,8 @@ export const createIdentificator = async () => {
 		setCookie("identificator", uuid);
 		if (getVariable("identifier")) localStorage.removeItem("identificator");
 	},
-	getIdentificator = async (): Promise<string | void> => {
-		if (!process.client) return;
+	getIdentificator = async (): Promise<string> => {
+		if (!process.client) return "";
 
 		await migrateId();
 		const cookie = useCookie("identificator");

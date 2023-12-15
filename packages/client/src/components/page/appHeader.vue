@@ -9,13 +9,19 @@
 			</div>
 			<ul class="menu menu-compact dropdown-content bg-base-200 w-56 rounded-box" tabindex="0">
 				<li>
-					<NuxtLink href="/">
+					<NuxtLink href="/" :class="$route.path === '/' ? 'active' : ''">
 						<fa-icon icon="fa-house" />
 						Home
 					</NuxtLink>
 				</li>
+				<li v-if="$route.path.includes('/results/')">
+					<NuxtLink :href="$route.fullPath" :class="$route.path.includes('/results/') ? 'active' : ''">
+						<fa-icon icon="fa-square-poll-horizontal" />
+						Validation Result
+					</NuxtLink>
+				</li>
 				<li>
-					<NuxtLink href="/privacy">
+					<NuxtLink href="/privacy" :class="$route.path === '/privacy' ? 'active' : ''">
 						<fa-icon icon="fa-gavel" />
 						Privacy Policy
 					</NuxtLink>
@@ -32,13 +38,19 @@
 			<nuxt-img alt="OCUtils' logo" src="/assets/favicons/logo.webp" height="32" width="32" class="self-center mx-auto inline" />
 			<ul class="flex flex-row">
 				<li>
-					<NuxtLink href="/">
+					<NuxtLink href="/" :class="$route.path === '/' ? 'active' : ''">
 						<fa-icon icon="fa-house" />
 						Home
 					</NuxtLink>
 				</li>
+				<li v-if="$route.path.includes('/results/')">
+					<NuxtLink :href="$route.fullPath" :class="$route.path.includes('/results/') ? 'active' : ''">
+						<fa-icon icon="fa-square-poll-horizontal" />
+						Validation Result
+					</NuxtLink>
+				</li>
 				<li>
-					<NuxtLink href="/privacy">
+					<NuxtLink href="/privacy" :class="$route.path === '/privacy' ? 'active' : ''">
 						<fa-icon icon="fa-gavel" />
 						Privacy Policy
 					</NuxtLink>

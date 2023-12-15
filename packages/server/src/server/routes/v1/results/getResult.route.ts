@@ -58,7 +58,11 @@ const getResult: Route = {
 		const query = (await ResultModel.findOne({ resultId }, { _id: 0, __v: 0 }).lean()) as queryResult;
 		if (!query) return res.status(404).send({ success: false, error: "Result doesn't exist in the database" });
 
+		const newQuery = Object.create(query);
+
+		// biome-ignore lint/performance/noDelete: <explanation>
 		delete query.createdBy;
+		// biome-ignore lint/performance/noDelete: <explanation>
 		delete query.expireDate;
 
 		return res.send({ success: true, data: query });

@@ -34,3 +34,9 @@ export type requestBody = {
 		buffer?: string;
 	};
 };
+
+export type cpuGenerations = {
+	[key: string]: cpuModel;
+};
+
+export type cpuModel = { [index: string]: { displayName: string; codename: string }[] }

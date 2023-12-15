@@ -14,7 +14,7 @@
 					>
 						<option value="default" disabled v-if="supportedCPUGenerations">Select CPU Model</option>
 						<option value="default" disabled v-else>Loading CPU models...</option>
-						<optgroup v-for="(cpuModel, platform) in supportedCPUGenerations" :label="platform">
+						<optgroup v-for="(cpuModel, platform) in supportedCPUGenerations" :label="(platform as string)">
 							<option v-for="{ codename, displayName } in cpuModel" :value="codename">{{ displayName }}</option>
 						</optgroup>
 					</select>
@@ -37,8 +37,9 @@
 <script setup lang="ts">
 import { getVariable } from "@/utils/helpers";
 import { axiosInstance } from "@/utils/axiosInstance";
+import type { cpuGenerations, cpuModel } from "@/interfaces/metadata";
 
-const supportedCPUGenerations = ref<Record<string, { codename: string; displayName: string }[]> | null>(null),
+const supportedCPUGenerations = ref<cpuModel | null>(null),
 	supportedOCVersions = ref(null),
 	selectedCPUModel = ref("default"),
 	selectedOCVersion = ref<string | null>(null);
@@ -88,19 +89,24 @@ const getSupportedCPUGenerations = async () => {
 		const { data } = await axiosInstance.get("/supportedCPUGenerations");
 		if (!data.success) return null;
 
-		let tempArray: { codename: string; displayName: string }[] = [];
-		Object.keys(data.data).forEach(key => {
-			Object.keys(data.data[key]).forEach(brand => {
-				const cpuModel: { codename: string; displayName: string }[] = data.data[key][brand];
-				cpuModel.forEach((cpu: { codename: string; displayName: string }) => {
-					tempArray.push({ displayName: `[${brand}] ${cpu.displayName}`, codename: cpu.codename });
+		const res = data.data as cpuGenerations;
+		const newRes: cpuModel = {};
+
+		for (const platform in res) {
+			const cpuModels = res[platform];
+			const updatedCpuModels = Object.keys(cpuModels).flatMap(brand => {
+				const models = cpuModels[brand];
+				return models.map(({ displayName, codename }) => {
+					return {
+						displayName: `[${brand}] ${displayName}`,
+						codename: codename
+					};
 				});
 			});
-			data.data[key] = tempArray;
-			tempArray = [];
-		});
+			newRes[platform] = updatedCpuModels;
+		}
 
-		return data.data;
+		return newRes;
 	} catch (err) {
 		return null;
 	}

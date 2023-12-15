@@ -20,7 +20,8 @@ import {
 	faHome,
 	faGavel,
 	faXmark,
-	faCheck
+	faCheck,
+	faSquarePollHorizontal
 } from "@fortawesome/free-solid-svg-icons";
 import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
 
@@ -49,7 +50,8 @@ library.add(
 	faHome,
 	faGavel,
 	faCheck,
-	faXmark
+	faXmark,
+	faSquarePollHorizontal
 );
 library.add(faGithub, faDiscord);
 

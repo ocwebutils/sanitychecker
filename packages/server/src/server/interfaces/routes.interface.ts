@@ -7,6 +7,7 @@ export type Route = {
 	method: string;
 	schema?: Record<string, unknown>;
 	attachValidation?: boolean;
+	// biome-ignore lint/complexity/noBannedTypes: <explanation>
 	handler: Function;
 };
 

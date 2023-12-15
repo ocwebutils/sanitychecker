@@ -13,7 +13,7 @@ export async function APIv1Controller(fastify: FastifyInstance) {
 	const routeFiles = walk(join(__dirname, "..", "routes", "v1"));
 
 	for (const file of routeFiles) {
-		const { default: route } = await import(file);
+		const { default: route } = await import(`file://${file}`);
 		try {
 			logger.extend("APIv1Controller")("Registering route: %o %s", route.method, route.url);
 			fastify.route(route);

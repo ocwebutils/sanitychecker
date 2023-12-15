@@ -98,7 +98,7 @@ async function getUploadList() {
 	} catch (error) {
 		if (isAxiosError(error)) {
 			console.error(error);
-			toast.error(error.code === "ERR_NETWORK" ? "Backend is offline. Try again later" : "Error occured", {
+			toast.error(error.code === "ERR_NETWORK" ? "Backend is offline. Try again later..." : "Error occured. Check console for errors", {
 				timeout: 5000
 			});
 

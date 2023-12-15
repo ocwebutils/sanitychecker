@@ -8,7 +8,7 @@ import type { FastifyRequest } from "fastify";
 import type { ReplyPayload } from "server/interfaces/fastify.interface.js";
 import ResultModel from "server/database/models/Result.js";
 import { deleteOldResults } from "server/util/deleteOldResults.js";
-import { randomUUID } from "node:crypto";
+import { customAlphabet } from "nanoid";
 import { uuidValidate } from "server/util/uuidValidate.js";
 
 const routeSchema = {
@@ -158,8 +158,10 @@ const validateConfig: Route = {
 		if (!rules) {
 			return res
 				.status(500)
-				.send({ success: false, error: "We couldn't find rules for this specified CPU. It may not be supported by selected OpenCore version" });
+				.send({ success: false, error: "Rules for this specified CPU couldn't be found. It may not be supported by selected OpenCore version" });
 		}
+
+		const nanoid = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 16);
 
 		const configCheck = new ConfigChecker(configBody.data);
 		const rulesResult = configCheck.validate(rules) as RulesResult[],
@@ -167,8 +169,8 @@ const validateConfig: Route = {
 				rulesResults: rulesResult.length === 0 ? null : rulesResult,
 				schemaResults: schemaResult
 			},
-			resultId = randomUUID(),
-			configId = metadata.includeConfig ? randomUUID() : null;
+			resultId = nanoid(),
+			configId = metadata.includeConfig ? nanoid() : null;
 
 		const resultQuery = new ResultModel({
 			createdBy: metadata.uploadedBy,
@@ -191,12 +193,12 @@ const validateConfig: Route = {
 			});
 
 			configQuery.save().catch(() => {
-				return res.status(500).send({ success: false, error: "We couldn't save your config inside our database. Please try again later" });
+				return res.status(500).send({ success: false, error: "We couldn't save the config in the database. Please try again later..." });
 			});
 		}
 
 		await resultQuery.save().catch(() => {
-			return res.status(500).send({ success: false, error: "We couldn't save your result inside our database. Try again later" });
+			return res.status(500).send({ success: false, error: "We couldn't save the result in the database. Try again later..." });
 		});
 
 		return res.send({

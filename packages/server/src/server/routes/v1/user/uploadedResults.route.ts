@@ -80,8 +80,6 @@ const uploadedResults: Route = {
 		if (!query)
 			return res.status(404).send({ success: false, error: "Sorry, we couldn't retrieve the requested data at this time. Please try again later." });
 
-		//const newQuery: Result[] = query.map(({ results, ...item }: Result) => item);
-
 		return res.send({ success: true, data: query });
 	}
 };

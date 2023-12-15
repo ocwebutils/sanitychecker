@@ -56,8 +56,8 @@ export const displayNormalizedName = (out: ValueType | SchemaType, type: "schema
 			return schemaOut.path.split("/").length === 2 && !schemaOut.type
 				? `${schemaOut.path.split("/")[1]} → ${schemaOut.expectedValue}`
 				: schemaOut.path.split("/").length <= 2
-				? schemaOut.expectedValue
-				: `${schemaOut.path.split("/")[1]} → ${schemaOut.expectedValue}`;
+				  ? schemaOut.expectedValue
+				  : `${schemaOut.path.split("/")[1]} → ${schemaOut.expectedValue}`;
 		}
 
 		case "rule": {
@@ -67,8 +67,8 @@ export const displayNormalizedName = (out: ValueType | SchemaType, type: "schema
 			return ruleOut.path.split("/").length >= 5
 				? `${ruleOut.path.split("/")[1]} → ${ruleOut.path.split("/")[3]}.${ruleOut.path.split("/")[4]}:`
 				: ruleOut.path.split("/")[2] === undefined
-				? `${ruleOut.path.split("/")[1]} →`
-				: `${ruleOut.path.split("/")[1]} → ${ruleOut.path.split("/")[2]}:`;
+				  ? `${ruleOut.path.split("/")[1]} →`
+				  : `${ruleOut.path.split("/")[1]} → ${ruleOut.path.split("/")[2]}:`;
 		}
 
 		default:
@@ -83,7 +83,7 @@ export const getVariable = (variable: string): unknown => {
 		if (!returnVariable) return null;
 
 		if (isJson(returnVariable)) return JSON.parse(returnVariable) as Record<string, unknown>;
-		else return localStorage.getItem(variable);
+		return localStorage.getItem(variable);
 	},
 	setVariable = (variable: string, value: unknown): void => {
 		if (!process.client) return;
@@ -101,8 +101,8 @@ export const getVariable = (variable: string): unknown => {
 
 		return cookie;
 	},
-	setCookie = (name: string, value: string): boolean | void => {
-		if (!process.client) return;
+	setCookie = (name: string, value: string): boolean => {
+		if (!process.client) return false;
 
 		const domain = process.dev ? "localhost" : window.location.hostname.replace(/^(?:[^.]+\.)?(\w+\.\w+)$/, "$1");
 		const cookie = useCookie(name, {

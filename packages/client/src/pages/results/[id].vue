@@ -13,7 +13,7 @@
 				<div class="flex flex-col text-left">
 					<p class="text-2xl font-bold clear-right mb-1">
 						Validation results <span class="text-xs">for </span>
-						<a href="#" class="text-xs text-blue-600" @click.prevent="copyURL">{{ route.params.id }} <fa-icon icon="fa-solid fa-copy" /></a>
+						<a href="#" class="text-xs text-blue-600 link-underline hover:link-underline" @click.prevent="copyURL">{{ route.params.id }} <fa-icon icon="fa-solid fa-copy" /></a>
 					</p>
 					<span class="text-lg font-medium">
 						<span class="text-blue-600">{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span>
@@ -24,7 +24,7 @@
 							>v{{ result.metadata.ocVersion }} <fa-icon icon="fa-solid fa-arrow-up-right-from-square" size="xs" /> </a
 					></span>
 					<p class="font-medium text-sm">
-						Note: Even if everything appears to be correct, this validation doesn't guarantee that the configuration will work
+						Note: The functioning of the config is not guaranteed by this validation, even if everything seems to be in order
 					</p>
 				</div>
 			</div>

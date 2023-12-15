@@ -10,6 +10,7 @@
 		"start:server": "pnpm --filter @ocwebutils/sanitychecker_server run start"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^1.4.1",
 		"@commitlint/cli": "18.4.3",
 		"@commitlint/config-conventional": "18.4.3",
 		"husky": "8.0.3"

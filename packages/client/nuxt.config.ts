@@ -53,13 +53,10 @@ export default defineNuxtConfig({
 	colorMode: {
 		classSuffix: ""
 	},
-	components: {
-		global: true,
-		dirs: ["components"]
-	},
 	css: ["vue-toastification/dist/index.css", "@fortawesome/fontawesome-svg-core/styles.css"],
-	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@nuxt/image", "@kevinmarrec/nuxt-pwa"],
+	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@nuxt/image", "@vite-pwa/nuxt"],
 	pwa: {
+		registerType: "autoUpdate",
 		manifest: {
 			name: "OpenCore Sanity Checker",
 			short_name: "ocs | ocutils",
@@ -80,13 +77,12 @@ export default defineNuxtConfig({
 			],
 			display: "standalone"
 		},
-		meta: {
-			name: "OpenCore Sanity Checker",
-			description: "OpenCore Sanity Checker made by OpenCore Web Utilities allows to check your OpenCore config for potential issues"
-		},
-		workbox: {
+		injectRegister: "auto",
+		devOptions: {
 			enabled: true,
-			templatePath: "@/serviceworker.js"
+			suppressWarnings: true,
+			navigateFallbackAllowlist: [/^\/$/],
+			type: "module"
 		}
 	},
 	runtimeConfig: {
@@ -102,7 +98,7 @@ export default defineNuxtConfig({
 		strict: true
 	},
 	srcDir: "src/",
-	ssr: true,
+	ssr: false,
 	vite: {
 		server: {
 			watch: {

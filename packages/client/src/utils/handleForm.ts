@@ -58,7 +58,7 @@ export const handleForm = async (file: Record<string, unknown>, plistBlob: File)
 
 		const uuid = await getIdentificator();
 
-		const { data } = await axiosInstance.delete("/result/" + uploadID, {
+		const { data } = await axiosInstance.delete(`/result/${uploadID}`, {
 			headers: {
 				"x-user-id": uuid as string
 			}
