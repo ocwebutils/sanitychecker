@@ -1,6 +1,6 @@
 {
 	"name": "@ocwebutils/sanitychecker_server",
-	"version": "1.4.0",
+	"version": "1.5.0",
 	"private": true,
 	"description": "Backend API for Sanity Checker",
 	"license": "GPL-3.0",
