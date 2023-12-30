@@ -48,7 +48,7 @@ const routeSchema = {
 };
 
 const getConfig: Route = {
-	url: "/download/:configId",
+	url: "/downloadConfig/:configId",
 	method: "GET",
 	schema: routeSchema,
 	attachValidation: true,

@@ -129,7 +129,7 @@ export const getVariable = (variable: string): unknown => {
 	};
 
 export const parseMarked = (string: string): string => {
-	const stringToHtml = marked.parse(string, { breaks: true });
+	const stringToHtml = marked.parse(string, { breaks: true }) as string;
 	return stringToHtml;
 };
 

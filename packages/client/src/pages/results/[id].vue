@@ -3,17 +3,26 @@
 		<div class="px-4 lg:px-8 py-6 mt-2 text-left dark:bg-darkgray-700 bg-white shadow-lg rounded-xl w-full">
 			<div class="text-center">
 				<div class="float-right space-x-1">
-					<button
-						class="btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors"
-						aria-label="Download result as CSV"
-					>
-						<a href="#" @click.prevent="downloadFile('csv')" aria-label="Download result as CSV"><fa-icon icon="fa-solid fa-download" /></a>
-					</button>
+					<div class="dropdown dropdown-bottom dropdown-end">
+						<div tabindex="0" role="button" class="mt-1 btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors">
+							<fa-icon icon="fa-solid fa-download" />
+						</div>
+						<ul tabindex="0" class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+							<li>
+								<a href="#" @click.prevent="downloadFile('csv')"><fa-icon icon="fa-solid fa-file-csv" /> Download result</a>
+							</li>
+							<li v-if="isConfigIncluded">
+								<a href="#" @click.prevent="downloadFile('config')"><fa-icon icon="fa-solid fa-file-code" /> Download config</a>
+							</li>
+						</ul>
+					</div>
 				</div>
 				<div class="flex flex-col text-left">
 					<p class="text-2xl font-bold clear-right mb-1">
 						Validation results <span class="text-xs">for </span>
-						<a href="#" class="text-xs text-blue-600 link-underline hover:link-underline" @click.prevent="copyURL">{{ route.params.id }} <fa-icon icon="fa-solid fa-copy" /></a>
+						<a href="#" class="text-xs text-blue-600 link-underline hover:link-underline" @click.prevent="copyURL"
+							>{{ route.params.id }} <fa-icon icon="fa-solid fa-copy"
+						/></a>
 					</p>
 					<span class="text-lg font-medium">
 						<span class="text-blue-600">{{ result.metadata.cpuName.replace(/\[|\]/g, "") }}</span>
@@ -66,7 +75,7 @@
 </template>
 <script setup lang="ts">
 import { useToast } from "vue-toastification";
-import { axiosInstance } from "@/utils/axiosInstance";
+import { axiosInstance, baseAPIURL } from "@/utils/axiosInstance";
 import { json2csv } from "@/utils/helpers";
 import type { JSONSchema7 } from "json-schema";
 import { isAxiosError } from "axios";
@@ -163,23 +172,22 @@ const getResult = async (id: string) => {
 		switch (type) {
 			case "csv":
 				{
+					const hrefElement = document.createElement("a");
+					document.body.appendChild(hrefElement);
+					hrefElement.style.display = "none";
+
 					const csv = json2csv(result.results);
-					const aElement = document.createElement("a");
-
-					document.body.appendChild(aElement);
-					aElement.style.display = "none";
-
 					const blob = new Blob([csv], {
 						type: "application/octet-stream"
 					});
 					const url = window.URL.createObjectURL(blob);
 
-					aElement.href = url;
-					aElement.download = "result.csv";
-					aElement.click();
+					hrefElement.href = url;
+					hrefElement.download = "result.csv";
+					hrefElement.click();
 
 					window.URL.revokeObjectURL(url);
-					aElement.remove();
+					hrefElement.remove();
 					toast.success("Result has been converted to csv format", {
 						timeout: 5000
 					});
@@ -187,6 +195,18 @@ const getResult = async (id: string) => {
 				break;
 			case "config":
 				{
+					const hrefElement = document.createElement("a");
+					document.body.appendChild(hrefElement);
+					hrefElement.style.display = "none";
+
+					const url = `${baseAPIURL}/downloadConfig/${result.metadata.configId}`;
+					hrefElement.href = url;
+					hrefElement.download = "config.plist";
+					hrefElement.click();
+					hrefElement.remove();
+					toast.success("Config has been downloaded", {
+						timeout: 5000
+					});
 				}
 				break;
 		}
@@ -211,7 +231,8 @@ const getResult = async (id: string) => {
 	},
 	result = await getResult(route.params.id as string),
 	schema = await getSchema(result.metadata.ocVersion),
-	properties = await returnProperties(schema);
+	properties = await returnProperties(schema),
+	isConfigIncluded = result.metadata.configId;
 </script>
 <style>
 .collapse-content a {

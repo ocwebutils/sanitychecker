@@ -1,5 +1,11 @@
 module.exports = {
-	content: ["./src/components/**/*.{vue,ts}", "./src/layouts/**/*.vue", "./src/pages/**/*.vue", "./src/plugins/**/*.ts"],
+	content: [
+		"./src/components/**/*.{vue,ts}",
+		"./src/layouts/**/*.vue",
+		"./src/pages/**/*.vue",
+		"./src/plugins/**/*.ts",
+		"./node_modules/flowbite/**/*.{js,ts}"
+	],
 	darkMode: "class",
 	theme: {
 		extend: {
@@ -15,5 +21,5 @@ module.exports = {
 			}
 		}
 	},
-	plugins: [require("daisyui")]
+	plugins: [require("daisyui"), require("flowbite/plugin")]
 };

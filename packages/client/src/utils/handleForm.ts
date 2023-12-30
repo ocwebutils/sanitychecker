@@ -12,7 +12,7 @@ export const handleForm = async (file: Record<string, unknown>, plistBlob: File)
 			cpuModel = cpuModelSelect.options[cpuModelSelect.selectedIndex]?.value,
 			cpuName = cpuModelSelect.options[cpuModelSelect.selectedIndex]?.text,
 			ocVersion = ocVersionSelect?.options[ocVersionSelect.selectedIndex]?.value,
-			includeConfig = false;
+			includeConfig = includeConfigCheckBox?.checked ?? false;
 
 		const uuid = await getIdentificator();
 

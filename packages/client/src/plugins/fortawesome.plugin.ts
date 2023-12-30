@@ -21,7 +21,10 @@ import {
 	faGavel,
 	faXmark,
 	faCheck,
-	faSquarePollHorizontal
+	faSquarePollHorizontal,
+	faFileCsv,
+	faFileCode,
+	faInfoCircle
 } from "@fortawesome/free-solid-svg-icons";
 import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
 
@@ -51,7 +54,10 @@ library.add(
 	faGavel,
 	faCheck,
 	faXmark,
-	faSquarePollHorizontal
+	faSquarePollHorizontal,
+	faFileCsv,
+	faFileCode,
+	faInfoCircle
 );
 library.add(faGithub, faDiscord);
 
