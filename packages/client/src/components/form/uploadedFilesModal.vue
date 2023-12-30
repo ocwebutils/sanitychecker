@@ -1,12 +1,12 @@
 <template>
-	<dialog id="uploadedFilesModal" class="modal">
-		<form method="dialog" class="modal-box max-w-3xl">
-			<button for="uploadedFilesModal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+	<dialog id="uploadedFilesModal" class="daisy-modal">
+		<form method="dialog" class="daisy-modal-box max-w-3xl">
+			<button for="uploadedFilesModal" class="daisy-btn daisy-btn-sm daisy-btn-circle daisy-btn-ghost absolute right-2 top-2">✕</button>
 			<p class="font-bold text-lg">Your uploaded results</p>
 			<p>Uploaded results are expired after countdown ends or you can manually remove them from the database.</p>
 			<div class="mt-3">
 				<div class="overflow-x-auto">
-					<table class="table w-full max-h-20">
+					<table class="daisy-table w-full max-h-20">
 						<thead>
 							<tr>
 								<th scope="col">#</th>
@@ -19,21 +19,21 @@
 							<tr v-for="(result, index) in uploads">
 								<th>{{ index + 1 }}</th>
 								<th>
-									<div class="tooltip" :data-tip="`${result.metadata.cpuName} - v${result.metadata.ocVersion}`">
+									<div class="daisy-tooltip" :data-tip="`${result.metadata.cpuName} - v${result.metadata.ocVersion}`">
 										<NuxtLink class="hover:underline" :href="'/results/' + result.resultId" :id="'id-result-' + index">{{
 											result.resultId
 										}}</NuxtLink>
 									</div>
 								</th>
 								<th>
-									<span class="countdown font-mono space-x-2">
+									<span class="daisy-countdown font-mono space-x-2">
 										<span class="days" :style="'--value:' + getDiff(date, result.expireDate)[0]"></span>d
 										<span class="hours" :style="'--value:' + getDiff(date, result.expireDate)[1]"></span>h
 										<span class="minutes" :style="'--value:' + getDiff(date, result.expireDate)[2]"></span>m
 									</span>
 								</th>
 								<th>
-									<button class="btn btn-error btn-sm" :id="'delete-result-' + index" @click.prevent="executeResultDeletion">Delete</button>
+									<button class="daisy-btn daisy-btn-error daisy-btn-sm" :id="'delete-result-' + index" @click.prevent="executeResultDeletion">Delete</button>
 								</th>
 							</tr>
 						</tbody>
@@ -41,7 +41,7 @@
 				</div>
 			</div>
 		</form>
-		<form method="dialog" class="modal-backdrop">
+		<form method="dialog" class="daisy-modal-backdrop">
 			<button>close</button>
 		</form>
 	</dialog>

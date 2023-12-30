@@ -1,14 +1,14 @@
-<template>
+<template>divider
 	<div class="flex flex-col sm:flex-row mb-5 sm:space-y-0 space-y-2 w-full">
 		<div class="w-full relative inline-block dark:text-white text-black" :class="!supportedOCVersions ? '' : 'sm:mr-3 md:mr-3'">
 			<div class="flex flex-row">
-				<div class="form-control w-full">
+				<div class="daisy-form-control w-full">
 					<label for="cpu_model" class="label">
-						<span class="label-text">CPU model</span>
+						<span class="daisy-label-text">CPU model</span>
 					</label>
 					<select
 						id="cpu_model"
-						class="select select-bordered dark:bg-darkgray-800"
+						class="daisy-select daisy-select-bordered dark:bg-darkgray-800"
 						:class="!supportedOCVersions ? 'max-w-full' : 'max-w-xs'"
 						v-model="selectedCPUModel"
 					>
@@ -22,11 +22,11 @@
 			</div>
 		</div>
 		<div class="relative inline-block dark:text-white text-black w-full" v-if="supportedOCVersions">
-			<div class="form-control">
+			<div class="daisy-form-control">
 				<label for="oc_version" class="label">
-					<span class="label-text">OC version</span>
+					<span class="daisy-label-text">OC version</span>
 				</label>
-				<select id="oc_version" class="select select-bordered dark:bg-darkgray-800" v-model="selectedOCVersion">
+				<select id="oc_version" class="daisy-select daisy-select-bordered dark:bg-darkgray-800" v-model="selectedOCVersion">
 					<option v-for="version in supportedOCVersions" :value="version">v{{ version }}</option>
 				</select>
 			</div>

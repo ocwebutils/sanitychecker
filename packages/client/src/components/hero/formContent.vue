@@ -10,7 +10,7 @@
 						<HeroDropZoneContent @dropFileHandler="dropFileHandler" />
 					</div>
 					<FormInProgressSvg v-else />
-					<div class="divider" />
+					<div class="daisy-divider" />
 					<FormFooter />
 				</div>
 			</form>

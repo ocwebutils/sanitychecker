@@ -3,11 +3,11 @@
 		<div class="px-4 lg:px-8 py-6 mt-2 text-left dark:bg-darkgray-700 bg-white shadow-lg rounded-xl w-full">
 			<div class="text-center">
 				<div class="float-right space-x-1">
-					<div class="dropdown dropdown-bottom dropdown-end">
-						<div tabindex="0" role="button" class="mt-1 btn btn-sm btn-circle btn-ghost font-medium text-lg hover:text-blue-500 transition-colors">
+					<div class="daisy-dropdown daisy-dropdown-bottom daisy-dropdown-end">
+						<div tabindex="0" role="button" class="mt-1 daisy-btn daisy-btn-sm daisy-btn-circle daisy-btn-ghost font-medium text-lg hover:text-blue-500 transition-colors">
 							<fa-icon icon="fa-solid fa-download" />
 						</div>
-						<ul tabindex="0" class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+						<ul tabindex="0" class="p-2 daisy-shadow daisy-menu daisy-dropdown-content z-[1] bg-base-100 rounded-box w-52">
 							<li>
 								<a href="#" @click.prevent="downloadFile('csv')"><fa-icon icon="fa-solid fa-file-csv" /> Download result</a>
 							</li>
@@ -37,23 +37,30 @@
 					</p>
 				</div>
 			</div>
-			<div class="divider" />
+			<div class="daisy-divider" />
 			<div class="font-medium space-y-4" v-if="!showRawData">
 				<div v-for="property in properties">
-					<p :id="property" class="mr-4 mb-2 text-lg">{{ property }}</p>
-					<template class="inline" v-for="res in result.results.schemaResults.missingRoot">
-						<span v-if="res === property">
-							<div class="tooltip" data-tip="This root dictionary is missing from your config">
-								<fa-icon
+					<p :id="property" class="mr-4 mb-2 text-lg">{{ property }}
+					<template v-for="res in result.results.schemaResults.missingRoot">
+						<div v-if="res === property" class="inline">
+							<button data-tooltip-target="tooltip-rootMissing" :data-tooltip-placement="isMobile() ? 'bottom' : 'right'" type="button" class="ml-1"><fa-icon
 									class="mr-2"
 									icon="fa-solid fa-circle-xmark"
 									:style="{
 										color: 'red'
 									}"
-								/>
-							</div>
-						</span>
+								/></button>
+									<div
+			id="tooltip-rootMissing"
+			role="tooltip"
+			class="!absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+		>
+			This root dictionary is missing from your config. Please add it to your config.
+			<div class="tooltip-arrow" data-popper-arrow></div>
+		</div>
+						</div>
 					</template>
+					</p>
 					<template v-for="results in result.results.rulesResults">
 						<template v-if="results.path.includes(property)">
 							<ResultValueError :ruleOutput="results" v-if="results.ruleSet.type !== 'success'" />
@@ -68,7 +75,7 @@
 			<div v-else>
 				<pre class="bg-gray-100 dark:bg-gray-900 rounded-lg whitespace-pre-wrap p-2">{{ JSON.stringify(result, null, 2) }}</pre>
 			</div>
-			<div class="divider" />
+			<div class="daisy-divider" />
 			<button class="btn" @click.prevent="rawData">Show Raw Data</button>
 		</div>
 	</div>
@@ -79,7 +86,9 @@ import { axiosInstance, baseAPIURL } from "@/utils/axiosInstance";
 import { json2csv } from "@/utils/helpers";
 import type { JSONSchema7 } from "json-schema";
 import { isAxiosError } from "axios";
+import { initTooltips } from "flowbite";
 
+const isMobile = () => window.innerWidth <= 760;
 const route = useRoute(),
 	router = useRouter(),
 	showRawData = ref(false),
@@ -233,9 +242,13 @@ const getResult = async (id: string) => {
 	schema = await getSchema(result.metadata.ocVersion),
 	properties = await returnProperties(schema),
 	isConfigIncluded = result.metadata.configId;
+
+onMounted(() => {
+	initTooltips();
+});
 </script>
 <style>
-.collapse-content a {
+.daisy-collapse-content a {
 	@apply text-blue-500 hover:text-blue-600 transition-colors link-underline hover:link-underline;
 }
 </style>

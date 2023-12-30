@@ -1,13 +1,13 @@
 <template>
-	<div class="collapse collapse-arrow border border-base-300 bg-base-100 dark:bg-darkgray-800 rounded-box mb-4 ml-2">
+	<div class="daisy-collapse daisy-collapse-arrow border border-base-300 bg-base-100 dark:bg-darkgray-800 rounded-box mb-4 ml-2">
 		<input type="checkbox" aria-label="Expand the content" />
-		<div class="collapse-title text-base font-medium">
+		<div class="daisy-collapse-title text-base font-medium">
 			<fa-icon class="mr-2" :icon="getIcon(ruleOutput.ruleSet.type).icon" :style="getIcon(ruleOutput.ruleSet.type).style" />
 			<span>{{ displayNormalizedName(ruleOutput, "rule") }} {{ replaceBoolean(ruleOutput.actualValue) }}</span>
 		</div>
-		<div class="collapse-content text-sm font-base">
+		<div class="daisy-collapse-content text-sm font-base">
 			<p v-dompurify-html="parseMarked(ruleOutput.ruleSet.message as string)" />
-			<div class="divider" />
+			<div class="daisy-divider" />
 			<span
 				>Expected value: <code>{{ replaceBoolean(ruleOutput.expectedValue as string) }}</code></span
 			>

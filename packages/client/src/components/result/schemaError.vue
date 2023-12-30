@@ -1,13 +1,13 @@
 <template>
-	<div class="collapse collapse-arrow border border-base-300 bg-base-100 dark:bg-darkgray-800 rounded-box mb-4 ml-2">
+	<div class="daisy-collapse daisy-collapse-arrow border border-base-300 bg-base-100 dark:bg-darkgray-800 rounded-box mb-4 ml-2">
 		<input type="checkbox" aria-label="Expand the content" />
-		<div class="collapse-title text-base font-medium">
+		<div class="daisy-collapse-title text-base font-medium">
 			<fa-icon class="mr-2" :icon="getIcon(schemaError.ruleSet.type).icon" :style="getIcon(schemaError.ruleSet.type).style" />
 			<span>{{ displayNormalizedName(schemaError, "schema") }} </span>
 		</div>
-		<div class="collapse-content text-sm font-base">
+		<div class="daisy-collapse-content text-sm font-base">
 			<p v-dompurify-html="parseMarked(returnMessage(schemaError.ruleSet.message as string, schemaError.path, schemaError.type) as string)"></p>
-			<div class="divider" />
+			<div class="daisy-divider" />
 			<p>
 				Type: <code>{{ schemaError.ruleSet.type.charAt(0).toUpperCase() + schemaError.ruleSet.type.slice(1) }}</code>
 			</p>
@@ -48,7 +48,7 @@ Note: For further information about this property, please refer to the **[OpenCo
 };
 </script>
 <style>
-.collapse-content li {
+.daisy-collapse-content li {
 	list-style-type: disc;
 	margin-left: 2rem;
 }
