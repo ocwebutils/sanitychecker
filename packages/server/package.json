@@ -1,6 +1,6 @@
 {
 	"name": "@ocwebutils/sanitychecker_server",
-	"version": "1.5.0",
+	"version": "1.5.1",
 	"private": true,
 	"description": "Backend API for Sanity Checker",
 	"license": "GPL-3.0",
@@ -11,13 +11,13 @@
 		"start": "node dist/src/index.js"
 	},
 	"dependencies": {
-		"@fastify/cors": "8.4.2",
+		"@fastify/cors": "8.5.0",
 		"@ocwebutils/sc_checker": "github:ocwebutils/sc_checker",
 		"@ocwebutils/sc_rules": "github:ocwebutils/sc_rules",
 		"ajv": "8.12.0",
 		"debug": "4.3.4",
 		"dotenv": "16.3.1",
-		"fastify": "4.25.1",
+		"fastify": "4.25.2",
 		"mongoose": "8.0.3",
 		"nanoid": "5.0.4"
 	},
