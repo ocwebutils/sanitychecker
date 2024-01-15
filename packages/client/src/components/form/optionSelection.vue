@@ -56,7 +56,7 @@ watch(selectedCPUModel, function (newValue: string) {
 
 const restoreSelections = () => {
 	try {
-		const lastSelections = getVariable("lastOptions") as { cpuModel: string; ocVersion: string; includeConfig: boolean };
+		const lastSelections = getVariable("lastOptions") as { cpuModel: string; ocVersion: string; includeConfig: boolean; };
 
 		if (!lastSelections) return;
 
@@ -65,9 +65,7 @@ const restoreSelections = () => {
 		selectedCPUModel.value = cpuModel;
 		selectedOCVersion.value = ocVersion;
 		includeConfigElement.checked = includeConfig;
-	} catch (err) {
-		return;
-	}
+	} catch { }
 };
 
 const getSupportedOCVersions = async (cpumodel: string) => {

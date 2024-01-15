@@ -7,11 +7,11 @@
 				<div class="mt-4 grid grid-cols-1" id="topForm">
 					<FormOptionSelection />
 					<div class="relative flex flex-col" v-if="!processing">
-						<HeroDropZoneContent @dropFileHandler="dropFileHandler" />
+						<LazyHeroDropZoneContent @dropFileHandler="dropFileHandler" />
 					</div>
 					<FormInProgressSvg v-else />
 					<div class="daisy-divider" />
-					<FormFooter />
+					<LazyFormFooter />
 				</div>
 			</form>
 		</div>
@@ -23,7 +23,6 @@ import { handleForm } from "@/utils/handleForm";
 import { useToast } from "vue-toastification";
 
 const processing = ref<boolean>(false);
-
 const toast = useToast();
 
 const dropFileHandler = async (event: File[] | Event) => {

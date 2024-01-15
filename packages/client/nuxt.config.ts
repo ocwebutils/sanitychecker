@@ -83,6 +83,9 @@ export default defineNuxtConfig({
 			suppressWarnings: true,
 			navigateFallbackAllowlist: [/^\/$/],
 			type: "module"
+		},
+		workbox: {
+			globPatterns: ["**/*.{js,css,html,png,svg,ico}"]
 		}
 	},
 	runtimeConfig: {
@@ -104,6 +107,11 @@ export default defineNuxtConfig({
 			watch: {
 				usePolling: true
 			}
+		}
+	},
+	nitro: {
+		prerender: {
+			routes: ["/privacy"]
 		}
 	}
 });

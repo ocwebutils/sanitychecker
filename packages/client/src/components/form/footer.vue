@@ -1,5 +1,5 @@
 <template>
-	<div><FormUploadedFilesModal /></div>
+	<div><LazyFormUploadedFilesModal /></div>
 	<div class="flex flex-row items-center place-items-center justify-center">
 		<label class="daisy-btn" onclick="uploadedFilesModal.showModal()">Show Uploaded Results</label>
 		<div class="daisy-divider daisy-divider-horizontal"></div>

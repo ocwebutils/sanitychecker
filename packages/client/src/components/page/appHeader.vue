@@ -62,7 +62,7 @@
 					</NuxtLink>
 				</li>
 			</ul>
-			<ThemeChanger class="pl-1" />
+			<LazyThemeChanger class="pl-1" />
 		</div>
 	</nav>
 </template>

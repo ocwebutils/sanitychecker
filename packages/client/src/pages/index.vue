@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<InfoBox />
+		<LazyInfoBox />
 		<HeroContent>
 			<HeroFormContent />
 		</HeroContent>
