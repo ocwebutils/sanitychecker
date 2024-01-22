@@ -76,7 +76,7 @@
 				<pre class="bg-gray-100 dark:bg-gray-900 rounded-lg whitespace-pre-wrap p-2">{{ JSON.stringify(result, null, 2) }}</pre>
 			</div>
 			<div class="daisy-divider" />
-			<button class="btn" @click.prevent="rawData">Show Raw Data</button>
+			<button class="daisy-btn" @click.prevent="rawData">Show Raw Data</button>
 		</div>
 	</div>
 </template>
