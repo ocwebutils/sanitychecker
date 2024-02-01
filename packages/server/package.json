@@ -16,15 +16,15 @@
 		"@ocwebutils/sc_rules": "github:ocwebutils/sc_rules",
 		"ajv": "8.12.0",
 		"debug": "4.3.4",
-		"dotenv": "16.3.1",
-		"fastify": "4.25.2",
-		"mongoose": "8.0.4",
+		"dotenv": "16.4.1",
+		"fastify": "4.26.0",
+		"mongoose": "8.1.1",
 		"nanoid": "5.0.4"
 	},
 	"devDependencies": {
 		"@types/debug": "4.1.12",
 		"@types/json-schema": "7.0.15",
-		"@types/node": "20.11.2",
+		"@types/node": "20.11.14",
 		"tsx": "4.7.0",
 		"typescript": "5.3.3"
 	},
