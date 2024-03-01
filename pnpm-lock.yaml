@@ -97,8 +97,8 @@ importers:
   packages/server:
     dependencies:
       '@fastify/cors':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 9.0.1
+        version: 9.0.1
       '@ocwebutils/sc_checker':
         specifier: github:ocwebutils/sc_checker
         version: github.com/ocwebutils/sc_checker/4aece80aafec183fdbc2606026fb01d74a53e3be
@@ -2112,8 +2112,8 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /@fastify/cors@8.5.0:
-    resolution: {integrity: sha512-/oZ1QSb02XjP0IK1U0IXktEsw/dUBTxJOW7IpIeO8c/tNalw/KjoNSJv1Sf6eqoBPO+TDGkifq6ynFK3v68HFQ==}
+  /@fastify/cors@9.0.1:
+    resolution: {integrity: sha512-YY9Ho3ovI+QHIL2hW+9X4XqQjXLjJqsU+sMV/xFsxZkE8p3GNnYVFpoOxF7SsP5ZL76gwvbo3V9L+FIekBGU4Q==}
     dependencies:
       fastify-plugin: 4.5.1
       mnemonist: 0.39.6
@@ -10805,6 +10805,7 @@ packages:
 
   /workbox-google-analytics@7.0.0:
     resolution: {integrity: sha512-MEYM1JTn/qiC3DbpvP2BVhyIH+dV/5BjHk756u9VbwuAhu0QHyKscTnisQuz21lfRpOwiS9z4XdqeVAKol0bzg==}
+    deprecated: It is not compatible with newer versions of GA starting with v4, as long as you are using GAv3 it should be ok, but the package is not longer being maintained
     dependencies:
       workbox-background-sync: 7.0.0
       workbox-core: 7.0.0
