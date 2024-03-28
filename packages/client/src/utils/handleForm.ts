@@ -1,4 +1,4 @@
-import { useCustomFetch } from "@/components/useCustomFetch";
+import { useCustomFetch } from "@/composables/useCustomFetch";
 import { readFileAsBase64, setVariable } from "./helpers";
 
 import { getIdentificator } from "./identificator";

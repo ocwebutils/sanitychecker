@@ -23,21 +23,17 @@
 	</footer>
 </template>
 <script setup lang="ts">
-import { useCustomFetch } from "../useCustomFetch";
+import { useCustomFetch } from "@/composables/useCustomFetch";
 const config = useRuntimeConfig();
 
 const getPackageVersions = async (): Promise<{ rulesVersion: string } | null> => {
-	try {
-		const { data, error } = await useCustomFetch<{ success: boolean; data?: { rulesVersion: string } }>("/packageVersions");
-		if (!data?.value?.success || !data?.value?.data || error?.value?.data) return null;
+	const { data, error } = await useCustomFetch<{ success: boolean; data?: { rulesVersion: string } }>("/packageVersions");
+	if (!data?.value?.success || !data?.value?.data || error?.value?.data) return null;
 
-		return data.value.data;
-	} catch {
-		return null;
-	}
+	return data.value.data;
 };
 
 const commit = config.public.COMMIT_HASH,
 	version = config.public.WEBSITE_VERSION,
 	packageVersions = await getPackageVersions();
-</script>
+</script>../../composables/useCustomFetch

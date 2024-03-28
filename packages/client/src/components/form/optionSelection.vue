@@ -37,7 +37,7 @@
 <script setup lang="ts">
 import { getVariable } from "@/utils/helpers";
 import type { cpuGenerations, cpuModel } from "@/interfaces/metadata";
-import { useCustomFetch } from "../useCustomFetch";
+import { useCustomFetch } from "@/composables/useCustomFetch";
 
 const supportedCPUGenerations = ref<cpuModel | null>(null),
 	supportedOCVersions = ref(null),
@@ -69,47 +69,39 @@ const restoreSelections = () => {
 };
 
 const getSupportedOCVersions = async (cpumodel: string) => {
-	try {
-		const { data } = await useCustomFetch<{ success: boolean; data?: { supportedVersions: string[] }; error?: string }>(
-			`/supportedOCVersions?codename=${cpumodel}`
-		);
-		if (!data?.value?.success) return null;
-		const res = data.value.data;
+	const { data, error } = await useCustomFetch<{ success: boolean; data?: { supportedVersions: string[] }; error?: string }>(
+		`/supportedOCVersions?codename=${cpumodel}`
+	);
+	if (!data?.value?.success || error?.value?.data) return null;
+	const res = data.value.data;
 
-		const supportedVersions = res?.supportedVersions ?? [];
-		supportedOCVersions.value = supportedVersions;
-		selectedOCVersion.value = supportedVersions[0];
-	} catch {
-		return null;
-	}
+	const supportedVersions = res?.supportedVersions ?? [];
+	supportedOCVersions.value = supportedVersions;
+	selectedOCVersion.value = supportedVersions[0];
 };
 
 const getSupportedCPUGenerations = async () => {
-	try {
-		const { data } = await useCustomFetch<{ success: boolean; data?: unknown; error?: string }>("/supportedCPUGenerations");
-		if (!data?.value?.success) return null;
-		const resData = data.value.data;
+	const { data, error } = await useCustomFetch<{ success: boolean; data?: unknown; error?: string }>("/supportedCPUGenerations");
+	if (!data?.value?.success || error?.value?.data) return null;
+	const resData = data.value.data;
 
-		const res = resData as cpuGenerations;
-		const newRes: cpuModel = {};
+	const res = resData as cpuGenerations;
+	const newRes: cpuModel = {};
 
-		for (const platform in res) {
-			const cpuModels = res[platform];
-			const updatedCpuModels = Object.keys(cpuModels).flatMap(brand => {
-				const models = cpuModels[brand];
-				return models.map(({ displayName, codename }) => {
-					return {
-						displayName: `[${brand}] ${displayName}`,
-						codename: codename,
-					};
-				});
+	for (const platform in res) {
+		const cpuModels = res[platform];
+		const updatedCpuModels = Object.keys(cpuModels).flatMap(brand => {
+			const models = cpuModels[brand];
+			return models.map(({ displayName, codename }) => {
+				return {
+					displayName: `[${brand}] ${displayName}`,
+					codename: codename,
+				};
 			});
-			newRes[platform] = updatedCpuModels;
-		}
-
-		return newRes;
-	} catch {
-		return null;
+		});
+		newRes[platform] = updatedCpuModels;
 	}
+
+	return newRes;
 };
-</script>
+</script>../../composables/useCustomFetch

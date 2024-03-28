@@ -50,11 +50,11 @@
 import { getIdentificator } from "@/utils/identificator";
 import { Countdown } from "@/class/countdown";
 import { deleteResult } from "@/utils/handleForm";
-import { useCustomFetch } from "../useCustomFetch";
+import { useCustomFetch } from "@/composables/useCustomFetch";
 
+const { $toast: toast } = useNuxtApp();
 const uploads = await getUploadList();
 const date = Date.now();
-const { $toast: toast } = useNuxtApp();
 
 onMounted(() => {
 	for (const countdownElement of document.querySelectorAll<HTMLSpanElement>(".countdown")) {
@@ -100,4 +100,4 @@ async function getUploadList() {
 .dark tr {
 	@apply bg-darkgray-800 rounded-lg;
 }
-</style>
+</style>../../composables/useCustomFetch

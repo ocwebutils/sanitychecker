@@ -84,7 +84,7 @@
 import { json2csv } from "@/utils/helpers";
 import type { JSONSchema7 } from "json-schema";
 import { initTooltips } from "flowbite";
-import { useCustomFetch } from "@/components/useCustomFetch";
+import { useCustomFetch } from "@/composables/useCustomFetch";
 import { baseAPIURL } from "@/constants";
 
 const isMobile = () => window.innerWidth <= 760;
