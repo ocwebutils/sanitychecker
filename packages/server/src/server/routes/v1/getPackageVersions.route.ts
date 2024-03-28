@@ -10,7 +10,7 @@ const getPackageVersions: Route = {
 	method: "GET",
 	handler: (_: FastifyRequest, res: ReplyPayload<BasicResponse<packageVersions>>) => {
 		return res.send({ success: true, data: { rulesVersion, apiVersion } });
-	}
+	},
 };
 
 export default getPackageVersions;

@@ -7,28 +7,28 @@ export const getIcon = (type: "success" | "info" | "warning" | "error") => {
 		case "error": {
 			return {
 				icon: "fa-solid fa-circle-xmark",
-				style: { color: "red" }
+				style: { color: "red" },
 			};
 		}
 
 		case "warning": {
 			return {
 				icon: "fa-solid fa-circle-exclamation",
-				style: { color: "orange" }
+				style: { color: "orange" },
 			};
 		}
 
 		case "info": {
 			return {
 				icon: "fa-solid fa-circle-info",
-				style: { color: "rgb(59,130,246)" }
+				style: { color: "rgb(59,130,246)" },
 			};
 		}
 
 		case "success": {
 			return {
 				icon: "fa-solid fa-circle-check",
-				style: { color: "green" }
+				style: { color: "green" },
 			};
 		}
 
@@ -56,8 +56,8 @@ export const displayNormalizedName = (out: ValueType | SchemaType, type: "schema
 			return schemaOut.path.split("/").length === 2 && !schemaOut.type
 				? `${schemaOut.path.split("/")[1]} → ${schemaOut.expectedValue}`
 				: schemaOut.path.split("/").length <= 2
-				  ? schemaOut.expectedValue
-				  : `${schemaOut.path.split("/")[1]} → ${schemaOut.expectedValue}`;
+					? schemaOut.expectedValue
+					: `${schemaOut.path.split("/")[1]} → ${schemaOut.expectedValue}`;
 		}
 
 		case "rule": {
@@ -67,8 +67,8 @@ export const displayNormalizedName = (out: ValueType | SchemaType, type: "schema
 			return ruleOut.path.split("/").length >= 5
 				? `${ruleOut.path.split("/")[1]} → ${ruleOut.path.split("/")[3]}.${ruleOut.path.split("/")[4]}:`
 				: ruleOut.path.split("/")[2] === undefined
-				  ? `${ruleOut.path.split("/")[1]} →`
-				  : `${ruleOut.path.split("/")[1]} → ${ruleOut.path.split("/")[2]}:`;
+					? `${ruleOut.path.split("/")[1]} →`
+					: `${ruleOut.path.split("/")[1]} → ${ruleOut.path.split("/")[2]}:`;
 		}
 
 		default:
@@ -76,14 +76,14 @@ export const displayNormalizedName = (out: ValueType | SchemaType, type: "schema
 	}
 };
 
-export const getVariable = (variable: string): unknown => {
-		if (!process.client) return;
+export const getVariable = <T = unknown>(variable: string): T | null => {
+		if (!process.client) return null;
 
 		const returnVariable = localStorage.getItem(variable);
 		if (!returnVariable) return null;
 
-		if (isJson(returnVariable)) return JSON.parse(returnVariable) as Record<string, unknown>;
-		return localStorage.getItem(variable);
+		if (isJson(returnVariable)) return JSON.parse(returnVariable) as T;
+		return localStorage.getItem(variable) as T;
 	},
 	setVariable = (variable: string, value: unknown): void => {
 		if (!process.client) return;
@@ -96,7 +96,7 @@ export const getVariable = (variable: string): unknown => {
 		const domain = process.dev ? "localhost" : window.location.hostname.replace(/^(?:[^.]+\.)?(\w+\.\w+)$/, "$1");
 		const cookie = useCookie(name, {
 			expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 365),
-			domain
+			domain,
 		});
 
 		return cookie;
@@ -107,7 +107,7 @@ export const getVariable = (variable: string): unknown => {
 		const domain = process.dev ? "localhost" : window.location.hostname.replace(/^(?:[^.]+\.)?(\w+\.\w+)$/, "$1");
 		const cookie = useCookie(name, {
 			expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 365),
-			domain
+			domain,
 		});
 
 		try {
@@ -127,7 +127,6 @@ export const getVariable = (variable: string): unknown => {
 
 		return true;
 	};
-
 export const parseMarked = (string: string): string => {
 	const stringToHtml = marked.parse(string, { breaks: true }) as string;
 	return stringToHtml;
@@ -143,7 +142,7 @@ export const json2csv = (results: { rulesResults: ValueType[]; schemaResults: { 
 			ruleResult.actualValue?.toString() ?? "",
 			ruleResult.expectedValue ?? "",
 			ruleResult.ruleSet.type,
-			ruleResult.ruleSet.message ? `"${ruleResult.ruleSet.message}"` : ""
+			ruleResult.ruleSet.message ? `"${ruleResult.ruleSet.message}"` : "",
 		];
 		rows.push(row);
 	}
@@ -154,7 +153,7 @@ export const json2csv = (results: { rulesResults: ValueType[]; schemaResults: { 
 			"",
 			schemaResult.expectedValue ?? "",
 			schemaResult.ruleSet.type,
-			schemaResult.ruleSet.message ? `"${schemaResult.ruleSet.message}"` : ""
+			schemaResult.ruleSet.message ? `"${schemaResult.ruleSet.message}"` : "",
 		];
 		rows.push(row);
 	}

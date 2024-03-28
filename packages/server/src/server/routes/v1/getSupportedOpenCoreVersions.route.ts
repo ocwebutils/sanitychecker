@@ -10,16 +10,16 @@ const routeSchema = {
 		required: ["codename"],
 		properties: {
 			codename: {
-				type: "string"
-			}
-		}
+				type: "string",
+			},
+		},
 	},
 	response: {
 		200: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				data: {
 					type: "object",
@@ -27,25 +27,25 @@ const routeSchema = {
 						supportedVersions: {
 							type: "array",
 							items: {
-								type: "string"
-							}
-						}
-					}
-				}
-			}
+								type: "string",
+							},
+						},
+					},
+				},
+			},
 		},
 		500: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				error: {
-					type: "string"
-				}
-			}
-		}
-	}
+					type: "string",
+				},
+			},
+		},
+	},
 };
 
 const getSupportedOpenCoreVersions: Route = {
@@ -64,7 +64,7 @@ const getSupportedOpenCoreVersions: Route = {
 			return res.status(500).send({ success: false, error: "Sorry, we couldn't retrieve the requested data at this time. Please try again later." });
 
 		return res.send({ success: true, data: { supportedVersions: returnObj.supportedVersions } });
-	}
+	},
 };
 
 export default getSupportedOpenCoreVersions;

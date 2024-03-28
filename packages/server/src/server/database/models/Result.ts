@@ -8,7 +8,7 @@ const ResultSchema: Schema = new Schema<Result>(
 		expireDate: { type: Number, required: true },
 		resultId: { type: String, required: true },
 		results: { type: Object, required: true },
-		metadata: { type: Object, required: true }
+		metadata: { type: Object, required: true },
 	},
 	{ strict: true }
 );

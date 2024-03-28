@@ -13,16 +13,16 @@ const routeSchema = {
 		required: ["x-user-id"],
 		properties: {
 			"x-user-id": {
-				type: "string"
-			}
-		}
+				type: "string",
+			},
+		},
 	},
 	response: {
 		200: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				data: {
 					type: "array",
@@ -30,35 +30,35 @@ const routeSchema = {
 						type: "object",
 						properties: {
 							createdBy: {
-								type: "string"
+								type: "string",
 							},
 							expireDate: {
-								type: "string"
+								type: "string",
 							},
 							resultId: {
-								type: "string"
+								type: "string",
 							},
 							metadata: {
 								type: "object",
-								additionalProperties: true
-							}
-						}
-					}
-				}
-			}
+								additionalProperties: true,
+							},
+						},
+					},
+				},
+			},
 		},
 		"4xx": {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				error: {
-					type: "string"
-				}
-			}
-		}
-	}
+					type: "string",
+				},
+			},
+		},
+	},
 };
 
 const uploadedResults: Route = {
@@ -81,7 +81,7 @@ const uploadedResults: Route = {
 			return res.status(404).send({ success: false, error: "Sorry, we couldn't retrieve the requested data at this time. Please try again later." });
 
 		return res.send({ success: true, data: query });
-	}
+	},
 };
 
 export default uploadedResults;

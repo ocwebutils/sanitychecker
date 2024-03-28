@@ -20,20 +20,20 @@
 								<th>{{ index + 1 }}</th>
 								<th>
 									<div class="daisy-tooltip" :data-tip="`${result.metadata.cpuName} - v${result.metadata.ocVersion}`">
-										<NuxtLink class="hover:underline" :href="'/results/' + result.resultId" :id="'id-result-' + index">{{
+										<NuxtLink class="hover:underline" :href="`/results/${result.resultId}`" :id="`id-result-${index}`">{{
 											result.resultId
 										}}</NuxtLink>
 									</div>
 								</th>
 								<th>
 									<span class="daisy-countdown font-mono space-x-2">
-										<span class="days" :style="'--value:' + getDiff(date, result.expireDate)[0]"></span>d
-										<span class="hours" :style="'--value:' + getDiff(date, result.expireDate)[1]"></span>h
-										<span class="minutes" :style="'--value:' + getDiff(date, result.expireDate)[2]"></span>m
+										<span class="days" :style="`--value: ${getDiff(date, result.expireDate).days}`"></span>d
+										<span class="hours" :style="`--value: ${getDiff(date, result.expireDate).hours}`"></span>h
+										<span class="minutes" :style="`--value: ${getDiff(date, result.expireDate).minutes}`"></span>m
 									</span>
 								</th>
 								<th>
-									<button class="daisy-btn daisy-btn-error daisy-btn-sm" :id="'delete-result-' + index" @click.prevent="executeResultDeletion">Delete</button>
+									<button class="daisy-btn daisy-btn-error daisy-btn-sm" :id="`delete-result-${index}`" @click.prevent="executeResultDeletion">Delete</button>
 								</th>
 							</tr>
 						</tbody>
@@ -50,19 +50,17 @@
 import { getIdentificator } from "@/utils/identificator";
 import { Countdown } from "@/class/countdown";
 import { deleteResult } from "@/utils/handleForm";
-import { axiosInstance } from "@/utils/axiosInstance";
-import { useToast } from "vue-toastification";
-import { isAxiosError } from "axios";
+import { useCustomFetch } from "../useCustomFetch";
 
 const uploads = await getUploadList();
 const date = Date.now();
-const toast = useToast();
+const { $toast: toast } = useNuxtApp();
 
 onMounted(() => {
-	document.querySelectorAll(".countdown").forEach(e => {
-		const timer = new Countdown(e as HTMLSpanElement);
+	for (const countdownElement of document.querySelectorAll<HTMLSpanElement>(".countdown")) {
+		const timer = new Countdown(countdownElement);
 		timer.start();
-	});
+	}
 });
 
 const getDiff = (start: number, end: number) => {
@@ -70,7 +68,7 @@ const getDiff = (start: number, end: number) => {
 	const days = Math.floor(diffms / 86400);
 	const hours = Math.floor((diffms % 86400) / 3600);
 	const minutes = Math.floor((diffms % 3600) / 60);
-	return [days, hours, minutes];
+	return { days, hours, minutes };
 };
 
 const executeResultDeletion = async (e: MouseEvent) => {
@@ -79,32 +77,20 @@ const executeResultDeletion = async (e: MouseEvent) => {
 
 async function getUploadList() {
 	const uuid = (await getIdentificator()) as string;
-	try {
-		const { data } = await axiosInstance.get("/user/uploadedResults", {
-			headers: {
-				"x-user-id": uuid
-			}
-		});
-		if (!data.success) {
-			console.error(data);
-			toast.error("Error occured. Check console for errors", {
-				timeout: 5000
-			});
+	const { data, error } = await useCustomFetch<{ success: boolean; data?: unknown; error?: string }>("/user/uploadedResults", {
+		headers: {
+			"x-user-id": uuid,
+		},
+	});
 
-			return;
-		}
+	if (!data?.value?.success || error?.value?.data) {
+		console.error(data?.value?.error ?? error?.value?.data);
+		toast.error("Error occured. Check console for errors");
 
-		return data.data;
-	} catch (error) {
-		if (isAxiosError(error)) {
-			console.error(error);
-			toast.error(error.code === "ERR_NETWORK" ? "Backend is offline. Try again later..." : "Error occured. Check console for errors", {
-				timeout: 5000
-			});
-
-			return;
-		}
+		return;
 	}
+
+	return data.value.data;
 }
 </script>
 <style>

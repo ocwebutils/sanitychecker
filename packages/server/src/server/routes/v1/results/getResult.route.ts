@@ -14,35 +14,35 @@ const routeSchema = {
 		required: ["resultId"],
 		properties: {
 			resultId: {
-				type: "string"
-			}
-		}
+				type: "string",
+			},
+		},
 	},
 	response: {
 		200: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				data: {
 					type: "object",
-					additionalProperties: true
-				}
-			}
+					additionalProperties: true,
+				},
+			},
 		},
 		404: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				error: {
-					type: "string"
-				}
-			}
-		}
-	}
+					type: "string",
+				},
+			},
+		},
+	},
 };
 
 const getResult: Route = {
@@ -66,7 +66,7 @@ const getResult: Route = {
 		delete query.expireDate;
 
 		return res.send({ success: true, data: query });
-	}
+	},
 };
 
 export default getResult;

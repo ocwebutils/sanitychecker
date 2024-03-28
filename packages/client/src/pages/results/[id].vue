@@ -81,18 +81,17 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { useToast } from "vue-toastification";
-import { axiosInstance, baseAPIURL } from "@/utils/axiosInstance";
 import { json2csv } from "@/utils/helpers";
 import type { JSONSchema7 } from "json-schema";
-import { isAxiosError } from "axios";
 import { initTooltips } from "flowbite";
+import { useCustomFetch } from "@/components/useCustomFetch";
+import { baseAPIURL } from "@/constants";
 
 const isMobile = () => window.innerWidth <= 760;
-const route = useRoute(),
-	router = useRouter(),
-	showRawData = ref(false),
-	toast = useToast();
+const route = useRoute();
+const router = useRouter();
+const showRawData = ref(false);
+const { $toast: toast } = useNuxtApp();
 
 useHead({
 	title: "OpenCore Sanity Checker | Result",
@@ -100,64 +99,40 @@ useHead({
 		{
 			hid: "description",
 			name: "description",
-			content: "Result of config validation by OpenCore Sanity Checker"
+			content: "Result of config validation by OpenCore Sanity Checker",
 		},
 		{
 			property: "og:title",
-			content: "OpenCore Sanity Checker"
+			content: "OpenCore Sanity Checker",
 		},
 		{
 			property: "og:description",
-			content: "Result of config validation by OpenCore Sanity Checker"
-		}
-	]
+			content: "Result of config validation by OpenCore Sanity Checker",
+		},
+	],
 });
 
 const getResult = async (id: string) => {
-		try {
-			const { data } = await axiosInstance.get(`/result/${id}`);
-			if (!data.success || !data.data) {
-				console.error(data);
-				toast.error(data.error, {
-					timeout: 5000
-				});
-				router.push("/");
-				return;
-			}
-
-			return data.data;
-		} catch (error) {
-			if (isAxiosError(error)) {
-				console.error(error.response?.data);
-				toast.error(error.response?.data.error, {
-					timeout: 5000
-				});
-				router.push("/");
-			}
+		const { data, error } = await useCustomFetch<{ success: boolean; data?: unknown; error?: string }>(`/result/${id}`);
+		if (!data?.value?.success || error?.value?.data) {
+			const message = data.value?.error ?? error.value?.data;
+			console.error(message);
+			toast.error(message);
+			router.push("/");
 		}
+
+		return data?.value?.data;
 	},
 	getSchema = async (ocVersion: string) => {
-		try {
-			const { data } = await axiosInstance.get(`/schema?v=${ocVersion}`);
-			if (!data.success || !data.data) {
-				console.error(data);
-				toast.error(data.error, {
-					timeout: 5000
-				});
-				router.push("/");
-				return;
-			}
-
-			return data.data;
-		} catch (error) {
-			if (isAxiosError(error)) {
-				console.error(error.response?.data);
-				toast.error(error.response?.data.error, {
-					timeout: 5000
-				});
-				router.push("/");
-			}
+		const { data, error } = await useCustomFetch<{ success: boolean; data?: unknown; error?: string }>(`/schema?v=${ocVersion}`);
+		if (!data?.value?.success || error?.value?.data) {
+			const message = data.value?.error ?? error.value?.data;
+			console.error(message);
+			toast.error(message);
+			router.push("/");
 		}
+
+		return data?.value?.data;
 	},
 	returnProperties = (schema: JSONSchema7) => {
 		const properties: string[] = Object.keys(schema.properties as JSONSchema7);
@@ -187,7 +162,7 @@ const getResult = async (id: string) => {
 
 					const csv = json2csv(result.results);
 					const blob = new Blob([csv], {
-						type: "application/octet-stream"
+						type: "application/octet-stream",
 					});
 					const url = window.URL.createObjectURL(blob);
 
@@ -197,9 +172,7 @@ const getResult = async (id: string) => {
 
 					window.URL.revokeObjectURL(url);
 					hrefElement.remove();
-					toast.success("Result has been converted to csv format", {
-						timeout: 5000
-					});
+					toast.success("Downloading result as CSV...");
 				}
 				break;
 			case "config":
@@ -213,9 +186,7 @@ const getResult = async (id: string) => {
 					hrefElement.download = "config.plist";
 					hrefElement.click();
 					hrefElement.remove();
-					toast.success("Config has been downloaded", {
-						timeout: 5000
-					});
+					toast.success("Downloading config file...");
 				}
 				break;
 		}
@@ -228,14 +199,12 @@ const getResult = async (id: string) => {
 		}
 
 		navigator.permissions.query({ name: permissionName }).then(result => {
-			if (result.state === ("granted" || "prompt")) copyToClipboard();
+			result.state === ("granted" || "prompt") && copyToClipboard();
 		});
 	},
 	copyToClipboard = () => {
 		navigator.clipboard.writeText(document.URL).then(() => {
-			toast.success("Link has been copied to the clipboard", {
-				timeout: 5000
-			});
+			toast.success("Link has been copied to the clipboard");
 		});
 	},
 	result = await getResult(route.params.id as string),

@@ -21,27 +21,27 @@ const routeSchema = {
 				required: ["uploadedBy", "ocVersion", "cpuDetails", "includeConfig"],
 				properties: {
 					uploadedBy: {
-						type: "string"
+						type: "string",
 					},
 					includeConfig: {
-						type: "boolean"
+						type: "boolean",
 					},
 					ocVersion: {
-						type: "string"
+						type: "string",
 					},
 					cpuDetails: {
 						type: "object",
 						required: ["codename", "name"],
 						properties: {
 							codename: {
-								type: "string"
+								type: "string",
 							},
 							name: {
-								type: "string"
-							}
-						}
-					}
-				}
+								type: "string",
+							},
+						},
+					},
+				},
 			},
 			configBody: {
 				type: "object",
@@ -49,79 +49,79 @@ const routeSchema = {
 				properties: {
 					data: {
 						type: "object",
-						additionalProperties: true
+						additionalProperties: true,
 					},
 					buffer: {
-						type: "string"
-					}
-				}
-			}
-		}
+						type: "string",
+					},
+				},
+			},
+		},
 	},
 	response: {
 		200: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				data: {
 					type: "object",
 					properties: {
 						resultId: {
-							type: "string"
+							type: "string",
 						},
 						results: {
 							type: "object",
 							properties: {
 								rulesResults: {
 									type: "array",
-									additionalItems: true
+									additionalItems: true,
 								},
 								schemaResults: {
 									type: "object",
 									properties: {
 										errorArray: {
 											type: "array",
-											additionalItems: true
+											additionalItems: true,
 										},
 										missingRoot: {
 											type: ["array", "null"],
 											items: {
-												type: "string"
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+												type: "string",
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+				},
+			},
 		},
 		"4xx": {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				error: {
-					type: "string"
-				}
-			}
+					type: "string",
+				},
+			},
 		},
 		500: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				error: {
-					type: "string"
-				}
-			}
-		}
-	}
+					type: "string",
+				},
+			},
+		},
+	},
 };
 
 const validateConfig: Route = {
@@ -167,7 +167,7 @@ const validateConfig: Route = {
 		const rulesResult = configCheck.validate(rules) as RulesResult[],
 			result = {
 				rulesResults: rulesResult.length === 0 ? null : rulesResult,
-				schemaResults: schemaResult
+				schemaResults: schemaResult,
 			},
 			resultId = nanoid(),
 			configId = metadata.includeConfig ? nanoid() : null;
@@ -181,15 +181,15 @@ const validateConfig: Route = {
 				cpuCodename: metadata.cpuDetails.codename,
 				cpuName: metadata.cpuDetails.name,
 				ocVersion: metadata.ocVersion,
-				configId
-			}
+				configId,
+			},
 		});
 
 		if (configId) {
 			const configQuery = new ConfigModel({
 				configId,
 				createdBy: metadata.uploadedBy,
-				configData: Buffer.from(req.body.configBody.buffer as string, "base64")
+				configData: Buffer.from(req.body.configBody.buffer as string, "base64"),
 			});
 
 			configQuery.save().catch(() => {
@@ -203,9 +203,9 @@ const validateConfig: Route = {
 
 		return res.send({
 			success: true,
-			data: { resultId, results: result }
+			data: { resultId, results: result },
 		});
-	}
+	},
 };
 
 const validateMetadata = (metadata: UploadMetadata) => {

@@ -12,6 +12,6 @@ import { replaceBoolean, getIcon, displayNormalizedName } from "@/utils/helpers"
 import type { ValueType } from "@/interfaces/metadata";
 
 defineProps({
-	ruleOutput: { type: Object as PropType<ValueType>, required: true }
+	ruleOutput: { type: Object as PropType<ValueType>, required: true },
 });
 </script>

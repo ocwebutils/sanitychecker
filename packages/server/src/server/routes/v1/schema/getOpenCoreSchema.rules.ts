@@ -11,35 +11,35 @@ const routeSchema = {
 		required: ["v"],
 		properties: {
 			v: {
-				type: "string"
-			}
-		}
+				type: "string",
+			},
+		},
 	},
 	response: {
 		200: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				data: {
 					type: "object",
-					additionalProperties: true
-				}
-			}
+					additionalProperties: true,
+				},
+			},
 		},
 		500: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				error: {
-					type: "string"
-				}
-			}
-		}
-	}
+					type: "string",
+				},
+			},
+		},
+	},
 };
 
 const getOpenCoreSchema: Route = {
@@ -55,7 +55,7 @@ const getOpenCoreSchema: Route = {
 			return res.status(500).send({ success: false, error: "Sorry, we couldn't retrieve the requested data at this time. Please try again later." });
 
 		return res.send({ success: true, data: file });
-	}
+	},
 };
 
 export default getOpenCoreSchema;

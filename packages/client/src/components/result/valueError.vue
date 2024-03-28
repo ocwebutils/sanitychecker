@@ -27,6 +27,6 @@ import { getIcon, replaceBoolean, displayNormalizedName, parseMarked } from "@/u
 import type { ValueType } from "@/interfaces/metadata";
 
 defineProps({
-	ruleOutput: { type: Object as PropType<ValueType>, required: true }
+	ruleOutput: { type: Object as PropType<ValueType>, required: true },
 });
 </script>

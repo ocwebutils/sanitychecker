@@ -8,7 +8,7 @@
 			<li v-if="commit">
 				<fa-icon icon="fa-solid fa-code-commit" class="mr-1" />
 				<code
-					><a :href="'https://github.com/ocwebutils/sanitychecker/commit/' + commit" class="hover:underline transition-colors">{{
+					><a :href="`https://github.com/ocwebutils/sanitychecker/commit/${commit}`" class="hover:underline transition-colors">{{
 						`${commit.slice(0, 7)} (${version})`
 					}}</a></code
 				>
@@ -23,16 +23,15 @@
 	</footer>
 </template>
 <script setup lang="ts">
-import { axiosInstance } from "@/utils/axiosInstance";
-
+import { useCustomFetch } from "../useCustomFetch";
 const config = useRuntimeConfig();
 
-const getPackageVersions = async () => {
+const getPackageVersions = async (): Promise<{ rulesVersion: string } | null> => {
 	try {
-		const { data } = await axiosInstance.get("/packageVersions");
-		if (!data.success || !data.data) return null;
+		const { data, error } = await useCustomFetch<{ success: boolean; data?: { rulesVersion: string } }>("/packageVersions");
+		if (!data?.value?.success || !data?.value?.data || error?.value?.data) return null;
 
-		return data.data;
+		return data.value.data;
 	} catch {
 		return null;
 	}

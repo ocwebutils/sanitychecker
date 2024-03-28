@@ -11,51 +11,51 @@ const routeSchema = {
 		required: ["x-user-id"],
 		properties: {
 			"x-user-id": {
-				type: "string"
-			}
-		}
+				type: "string",
+			},
+		},
 	},
 	params: {
 		type: "object",
 		required: ["resultId"],
 		properties: {
 			resultId: {
-				type: "string"
-			}
-		}
+				type: "string",
+			},
+		},
 	},
 	response: {
 		200: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
-				}
-			}
+					type: "boolean",
+				},
+			},
 		},
 		"4xx": {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				error: {
-					type: "string"
-				}
-			}
+					type: "string",
+				},
+			},
 		},
 		500: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				error: {
-					type: "string"
-				}
-			}
-		}
-	}
+					type: "string",
+				},
+			},
+		},
+	},
 };
 
 const deleteResult: Route = {
@@ -79,7 +79,7 @@ const deleteResult: Route = {
 		if (!deleteQuery) return res.status(500).send({ success: false, error: "We couldn't delete the result. Try again later" });
 
 		return res.send({ success: true });
-	}
+	},
 };
 
 export default deleteResult;

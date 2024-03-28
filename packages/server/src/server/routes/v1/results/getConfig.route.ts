@@ -16,35 +16,35 @@ const routeSchema = {
 		required: ["configId"],
 		properties: {
 			configId: {
-				type: "string"
-			}
-		}
+				type: "string",
+			},
+		},
 	},
 	response: {
 		200: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				data: {
 					type: "object",
-					additionalProperties: true
-				}
-			}
+					additionalProperties: true,
+				},
+			},
 		},
 		404: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				error: {
-					type: "string"
-				}
-			}
-		}
-	}
+					type: "string",
+				},
+			},
+		},
+	},
 };
 
 const getConfig: Route = {
@@ -67,7 +67,7 @@ const getConfig: Route = {
 		const fileContent = query.configData.toString();
 
 		return res.send(fileContent);
-	}
+	},
 };
 
 export default getConfig;

@@ -20,10 +20,9 @@
 <script setup lang="ts">
 import { validatePlist, parsePlist } from "@/utils/plistHandler";
 import { handleForm } from "@/utils/handleForm";
-import { useToast } from "vue-toastification";
 
 const processing = ref<boolean>(false);
-const toast = useToast();
+const { $toast: toast } = useNuxtApp();
 
 const dropFileHandler = async (event: File[] | Event) => {
 	const eventFile = event instanceof Event ? (event?.target as HTMLInputElement).files : event;
@@ -44,14 +43,10 @@ const dropFileHandler = async (event: File[] | Event) => {
 		return;
 	}
 
-	await navigateTo(`/results/${result.data.resultId}`);
+	await navigateTo(`/results/${result?.data?.resultId}`);
 };
 
 const showErrorNotif = (msg: string) => {
-	toast.error(msg, {
-		timeout: 3000
-	});
-
-	return;
+	toast.error(msg);
 };
 </script>

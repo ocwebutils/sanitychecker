@@ -6,7 +6,7 @@ export function validatePlist(file: Blob): Promise<boolean> {
 		reader.onload = () => {
 			try {
 				XMLValidator.validate(reader.result as string, {
-					allowBooleanAttributes: true
+					allowBooleanAttributes: true,
 				});
 
 				resolve(true);

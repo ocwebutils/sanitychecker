@@ -14,7 +14,7 @@
 					>
 						<option value="default" disabled v-if="supportedCPUGenerations">Select CPU Model</option>
 						<option value="default" disabled v-else>Loading CPU models...</option>
-						<optgroup v-for="(cpuModel, platform) in supportedCPUGenerations" :label="(platform as string)">
+						<optgroup v-for="(cpuModel, platform) in supportedCPUGenerations" :label="(platform as unknown as string)">
 							<option v-for="{ codename, displayName } in cpuModel" :value="codename">{{ displayName }}</option>
 						</optgroup>
 					</select>
@@ -36,8 +36,8 @@
 
 <script setup lang="ts">
 import { getVariable } from "@/utils/helpers";
-import { axiosInstance } from "@/utils/axiosInstance";
 import type { cpuGenerations, cpuModel } from "@/interfaces/metadata";
+import { useCustomFetch } from "../useCustomFetch";
 
 const supportedCPUGenerations = ref<cpuModel | null>(null),
 	supportedOCVersions = ref(null),
@@ -50,13 +50,13 @@ onMounted(async () => {
 	restoreSelections();
 });
 
-watch(selectedCPUModel, function (newValue: string) {
+watch(selectedCPUModel, (newValue: string) => {
 	getSupportedOCVersions(newValue);
 });
 
 const restoreSelections = () => {
 	try {
-		const lastSelections = getVariable("lastOptions") as { cpuModel: string; ocVersion: string; includeConfig: boolean; };
+		const lastSelections = getVariable<{ cpuModel: string; ocVersion: string; includeConfig: boolean }>("lastOptions");
 
 		if (!lastSelections) return;
 
@@ -65,29 +65,32 @@ const restoreSelections = () => {
 		selectedCPUModel.value = cpuModel;
 		selectedOCVersion.value = ocVersion;
 		includeConfigElement.checked = includeConfig;
-	} catch { }
+	} catch {}
 };
 
 const getSupportedOCVersions = async (cpumodel: string) => {
 	try {
-		const { data } = await axiosInstance.get(`/supportedOCVersions?codename=${cpumodel}`);
-		if (!data.success) return null;
+		const { data } = await useCustomFetch<{ success: boolean; data?: { supportedVersions: string[] }; error?: string }>(
+			`/supportedOCVersions?codename=${cpumodel}`
+		);
+		if (!data?.value?.success) return null;
+		const res = data.value.data;
 
-		const supportedVersions = data.data.supportedVersions;
-
+		const supportedVersions = res?.supportedVersions ?? [];
 		supportedOCVersions.value = supportedVersions;
 		selectedOCVersion.value = supportedVersions[0];
-	} catch (err) {
+	} catch {
 		return null;
 	}
 };
 
 const getSupportedCPUGenerations = async () => {
 	try {
-		const { data } = await axiosInstance.get("/supportedCPUGenerations");
-		if (!data.success) return null;
+		const { data } = await useCustomFetch<{ success: boolean; data?: unknown; error?: string }>("/supportedCPUGenerations");
+		if (!data?.value?.success) return null;
+		const resData = data.value.data;
 
-		const res = data.data as cpuGenerations;
+		const res = resData as cpuGenerations;
 		const newRes: cpuModel = {};
 
 		for (const platform in res) {
@@ -97,7 +100,7 @@ const getSupportedCPUGenerations = async () => {
 				return models.map(({ displayName, codename }) => {
 					return {
 						displayName: `[${brand}] ${displayName}`,
-						codename: codename
+						codename: codename,
 					};
 				});
 			});
@@ -105,7 +108,7 @@ const getSupportedCPUGenerations = async () => {
 		}
 
 		return newRes;
-	} catch (err) {
+	} catch {
 		return null;
 	}
 };

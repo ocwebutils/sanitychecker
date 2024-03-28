@@ -6,7 +6,7 @@ export type SchemaType = Awaited<ReturnType<typeof getSchema>>;
 export const getCPUModels = async () => {
 		try {
 			const { default: cpulist } = await import("@ocwebutils/sc_rules/cpu_list.json", {
-				assert: { type: "json" }
+				assert: { type: "json" },
 			});
 			return cpulist;
 		} catch (err) {
@@ -16,7 +16,7 @@ export const getCPUModels = async () => {
 	getOCVersions = async (codename: string) => {
 		try {
 			const { default: ocVersions } = await import("@ocwebutils/sc_rules/oc_versions.json", {
-				assert: { type: "json" }
+				assert: { type: "json" },
 			});
 			return ocVersions.find((item: { codename: string }) => item.codename === codename);
 		} catch (err) {
@@ -26,7 +26,7 @@ export const getCPUModels = async () => {
 	getSchema = async (version: string) => {
 		try {
 			const { default: schema }: JSONSchema7 = await import(`@ocwebutils/sc_rules/schemas/${version}.schema.json`, {
-				assert: { type: "json" }
+				assert: { type: "json" },
 			});
 			return schema;
 		} catch (err) {
@@ -54,7 +54,7 @@ export const getRules = async (version: string, codename: string) => {
 		const { default: cpuRules } = await import(
 			`@ocwebutils/sc_rules/rules/${platform}/${brand}/${version}/${cpuCodename?.replace(/^[^_]*_/, "")}.rules.json`,
 			{
-				assert: { type: "json" }
+				assert: { type: "json" },
 			}
 		);
 		return cpuRules;

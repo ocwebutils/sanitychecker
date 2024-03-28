@@ -25,7 +25,7 @@ import type { SchemaType } from "@/interfaces/metadata";
 
 const props = defineProps({
 	schemaError: { type: Object as PropType<SchemaType>, required: true },
-	ocVersion: { type: String, required: true }
+	ocVersion: { type: String, required: true },
 });
 
 const returnMessage = (msg: string, path: string, type?: string) => {

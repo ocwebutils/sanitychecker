@@ -39,4 +39,4 @@ export type cpuGenerations = {
 	[key: string]: cpuModel;
 };
 
-export type cpuModel = { [index: string]: { displayName: string; codename: string }[] }
+export type cpuModel = { [index: string]: { displayName: string; codename: string }[] };

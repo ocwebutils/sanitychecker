@@ -11,26 +11,26 @@ const routeSchema = {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				data: {
 					type: "object",
-					additionalProperties: true
-				}
-			}
+					additionalProperties: true,
+				},
+			},
 		},
 		500: {
 			type: "object",
 			properties: {
 				success: {
-					type: "boolean"
+					type: "boolean",
 				},
 				error: {
-					type: "string"
-				}
-			}
-		}
-	}
+					type: "string",
+				},
+			},
+		},
+	},
 };
 
 const getSupportedCPUGenerations: Route = {
@@ -43,7 +43,7 @@ const getSupportedCPUGenerations: Route = {
 			return res.status(500).send({ success: false, error: "Sorry, we couldn't retrieve the requested data at this time. Please try again later." });
 
 		return res.send({ success: true, data: file });
-	}
+	},
 };
 
 export default getSupportedCPUGenerations;

@@ -16,7 +16,7 @@ export default {
 	computed: {
 		icon() {
 			return this.$colorMode.value === "light" ? "fa-solid fa-sun" : "fa-solid fa-moon";
-		}
+		},
 	},
 	methods: {
 		changeThemeColor() {
@@ -26,7 +26,7 @@ export default {
 			if (this.$colorMode.value === "light") htmlSelector.setAttribute("data-theme", "dark");
 			else htmlSelector.setAttribute("data-theme", "light");
 			this.$colorMode.preference = this.$colorMode.value === "light" ? "dark" : "light";
-		}
-	}
+		},
+	},
 };
 </script>

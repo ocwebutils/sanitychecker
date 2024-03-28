@@ -24,7 +24,7 @@ import {
 	faSquarePollHorizontal,
 	faFileCsv,
 	faFileCode,
-	faInfoCircle
+	faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
 

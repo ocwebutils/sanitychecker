@@ -1,9 +1,8 @@
+import { useCustomFetch } from "@/components/useCustomFetch";
 import { readFileAsBase64, setVariable } from "./helpers";
 
-import { axiosInstance } from "./axiosInstance";
 import { getIdentificator } from "./identificator";
-import { isAxiosError } from "axios";
-import type { requestBody } from "~/interfaces/metadata";
+import type { requestBody } from "@/interfaces/metadata";
 
 export const handleForm = async (file: Record<string, unknown>, plistBlob: File) => {
 		const cpuModelSelect = document.querySelector("#cpu_model") as HTMLSelectElement,
@@ -26,29 +25,29 @@ export const handleForm = async (file: Record<string, unknown>, plistBlob: File)
 				includeConfig,
 				cpuDetails: {
 					codename: cpuModel,
-					name: cpuName
-				}
+					name: cpuName,
+				},
 			},
 			configBody: {
-				data: file
-			}
+				data: file,
+			},
 		};
 
 		if (plistBlob) requestBody.configBody.buffer = (await readFileAsBase64(plistBlob)).split(",")[1];
 
-		try {
-			const { data } = await axiosInstance.post("/validateConfig", requestBody);
+		const { data, error } = await useCustomFetch<{ success: boolean; data?: unknown; error?: string }>("/validateConfig", {
+			method: "POST",
+			body: requestBody,
+		});
+		if (!data?.value?.success || error?.value?.data) return { success: false, error: data?.value?.error ?? error?.value?.data ?? "Unknown error" };
 
-			setVariable("lastOptions", {
-				ocVersion,
-				cpuModel,
-				includeConfig
-			});
+		setVariable("lastOptions", {
+			ocVersion,
+			cpuModel,
+			includeConfig,
+		});
 
-			return data;
-		} catch (error) {
-			if (isAxiosError(error)) return { success: false, error: error.response?.data.error ?? "Unknown error" };
-		}
+		return data?.value;
 	},
 	deleteResult = async (event: MouseEvent | HTMLElement) => {
 		const target = event instanceof HTMLElement ? event : (event.target as HTMLElement);
@@ -57,13 +56,13 @@ export const handleForm = async (file: Record<string, unknown>, plistBlob: File)
 			parentElement = target.closest("tr") as HTMLTableRowElement;
 
 		const uuid = await getIdentificator();
-
-		const { data } = await axiosInstance.delete(`/result/${uploadID}`, {
+		const { data, error } = await useCustomFetch<{ success: boolean; data: unknown; error?: string }>(`/result/${uploadID}`, {
+			method: "DELETE",
 			headers: {
-				"x-user-id": uuid as string
-			}
+				"x-user-id": uuid as string,
+			},
 		});
-		if (!data.success) return;
+		if (!data?.value?.success || error?.value?.data) return;
 
 		parentElement.remove();
 	};

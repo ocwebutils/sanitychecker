@@ -4,7 +4,7 @@ const ConfigSchema: Schema = new Schema(
 	{
 		configId: { type: String, required: true },
 		createdBy: { type: String, required: true },
-		configData: { type: Buffer, required: true }
+		configData: { type: Buffer, required: true },
 	},
 	{ strict: true }
 );
