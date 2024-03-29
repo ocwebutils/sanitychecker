@@ -84,7 +84,7 @@ async function getUploadList() {
 	});
 
 	if (!data?.value?.success || error?.value?.data) {
-		console.error(data?.value?.error ?? error?.value?.data);
+		console.error(data?.value?.error ?? error?.value?.data?.error);
 		toast.error("Error occured. Check console for errors");
 
 		return;
@@ -100,4 +100,4 @@ async function getUploadList() {
 .dark tr {
 	@apply bg-darkgray-800 rounded-lg;
 }
-</style>../../composables/useCustomFetch
+</style>

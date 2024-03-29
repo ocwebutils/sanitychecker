@@ -115,7 +115,7 @@ useHead({
 const getResult = async (id: string) => {
 		const { data, error } = await useCustomFetch<{ success: boolean; data?: unknown; error?: string }>(`/result/${id}`);
 		if (!data?.value?.success || error?.value?.data) {
-			const message = data.value?.error ?? error.value?.data;
+			const message = data.value?.error ?? error.value?.data?.error;
 			console.error(message);
 			toast.error(message);
 			router.push("/");
@@ -126,7 +126,7 @@ const getResult = async (id: string) => {
 	getSchema = async (ocVersion: string) => {
 		const { data, error } = await useCustomFetch<{ success: boolean; data?: unknown; error?: string }>(`/schema?v=${ocVersion}`);
 		if (!data?.value?.success || error?.value?.data) {
-			const message = data.value?.error ?? error.value?.data;
+			const message = data.value?.error ?? error.value?.data?.error;
 			console.error(message);
 			toast.error(message);
 			router.push("/");

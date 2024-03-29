@@ -104,4 +104,4 @@ const getSupportedCPUGenerations = async () => {
 
 	return newRes;
 };
-</script>../../composables/useCustomFetch
+</script>

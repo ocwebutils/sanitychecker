@@ -36,4 +36,4 @@ const getPackageVersions = async (): Promise<{ rulesVersion: string } | null> =>
 const commit = config.public.COMMIT_HASH,
 	version = config.public.WEBSITE_VERSION,
 	packageVersions = await getPackageVersions();
-</script>../../composables/useCustomFetch
+</script>

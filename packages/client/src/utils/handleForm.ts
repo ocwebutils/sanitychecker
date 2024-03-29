@@ -39,7 +39,8 @@ export const handleForm = async (file: Record<string, unknown>, plistBlob: File)
 			method: "POST",
 			body: requestBody,
 		});
-		if (!data?.value?.success || error?.value?.data) return { success: false, error: data?.value?.error ?? error?.value?.data ?? "Unknown error" };
+		if (!data?.value?.success || error?.value?.data)
+			return { success: false, error: data?.value?.error ?? error?.value?.data?.error ?? "Unknown error" };
 
 		setVariable("lastOptions", {
 			ocVersion,
