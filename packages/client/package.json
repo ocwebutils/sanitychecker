@@ -31,10 +31,10 @@
 		"@nuxtjs/color-mode": "3.3.3",
 		"@nuxtjs/tailwindcss": "6.11.4",
 		"@types/json-schema": "7.0.15",
-		"@types/node": "20.11.30",
+		"@types/node": "20.12.2",
 		"@types/plist": "3.0.5",
 		"@types/uuid": "9.0.8",
-		"@vite-pwa/nuxt": "0.5.0",
+		"@vite-pwa/nuxt": "0.6.0",
 		"nuxt": "3.11.1"
 	},
 	"engines": {
