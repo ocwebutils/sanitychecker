@@ -32,6 +32,12 @@
 						Discord
 					</NuxtLink>
 				</li>
+				<li>
+					<NuxtLink href="https://github.com/ocwebutils/sanitychecker">
+						<fa-icon icon="fa-brands fa-github" />
+						GitHub
+					</NuxtLink>
+				</li>
 			</ul>
 		</div>
 		<div class="daisy-menu bg-base-200 lg:daisy-menu-horizontal rounded-box hidden">
@@ -59,6 +65,12 @@
 					<NuxtLink href="https://ocutils.me/discord">
 						<fa-icon icon="fa-brands fa-discord" />
 						Discord
+					</NuxtLink>
+				</li>
+				<li>
+					<NuxtLink href="https://github.com/ocwebutils/sanitychecker">
+						<fa-icon icon="fa-brands fa-github" />
+						GitHub
 					</NuxtLink>
 				</li>
 			</ul>

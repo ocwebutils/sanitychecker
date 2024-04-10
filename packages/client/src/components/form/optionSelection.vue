@@ -40,7 +40,7 @@ import type { cpuGenerations, cpuModel } from "@/interfaces/metadata";
 import { useCustomFetch } from "@/composables/useCustomFetch";
 
 const supportedCPUGenerations = ref<cpuModel | null>(null),
-	supportedOCVersions = ref(null),
+	supportedOCVersions = ref<string[] | null>(null),
 	selectedCPUModel = ref("default"),
 	selectedOCVersion = ref<string | null>(null);
 
