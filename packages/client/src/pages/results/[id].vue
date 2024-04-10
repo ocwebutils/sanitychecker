@@ -4,7 +4,11 @@
 			<div class="text-center">
 				<div class="float-right space-x-1">
 					<div class="daisy-dropdown daisy-dropdown-bottom daisy-dropdown-end">
-						<div tabindex="0" role="button" class="mt-1 daisy-btn daisy-btn-sm daisy-btn-circle daisy-btn-ghost font-medium text-lg hover:text-blue-500 transition-colors">
+						<div
+							tabindex="0"
+							role="button"
+							class="mt-1 daisy-btn daisy-btn-sm daisy-btn-circle daisy-btn-ghost font-medium text-lg hover:text-blue-500 transition-colors"
+						>
 							<fa-icon icon="fa-solid fa-download" />
 						</div>
 						<ul tabindex="0" class="p-2 daisy-shadow daisy-menu daisy-dropdown-content z-[1] bg-base-100 rounded-box w-52">
@@ -40,26 +44,34 @@
 			<div class="daisy-divider" />
 			<div class="font-medium space-y-4" v-if="!showRawData">
 				<div v-for="property in properties">
-					<p :id="property" class="mr-4 mb-2 text-lg">{{ property }}
-					<template v-for="res in result.results.schemaResults.missingRoot">
-						<div v-if="res === property" class="inline">
-							<button data-tooltip-target="tooltip-rootMissing" :data-tooltip-placement="isMobile() ? 'bottom' : 'right'" type="button" class="ml-1"><fa-icon
-									class="mr-2"
-									icon="fa-solid fa-circle-xmark"
-									:style="{
-										color: 'red'
-									}"
-								/></button>
-									<div
-			id="tooltip-rootMissing"
-			role="tooltip"
-			class="!absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-		>
-			This root dictionary is missing from your config. Please add it to your config.
-			<div class="tooltip-arrow" data-popper-arrow></div>
-		</div>
-						</div>
-					</template>
+					<p :id="property" class="mr-4 mb-2 text-lg">
+						{{ property }}
+						<template v-for="res in result.results.schemaResults.missingRoot">
+							<div v-if="res === property" class="inline">
+								<button
+									data-tooltip-target="tooltip-rootMissing"
+									:data-tooltip-placement="isMobile() ? 'bottom' : 'right'"
+									type="button"
+									class="ml-1"
+								>
+									<fa-icon
+										class="mr-2"
+										icon="fa-solid fa-circle-xmark"
+										:style="{
+											color: 'red'
+										}"
+									/>
+								</button>
+								<div
+									id="tooltip-rootMissing"
+									role="tooltip"
+									class="!absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+								>
+									This root dictionary is missing from your config. Please add it to your config.
+									<div class="tooltip-arrow" data-popper-arrow></div>
+								</div>
+							</div>
+						</template>
 					</p>
 					<template v-for="results in result.results.rulesResults">
 						<template v-if="results.path.includes(property)">

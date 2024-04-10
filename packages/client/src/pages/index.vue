@@ -1,10 +1,8 @@
 <template>
-	<div>
-		<!-- <LazyInfoBox /> -->
-		<HeroContent>
-			<HeroFormContent />
-		</HeroContent>
-	</div>
+	<!-- <LazyInfoBox /> -->
+	<HeroContent>
+		<HeroFormContent />
+	</HeroContent>
 </template>
 
 <script setup lang="ts">
