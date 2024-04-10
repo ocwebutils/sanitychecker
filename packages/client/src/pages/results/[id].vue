@@ -130,6 +130,7 @@ const getResult = async (id: string) => {
 			const message = data.value?.error ?? error.value?.data?.error;
 			console.error(message);
 			toast.error(message);
+			setVariable("lastViewedResult", null);
 			router.push("/");
 		}
 
