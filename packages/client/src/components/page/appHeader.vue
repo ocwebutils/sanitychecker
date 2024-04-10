@@ -40,17 +40,17 @@
 				</li>
 			</ul>
 		</div>
-		<div class="daisy-menu bg-base-200 lg:daisy-menu-horizontal rounded-box hidden">
-			<nuxt-img alt="OCUtils' logo" src="/assets/favicons/logo.webp" height="32" width="32" class="self-center mx-auto inline" />
-			<ul class="flex flex-row">
+		<div class="daisy-menu bg-base-200 lg:daisy-menu-horizontal rounded-box hidden fixed top-0 z-[999] mt-3 shadow-md">
+			<nuxt-img alt="OCUtils' logo" src="/assets/favicons/logo.webp" height="32" width="32" class="self-center mx-auto inline mr-1" />
+			<ul class="flex flex-row gap-1">
 				<li>
 					<NuxtLink href="/" :class="$route.path === '/' ? 'daisy-active' : ''">
 						<fa-icon icon="fa-house" />
 						Home
 					</NuxtLink>
 				</li>
-				<li v-if="$route.path.includes('/results/')">
-					<NuxtLink :href="$route.fullPath" :class="$route.path.includes('/results/') ? 'daisy-active' : ''">
+				<li v-if="$route.path.includes('/results/') || lastViewedResult">
+					<NuxtLink :href="lastViewedResult ? `/results/${lastViewedResult}` : $route.fullPath" :class="$route.path.includes('/results/') ? 'daisy-active' : ''">
 						<fa-icon icon="fa-square-poll-horizontal" />
 						Validation Result
 					</NuxtLink>
@@ -78,3 +78,6 @@
 		</div>
 	</nav>
 </template>
+<script setup lang="ts">
+const lastViewedResult = getVariable("lastViewedResult");
+</script>

@@ -81,7 +81,7 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { json2csv } from "@/utils/helpers";
+import { json2csv, setVariable } from "@/utils/helpers";
 import type { JSONSchema7 } from "json-schema";
 import { initTooltips } from "flowbite";
 import { useCustomFetch } from "@/composables/useCustomFetch";
@@ -211,6 +211,8 @@ const getResult = async (id: string) => {
 	schema = await getSchema(result.metadata.ocVersion),
 	properties = await returnProperties(schema),
 	isConfigIncluded = result.metadata.configId;
+
+setVariable("lastViewedResult", route.params.id);
 
 onMounted(() => {
 	initTooltips();

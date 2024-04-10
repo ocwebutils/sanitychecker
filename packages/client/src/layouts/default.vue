@@ -3,7 +3,7 @@
 		<ClientOnly>
 			<div class="flex flex-col h-screen" tabindex="0">
 				<PageAppHeader />
-				<main class="flex-grow m-auto">
+				<main class="flex-grow mx-auto items-center justify-center flex">
 					<slot />
 				</main>
 				<PageAppFooter />
