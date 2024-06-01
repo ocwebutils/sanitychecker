@@ -14,18 +14,18 @@
 		"@fastify/cors": "9.0.1",
 		"@ocwebutils/sc_checker": "github:ocwebutils/sc_checker",
 		"@ocwebutils/sc_rules": "github:ocwebutils/sc_rules",
-		"ajv": "8.13.0",
-		"debug": "4.3.4",
+		"ajv": "8.14.0",
+		"debug": "4.3.5",
 		"dotenv": "16.4.5",
-		"fastify": "4.26.2",
-		"mongoose": "8.3.3",
+		"fastify": "4.27.0",
+		"mongoose": "8.4.1",
 		"nanoid": "5.0.7"
 	},
 	"devDependencies": {
 		"@types/debug": "4.1.12",
 		"@types/json-schema": "7.0.15",
-		"@types/node": "20.12.7",
-		"tsx": "4.8.2",
+		"@types/node": "20.13.0",
+		"tsx": "4.11.0",
 		"typescript": "5.4.5"
 	},
 	"engines": {
