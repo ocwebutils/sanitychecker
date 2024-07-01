@@ -22,7 +22,7 @@
 		"fast-xml-parser": "4.4.0",
 		"flowbite": "2.3.0",
 		"marked": "13.0.1",
-		"uuid": "9.0.1",
+		"uuid": "10.0.0",
 		"vue-dompurify-html": "5.0.1",
 		"vue-sonner": "1.1.2"
 	},
@@ -33,7 +33,7 @@
 		"@types/json-schema": "7.0.15",
 		"@types/node": "20.13.0",
 		"@types/plist": "3.0.5",
-		"@types/uuid": "9.0.8",
+		"@types/uuid": "10.0.0",
 		"@vite-pwa/nuxt": "0.8.0",
 		"nuxt": "3.11.2"
 	},
