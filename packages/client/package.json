@@ -19,7 +19,7 @@
 		"@nuxt/image": "1.7.0",
 		"autoprefixer": "10.4.19",
 		"daisyui": "4.12.10",
-		"fast-xml-parser": "4.4.0",
+		"fast-xml-parser": "4.4.1",
 		"flowbite": "2.4.1",
 		"marked": "13.0.1",
 		"uuid": "10.0.0",
