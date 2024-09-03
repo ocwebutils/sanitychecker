@@ -16,26 +16,26 @@
 		"@fortawesome/free-brands-svg-icons": "6.6.0",
 		"@fortawesome/free-solid-svg-icons": "6.6.0",
 		"@fortawesome/vue-fontawesome": "3.0.8",
-		"@nuxt/image": "1.7.0",
-		"autoprefixer": "10.4.19",
+		"@nuxt/image": "1.8.0",
+		"autoprefixer": "10.4.20",
 		"daisyui": "4.12.10",
-		"fast-xml-parser": "4.4.1",
-		"flowbite": "2.4.1",
+		"fast-xml-parser": "4.5.0",
+		"flowbite": "2.5.1",
 		"marked": "13.0.3",
 		"uuid": "10.0.0",
 		"vue-dompurify-html": "5.1.0",
-		"vue-sonner": "1.1.4"
+		"vue-sonner": "1.1.5"
 	},
 	"devDependencies": {
 		"@kevinmarrec/nuxt-pwa": "0.17.0",
-		"@nuxtjs/color-mode": "3.4.2",
+		"@nuxtjs/color-mode": "3.4.4",
 		"@nuxtjs/tailwindcss": "6.12.1",
 		"@types/json-schema": "7.0.15",
-		"@types/node": "20.14.13",
+		"@types/node": "20.16.3",
 		"@types/plist": "3.0.5",
 		"@types/uuid": "10.0.0",
-		"@vite-pwa/nuxt": "0.9.1",
-		"nuxt": "3.12.4"
+		"@vite-pwa/nuxt": "0.10.3",
+		"nuxt": "3.13.0"
 	},
 	"engines": {
 		"node": ">=18",
