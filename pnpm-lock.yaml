@@ -94,14 +94,14 @@ importers:
   packages/server:
     dependencies:
       '@fastify/cors':
-        specifier: 9.0.1
-        version: 9.0.1
+        specifier: 10.0.1
+        version: 10.0.1
       '@ocwebutils/sc_checker':
         specifier: github:ocwebutils/sc_checker
         version: https://codeload.github.com/ocwebutils/sc_checker/tar.gz/4aece80aafec183fdbc2606026fb01d74a53e3be
       '@ocwebutils/sc_rules':
         specifier: github:ocwebutils/sc_rules
-        version: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/20fc7bed8abf450d3825ea5d044c3376d615ebfb
+        version: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/7b63cfcc0c691000bdfb83626bd7bca28fc8db04
       ajv:
         specifier: 8.17.1
         version: 8.17.1
@@ -1543,8 +1543,8 @@ packages:
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
 
-  '@fastify/cors@9.0.1':
-    resolution: {integrity: sha512-YY9Ho3ovI+QHIL2hW+9X4XqQjXLjJqsU+sMV/xFsxZkE8p3GNnYVFpoOxF7SsP5ZL76gwvbo3V9L+FIekBGU4Q==}
+  '@fastify/cors@10.0.1':
+    resolution: {integrity: sha512-O8JIf6448uQbOgzSkCqhClw6gFTAqrdfeA6R3fc/3gwTJGUp7gl8/3tbNB+6INuu4RmgVOq99BmvdGbtu5pgOA==}
 
   '@fastify/error@3.4.1':
     resolution: {integrity: sha512-wWSvph+29GR783IhmvdwWnN4bUxTD01Vm5Xad4i7i1VuAOItLvbPAb69sb0IQ2N57yprvhNIwAP5B6xfKTmjmQ==}
@@ -1627,6 +1627,7 @@ packages:
   '@koa/router@12.0.1':
     resolution: {integrity: sha512-ribfPYfHb+Uw3b27Eiw6NPqjhIhTpVFzEWLwyc/1Xp+DCdwRRyIlAUODX+9bPARF6aQtUu1+/PHzdNvRzcs/+Q==}
     engines: {node: '>= 12'}
+    deprecated: Use v12.0.2 or higher to fix the vulnerability issue
 
   '@kwsites/file-exists@1.1.1':
     resolution: {integrity: sha512-m9/5YGR18lIwxSFDwfE3oA7bWuq9kdau6ugN4H2rJeyhFQZcG9AgSHkQtSD15a8WvTgfz9aikZMrKPHvbpqFiw==}
@@ -1732,8 +1733,8 @@ packages:
     version: 1.1.2
     engines: {node: '>=16'}
 
-  '@ocwebutils/sc_rules@https://codeload.github.com/ocwebutils/sc_rules/tar.gz/20fc7bed8abf450d3825ea5d044c3376d615ebfb':
-    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/20fc7bed8abf450d3825ea5d044c3376d615ebfb}
+  '@ocwebutils/sc_rules@https://codeload.github.com/ocwebutils/sc_rules/tar.gz/7b63cfcc0c691000bdfb83626bd7bca28fc8db04':
+    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/7b63cfcc0c691000bdfb83626bd7bca28fc8db04}
     version: 1.0.1
 
   '@opentelemetry/api-logs@0.52.1':
@@ -3376,8 +3377,8 @@ packages:
     resolution: {integrity: sha512-/PlTQCI96+fZMAOLMZK4CWG1ItCbfZ/0jx7UIJFChPNrx7tcEgerUgWbeieCM9MfHInUDyK8DWYZ+YrywDJuTg==}
     hasBin: true
 
-  fastify-plugin@4.5.1:
-    resolution: {integrity: sha512-stRHYGeuqpEZTL1Ef0Ovr2ltazUT9g844X5z/zEBFLG8RYlpDiOCIG+ATvYEp+/zmc7sN29mcIMp8gvYplYPIQ==}
+  fastify-plugin@5.0.1:
+    resolution: {integrity: sha512-HCxs+YnRaWzCl+cWRYFnHmeRFyR5GVnJTAaCJQiYzQSDwK9MgJdyAsuL3nh0EWRCYMgQ5MeziymvmAhUHYHDUQ==}
 
   fastify@4.28.1:
     resolution: {integrity: sha512-kFWUtpNr4i7t5vY2EJPCN2KgMVpuqfU4NjnJNCgiNB900oiDeYqaNDRcAfeBbOF5hGixixxcKnOU4KN9z6QncQ==}
@@ -4255,8 +4256,8 @@ packages:
   mlly@1.7.1:
     resolution: {integrity: sha512-rrVRZRELyQzrIUAVMHxP97kv+G786pHmOKzuFII8zDYahFBS7qnHh2AlYSl1GAHhaMPCz6/oHjVMcfFYgFYHgA==}
 
-  mnemonist@0.39.6:
-    resolution: {integrity: sha512-A/0v5Z59y63US00cRSLiloEIw3t5G+MiKz4BhX21FI+YBJXBOGW0ohFxTxO08dsOYlzxo87T7vGfZKYp2bcAWA==}
+  mnemonist@0.39.8:
+    resolution: {integrity: sha512-vyWo2K3fjrUw8YeeZ1zF0fy6Mu59RHokURlld8ymdUPjMlD9EC9ov1/YPqTgqRvUN9nTr3Gqfz29LYAmu0PHPQ==}
 
   module-details-from-path@1.0.3:
     resolution: {integrity: sha512-ySViT69/76t8VhE1xXHK6Ch4NcDd26gx0MzKXLO+F7NOtnqH68d9zF94nT8ZWSxXh8ELOERsnJO/sWt1xZYw5A==}
@@ -6094,7 +6095,7 @@ snapshots:
 
   '@babel/helper-builder-binary-assignment-operator-visitor@7.22.15':
     dependencies:
-      '@babel/types': 7.24.7
+      '@babel/types': 7.25.6
 
   '@babel/helper-compilation-targets@7.24.7':
     dependencies:
@@ -6231,7 +6232,7 @@ snapshots:
     dependencies:
       '@babel/helper-function-name': 7.24.7
       '@babel/template': 7.24.7
-      '@babel/types': 7.24.7
+      '@babel/types': 7.25.6
 
   '@babel/helpers@7.24.7':
     dependencies:
@@ -6811,7 +6812,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.24.7
       '@babel/helper-plugin-utils': 7.24.7
-      '@babel/types': 7.24.7
+      '@babel/types': 7.25.6
       esutils: 2.0.3
 
   '@babel/regjsgen@0.8.0': {}
@@ -7341,10 +7342,10 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
-  '@fastify/cors@9.0.1':
+  '@fastify/cors@10.0.1':
     dependencies:
-      fastify-plugin: 4.5.1
-      mnemonist: 0.39.6
+      fastify-plugin: 5.0.1
+      mnemonist: 0.39.8
 
   '@fastify/error@3.4.1': {}
 
@@ -7860,7 +7861,7 @@ snapshots:
     dependencies:
       ajv: 8.12.0
 
-  '@ocwebutils/sc_rules@https://codeload.github.com/ocwebutils/sc_rules/tar.gz/20fc7bed8abf450d3825ea5d044c3376d615ebfb':
+  '@ocwebutils/sc_rules@https://codeload.github.com/ocwebutils/sc_rules/tar.gz/7b63cfcc0c691000bdfb83626bd7bca28fc8db04':
     dependencies:
       '@biomejs/biome': 1.5.3
 
@@ -9698,7 +9699,7 @@ snapshots:
     dependencies:
       strnum: 1.0.5
 
-  fastify-plugin@4.5.1: {}
+  fastify-plugin@5.0.1: {}
 
   fastify@4.28.1:
     dependencies:
@@ -10624,7 +10625,7 @@ snapshots:
       pkg-types: 1.1.3
       ufo: 1.5.4
 
-  mnemonist@0.39.6:
+  mnemonist@0.39.8:
     dependencies:
       obliterator: 2.0.4
 
