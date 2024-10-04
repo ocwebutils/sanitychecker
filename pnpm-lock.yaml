@@ -51,8 +51,8 @@ importers:
         specifier: 2.5.2
         version: 2.5.2(rollup@4.21.2)
       marked:
-        specifier: 13.0.3
-        version: 13.0.3
+        specifier: 14.1.2
+        version: 14.1.2
       uuid:
         specifier: 10.0.0
         version: 10.0.0
@@ -3905,8 +3905,8 @@ packages:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
 
-  marked@13.0.3:
-    resolution: {integrity: sha512-rqRix3/TWzE9rIoFGIn8JmsVfhiuC8VIQ8IdX5TfzmeBucdY05/0UlzKaw0eVtpcN/OdVFpBk7CjKGo9iHJ/zA==}
+  marked@14.1.2:
+    resolution: {integrity: sha512-f3r0yqpz31VXiDB/wj9GaOB0a2PRLQl6vJmXiFrniNwjkKdvakqJRULhjFKJpxOchlCRiG5fcacoUZY5Xa6PEQ==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -10242,7 +10242,7 @@ snapshots:
     dependencies:
       semver: 6.3.1
 
-  marked@13.0.3: {}
+  marked@14.1.2: {}
 
   mdn-data@2.0.28: {}
 
