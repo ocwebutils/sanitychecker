@@ -54,8 +54,8 @@ importers:
         specifier: 13.0.3
         version: 13.0.3
       uuid:
-        specifier: 10.0.0
-        version: 10.0.0
+        specifier: 11.0.2
+        version: 11.0.2
       vue-dompurify-html:
         specifier: 5.1.0
         version: 5.1.0(vue@3.5.11(typescript@5.6.2))
@@ -101,7 +101,7 @@ importers:
         version: https://codeload.github.com/ocwebutils/sc_checker/tar.gz/4aece80aafec183fdbc2606026fb01d74a53e3be
       '@ocwebutils/sc_rules':
         specifier: github:ocwebutils/sc_rules
-        version: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/7b63cfcc0c691000bdfb83626bd7bca28fc8db04
+        version: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/63a5d89a7afb2d71039a3256dd96cb0eff86c586
       ajv:
         specifier: 8.17.1
         version: 8.17.1
@@ -1573,8 +1573,8 @@ packages:
     version: 1.1.2
     engines: {node: '>=16'}
 
-  '@ocwebutils/sc_rules@https://codeload.github.com/ocwebutils/sc_rules/tar.gz/7b63cfcc0c691000bdfb83626bd7bca28fc8db04':
-    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/7b63cfcc0c691000bdfb83626bd7bca28fc8db04}
+  '@ocwebutils/sc_rules@https://codeload.github.com/ocwebutils/sc_rules/tar.gz/63a5d89a7afb2d71039a3256dd96cb0eff86c586':
+    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/63a5d89a7afb2d71039a3256dd96cb0eff86c586}
     version: 1.0.1
 
   '@opentelemetry/api-logs@0.52.1':
@@ -5499,8 +5499,8 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  uuid@10.0.0:
-    resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
+  uuid@11.0.2:
+    resolution: {integrity: sha512-14FfcOJmqdjbBPdDjFQyk/SdT4NySW4eM0zcG+HqbHP5jzuH56xO3J1DGhgs/cEMCfwYi3HQI1gnTO62iaG+tQ==}
     hasBin: true
 
   vary@1.1.2:
@@ -7579,7 +7579,7 @@ snapshots:
     dependencies:
       ajv: 8.12.0
 
-  '@ocwebutils/sc_rules@https://codeload.github.com/ocwebutils/sc_rules/tar.gz/7b63cfcc0c691000bdfb83626bd7bca28fc8db04':
+  '@ocwebutils/sc_rules@https://codeload.github.com/ocwebutils/sc_rules/tar.gz/63a5d89a7afb2d71039a3256dd96cb0eff86c586':
     dependencies:
       '@biomejs/biome': 1.5.3
 
@@ -12086,7 +12086,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  uuid@10.0.0: {}
+  uuid@11.0.2: {}
 
   vary@1.1.2: {}
 
