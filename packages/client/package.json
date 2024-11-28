@@ -31,7 +31,7 @@
 		"@nuxtjs/color-mode": "3.5.2",
 		"@nuxtjs/tailwindcss": "6.12.2",
 		"@types/json-schema": "7.0.15",
-		"@types/node": "20.17.6",
+		"@types/node": "22.10.1",
 		"@types/plist": "3.0.5",
 		"@types/uuid": "10.0.0",
 		"@vite-pwa/nuxt": "0.10.6",
