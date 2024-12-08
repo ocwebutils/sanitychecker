@@ -6,7 +6,7 @@
 	"license": "GPL-3.0",
 	"scripts": {
 		"build": "COMMIT_HASH=$(git rev-parse HEAD) nuxt build",
-		"dev": "COMMIT_HASH=$(git rev-parse HEAD) nuxt dev",
+		"dev": "nuxt dev",
 		"generate": "COMMIT_HASH=$(git rev-parse HEAD) nuxt generate",
 		"preview": "COMMIT_HASH=$(git rev-parse HEAD) nuxt preview",
 		"start": "node ./.output/server/index.mjs"
@@ -27,7 +27,6 @@
 		"vue-sonner": "1.2.5"
 	},
 	"devDependencies": {
-		"@kevinmarrec/nuxt-pwa": "0.17.0",
 		"@nuxtjs/color-mode": "3.5.2",
 		"@nuxtjs/tailwindcss": "6.12.2",
 		"@types/json-schema": "7.0.15",

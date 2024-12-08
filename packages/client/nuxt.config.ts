@@ -4,7 +4,7 @@ export default defineNuxtConfig({
 	app: {
 		head: {
 			htmlAttrs: {
-				lang: "en",
+				lang: "en"
 			},
 			title: "OpenCore Sanity Checker",
 			meta: [
@@ -15,57 +15,61 @@ export default defineNuxtConfig({
 					hid: "keywords",
 					name: "keywords",
 					content:
-						"opencore, opencore sanity checker, sanity checker, plist checker, sanity checker plist, opencore plist, opencore config, opencore config sanity checker, ocutils",
+						"opencore, opencore sanity checker, sanity checker, plist checker, sanity checker plist, opencore plist, opencore config, opencore config sanity checker, ocutils"
 				},
 				{
 					hid: "robots",
 					property: "robots",
-					content: "index, archive",
+					content: "index, archive"
 				},
 				{
 					hid: "description",
 					name: "description",
-					content: "OpenCore Sanity Checker made by OpenCore Web Utilities allows to check your OpenCore config for potential issues",
+					content: "OpenCore Sanity Checker made by OpenCore Web Utilities allows to check your OpenCore config for potential issues"
 				},
 				{
 					name: "theme-color",
-					content: "#10B981",
-				},
+					content: "#10B981"
+				}
 			],
 			link: [
 				{ rel: "icon", type: "image/png", sizes: "16x16", href: "/assets/favicons/favicon-16x16.png" },
 				{ rel: "icon", type: "image/png", sizes: "32x32", href: "/assets/favicons/favicon-32x32.png" },
 				{ rel: "mask-icon", color: "#111827", href: "/assets/favicons/safari-pinned-tab.svg" },
 				{ rel: "preconnect", href: "https://analytics.ocutils.me" },
-				{ rel: "preconnect", href: "https://api.ocutils.me" },
+				{ rel: "preconnect", href: "https://api.ocutils.me" }
 			],
 			script: [
 				{
 					defer: true,
 					"data-api": "https://analytics.ocutils.me/api/sendData",
 					"data-domain": "ocutils.me",
-					src: "https://analytics.ocutils.me/js/script.js",
+					src: "https://analytics.ocutils.me/js/script.js"
 				},
 				{
-					src: "/assets/js/plist.min.js?v=3.0.7",
-				},
-			],
-		},
+					src: "/assets/js/plist.min.js?v=3.0.7"
+				}
+			]
+		}
 	},
+
 	build: {
 		transpile: [
 			"@fortawesome/vue-fontawesome",
 			"@fortawesome/fontawesome-svg-core",
 			"@fortawesome/free-brands-svg-icons",
 			"@fortawesome/free-solid-svg-icons",
-			"vue-sonner",
-		],
+			"vue-sonner"
+		]
 	},
+
 	colorMode: {
-		classSuffix: "",
+		classSuffix: ""
 	},
+
 	css: ["@fortawesome/fontawesome-svg-core/styles.css"],
 	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@nuxt/image", "@vite-pwa/nuxt"],
+
 	pwa: {
 		registerType: "autoUpdate",
 		manifest: {
@@ -77,53 +81,61 @@ export default defineNuxtConfig({
 					src: "/assets/favicons/android-chrome-192x192.png",
 					sizes: "192x192",
 					type: "image/png",
-					purpose: "any",
+					purpose: "any"
 				},
 				{
 					src: "/assets/favicons/android-chrome-512x512.png",
 					sizes: "512x512",
 					type: "image/png",
-					purpose: "maskable",
-				},
+					purpose: "maskable"
+				}
 			],
 			display: "standalone",
-			theme_color: "#10B981",
+			theme_color: "#10B981"
 		},
 		injectRegister: "auto",
 		devOptions: {
 			enabled: true,
 			suppressWarnings: true,
 			navigateFallbackAllowlist: [/^\/$/],
-			type: "module",
+			type: "module"
 		},
 		workbox: {
-			globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
-		},
+			globPatterns: ["**/*.{js,css,html,png,svg,ico}"]
+		}
 	},
+
 	runtimeConfig: {
 		public: {
 			COMMIT_HASH: process.env.COMMIT_HASH,
-			WEBSITE_VERSION: version,
-		},
+			WEBSITE_VERSION: version
+		}
 	},
+
 	tailwindcss: {
-		viewer: false,
+		viewer: false
 	},
+
 	typescript: {
-		strict: true,
+		strict: true
 	},
+
 	srcDir: "src/",
 	ssr: false,
+
 	vite: {
 		server: {
 			watch: {
-				usePolling: true,
-			},
-		},
+				usePolling: true
+			}
+		}
 	},
+
 	nitro: {
 		prerender: {
-			routes: ["/privacy"],
-		},
+			routes: ["/privacy"]
+		}
 	},
+
+	compatibilityDate: "2024-12-08"
 });

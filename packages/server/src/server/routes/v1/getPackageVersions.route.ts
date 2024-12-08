@@ -1,9 +1,9 @@
 import type { BasicResponse, Route, packageVersions } from "server/interfaces/routes.interface.js";
 
+import { version as rulesVersion } from "@ocwebutils/sc_rules/package.json" assert { type: "json" };
 import type { FastifyRequest } from "fastify";
 import type { ReplyPayload } from "server/interfaces/fastify.interface.js";
 import { version as apiVersion } from "../../../../package.json" assert { type: "json" };
-import { version as rulesVersion } from "@ocwebutils/sc_rules/package.json" assert { type: "json" };
 
 const getPackageVersions: Route = {
 	url: "/packageVersions",

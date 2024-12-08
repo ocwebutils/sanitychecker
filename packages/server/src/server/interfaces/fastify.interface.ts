@@ -7,6 +7,7 @@ declare module "fastify" {
 }
 
 export type ReplyPayload<Payload extends RouteGenericInterface> = FastifyReply<
+	RouteGenericInterface,
 	RawServerDefault,
 	RawRequestDefaultExpression,
 	RawReplyDefaultExpression,
