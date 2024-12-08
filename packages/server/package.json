@@ -18,7 +18,7 @@
 		"debug": "4.3.7",
 		"dotenv": "16.4.5",
 		"fastify": "5.1.0",
-		"mongoose": "8.8.0",
+		"mongoose": "8.8.3",
 		"nanoid": "5.0.8"
 	},
 	"devDependencies": {
