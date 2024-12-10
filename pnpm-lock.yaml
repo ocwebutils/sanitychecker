@@ -98,7 +98,7 @@ importers:
         version: https://codeload.github.com/ocwebutils/sc_checker/tar.gz/4aece80aafec183fdbc2606026fb01d74a53e3be
       '@ocwebutils/sc_rules':
         specifier: github:ocwebutils/sc_rules
-        version: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/63a5d89a7afb2d71039a3256dd96cb0eff86c586
+        version: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/07f8fc62bced8a814a83013a33f842020ea2a83a
       ajv:
         specifier: 8.17.1
         version: 8.17.1
@@ -115,8 +115,8 @@ importers:
         specifier: 8.8.3
         version: 8.8.3
       nanoid:
-        specifier: 5.0.8
-        version: 5.0.8
+        specifier: 5.0.9
+        version: 5.0.9
     devDependencies:
       '@types/debug':
         specifier: 4.1.12
@@ -1563,8 +1563,8 @@ packages:
     version: 1.1.2
     engines: {node: '>=16'}
 
-  '@ocwebutils/sc_rules@https://codeload.github.com/ocwebutils/sc_rules/tar.gz/63a5d89a7afb2d71039a3256dd96cb0eff86c586':
-    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/63a5d89a7afb2d71039a3256dd96cb0eff86c586}
+  '@ocwebutils/sc_rules@https://codeload.github.com/ocwebutils/sc_rules/tar.gz/07f8fc62bced8a814a83013a33f842020ea2a83a':
+    resolution: {tarball: https://codeload.github.com/ocwebutils/sc_rules/tar.gz/07f8fc62bced8a814a83013a33f842020ea2a83a}
     version: 1.0.1
 
   '@parcel/watcher-android-arm64@2.4.1':
@@ -4189,11 +4189,6 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanoid@5.0.8:
-    resolution: {integrity: sha512-TcJPw+9RV9dibz1hHUzlLVy8N4X9TnwirAjrU08Juo6BNKggzVfP2ZJ/3ZUSq15Xl5i85i+Z89XBO90pB2PghQ==}
-    engines: {node: ^18 || >=20}
-    hasBin: true
-
   nanoid@5.0.9:
     resolution: {integrity: sha512-Aooyr6MXU6HpvvWXKoVoXwKMs/KyVakWwg7xQfv5/S/RIgJMy0Ifa45H9qqYy7pTCszrHzP21Uk4PZq2HpEM8Q==}
     engines: {node: ^18 || >=20}
@@ -6108,7 +6103,7 @@ snapshots:
       '@babel/core': 7.26.0
       '@babel/helper-compilation-targets': 7.25.9
       '@babel/helper-plugin-utils': 7.25.9
-      debug: 4.4.0(supports-color@9.4.0)
+      debug: 4.3.7
       lodash.debounce: 4.0.8
       resolve: 1.22.8
     transitivePeerDependencies:
@@ -7728,7 +7723,7 @@ snapshots:
     dependencies:
       ajv: 8.12.0
 
-  '@ocwebutils/sc_rules@https://codeload.github.com/ocwebutils/sc_rules/tar.gz/63a5d89a7afb2d71039a3256dd96cb0eff86c586':
+  '@ocwebutils/sc_rules@https://codeload.github.com/ocwebutils/sc_rules/tar.gz/07f8fc62bced8a814a83013a33f842020ea2a83a':
     dependencies:
       '@biomejs/biome': 1.5.3
 
@@ -10586,8 +10581,6 @@ snapshots:
       thenify-all: 1.6.0
 
   nanoid@3.3.8: {}
-
-  nanoid@5.0.8: {}
 
   nanoid@5.0.9: {}
 
