@@ -11,11 +11,11 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@commitlint/cli": "19.5.0",
-		"@commitlint/config-conventional": "19.5.0",
-		"husky": "9.1.6"
+		"@commitlint/cli": "19.6.1",
+		"@commitlint/config-conventional": "19.6.0",
+		"husky": "9.1.7"
 	},
-	"packageManager": "pnpm@9.15.0",
+	"packageManager": "pnpm@9.15.3",
 	"engines": {
 		"node": ">=18",
 		"npm": "please-use-pnpm",
