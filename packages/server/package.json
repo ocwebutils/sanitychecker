@@ -11,22 +11,22 @@
 		"start": "node dist/src/index.js"
 	},
 	"dependencies": {
-		"@fastify/cors": "10.0.2",
+		"@fastify/cors": "10.1.0",
 		"@ocwebutils/sc_checker": "github:ocwebutils/sc_checker",
 		"@ocwebutils/sc_rules": "github:ocwebutils/sc_rules",
 		"ajv": "8.17.1",
 		"debug": "4.4.0",
 		"dotenv": "16.4.7",
 		"fastify": "5.2.1",
-		"mongoose": "8.9.5",
-		"nanoid": "5.0.9"
+		"mongoose": "8.12.2",
+		"nanoid": "5.1.5"
 	},
 	"devDependencies": {
 		"@types/debug": "4.1.12",
 		"@types/json-schema": "7.0.15",
-		"@types/node": "20.17.12",
-		"tsx": "4.19.2",
-		"typescript": "5.7.2"
+		"@types/node": "20.17.25",
+		"tsx": "4.19.3",
+		"typescript": "5.8.2"
 	},
 	"engines": {
 		"node": ">=18",
