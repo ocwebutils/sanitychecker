@@ -16,16 +16,16 @@
 		"@ocwebutils/sc_rules": "github:ocwebutils/sc_rules",
 		"ajv": "8.17.1",
 		"debug": "4.4.1",
-		"dotenv": "16.5.0",
-		"fastify": "5.3.3",
-		"mongoose": "8.15.1",
+		"dotenv": "16.6.1",
+		"fastify": "5.4.0",
+		"mongoose": "8.16.1",
 		"nanoid": "5.1.5"
 	},
 	"devDependencies": {
 		"@types/debug": "4.1.12",
 		"@types/json-schema": "7.0.15",
-		"@types/node": "20.19.0",
-		"tsx": "4.20.1",
+		"@types/node": "20.19.4",
+		"tsx": "4.20.3",
 		"typescript": "5.8.3"
 	},
 	"engines": {
