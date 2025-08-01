@@ -11,7 +11,7 @@
 		"start": "node dist/src/index.js"
 	},
 	"dependencies": {
-		"@fastify/cors": "10.1.0",
+		"@fastify/cors": "11.1.0",
 		"@ocwebutils/sc_checker": "github:ocwebutils/sc_checker",
 		"@ocwebutils/sc_rules": "github:ocwebutils/sc_rules",
 		"ajv": "8.17.1",
