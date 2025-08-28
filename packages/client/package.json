@@ -18,7 +18,7 @@
 		"@fortawesome/vue-fontawesome": "3.0.8",
 		"@nuxt/image": "1.10.0",
 		"autoprefixer": "10.4.21",
-		"daisyui": "4.12.24",
+		"daisyui": "5.0.54",
 		"fast-xml-parser": "4.5.3",
 		"flowbite": "2.5.2",
 		"marked": "15.0.12",
