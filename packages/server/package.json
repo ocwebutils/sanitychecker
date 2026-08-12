@@ -16,7 +16,7 @@
 		"@ocwebutils/sc_rules": "github:ocwebutils/sc_rules",
 		"ajv": "8.17.1",
 		"debug": "4.4.1",
-		"dotenv": "16.5.0",
+		"dotenv": "17.4.2",
 		"fastify": "5.3.3",
 		"mongoose": "8.15.1",
 		"nanoid": "5.1.5"
